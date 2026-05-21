@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.16)  21 MAY 2026 16:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.16)  21 MAY 2026 16:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1064,27 +1064,28 @@ Package hyperref Info: bookmark level for unknown lem defaults to 0 on input lin
 [1{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 [2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/old-arrows/oasy.enc}]
-Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 536.
-Package hyperref Info: bookmark level for unknown ex defaults to 0 on input line 540.
-Package hyperref Info: bookmark level for unknown Thm defaults to 0 on input line 546.
+Package hyperref Info: bookmark level for unknown ex defaults to 0 on input line 539.
+Package hyperref Info: bookmark level for unknown cons defaults to 0 on input line 543.
+Package hyperref Info: bookmark level for unknown Thm defaults to 0 on input line 559.
+Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 576.
 
 
 [3]
 
 [4]
-Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 673.
+Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 646.
 
+
+[5]
 pdfTeX warning (ext4): destination with the same identifier (name{lem.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.676 \begin{lem}\label
+l.716 \begin{lem}\label
                        {SUJ-lem}
 
-[5]
-Package hyperref Info: bookmark level for unknown cor defaults to 0 on input line 707.
-
-
 [6]
+Package hyperref Info: bookmark level for unknown cor defaults to 0 on input line 746.
+
 
 [7]
 
@@ -1092,11 +1093,9 @@ Package hyperref Info: bookmark level for unknown cor defaults to 0 on input lin
 pdfTeX warning (ext4): destination with the same identifier (name{defn.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.811     F
+l.850     F
            or any $f:p\vuto{\tau}(q_{\phi t})_{t:\tau}$, such that
-Package hyperref Info: bookmark level for unknown cons defaults to 0 on input line 847.
-
-Overfull \hbox (6.5406pt too wide) in paragraph at lines 863--865
+Overfull \hbox (6.5406pt too wide) in paragraph at lines 902--904
 []\OT1/cmr/bx/n/12 Construction B.4. []\OT1/cmr/m/n/12 We now to de-fine the com-po-si-tion. Let $\OML/cmm/m/it/12 f \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 p [] q[]$ \OT1/cmr/m/n/12 in $[](\U/rsfs/m/n/12 X\OT1/cmr/m/n/12 )(\OML/cmm/m/it/12 p; \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 q[]\OT1/cmr/m/n/12 )[])$
  []
 
@@ -1106,47 +1105,47 @@ Overfull \hbox (6.5406pt too wide) in paragraph at lines 863--865
 pdfTeX warning (ext4): destination with the same identifier (name{rmk.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.866     T
+l.905     T
            o define the composite, we need for each $\theta\in\Ext(\sum_{s:\...]
 pdfTeX warning (ext4): destination with the same identifier (name{defn.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.928     A
+l.967     A
             vu-category $\X$ if it is right orthogonal to all $X\to\Tref(X)$...
 
 [10]
 pdfTeX warning (ext4): destination with the same identifier (name{lem.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.934     L
+l.973     L
            et $f:p\vuto{\tau}(q_{\phi t})$. We chose $\phi = T\to S$ represe...
 pdfTeX warning (ext4): destination with the same identifier (name{prop.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.967     F
-           or $\X$ to be taut, it is enough to ask for any $f : p \vuto{\lam...
+l.1006     F
+            or $\X$ to be taut, it is enough to ask for any $f : p \vuto{\la...
 
 [11]
 
 [12]
-Package hyperref Info: bookmark level for unknown question defaults to 0 on input line 1070.
+Package hyperref Info: bookmark level for unknown question defaults to 0 on input line 1109.
 
 
 [13]
 
-LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1153.
+LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1192.
 
 
-LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1155.
+LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1194.
 
 
-LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1157.
+LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1196.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{prop.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1162     T
+l.1201     T
             hese constructions are inverse from each other.
 
 [14]
@@ -1163,24 +1162,24 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40473 strings out of 467800
- 827164 string characters out of 5431882
- 1671853 words of memory out of 5000000
+ 40484 strings out of 467800
+ 827321 string characters out of 5431882
+ 1672913 words of memory out of 5000000
  68200 multiletter control sequences out of 15000+600000
- 641534 words of font info for 106 fonts, out of 8000000 for 9000
+ 641138 words of font info for 104 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 116i,21n,121p,1154b,1262s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,21n,121p,1154b,1255s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{cite.0@Awodey_Eliasson_2004} has been referenced but does not exist, replaced by a fixed one
 
 
 pdfTeX warning (dest): name{cite.0@SUJ} has been referenced but does not exist, replaced by a fixed one
 
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/old-arrows/oasy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb>
-Output written on main.pdf (15 pages, 372259 bytes).
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/old-arrows/oasy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/old-arrows/oasy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb>
+Output written on main.pdf (15 pages, 377622 bytes).
 PDF statistics:
- 382 PDF objects out of 1000 (max. 8388607)
- 311 compressed objects within 4 object streams
- 125 named destinations out of 1000 (max. 500000)
+ 400 PDF objects out of 1000 (max. 8388607)
+ 327 compressed objects within 4 object streams
+ 136 named destinations out of 1000 (max. 500000)
  85 words of extra memory for PDF output out of 10000 (max. 10000000)
 
