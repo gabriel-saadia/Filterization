@@ -665,7 +665,7 @@ The goal of the following is to prove that the functor $\ev \colon \E \to{} \Sh(
 We will obtain this by combining two more general results. Note that any vf-functor $F \colon \X \to \pt(\E)$ naturally induces a functor $f^* \colon \E \to \Sh(\X)$ where, for $e  \in \E$ \gabrielnote{i usuallt prefer capital letters for objects in a topos (as their are tought as sheaf)}, the vf-functor $f^*(e) \colon \X \to \Set$ is given:
 \begin{itemize}
     \item on objects, by mapping $x \in \X_0$ to the set $F(x)(e)$;
-    \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $e$ of the natural transformation $F(r) \colon x \Rightarrow\prod_{s:\sigma} y_s$.
+    \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $e$ of the natural transformation $F(r) \colon x \Rightarrow\int_{s:\sigma} y_s$.
 \end{itemize}
 Thus, we will now study study how properties of $F$ induce properties on $f^*$, in such a way that taking $F$ to be the inclusion $A \hookrightarrow \pt(\E)$ the corresponding functor $\E \to \Sh(A)$ will be an equivalence. Intuitively, we will proceed as if $f^*$ were the inverse image of a geometric morphism $\Sh(\X) \to \E$, determining sufficient conditions on $F$ making it localic and conditions making it hyperconnected. Since a geometric morphism which is both localic and hyperconnected is an equivalence, we will derive our conclusion in the case of $\E \to \Sh(A)$.
 
@@ -693,9 +693,6 @@ $\Theta\colon \Tref(\pt(\E))\to\pt(\Lref(\E))$.
 
 Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objects and vf-faithful; we will now show that it is also vf-full, and hence an equivalence of vf-categories.
 
-\begin{prop}
-    The functor $\Tref(\pt(\E))\to\pt(\Lref(\E))$ is vf-full, \ie for any $p$ and $(q_s)_{s:\sigma}$ such that $p\vuleq{\sigma}q_s$ in $\pt(\Lref(\E))$, there exists $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some filter $\lambda$ inhabited.
-\end{prop}
 
 \begin{lem}\label{SUJ-lem}
     Let $\C$ be a small filtered category and $A \colon \C\to\Set$ such that there exist a family $(a_x)_{x:\Ob(\C)}$. Then, there exists an inhabited filter $\lambda$ such that the reduced product functor $A^{\lambda} \colon \C \to \Set$ defined by $x\mapsto A(x)^\lambda$ admits a global section.
@@ -715,15 +712,22 @@ Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objec
     and this is true by construction of $\lambda$ (as for $(\theta^x : {d^x}\rightarrow x):\lambda$ we can assume $f\circ \theta^y = \theta^x$).
 \end{proof}
 
+
+\begin{prop}
+    The functor $\Tref(\pt(\E))\to\pt(\Lref(\E))$ is vf-full, \ie for any $p$ and $(q_s)_{s:\sigma}$ such that $p\vuleq{\sigma}q_s$ in $\pt(\Lref(\E))$, there exists $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some filter $\lambda$ inhabited.
+\end{prop}
 \begin{proof}
-Let $p \in \pt(\Tref(\E))$.  Fix a small dense full subcategory $\mathcal G\subseteq\E$ of the topos $\E$ and let $\C$ be the category of elements of the functor $(-)_p \colon \mathcal G \to\Set$, which is then filtered. % (for example, any $S$ lex would work). 
-\UT{who is $(-)_p$?}\gabrielnote{it is $p^*$, like the functor taking the stalk at $p$.}
+    We take $p,(q_s) \in \pt(\E)$ such that $p\vuleq[\pt(\Lref(\E))]{\sigma}q_s$ and we want to construct some $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some proper filter $\lambda$. 
     
-    The hypothesis $p \vuleq{\sigma} (q_s)$ in $\pt(\Lref(\E))$ implies that for all $E\in\E$ such that $E_p$ is non-empty then $\int_{s:\sigma}E_{q_s}$ is also non-empty, thus we can apply the above \Cref{SUJ-lem} to the functor $\C\to\Set$ mapping $(E,\xi\in E_p) \in \C$ to the set $\int_{s:\sigma} E_{q_s}$.
-    
-    We obtain some filter $\lambda$ and some $\alpha_E(\xi) \in \int_{\lambda\cdot\sigma}E_{q_s}$ natural in $(E,\xi\in E_p)\in\C$.
+    We fix a small dense full subcategory $\mathcal G\subseteq\E$ of the topos $\E$ such that the category $\C$ of elements of the functor $p^* \colon \mathcal G \to\Set$ is filtered, for example given by a lex site.
+
+    Classically (apparently choice here!),  $p \vuleq[\pt(\Lref(\E))]{\sigma} (q_s)$ implies that the functor 
+    \[(E,\xi\in E_p) \in\C \mapsto \int_{s:\sigma} E_{q_s}\in \Set\]
+    satisfies the hypothesis of the lemma above.
     %
-    This gives a natural transformation $\alpha \in \Nat_{E:S}(E_p,\int_{\lambda\cdot\sigma}E_{q_s})$ that we then can extend to all $\E$ by density of $S$, obtaining thus some vu-arrow $p\vuto{\lambda\cdot\sigma}{(q_s)}$ in $\pt(\E)$ showing that $p\vuleq{\sigma}{(q_s)}$ in $\Tref(\pt(\E))$ as desired.
+    We obtain some filter $\lambda$ and some family $(\alpha_E(\xi) \in \int_{\lambda\cdot\sigma}E_{q_s})$ natural in $(E,\xi\in E_p)\in\C$.
+    %
+    This gives a natural transformation $\alpha \in \Nat_{E:S}(E_p,\int_{\lambda\cdot\sigma}E_{q_s})$ that we then can extend to all $\E$ by density of $\mathcal G$, obtaining thus some vu-arrow $p\vuto{\lambda\cdot\sigma}{(q_s)}$ in $\pt(\E)$.
 \end{proof}
 
 \begin{cor}
