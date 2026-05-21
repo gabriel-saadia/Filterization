@@ -1,0 +1,759 @@
+
+\section{Image directe}
+
+Dans la suite il faut prendre la limite sur l'ultracatégorie slice $\bb_x(\A)$ et non pas sur la catégorie, \ie la limite donne des $\xi^h_s$ qui sont aussi stable par l'ultraprod de cet ultracat. (sinon la formule ne marche pas dans le cas topologique meme)
+
+-----
+
+
+On prend une map de petites vult bornées $f : \A\to\B$, sur les faisceau l'image inverse est donnée par la precomposition par $f$, on va donner une expression explicite de l'image directe (adjoint à droite de la précomp par $f$ donc v·u·right Kan extension le long de $f$).
+
+On part d'un faisceau $X\in\sh(\A)$, et on construit $Y\in\sh(\B)$ de sorte à avoir $Y = f_*(X)$. Sur les objets on a 
+
+\[Y(x) = \lim_{x\ultrato(f(a_s))_{s:\mu}}\int_{s:\mu}X(a_s).\]
+
+Explicitement, la limite est prise le long de la slice catégorie "$x/_{\bb}f$" où une map de $x\ultrato(f(a_s))_{s:\mu}$ dans $x\ultrato(f(b_t))_{t:\nu}$ est donnée par des $(h_s : a_s\ultrato (c_{s,t})_{t:\nu_s})_{s:\mu}$ ainsi que d'un $\alpha : \nu\to\sum_{s:\mu}\nu_s$ tels que $x\ultrato(f(a_s))\stackrel{f(h_s)}\ultrato((f(b_{s,t})))$ s'épaissie le long de $\alpha$ en $x\ultrato(f(b_t))_{t:\nu}$.
+
+Donc $Y(x)$ est la donnée de pour tout $h : x\ultrato (f(a_s))_{s:\mu}$, d'un $(\xi^h_s:X(a_s))_{s:\mu}$ qui sont stables par composition et épaississement. (peut-on voir $Y(x)$ plus simplement?)
+
+Pour une ultraflèche $h : x\ultrato(y_s)$ dans $\B$, on obtient par precomposition par $h$
+
+\[Y(x) = \lim_{x\ultrato(f(a_t))_{t:\nu}}\int_{t:\nu}X(a_t)\longrightarrow \lim_{(y_s\ultrato(f(a^s_{t}))_{t:\nu_s})_{s:\mu}}\int_{s:\mu}\int_{t:\nu_s}X(a^s_{t})\]
+
+mais on a une injection 
+
+\[\int_{s:\mu}Y(y_s) = \int_{s:\mu}\left(\lim_{y_s\ultrato(f(a^s_{t}))_{t:\nu_s}}\int_{t:\nu_s}X(a^s_{t})\right) \longhookrightarrow \lim_{(y_s\ultrato(f(a^s_{t}))_{t:\nu_s})_{s:\mu}}\int_{s:\mu}\int_{t:\nu_s}X(a^s_{t})\]
+
+%mapping some $(((\xi(s,g_s,t):X(a^s_t))_{t:\nu_s})_{g_s:y_s\ultrato(f(a^s_{t}))_{t:\nu_s}})_{s:\mu}$ onto $(((\xi(s,g_s,t))_{t:\nu_s})_{s:\mu})_{(g_s :y_s\ultrato(f(a^s_{t}))_{t:\nu_s})_{s:\mu}}$
+
+(en générale dans Set on a toujours une injection $\int\lim(-)\hookrightarrow\lim\int(-)$, cela se généralise aux autres ultracat?)
+
+Il reste donc a montrer que la première equation se factorise par la seconde. 
+
+PARTIE TECHNIQUE! (j'ai une preuve dégeu qui revient de partir d'un élément de l'ensemble de droite, de bien ordonner les $\{y_s\ultrato(f(a^s_t))\}$ pour tout $s$, puis de les regrouper en parallèle et d'utiliser l'élément du codom pour donner des valeurs aux $\int X(a^s_t)$, puis de montrer que le choix du parallèlisme était arbitraire) TROUVER MIEUX!
+
+La fonctorialité de $Y$ se vérifie facilement, on obtient donc un faisceau sur $\B$, et il est clair que les homsets $\sh(\B)(Z, Y)$ et $\sh(\A)(f^*(Z), X)$ sont en correspondance naturelle pour $Z\in\sh(\B)$.
+
+
+
+------
+
+
+
+Il me semble que la formule ne marche pas... si on fixe deux ensembles $I$ et $A$.  On prend pour $\B$ une vult avec objets $p,(q_s)_{s:S},a$ et générée par $f_s^i : q_s\to a$ pour tout $i:I$ et $s:S$ et une ultraflèche $g : p\ultrato(q_s)_{s:\mu}$. On a donc $I^{\mu}$ ultraflèches $(f_s^{i_s})_{s:\mu}\circ g : p \ultrato a$. On prend $\A = \{a\}$ et le faisceau constant en $A$ dessus. Quand on étend avec la formule plus haut; la valeur en $p$ est donnée par $(A^{\mu})^{I^{\mu}} = [I^{\mu},A^{\mu}]$, et la valeur en un $q_s$ est donnée par $A^I$. Donc la fonctorialité donne une map $[I^{\mu},A^{\mu}] \to [I,A]^{\mu}$ et on peut vérifier (?) que ca devrait être l'inverse de l'injection canonique $[I,A]^{\mu} \hookrightarrow [I^{\mu},A^{\mu}]$, mais cette injection est stricte en générale (?).
+
+Par exemple, pour $A = 2$, on a la valeur au dessus de $p$ est $P(I^{\mu})$, on prend $C\in P(I^{\mu})$ la partie des ultrafamilles constantes, on obtiendrait alors par fonctorialité des ultrafamilles $(J_s\subseteq I)_{s:\mu}$ (en regardant au dessus des $(q_s)$) tel que $(i_s)_{s:\mu}$ est constante ssi $\forall s:\mu, i_s\in J_s$, ce qui est impossible.
+
+\section{Ultraidempotents}
+
+To show that this is sufficient we will study more the notion of ultraretraction, and show that an ultraretract satisfies a (actually two) universal propertie(s).
+
+Similarly to the usual notion of retract, we define the notion of ultraidempotent and give universal properties for the ultraretract of an ultraidempotent.
+
+\begin{defn}
+    Let $\X$ be any vultracat
+    \begin{enumerate}
+        \item an \emph{ultraidempotent} on an ultrafamily of objects $(a_s)_{s:\mu}$ is given by an ultrafamily of ultaarows $(\sigma_{s} : a_s \ultrato (a_t)_{t:\mu})_{s:\mu}$ satisfying for $s:\mu$ the following equation 
+        \[(\sigma_t)_{t:\mu}\circ\sigma_s = \pi_2^*(\sigma_s)\]
+        where
+        \[(\sigma_t)_{t:\mu}\circ\sigma_s  :
+            a_s\ultrato(a_t)_{t:\mu} \ultrato(a_u)_{(t:\mu)\otimes(u:\mu)}\]
+        \[\sigma_s : a_{s}\ultrato(a_u)_{u:\mu}\]
+        \[\pi_2 : (t:\mu)\otimes(u:\mu) \to (u:\mu)\]
+        \item a spliting of such an ultraidempotent is given by an object $p$ and ultraarows $i : p\ultrato(a)_{s:\mu}$ and $(r_s : a_s\ultrato(p)_{\nu_s})_{s:\mu}$ such that 
+        \[(i)_{\nu_s}\circ r_s = \pi_2^*(\sigma_s) \text{ and } (r_s)_{s:\mu}\circ i = \ !^*(\id_{p})\]
+    \end{enumerate}
+\end{defn}
+
+\begin{prop}
+    If $p$ is an ultraretract of $(a_s)_{s:\mu}$ with $i : p \ultrato (a_s)_{s:\mu}$ and $(r_s : a_s\ultrato(p)_{\nu})$ (on the same $\nu$) then we have an ultraidempotent on $((a_s)_{s:\mu})_{\nu}$
+    \[(\sigma_{t,s} : a_s \ultrato (p)_{\nu} \ultrato ((a_u)_{u:\mu})_{\nu})_{(t,s):\nu\otimes\mu}\]
+    moreover, $p$ is an spliting of this ultraidempotent.
+\end{prop}
+
+
+We compute the ultraidempotent in the examples above.
+\begin{ex}
+    
+\end{ex}
+
+\begin{prop}
+    We assume that the thickening functors of $\X$ preserve the coequalizers of the form 
+    \[(s:\mu)\otimes\lambda_s\otimes\lambda_s\otimes\nu_s\rightrightarrows(s:\mu)\otimes\lambda_s\otimes\nu_s\to(s:\mu)\otimes\nu_s\]
+    (this is the case in particular if $\X$ locally sober)
+    
+    There is a natural bijection (in $q\in\X_0^{\op}$) between arrows $f : q\to p$ and ultraarows $g : q\ultrato(a_s)_{s:\mu}$ that are stable by postcomposition with the $\sigma_s$,
+    \[(\sigma_s)_{s:\mu}\circ g = \pi_2^*(g)\]
+    \ie such that
+    \[q\stackrel{g}\ultrato(a_s)_{s:\mu}\stackrel{(\sigma_s)}\ultrato((a_t)_{t:\mu})_{s:\mu} = (a_t)_{(s,t):\mu\otimes\mu}\]
+    is the thickening along $\pi_2 : \mu\otimes\mu\to\mu$ of
+    \[q\stackrel{g}\ultrato(a_t)_{t:\mu}\]
+\end{prop}
+\begin{proof}
+    From some $f : q\to p$ we get by postcomposition with the $i$ an ultraarow $g = i\circ f$
+    \[g : p\to q \ultrato (a_s)_{s:\mu},\]
+    and we need to show that this $g$ is stable by the $\sigma_s$
+    \ie we want to show
+    \[(\sigma_s)\circ i \circ f\ = \pi_2^*(i\circ f) : q\ultrato((a_t)_{t:\mu})_{s:\mu}\]
+    and by \colorier{the hypothesis } it is enough to show that theses two map have the same thickening along 
+    $\pi^{(s:\mu).\nu_s.\mu}_{\mu.\mu} : (s:\mu)\otimes\nu_s\otimes\mu \to \mu\otimes\mu$, that we can deduce from the following diagram:
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJxIl0sWzIsMCwicCJdLFs0LDAsIihhX3MpX3tzOlxcbXV9Il0sWzUsMiwiKCgoYV90KV97dDpcXG11fSlfe1xcbnVfc30pX3tzOlxcbXV9Il0sWzMsMiwiKChwKV97XFxudV9zfSlfe3M6XFxtdX0iXSxbMSwyLCIoKHEpX3tcXG51X3N9KV97czpcXG11fSJdLFswLDEsImYiXSxbMSwyLCJpIl0sWzAsMiwiZyIsMCx7ImN1cnZlIjotNSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiKFxccGlfMl4qKFxcc2lnbWFfcykpX3tzOlxcbXV9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsNCwiKHJfcylfe3M6XFxtdX0iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCwzLCIoKGkpX3tcXG51X3N9KV97czpcXG11fSIsMl0sWzEsNCwiXFxkZWx0YSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDUsIlxcZGVsdGEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw0LCIoKGYpX3tcXG51X3N9KV97czpcXG11fSIsMl0sWzUsMywiKChnX3MpX3tcXG51X3N9KV97czpcXG11fSIsMix7ImN1cnZlIjo1LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	q && p && {(a_s)_{s:\mu}} \\
+	\\
+	& {((q)_{\nu_s})_{s:\mu}} && {((p)_{\nu_s})_{s:\mu}} && {(((a_t)_{t:\mu})_{\nu_s})_{s:\mu}}
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["g", curve={height=-30pt}, dashed, from=1-1, to=1-5]
+	\arrow["\delta"', dashed, from=1-1, to=3-2]
+	\arrow["i", from=1-3, to=1-5]
+	\arrow["\delta"', dashed, from=1-3, to=3-4]
+	\arrow["{(r_s)_{s:\mu}}"{description}, dashed, from=1-5, to=3-4]
+	\arrow["{(\pi_2^*(\sigma_s))_{s:\mu}}"{description}, dashed, from=1-5, to=3-6]
+	\arrow["{((f)_{\nu_s})_{s:\mu}}"', from=3-2, to=3-4]
+	\arrow["{((g)_{\nu_s})_{s:\mu}}"', curve={height=30pt}, dashed, from=3-2, to=3-6]
+	\arrow["{((i)_{\nu_s})_{s:\mu}}"', from=3-4, to=3-6]
+\end{tikzcd}\]
+    and 
+    \[(\pi_2^*(\sigma_s)) \circ g = ((s:\mu)\otimes\pi_2)^*((\sigma_s)\circ g) = (\pi^{(s:\mu).\nu_s.\mu}_{\mu.\mu})^*((\sigma_s)\circ g)\]
+    \[(g)_{\nu}\circ \delta= (g)_{\nu}\circ (\pi^{\nu}_{\ptuf})^*\id_q = (\pi^{\nu}_{\ptuf}\otimes\mu)^*(g) = (\pi^{(s:\mu).\nu_s.\mu}_{\mu.\mu})^*(\pi_2^*(g))\]
+
+    \
+
+    Conversely, from some $g:q\ultrato(a_s)_{s:\mu}$ stable under the $(\sigma_s)$, we can postcompose with the $(r_s)$ to get an ultraarow $f' = (r_s)_{s:\mu}\circ g$
+    \[f' : q\ultrato (a_s)_{s:\mu}\ultrato((p)_{\nu_s})_{s:\mu}\]
+    and we need to show that this $f'$ can be unthicken into some $f : q\to p$.
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJxIl0sWzIsMCwiKGFfcylfe3M6XFxtdX0iXSxbNCwwLCIoKHApX3tcXG51X3N9KV97czpcXG11fSJdLFsyLDIsIigoKGFfdClfe3Q6XFxtdX0pX3tcXG51X3N9KV97czpcXG11fSJdLFs0LDIsIigoKChwKV97XFxudV90fSlfe3Q6XFxtdX0pX3tcXG51X3N9KV97czpcXG11fSJdLFswLDVdLFswLDEsImciXSxbMSwyLCIocl9zKV97czpcXG11fSJdLFsyLDMsIihpKSIsMV0sWzMsNCwiKHJfdCkiLDJdLFsyLDQsIigoXFxkZWx0YSlfe1xcbnVfc30pX3tzOlxcbXV9Il0sWzEsMywiKFxccGlfMl4qKFxcc2lnbWFfcykpX3tzOlxcbXV9IiwxXSxbMCwzLCJcXGFscGhhXiooKFxcc2lnbWFfcylcXGNpcmMgZykgIiwxXSxbMCwzLCJcXGFscGhhXiooXFxwaV8yXiooZykpIiwyLHsiY3VydmUiOjV9XSxbMCwyLCJmIiwwLHsiY3VydmUiOi01fV0sWzEyLDEzLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6NDAsInRhcmdldCI6NDB9LCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}
+	q && {(a_s)_{s:\mu}} && {((p)_{\nu_s})_{s:\mu}} \\
+	\\
+	&& {(((a_t)_{t:\mu})_{\nu_s})_{s:\mu}} && {((((p)_{\nu_t})_{t:\mu})_{\nu_s})_{s:\mu}} 
+	\arrow["g", from=1-1, to=1-3]
+	\arrow["f'", curve={height=-30pt}, from=1-1, to=1-5]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{(\pi^{(s:\mu).\nu_s.\mu}_{\mu.\mu})^*((\sigma_s)\circ g)}"', from=1-1, to=3-3]
+	\arrow["{(r_s)_{s:\mu}}", from=1-3, to=1-5]
+	\arrow["{(\pi_2^*(\sigma_s))_{s:\mu}}"{description}, from=1-3, to=3-3]
+	\arrow["{(i)}"{description}, from=1-5, to=3-3]
+	\arrow["{((\delta)_{\nu_s})_{s:\mu}}", from=1-5, to=3-5]
+	\arrow["{(r_t)}"', from=3-3, to=3-5]
+\end{tikzcd}\]
+The upper way gives
+\[(\delta)_{\nu}\circ f' = ((\pi^{\nu}_{\ptuf})^*(\id_p))_{\nu} \circ f' =  (\nu\otimes\pi^{\nu}_{\ptuf})^*(f') = \pi_1^*(f')\text{ , for } \pi_1 : \nu\otimes\nu\to\nu\]
+and the downward way gives
+\[((r_t)_{t:\mu})_{\nu}\circ(\pi^{(s:\mu).\nu_s.\mu}_{\mu.\mu})^*((\sigma_s)\circ g) = ((r_t)_{t:\mu})_{\nu}\circ(\pi^{(s:\mu).\nu_s.\mu}_{\mu.\mu})^*(\pi_2^*(g))\]
+\[= ((r_t)_{t:\mu})_{\nu}\circ(\pi^{\nu.\mu}_{\mu})^*(g) = (\pi^{\nu.(t:\mu).\nu_t}_{(t:\mu).\nu_t})^*((r_t)_{t:\mu}\circ g) = \pi_2^*(f')\text{ , for } \pi_2 : \nu\otimes\nu\to\nu\]
+and so \colorier{by the hypothesis } $f'$ can be unthicken in some (unique) $f : q\to p$. 
+
+    \
+
+    We now show that these establishes a bijective correspondance. From some $f:p\to q$ we first get $i\circ f : q \ultrato(a_s)_{s:\mu}$ stable under the $(\sigma_s)$ and then $f' = (r_s)_{s:\mu}\circ i\circ f : q\ultrato((p)_{\nu_s})_{s:\mu}$, and as $(r_s)_{s:\mu}\circ i$ is the diagonal, $f'$ is indeed the thickening of $f$.
+
+    Conversely, from some $g:q\ultrato(a_s)_{s:\mu}$ stable under the $(\sigma_s)$ we have that $(r_s)_{s:\mu}\circ g : q\ultrato ((p)_{\nu_s})_{s:\mu}$ is the thickening of some $f:q\to p$, and $g' = i\circ f : p \ultrato (a_s)_{s:\mu}$ satisfied so
+    \[(\pi^{\nu.\mu}_{\mu})^*(g') = (\pi^{\nu.\mu}_{\mu})^*(i\circ f) = (i)_{\nu} \circ (!_{\nu})^*(f) = (i)_{\nu} \circ (r_s)_{s:\mu}\circ g = ((i)_{\nu_s}\circ r_s)_{s:\mu} \circ g \]
+    \[= ((\pi^{\nu_s.\mu}_{\mu})^*(\sigma_s))_{s:\mu}\circ g = (\pi^{\nu.\mu}_{\mu.\mu})^*((\sigma_s)_{s:\mu}\circ g) = (\pi^{\nu.\mu}_{\mu.\mu})^*((\pi^{\mu.\mu}_{\ptuf.\mu})^*(g)) = (\pi^{\nu.\mu}_{\mu})^*(g)\]
+    and so \colorier{using the hypothesis}, we get $g=g'$.
+    
+\end{proof}
+
+We can analogously give a description of ultraarows $q\ultrato (p)_{\lambda}$ and ultraarows $p\ultrato(q_l)_{l:\lambda}$
+
+
+
+
+\section{The tautness condition}
+
+The notion of v-ult is suppose to categorify the one of topological spaces. But as noticed in \cite{G,JUS,Ali} a v-ultraposet, even small, is not always the point of a topological space, it misses one condition! 
+
+\begin{prop}
+    Let $\X$ be a small v-ultraposet, then the following are equivalent
+    \begin{enumerate}
+        \item $\X = \pt(T)$ for some topological space $T$.
+        \item $\X$ is locally sober.
+        \item for any $\alpha : \nu\to\mu$ in $\UF$, if there is an ultraarow $a\ultrato(b_{f(t)})_{t:\nu}$ in $\X$ then there is an ultraarow $a\ultrato(b_s)_{s:\mu}$.
+    \end{enumerate}
+\end{prop}
+
+This last condition prescribes the thickening operation on $\X$, in general the thickening operation can give a lot of complexity to the notion of v-ult. The idea of the following is to prescribes its behavior by categorifying the condition \ref{}.
+
+\begin{defn}
+    For $a$ and $(b_s)_{s:\mu}$ points of a vult $\X$, the thickening functor is defined to be
+    \begin{align*}
+        (\UF/{\mu})^{\op} & \to \Set \\
+        (\nu\stackrel{\alpha}\to\mu) & \mapsto \X(a,(b_{\alpha(t)})_{t:\nu})
+    \end{align*}
+\end{defn}
+
+We want to understand the behavior of the thickening functor in (locally) sober v-ultracat.
+
+\begin{lem}
+    For any set $A$ and ultrafilter $\mu$, the following is an equalizer of sets
+    \[A \to A^{\mu}\rightrightarrows A^{\mu\otimes\mu}\]
+    We deduce that the following is a coequalizer in $\UF$
+    \[\mu\otimes\mu\rightrightarrows\mu\to\ptuf\]
+\end{lem}
+\begin{proof}
+    Let $(a_s)_{s:\mu}$ be such that $(\forall s:\mu)(\forall t:\mu)\ a_s = a_t$, then we can find a $t_0$ such that $(\forall s:\mu)\ a_s = a_{t_0}$, \ie $(a_s)_{s:\mu}$ is almost constant as wanted.
+
+    Now, let $\alpha : \mu\to\nu$ be such that $\alpha\circ\pi_1 = \alpha\circ\pi_2$, and we want to show that $\nu = \ptuf$. Let $T$ be a defining set of $\nu$ so that $(\alpha_l)\in T^{\mu}$, the hypothesis says that $(\alpha_l)$ belongs to the equalizer of $T^{\mu}\rightrightarrows T^{\mu\otimes\mu}$, and so to $T$ \ie it is constant.
+\end{proof}
+
+\begin{prop}
+    The diagram 
+    \[(s:\mu)\otimes\lambda_s\otimes\lambda_s\otimes\nu_s\rightrightarrows(s:\mu)\otimes\lambda_s\otimes\nu_s\to(s:\mu)\otimes\ptuf\otimes\nu_s\]
+    is a coequalizer in $\UF/\nu$ (with $\nu \coloneqq \sum_{s:\mu}\nu_s$).
+    
+    Moreover, in a sober vult, the thickening functor $(\UF/\nu)^{\op} \to \Set$ sends it to a equalizer. 
+\end{prop}
+\begin{proof}
+    First in the case $\lambda\otimes\lambda\rightrightarrows\lambda\to\ptuf$. Then we know it is a coeq in $\UF$ and we need to show that $\mu\mapsto\Set(A,B^{\mu})$ sends it to a eq, as $\Set(A,-)$ is continuous it is enough to show that it is the case for $\mu\mapsto B^{\mu}$ and this is exactly the above lemma.
+
+    ...
+    
+\end{proof}
+
+\begin{defn}
+    A v-ultracategory $\X$ is said \emph{taut} if all the thickening functors preserves these coequalizers,
+    \ie for any $a$ and $((b_{s,t})_{t:\nu})_{s:\mu}$ the following is an equalizer of sets
+    \[\X(a,(b_{s,t})_{(s:\mu)\otimes(t:\nu_s)})\to\X(a,(b_{s,t})_{(s:\mu)\otimes\lambda_s\otimes(t:\nu_s)})\rightrightarrows\X(a,(b_{s,t})_{(s:\mu)\otimes\lambda_s\otimes\lambda_s\otimes(t:\nu_s)})\]
+    \ie an ultraarow $f : a\ultrato (b_{s,t})_{(s:\mu)\otimes\lambda_s\otimes(t:\nu_s)}$ unthicken to an ultraarow $a\ultrato(b_{s,t})_{(s:\mu)\otimes(t:\nu_s)}$ iff the two thickening to $a\ultrato (b_{s,t})_{(s:\mu)\otimes\lambda_s\otimes\lambda_s\otimes(t:\nu_s)}$ are identic, and then such a dethickening is unique.
+\end{defn}
+
+\begin{prop}
+    Locally sober v-ults are taut.
+\end{prop}
+
+\begin{prop}
+    If $\X$ is taut, then the thickening functors $(\UF/\mu)^{\op}\to\Set$ are sheaves for the atomic topology.
+\end{prop}
+\begin{proof}
+    Let $\alpha : \nu\to\mu$ and $f : a\ultrato(b_{\alpha(t)})_{t:\nu}$. We need to show that if for any $\beta,\gamma:\lambda\rightrightarrows\nu$ equalizing $\alpha$ the thickening of $f$ along $\beta$ and $\gamma$ are equals, then $f$ unthicken to some unique $a\ultrato(b_s)_{s:\mu}$.
+
+    By the ‘choice lemma’ in $\UF$ \cite{SUJ} we can ‘make $\alpha$ a projection’ \ie we can find $\kappa$ and $\beta : \kappa\otimes\mu \to \nu$ such that $\alpha\circ\beta = \pi_1$. Then both maps $\kappa\otimes\kappa\otimes\mu\rightrightarrows\kappa\otimes\mu\to\nu$ equalize $\alpha$, and so $\beta^*f : a \ultrato(b_s)_{\kappa\otimes\mu}$ have the same thickening along both projections $\kappa\otimes\kappa\otimes\mu$, and so by hypothesis it unticken into a unique $a\ultrato(b_s)_{s:\mu}$.
+\end{proof}
+
+\begin{rmk}
+    Is this an iff?? Can we restrict the taut condition to some smaller class of coeq (only the one used in the proof above, i think yes)?? Does tautness implies the preservation of all conn colimits (at least of pushout built with $\otimes$ seems yes)?? 
+\end{rmk}
+
+\begin{prop}
+    It is actually an iff!!
+\end{prop}
+\begin{proof}
+    Let's do the easy case, suppose we have $A : \UF^{\op}\to\Set$ sheaf, and we want to show that $\mu\otimes\mu\rightrightarrows\mu\to\ptuf$ is sent to an equalizer by $A$. Let $x : A(\mu)$ such that $\pi_1^*(x) = \pi_2^*(x)$, to use the sheaf condition it is enough to show that for any $f,g:\nu\rightrightarrows\mu$ we have $f^*(a) = g^*(a)$.
+
+    A REVOIR! \colorier{We use the choice lemma twice to get $h : \lambda\otimes\mu\otimes\mu\to\mu$ such that $f\circ h = \pi^{\lambda.\mu.\mu}_{\ptuf.\mu.\ptuf}$ and $g\circ h = \pi^{\lambda.\mu.\mu}_{\ptuf.\ptuf.\mu}$.}
+
+    Then $h^*(f^*(x)) = (\pi^{\lambda.\mu.\mu}_{\ptuf.\mu.\ptuf})^*(x) = (\pi^{\lambda.\mu.\mu}_{\mu.\mu})^*(\pi_1^*(x)) = (\pi^{\lambda.\mu.\mu}_{\mu.\mu})^*(\pi_2^*(x)) = (\pi^{\lambda.\mu.\mu}_{\ptuf.\ptuf.\mu})^*(x) = h^*(g^*(x))$.
+
+    So $h^*(f^*(x)) = h^*(g^*(x))$ and only remains to show that $h^*$ is injective, and this follows from the sheaf condition.
+\end{proof}
+
+\begin{proof}
+    On montre qu'un atomic-sheaf respect le coeq $\sigma\otimes\sigma\rightrightarrows\sigma\to\pt$. C'est le seul qu'on a besoin dans la section sur les ultra-idem (vrai?), mais j'espère qu'une preuve similaire s'adapte pour les autres coeq basé sur le otimes.
+
+    On prend $F\in\Sh(\UF_{at})$ et $\xi \in F(\sigma)$ tq $\pi_1^*(\xi) = \pi_2^*(\xi)\in F(\sigma\otimes\sigma)$. On prend $\phi,\psi:\tau\rightrightarrows\sigma$ and we need to show that $\phi^*(\xi) = \psi^*(\xi)$.
+\[\begin{tikzcd}
+	{\tau\otimes\tau} & \tau \\
+	{\sigma\otimes\sigma} & \sigma
+	\arrow["{\pi_1}"{description}, shift left=1, from=1-1, to=1-2]
+	\arrow["{\pi_2}"{description}, shift right=1, from=1-1, to=1-2]
+	\arrow["{\phi\otimes\psi}"', from=1-1, to=2-1]
+	\arrow["\phi"', shift right, from=1-2, to=2-2]
+	\arrow["\psi", shift left, from=1-2, to=2-2]
+	\arrow["{\pi_2}"{description}, shift right=1, from=2-1, to=2-2]
+	\arrow["{\pi_1}"{description}, shift left=1, from=2-1, to=2-2]
+\end{tikzcd}\]
+
+As $F$ sends any map to a mono, it is enough to show that $\pi_1^*(\phi^*(\xi)) = \pi_1^*(\psi^*(\xi))$
+
+\[\pi_1^*(\phi^*(\xi)) = (\phi\otimes\psi)^*(\pi_1^*\xi) = (\phi\otimes\psi)^*(\pi_2^*\xi) = \pi_2^*(\psi^*(\xi))\]
+
+Hence, for all $\phi,\psi : \tau\rightrightarrows\sigma$ we have $\pi_1^*(\phi^*(\xi)) = \pi_2^*(\psi^*(\xi))$
+
+In particular (using $\psi\otimes\psi$ instead of $\phi\otimes\psi$) we get 
+$\pi_1^*(\psi^*(\xi)) = \pi_2^*(\psi^*(\xi))$.
+and so 
+$\pi_1^*(\phi^*(\xi)) = \pi_2^*(\psi^*(\xi)) = \pi_1^*(\psi^*(\xi))$
+as wanted.
+
+\end{proof}
+
+
+------
+
+We first notice that the point functor from $\TopSp$ to vultraposets have a left-adjoint.
+
+\begin{defn}
+    Let $A$ be a small v-ultraposet, we denote by $\topo{A}$ the v-ultraposet having the same object that $A$ and with an ultraarow ultraarow $a\ultrato(b_s)_{s:\mu}$ in $\topo(A)$ iff there is an ultraarow $a\ultrato(b_{f(t)})_{t:\nu}$ in $A$ for some $\alpha : \nu\to\mu$.
+\end{defn}
+\begin{prop}
+    The vultraposet $\topo(A)$ is locally sober and it is universally so, \ie for a topological space $T$ the functor $\vUlt(\topo(A),T)\to\vUlt(A,T)$ is an equivalence. Hence $\topo$ gives a functor from vultraposet to $\TopSp$ that is left adjoint to the point functor.
+\end{prop}
+
+Motivated by the fact that (we expect?) small vultraposets to be dense into vultracategories, we can define a categorify version of the condition \ref{} by,
+
+\begin{defn}
+    A v-ultracategory $\X$ is said \emph{taut} if for all small vultraposet $A$, the precomposition functor $\vUlt(\topo(A),\X)\to\vUlt(A,\X)$ is an equivalence.
+\end{defn}
+
+hence, being ‘taut’ is a local soberness property, it means that for the point of view of a 0-dimensional vult the vult $\X$ is locally sober.
+
+It happens that all example arising naturally are taut, even the non locally sober ones! for example the free ultracategories or the models of a continuous theory.
+
+Whereas being locally sober is hard to describe algebraically, it is not the case of the tautness!
+
+\begin{prop}
+    A vult $\X$ is taut if anf only if for $a$ and $(b_s)_{s:\mu}$ points of $\X$, the thickening functor 
+    \begin{align*}
+        (\UF/{\mu})^{\op} & \to \Set \\
+        (\nu\stackrel{\alpha}\to\mu) & \mapsto \X(a,(b_{\alpha(t)})_{t:\nu})
+    \end{align*}
+    is a sheaf for the atomic topology on $\UF/{\mu}$.
+\end{prop}
+\begin{proof}
+    
+\end{proof}
+
+\begin{rmk}
+    In general for $\X$ a sober vult, the thickening functor preserves all connected colimits. Asking for the thickening functor to preserves all connected colimits is à priori a stronger condition than the sheaf condition, we leave open the question to know if it is actually a stronger condition. It might be equivalent to the sheaf condition to ask the preservations of all connected colimits (or only to coeq/pushout?).
+\end{rmk}
+
+
+\section{Ultraretract, soberness, surjectivity}
+
+Naive idea of retract, not the case for topological spaces, extracting ultraretract from Johnston proposition.
+
+\begin{defn}
+    Let $\X$ be any vultracat
+    \begin{enumerate}
+        \item an \emph{ultraidempotent} on an ultrafamily of objects $(a_s)_{s:\mu}$ is given by an ultrafamily of ultaarows $(\sigma_{s} : a_s \ultrato (a_t)_{t:\mu})_{s:\mu}$ satisfying for $s:\mu$ the following equation 
+        \[(\sigma_t)_{t:\mu}\circ\sigma_s = \pi_2^*(\sigma_s)\]
+        where
+        \[(\sigma_t)_{t:\mu}\circ\sigma_s  :
+            a_s\ultrato(a_t)_{t:\mu} \ultrato(a_u)_{(t:\mu)\otimes(u:\mu)}\]
+        \[\sigma_s : a_{s}\ultrato(a_u)_{u:\mu}\]
+        \[\pi_2 : (t:\mu)\otimes(u:\mu) \to (u:\mu)\]
+        \item a spliting of such an ultraidempotent is given by an object $p$ and ultraarows $i : p\ultrato(a)_{s:\mu}$ and $(r_s : a_s\ultrato(p)_{\nu_s})_{s:\mu}$ such that 
+        \[(i)_{\nu_s}\circ r_s = \pi_2^*(\sigma_s) \text{ and } (r_s)_{s:\mu}\circ i = \ !^*(\id_{p})\]
+    \end{enumerate}
+\end{defn}
+
+
+\begin{lem}
+    In $\Set$, an ultraretract is given by $i : P\hookrightarrow\int_{s:\mu}A_s$ with maps $r_s : A_s\to P^{\nu_s}$ such that $(r_s)\circ i = \delta$. Then $i$ is an injection whose image is given by the $(a_s)_{s:\mu}$ satisfying for $\mu$-all $s$
+    \[i^{\nu_s}(r_s(a_s)) = ((a_u)_{u:\mu})_{\nu_s}.\]
+\end{lem}
+\begin{proof}
+    As $(r_s)\circ i = \delta$ is an injection, so too is $i$. We now prove the characterization of the image. To simplify the notation, we denote $\nu \coloneqq \sum_{s:\mu}\nu_s$.
+    
+    Let $i(p) = (a_s)_{s:\mu}$ be in the image, then $(r_s)\circ i = \delta$ gives that $(r_s(a_s))_{s:\mu} = (p)_{\nu}$ \ie we have $r_s(a_s) = (p)_{\nu_s}$ for $s:\mu$, and so $i^{\nu_s}(r_s(a_s)) = (i(p))_{\nu_s} = ((a_u)_{u:\mu})_{\nu_s}$ as wanted.
+    
+    Conversely if $(a_s)_{s:\mu}$ satisfies the above condition, we first show that $(r_s(a_s))_{s:\mu}\in P^{\nu}$ is actually a constant ultrafamily: $(r_s(a_s))$ is maped by $i^{\nu}$ on the element $((a_u)_{u:\mu})_\nu \in (\int_{u:\mu}A_u)^{\nu}$ that belong to $\delta(\int_{u:\mu}A_u) \subseteq (\int_{u:\mu}A_u)^{\nu}$, and as $i$ is injective this implies that $(r_s(a_s))_{s:\mu}\in P^{\nu}$ should be in $\delta(P) \subseteq P^{\nu}$. Hence $(r_s(a_s))_{s:\mu}$ is of the form $(p)_{\nu}$ for some $p\in P$, and $(i(p))_{\nu_s} = i^{\nu_s}((p)_{\nu_s}) = i^{\nu_s}(r_s(a_s)) = ((a_u)_{u:\mu})_{\nu_s}$, and so $i(p) = (a_u)_{u:\mu}$ as wanted.
+\end{proof}
+
+
+
+Definition of ultraidem and ultraretracts, eg (retract, filtered colim, subclosure).
+
+Computation of ultraretracts in Set, eso up to uret implies surj.
+
+Discussion about the ultra Cauchy completion.
+
+
+
+
+Correction of the fullness into full up to thick: two reason (factorization and to the counterex with hyperconnected)
+
+Full utt implies hyperconnected. 
+
+topological reflection = posetal reflection
+
+
+
+\section{Characterizations of surjective and hyperconnected map}
+
+Type of an ultrasheaf, and thm characterization of the image of an ultrasheaf.
+
+Corolary giving other direction for surj and hc, and local soberness if faith in Set.
+
+
+\section{Exactness properties of UF}
+
+We denote $\UF$ the category of ultrafilters, $\eF$ the category of filters, and $\eG$ the category of germs of topological spaces (as considered by Moerdijk ‘‘A model for intuitionistic non-standard arithmetic’’).
+
+\begin{defn}
+    There are functors \[\UF\hookrightarrow\Fam(\UF)\hookrightarrow\eF\hookrightarrow\eG\]
+    with right adjoints \[\Fam(\UF)\leftarrow\eF\leftarrow\eG\]
+    and a left adjoint \[\eF\leftarrow\eG\]
+    \begin{enumerate}
+        \item the inclusion $\UF\hookrightarrow\Fam(\UF)$ is given by Yoneda.
+        \item the inclusion $\Fam(\UF)\hookrightarrow\eF$ is defined by extending the above by noticing that $\eF$ has small coproducts : the coproduct of filters $(S_i,\F_i)_i$ is given by $(\sum S_i, \{\sum A_i \ |\ (A_i\in\F_i)_i\})$.
+        \item the right adjoint $\F\to\Fam(\UF)$ sends a filter to the family of ultrafilers extending it.
+        \item the functor $\F\hookrightarrow\G$ sends a filter $(S,\F)$ on the space $S\cup\infty$ with the topology given by $U\in S\cup\infty$ is open iff $(\infty\in U\implies U\cap S \in \F)$.
+        \item the right adjoint $\G\to\F$ sends a germ $(T,x)$ to the filter of neighborhood of $x$ on $T_{\setminus\{x\}}$ (\ie $A \in T_{\setminus\{x\}}$ is large iff $A\cup\{x\}\subseteq T$ is a neighborhood of $x$).
+        \item the right adjoint composite $\G\to\Fam(\UF)$ sends a germ $(T,x)$ to the set of ultrafilters $\mu\in\beta(T)$ converging to $x$.
+        \item the left adjoint $\G\to\F$ sends a germ $(T,x)$ to the filter of neighborhood of $x$ in $T_{\setminus\{x\}}/\sim$ (where we quotient by the connected component of $T$, we use that locally-connected spaces is a reflective subcat).
+    \end{enumerate}
+\end{defn}
+
+\begin{prop}
+    NOOO, only finitely complete and coproducts, no coeq (see Blass)! -- $\G$ is cocomplete and complete (infinite products are given by partial dependent product!).
+\end{prop}
+\begin{prop}
+    The product of $(T_i,x_i)$ is given by the space $\prod^p T_i$ of partial families, with the topology given by the basis $\{(t_i)\in\prod^p T_i \ | \ (t_{i_k}\in U_{i_k})\}$ for a finite number of $U_{i_k}\in T_{i_k}$. 
+\end{prop}
+
+\begin{cor}
+    NOOO, actually $\UF$ has coeq, but not $\F$!! -- $\F$ and $\Fam(\UF)$ are bicomplete as coreflective sub-categories of a bicomplete one. So $\UF$ possesses multi-limits and connected coproducts. 
+\end{cor}
+
+We can give now an explicit description of (co)limits in $\F$ and $\UF$.
+
+\begin{itemize}
+    \item the initial object in $\F$ is the unique filter on the empty set (corresponding to the point in $\G$) and the terminal object is the unique filter on a singleton (corresponding to Sierpinski in $\G$).
+    \item coproduct in $\F$ are given above, and products are computed as in $\G$, \ie we take the filter on the set of partial families, for $(S_i,\F_i)$ filters the product is $(\prod^p S_i,\prod\F_i)$
+    \item multiproducts in $\UF$ are given by computing the product in $\F$ and taking all possible ultrafilter extensions of the result. connected colimits are computed as in $\F$, let look at the filtered colimit case.
+    \item filitered colimit of a countable chain of filters $(S_0,\F_0)\to(S_1,\F_1)\to\cdots$ is given by...
+\end{itemize}
+
+\begin{defn}
+    Let $(\mu_i, S_i)_{i:I}$ be a family of ultrafilters. We denote $S \coloneqq (i:I)\rightharpoonup S_i$ the set of partial dependent functions, and $\ev_i : S\rightharpoonup S_i$ the partial evaluation. For $A_{1}\in \mu_{i_1},\cdots,A_{n}\in \mu_{i_n}$ we denote $S_{A_1,\cdots,A_n}\coloneqq\{s:S \ | \ s(i_1)\in A_1\land \cdots\land s(i_n)\in A_n\}$. It is clear that these subsets are non-empty and closed by finite intersections, so they form a filter. Moreover, an ultrafilter $\mu\in\beta(S)$ extends this filter if and only if all $\dom(\ev_i) = \{s:S \ | \ i\in\dom(s)\}$ are $\mu$-large, and $(\ev_i)_*(\mu) = \mu_i$. 
+\end{defn}
+\begin{lem}
+    There is a natural bijection $\sum_{\mu \text{ st } (\ev_i)_*(\mu) = \mu_i}\UF(-,\mu) \stackrel{\cong}\to \prod_{i:I}\UF(-,\mu_i)$ (this gives a description of the multi-products in $\UF$).
+\end{lem}
+\begin{proof}
+    The direct map is given by postcomposing with the $\ev_i$. Suppose now we have $(\nu\to\mu_i)_{i:I}$, and so $(f_i : T\rightharpoonup S_i)_{i:I}$ all defined on $\nu$-large subsets of $T$. We define $f:T\to S$ by mapping $t:T$ on the partially defined $(f_i(t))_{i:I}\in S$, and it is clear that $f_i = \ev_i\circ f$ and so by letting $\mu\coloneqq f_*(\nu)\in\beta(S)$, we have a map $f\in\UF(\nu,\mu)$ with $(\ev_i)_*(\mu) = \mu_i$. And it is easy to see that this is well-defined up to iso of ultrafilters, and that that it is an inverse.
+\end{proof}
+
+\begin{prop}
+    Let $\X\coloneqq\vpt(\E)$ the v-ult of points of a topos $\E$ and $X\subseteq\Ob(\X)$ a class of points of $E$. For $p\in\pt(\E)$ the following are equivalents:
+    \begin{enumerate}
+        \item $p$ belongs to $\E_{\res{X}}$, \ie $p$ is belongs to any subtopos of $\E$ containing $X$, \ie the restriction functor $\sh(\X_{\res{X\cup \{p\}}}) \to \sh(\X_{\res{X}})$ is an equivalence.
+        \item $p$ is an ultraretract of an ultrafamily $(x_s)_{s:\mu}$ in $X$, \ie there exists $v : p \ultrato (x_s)_{s:\mu}$ and $(u_s : x_s\ultrato (p)_{\nu_s})_{s:\mu}$ ultraarrows, such that the composite $(u_s)\circ v : p \ultrato(p)_{\sum_{s:\mu}\nu_s}$ is the ultradiagonal.
+    \end{enumerate}
+\end{prop}
+
+\begin{lem}%\label{Lemprebound}
+    Let $\E$ be a topos, and $U : \E\to\SetO$ a localic morphism (\ie a prebound). The function $\vpt(\E)(p,(q_s)_{s:\mu})\to \Set(U_p,\int_{s:\mu}U_{q_s})$ is injective, and its image is given by the function $f : U_p\to\int_{s:\mu}U_q$ such that for any $V\subseteq U^n$, $f^n : U^n\to\int_{s:\mu}U^n_q$ restricts to $V\to\int_{s:\mu}V_q$.
+\end{lem}
+\begin{proof}
+    Suppose there is such an $f$, we want to define $\alpha : \Nat_{E:\E}(E_p,\int_{s:\mu}E_{q_s})$. Let $E\in\E$, by the prebound hypothesis, $E$ is a quotient of some $V\subseteq U^n$. 
+    
+    Hence $E = \coeq(W\rightrightarrows V)$ with $W\coloneqq V\times_EV\subseteq V\times V\subseteq U^{2n}$. So
+    \[E_p = \coeq(W_p\rightrightarrows V_p)\]
+    and (as $\int_{s:\mu} : \Set^S\to\Set$ is a pretopos morphism).
+    \[\int_{s:\mu}E_{q_s} = \coeq\left(\int_{s:\mu}W_{q_s}\rightrightarrows \int_{s:\mu}V_{q_s}\right)\]
+
+    Using the hypothesis we get maps $f^{2n} : W_p \to \int W_{q_s}$ and $f^n : V_p \to \int V_{q_s}$ that induces a map $f_E : E_p \to \int_{s:\mu}E_{q_s}$ as wanted. We now need to check the naturality, let $\alpha : E\to E'\in\E$, we want to show that $(\int \alpha_{q_s}) \circ f_E = f_{E'}\circ\alpha_p$, by factorization it is enough to show it for $\alpha$ surjection and $\alpha$ mono. It is enough to show that we can chose a presentation of $E$ (resp. $E'$) by $V$ (resp. $V'$) with some map $V\hookrightarrow V'$ above $\alpha$: for $\alpha$ surjection, we chose a $V\twoheadrightarrow E$ presenting $E$ and this $V$ also present $E'$; for $\alpha$ mono, we chose a $V\twoheadrightarrow E'$ and pullback it to get a corresponding presentation of $E$.
+\end{proof}
+
+
+\begin{proof}
+    We consider the indexing \colorier{(large)} set $S$ where an element $s:S$ is given by an ultraarow $a_s \stackrel{r_s}\ultrato (p)_{\nu_s}$ with $a_s\in A$ and for each $\xi:U_p$ a choice of a lift of $r_s$ denoted $d_s(\xi)\ultrato(\xi)_{\nu_s}$.
+
+    The idea now is that we define an (ultra)filter $\mu$ on $S$ such that $(a_s)_{s:\mu}$ gives the ultrafamily from whom $p$ is the ultraretract. We already have maps $(r_s : a_s \ultrato (p)_{\nu_s})$, we need to define some map $i : p\ultrato (a_s)_{s:\mu}$, for that we will use the prebound.
+
+    There is a function $U_p \to \int_{s:\mu}U_{a_s}, \xi \mapsto (d_s(\xi))_{s:\mu}$, let's suppose it comes from a map $i : p\ultrato (a_s)_{s:\mu}$ (we will construct the ultrafilter so that it is the case), then one the composite $U_p \to \int_{s:\mu}U_{a_s} \stackrel{{r_s}_*}\to\int_{s:\mu}(U_p)^{\nu_s}$ can easily be checked to be the diagonal, and so as $U$ is faithful \colorier{(localic maps are faithful on points)} then we get $(r_s)\circ i$ is the thickening of the identity as wanted.
+
+    Only remains to show that we can find an ultrafilter $\mu$ on $S$ such that $U_p \to \int_{s:\mu}U_{a_s}, \xi \mapsto (d_s(\xi))_{s:\mu}$ is in the image of $U$. By the lemma it is sufficient (and necessary) to show that for any $V\subseteq U^n$ and $(\xi_1,\cdots,\xi_n)\in V_p$, then for $\mu$-all $s$, we have $(d_s(\xi_1),\cdots,(d_s(\xi_n))\in V_{a_s}$,
+    
+    \ie that for all $V\subseteq U^n$ and $(\xi_1,\cdots,\xi_n)\in V_p$ the subsets $S_{V,\overline{\xi}}$ are $\mu$-large
+    \[S_{V,\overline{\xi}} \coloneqq \{s : S \ | \ (d_s(\xi_1),\cdots,(d_s(\xi_n))\in V_{a_s}\}.\]
+
+    This family of subsets form a filter basis (as $S_{V,\overline{\xi}}\cap S_{W,\overline{\zeta}} = S_{V\times W, \overline{\xi}.\overline{\zeta}}$), only remains to show that it is a proper filter, \ie that alls theses subsets are non-empty.
+
+    Showing that these subsets are not empty is the technical part of the proof, here we use the hypothesis and we see the need of the thickening $\nu_s$ in the ultra-retract! We fix $V\subseteq U^n$ and $(\xi_1,\cdots,\xi_n)\in V_p$, inspired by the topological case we consider $W\coloneqq V\setminus\cl(\{\overline{\xi}\})$ an open sub-vult of $V\subseteq U^n$ \ie $W$ contains all the $\overline{\zeta}\in V$ such that there are no ultraarow $\overline{\zeta}\ultrato (\overline{\xi})_{\lambda}$ in $V$. As open sub-vult are étale, this form a sheaf over $\X$, but $\overline{\xi}\in V_p\setminus W_p$ so \colorier{using the hypothesis} there exists some $a\in A$ such that $W_a\subsetneq V_a$, \ie there exists $\overline{\zeta}\in V_a$ with maps $\overline{\zeta}\ultrato (\overline{\xi})_{\lambda}$ as wanted. 
+\end{proof}
+
+\begin{proof}[preuve alternative]
+    We still consider $U\to\X$ étale corresponding to a prebound (and we will denote by $U^n$ the product taken over $\X$). We suppose $p$ is a point of $\E_\res{A}$ and we want to show that $p$ is an ultraretract of points in $A$.
+    
+Let $I$ be a finite subset of $U_p$, we chose an order $(\xi_1,\cdots,\xi_n) \in (U_p)^n$ \errolnote{Pourquoi un sous-ensemble fini de $U_p$? et les $\xi_i$ sont-ils les éléments de $I$?}\gabrielnote{on demande fini pour se ramener aux $U^n$, et oui c'est juste un choix d'ordre de I, on peut surement travailler avec des listes finies au lieux de finite subsets si tu préfères}. If we consider the topological reflection of $U^n$, we notice that if two opens of $U^n$ coincide on $A$ they coincide on $p$ too \errolnote{Les ouverts de $U^n$ ce sont juste certains faisceaux non? et aussi c'est vrai pour tout faisceau que coincider sur $A$ implique coincider sur $p$ (c'est une façon équivalente de dire que $p$ appartient à $\E_\res{A}$)}\gabrielnote{oui c'est les faisceaux qui sont sous-obj de $U^n$, et oui je suis d'accord sur le deuxième partie}. So the topological case \errolnote{Tu utilises le "topological case" sans dire c'est quoi, c'est pas très clair comment tu l'appliques ici à $U_n$, ni que la conclusion de ce cas satisfait la condition de coherence en bas. Tu as quelque chose de précis en tête clairement mais explicite le}\gabrielnote{j'aplique le résultat à la reflection topologique de $U^n$, l'énoncé du dessus dit exactement que $(\xi_1,\dots,\xi_n)$ appartient à la sobrification (dans la reflection topo de $U^n$) des points de $U^n$ qui vivent au-dessus de $A$, donc que $(\xi_1,\dots,\xi_n)$ est un ultraretract-topologique (ie dans la reflection topo de $U^n$ donc sans coh à priori!) de points de $U^n$ qui vivent au dessus de $A$. Si on écrit c'est quoi un ultraretract dans la reflection topologique=posétal de $U^n$ on obtient exactement ce qui suit } \colorier{(and knowing that the vultraposet of the topological reflection is the posetal reflection!) } gives that $(\xi_1,\cdots,\xi_n)\in (U^n)_p$ is a topological ultraretract of elements in $U^n$ that are above $A$, \ie
+    
+    there are ultramaps $i^I : p\ultrato(a^I_t)_{t:\nu_I}$ with the $a^I_t$ in $A$, and $(r^I_{t} : a^I_t \ultrato (p)_{\lambda^I_{t}})_{t:\nu_I}$ such that 
+    \[((r^I_{t})_{t:\nu_I}\circ i^I)_*(\xi) = (\xi)_{\sum_{t:\nu_I}\lambda^I_{t}} \text{ for $\xi\in I$}.\]
+
+    
+    We can merge them by taking $\theta$ a cofinal (ultra)filter on the poset of finite subsets of $U_p$. 
+    We get $i : p\ultrato(p)_{I:\theta}\ultrato(a^I_t)_{\sum_{I:\theta}t:\nu_I}$ and we already have the $(r^I_t : a^I_t \ultrato (p)_{\lambda^I_{t}})$. Only remains to show that the composite gives the diagonal, as the prebound is localic \colorier{(and localic are faithful on points!) } it is enough to check that for any $\xi\in U_p$ we have $((r^I_t)_{(I,t)}\circ i)_*(\xi) = (\xi)_{(I:\theta)\otimes(t:\nu_I)\otimes\lambda^I_t}$ \errolnote{il y a une difference entre $\otimes$ et $\Sigma$?} \gabrielnote{non, c'est juste deux notations, à la théorie des types}. But as $\theta$ is cofinal $i_*(\xi) = (i^I)_*(\xi)_{\theta}$ can be computed on the $I$ that contains $\xi$, and so we can use the above formula to conclude.
+    \errolnote{Alors j'ai pas où tu utilises qu'on a un ensemble d'ultrafleche conservatives, ni vraiment o` apparaissent les questions de taille. Je suppose que l'hypothèse que $p$ appartient à $\E_\res{A}$ est utilisée dans le "cas topologique" mais re ce que j'ai écris au dessus pour ça.}\gabrielnote{Les notions de tailles n'apparaisent plus dans cette preuve (elles sont cachées dans l'existence de la prebound)}
+\end{proof}
+
+\colorier{
+\begin{proof}
+    We suppose $p$ belongs to $\E_{\res{X}}$ and we fix $U\to\X$ an étale map of v-ult corresponding to a prebound of the topos $\E$.
+
+    In the topological case the indexing set of the ultrafilter can be chosen to be the set of points in the trace of the closure of $p$ on $X$, categorifying this set corresponds to $d\ultrato(a)_{\nu}$ with $a$ above $p$ and $d$ above a point in $X$, but in the categorical case there is not a canonical choice for $a$, so we need to consider such ultraarrows for $a$ varying:
+    %\[S=\{s = \{b_1\ultrato(a_1)_{\nu},\cdots,b_n\ultrato(a_n)_{\nu}\} \ | \ \text{ all send to the same atomic $u : x\ultrato (p)_{\nu}$ with $x\in X$}\}\]
+    \[\hspace{-30pt}S\coloneqq\{s : (a : U_p)\rightharpoonup\{d_a\stackrel{s_a}\ultrato(a)_{\nu_s}\} \ | \
+    \colorier{(\dom(s) \text{ finite ?})}\text{ all $s_a$ are lifts of some common $u_s : x_s\stackrel{at}\ultrato (p)_{\nu_s}$ with $x_s\in X$} \} \]
+    $S$ is small as we ask $u_s$ to be atomic, and by the unicity of the lifting $e_a$ is determined by $d_a$.
+    
+    Let fix some notation: we denote $d_a : S\rightharpoonup U$ the partial map sending $s\in S$ with $a\in\dom(s)$ to $d_a$; for finite sequences $\overline{a} = (a_1,\cdots,a_n)$, we denote $d_{\overline{a}} : S\rightharpoonup U^n$ for the product of the $d_{a_i}$; and for $V\subseteq U^n$, we denote $S_{V,\overline{a}} \coloneqq \{s\in S \ |\ d_{\overline{a}}(s) \in V\}$.
+
+    In the topological case, the main ingredient of the proof is to show that every open containing $p$ intersects the trace of the closure of $p$ on $X$, this categorifies into 
+    \begin{nclaim}
+        The sets $S_{V,\overline{a}}$ are non-empty.
+    \end{nclaim}
+    \begin{proof}[proof of the claim]
+        Take $V\subseteq U^n$ and $\overline{a}\in V_p$. Note that $V\subseteq U^n$ is still an étale space over $\X$ and consider the full sub-v-ult of $V$
+        \[W\coloneqq V{\setminus\{\overline{b} \ | \ \exists \overline{b}\ultrato(\overline{a})_{\mu}\}}\]
+        and note that it is an étale space over $\X$ (the unique lifting property is still satsified). As $\overline{a}\in V_p\setminus W_p$ we can find some $x\in X$ such that $W_x\subsetneq V_x$ \ie there is $(b_1,\cdots,b_n)\in V_x{\setminus W_x}$. This means exactly that $b_i\in V_x$ and that there is some $(b_i\ultrato (a_i)_{\mu})$ that live above the same $x\ultrato(p)_{\mu}$. We can then maximally defatten this ultraarow to make it atomic.
+    \end{proof}
+
+    We notice that $S_{V,\overline{a}}\cap S_{W,\overline{b}} = S_{V\times W, \overline{a}.\overline{b}}$, and so the $(S_{V,\overline{a}})$ can be extended to an ultrafilter $\mu\in\beta(S)$. We get $(x_s)_{s:\mu}$ an ultrafamily of points of $X$ and we can define $v : p\ultrato(x_s)_{s:\mu}$ using the prebound:
+    
+    $\alpha : \overline{a} \in U_p\mapsto (d_a(s))_{s:\mu} \in \int_{s:\mu}U_{x_s}$
+    that is well-defined as $\dom(d_a) = S_{U,a}$
+    
+    for all $V\subseteq U^n$, $\alpha^n$ restricts to $V_p \to \int_{s:\mu}V_{x_s}$ as for $s\in S_{V,\overline{a}}$, $d_{\overline{a}}(s)\in V_{x_s}$
+    
+    hence we get a natural transformation $\Nat_{E:\E}(E_p,\int_{s:\mu}E_{x_s})$, defining thus a $v\in\X(p,(x_s)_{s:\mu})$.
+
+    Finally, for $s:\mu$ we have $u_s : x_s\ultrato (p)_{\nu_s}$, and we want to check that $(u_s)\circ v$ is the ultradiagonal. As $U:\X\to\Set$ is faithful, it is enough to check it on any $a\in U$ and this comes from the definition of $S$.
+\end{proof}}
+
+\begin{defn}
+    Let $\X$ be a v-ult. An ultraidempotent in $\X$ is given by
+    \begin{enumerate}
+        \item objects $(a_s)_{s:\mu}$
+        \item ultrafilters $(\nu_s)_{s:\mu}$
+        \item ultraarrows $(\gamma_{s_0} : a_{s_0}\ultrato(a_s)_{\nu_{s_0}\otimes(s:\mu)})_{s_0:\mu}$.
+        \item such that for $s_0:\mu$
+        \[a_{s_0}\stackrel{\gamma_{s_0}}\ultrato(a_s)_{\nu_{s_0}\otimes(s:\mu)} \stackrel{(\gamma_s)}\ultrato((a_t)_{\nu_s\otimes(t:\mu)})_{\nu_{s_0}\otimes(s:\mu)}\]
+        corresponds to 
+        \[a_{s_0}\stackrel{\gamma_s}\ultrato(a_t)_{\nu_{s_0}\otimes(t:\mu)}\]
+        trough the fattening given by \[\nu_{s_0}\otimes(s:\mu)\otimes\nu_s\otimes(t:\mu) \to \nu_{s_0}\otimes(t:\mu)\]
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}
+    The splitting of such an ultraidempotent is given by
+    \begin{enumerate}
+        \item $(u_s : a_s\ultrato (p)_{\nu_s})$
+        \item $v : p\ultrato(a_s)_{s:\mu}$
+        \item such that
+        \[p\stackrel{v}\ultrato (a_s)_{s:\mu}\stackrel{(u_s)}\ultrato ((p)_{\nu_s})_{s:\mu}\]
+        is the diagonal (the fattening of the identity),
+        \item and
+        \[a_{s_0}\stackrel{u_{s_0}}\ultrato (p)_{\nu_{s_0}}\stackrel{(v)}\ultrato ((a_s)_{s:\mu})_{\nu_{s_0}}\]
+        is equal to $\gamma_{s_0}$ for $s_0:\mu$.
+    \end{enumerate}
+\end{defn}
+
+\begin{ex}
+    For a single object $a$ (\ie $\mu = \ptuf$) and all $\nu_s=\ptuf$, we recover the usual notion of idempotent and splitting of idempotent
+\end{ex}
+
+\begin{ex}
+    For $(u_s : a_s\ultrato (p)_{\nu_s})$ and $v : p\ultrato(a_s)_{s:\mu}$ such that
+    $p\stackrel{v}\ultrato (a_s)_{s:\mu}\stackrel{(u_s)}\ultrato ((p)_{\nu_s})_{s:\mu}$
+    is the diagonal, the composite 
+    \[\gamma_s : a_{s_0}\stackrel{u_{s_0}}\ultrato (p)_{\nu_{s_0}}\stackrel{(v)}\ultrato ((a_s)_{s:\mu})_{\nu_{s_0}}\]
+    give an ultraidempotent on $(a_s)_{s:\mu}$ and $p$ is a spliting of it.
+\end{ex}
+
+\begin{ex}
+    In an ultracategory, $A$ is a splitting of $A^{\nu}$ with $u : A^{\nu}\ultrato (A)_{\nu}$ the identity of $A^{\nu}$ and $v : A\to A^{\nu}$ the diagonal. 
+\end{ex}
+
+\begin{ex}
+    The v-ult $\Set$ has splitting of its ultra-idempotent. Explicitly, for a $(A_s)_{s:\mu}$ and $\gamma_{s_0} : A_{s_0}\to(\int_{s:\mu}(A_s))^{\nu_{s_0}}$ an ultra-idempotent in $\Set$, the splitting is given by
+    \[P\coloneqq\{(a_s)_{s:\mu} \ |\ (\forall s:\mu) \gamma_s(a_s) = ((a_s)_{s:\mu})_{t_{\nu_{s_0}}} \}\]
+    with $u_s : A_s \to P^{\nu_{s_0}} \ ;\ a\mapsto \gamma_s(a)$ and $v : P\to\int_{s:\mu}A_s$ the inclusion.    
+\end{ex}
+
+\begin{ex}
+    Let $(a_i)_{i:I}$ be a filtered diagram in $\pt(\X)$ and $\mu\in\beta(I)$ a cofinal ultrafilter (\ie extending the filter of upsets). For each $i:I$ we define $\gamma_i : a_i \ultrato (a_i)_{s:\mu}\to(a_s)_{s:\mu}$, then $(\gamma_s)$ is an ultra-idempotent.
+
+    Moreover, if $p$ is a colimit of $(a_i)_{i:I}$ satisfying the universal property for ultraarows, then then $(\gamma_i)$ induce a $v : p\ultrato(a_s)_{s:\mu}$ and taking the $(u_s:a_s\to p)$ being the map of the universal cocones, we get that $p$ is a spliting of this ultra-idempotent.
+
+    Conversely, given $p$ a spliting, then we get a cocone $(u_s : a_s\to p)$ and given ultraarrows $(a_s\ultrato (y_t)_{t:\nu})$ we can define $(p \ultrato (a_s)_{s:\mu}\ultrato ((y_t)_{t:\nu})_{s:\mu})$, and if the ultrad condition is satisfied, we can reduce it to an ultraarow $p\ultrato(y_t)_{t:\nu}$.
+
+    Hence (modulo the ultrad condition) giving a splitting of $(a_s,\gamma_s)$ is equivalent to a giving an ultracolimit of $(a_i)_{i:I}$ (\ie a colimit with the universal property for ultraarows and not only arrows).
+\end{ex}
+
+\begin{prop}
+    Let $(p,v,u_s)$ be a splitting of $(a_s,\nu_s,\gamma_s)$ as above. Let $f : p\to(y_l)_{l:\lambda}$ an ultraarow, precomposing with the $u_s$ gives ultraarows $(f_s : a_s\ultrato((y_l)_{l:\lambda})_{\nu_s})$ that are compatible in the sense that for $s_0:\mu$
+    \[a_{s_0} \stackrel{\gamma_{s_0}}\ultrato ((a_s)_{s:\mu})_{\nu_{s_0}} \stackrel{(f_s)}\ultrato ((((y_l)_{l:\lambda})_{\nu_s})_{s:\mu})_{\nu_{s_0}}\]
+    corresponds to 
+    \[a_{s_0}\stackrel{f_{s_0}}\ultrato((y_l)_{l:\lambda})_{\nu_{s_0}})\]
+    trough the fattening given by $\nu_{s_0}\otimes(s:\mu)\otimes\nu_s\otimes\lambda \to \nu_{s_0}\otimes\lambda$.
+
+    Conversely, given ultraarows $(f_s : a_s\ultrato((y_l)_{l:\lambda})_{\nu_s})$ that are compatible in the above way, we can precompose by $v$
+    \[p\stackrel{v}\ultrato(a_s)_{s:\mu}\stackrel{(f_s)}\ultrato(((y_l)_{l:\lambda})_{\nu_s})_{s:\mu}\]
+    and de-fatten into some $f : p\ultrato(y_l)_{l:\lambda}$
+\end{prop}
+
+\begin{proof}
+    We use the ultrad condition, we show that fattening this composite by
+    \[(s:\mu)\otimes\nu_s\otimes(t:\mu)\otimes\nu_t\otimes\lambda\to(s:\mu)\otimes\nu_s\otimes\lambda\] is the same than precomposing it with the diagonal $p\ultrato((p)_{\nu_s})_{s:\mu}$. But fattening the composite can be reduced to fattening the $(f_s)$ part only, and by the compatibility condition the $(f_s)$ it is the same as 
+    \[p\stackrel{v}\ultrato(a_s)_{s:\mu}\stackrel{(\gamma_s)}\ultrato(((a_t)_{t:\mu})_{\nu_s})_{s:\mu}\stackrel{f_t}\ultrato(((((y_l)_{l:\lambda})_{\nu_t})_{t:\mu})_{\nu_s})_{s:\mu}\] 
+    and using the splitting equation $v$ followed by the $(\gamma_s)$ is the ultradiagonal followed by $(v)$.
+\end{proof}
+
+\begin{prop}
+    Moreover these two operations establish a bijective correspondence between compatible families $(f_s : a_s\ultrato((y_l)_{l_\lambda})_{\nu_s})$ and ultraarows $f:p\ultrato(y_l)_{l:\lambda}$.
+\end{prop}
+\begin{proof}
+    Follows from the splitting equations. In both directions, we use the unicity of the de-fattening when it exists.
+\end{proof}
+
+\begin{cor}
+    For $(y_l)_{l:\lambda}$ in $\bb(\X)$, the homset $\Hom(p,(y_l))$ is in bijection with compatible families $\Comp((a_s,\gamma_s), (y_l))$; moreover, this bijection is natural in $(y_l)\in\bb(\X)$.
+\end{cor}
+
+This is the colimit universal property, there is also a limit one: maps $x\to p$ correspond to $x\ultrato(a_s)_{s:\mu}$ that are stable by postcomposition with the $\gamma_s$ (and similarly for $x\to(p)_{\kappa}$). This universal property is easier to prove, and gives also the uniqueness of the splitting. 
+
+Conjecture: Let $X$ be a subclass of points the following are equivalent
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+
+\section{Faithful functors preserve local soberness}
+
+On commence par montrer la proposition suivante (dans le cas $U = 1$ on obtient que la topologie à la Sam coincide avec la reflection posetale)
+\begin{prop}
+    Soit $\X$ une petite ultrad, $U : \X\to\Set$. Alors une set-fonction $f\in\Set(U(p),U(q))$ est dans l'image de $U$ (up to thick) ssi 
+    \[\forall A \subseteq U^n, A(p)\ni(a_1,\dots, a_n)\to A(q)\ni(f(a_1),\dots, f(a_n))\]
+\end{prop}
+
+\begin{proof}
+    Le sens direct est clair, on suppose donc que $f$ vérifie la condition et on veut montrer que $f$ s'épaissie en une map de la forme $U(e)$ pour un certain $e : p \ultrato(q)_{\mu}$.
+
+    \begin{nclaim}
+        Pour toute partie finie $I\subseteq U_p$, on peut trouver $e_I : p \ultrato(q)_{\mu_I}$ telle que $U(e_I)(a) = f(a)$ pour tout $a\in I$.
+    \end{nclaim}
+
+    \begin{proof}[proof of the claim]
+        Pour fixer les idées on suppose $I=\{a,b\}$ avec $a\neq b$. Alors tout ouvert de $\U\times_{\X}\U$ (ou $\U$ désigne l'espace étale associée à $U$), contenant $(a,b)$ contient aussi $(fa,fb)$. Donc (modulo que $\U\times_{\X}\U$ est une ultrad et donc que sa reflection posetal coincide avec sa 0-topologie), on obtient une ultraflèche $(a,b)\ultrato_{\mu_I}(fa,fb)$ dans $\U\times_{\X}\U$, ce qui correspond à deux ultraflèches $a\ultrato(fa)_{\mu_I}$ et $b\ultrato(fb)_{\mu_I}$ qui vivent au-dessus d'une même ultraflèche $e_I : p\ultrato(q)_{\mu_I}$.
+    \end{proof}
+    
+    On peut alors rassembler les $e_I$ en une ultraflèche $e : p \ultrato (p)_{\nu} \stackrel{(e_I)}\ultrato(q)_{\sum_{\nu}\mu_I}$, ou on a choisi $\nu$ un ultrafiltre sur les parties finies de $I\subseteq \U_p$ qui étend l'ordre (\ie l'ensemble des parties finies contenant un certain $a\in U_p$ est large).
+
+    On prend un $a\in U(p)$ et calcul $U(e)(a) = (e_I(a))_{I:\nu}$, comme pour presque tout $I:\nu$ on a $e_I(a) = (f(a))_{\mu_I}$ on obtient $U(e)(a) = (f(a))_{\sum_{\nu}\mu_I}$, \ie $U(e)(a) = (f(a))_{\mu}$ pour tout $a\in U(p)$ avec $\mu := \sum_{\nu}\mu_I$
+    
+    Donc $U(e)$ correspond à l'épaississement $U_p\stackrel{f}\to U_q\hookrightarrow(U_q)^{\mu}$ comme voulu.
+\end{proof}
+
+
+\begin{prop}
+    Si de plus $U : \X\to\Set$ est fidèle, alors $X$ est localement sobre, \ie que $\X\to\pt(\Sh(X))$ est ff.
+\end{prop}
+\begin{proof}
+    On note $\E := \Sh(\X)$.
+    
+    On voir facilement que $sob:\X\to\pt(\E)$ est faithful: si $\alpha,\beta:p\ultrato(...)$ sont parallèles tels que $sob(\alpha) = sob(\alpha) : \Nat_{E:\E}(E_p,...)$, en évaluant ces deux transfo nat en $U:\E$ on obtient $U(\alpha) = U(\beta)$ et on conclut en utilisant $U$ fidèle.
+
+    Plus simplement, décomposer $U$ en $U : \X\to\pt(\E)\stackrel{\pt\sh U}\to\Set$ qui est faithful.
+    
+    Il nous reste donc à montrer qu'il est full up to thickening.
+
+    On prend une transformation naturelle $\alpha : \Nat_{E:\E}(E_p,E_q) = \pt(\E)(p,q)$. On obtient une map $\alpha_U : U_p\to U_q$ qui vérifie la proposition précédente, et donc un $e : p\ultrato(q)_{\mu}$ tel que $\alpha'_U = U(e)$ (où $\alpha'$ dénote l'épaississement de $\alpha$ par $\mu$).
+    \ie on a $\alpha'_U = sob(e)_U$.
+    
+    Pour en déduire que $\alpha' = sob(e)$, il suffirait de montrer que $U$ est une préborne sur $\E$, et donc une tel transfo nat est tjs déterminée par sa valeure en $U$...
+\end{proof}
+
+
+\section{The wisdom of the prebound}
+
+We know that $\X\to\pt(\E)$ full up to thick implies $\sh(\X)\to\E$ hyperconnected.
+
+\begin{defn}
+    If $\X$ is a v-ult, its \emph{topological reflection} its topological reflection is $\X\to P$ where $P$ has the same objects than $X$ and there is a unique ultraarow $a\ultrato(b_s)$ in $P$ iff there exists one $a\ultrato(b_{\alpha(t)})$ in $\X$ for some thickening. 
+\end{defn}
+\begin{rmk}
+    $P$ is a (potentially large) topological space, and is a topological space if $\X$ is accessible. Moreover it is the universal topological space with such a map. 
+\end{rmk}
+\begin{lem}
+    If $\X$ v-ult, and $\X\to P$ its topological reflection. Then 
+    \[\X\to\pt(\sh(\X))\to\pt(Loc(\sh(\X))) = \pt(open(\X))\]
+    gives a map $P \to \pt(open(\X))$ that is the soberification of $P$. 
+\end{lem}
+\begin{proof}
+    Go to the sheaf: the composite
+    \[\sh(\X)\to\sh(P)\to Loc(\sh(\X))\]
+    is hyperconnected and $\sh(P)\to Loc(\sh(\X))$ is localic.
+
+    Hence it is enough to show $\sh(\X)\to\sh(P)$ hyperconnected to deduce by unicity of the hyperconnected/localic factorization. This is enough by the direction full implies hyperconnected.  
+\end{proof}
+
+\begin{defn}
+    For $A : \X\to\Set$ an ultrasheaf, we denote $\ty(A) \in \TopSp$ the topological reflection of the étale space $\A\to\X$ associated to $\A$. 
+\end{defn}
+\begin{rmk}
+    the soberification of $\ty(A)$ can be described also as the points of the local $Sub_{\sh(\X)}(A)$ of subobjects of $A\in\sh(\X)$ or equivalently as the topological space of points of the localic reflection of $\sh(\X)/A$.
+\end{rmk}
+
+\begin{Thm}
+    Let $\X$ a v-ultracat, $U : \X\to\Set$ an ultrasheaf on $\X$, $p,(q_s)_{s:\mu}$ points of $\X$, $\U\stackrel{\text{ét}}\to\X$ the étale space associated to $U$ and $\ty(U^n)$ the topological reflection of  $\U\times_\X\times_\X \cdots \U$.
+
+    We moreover suppose $U(p)$ non-empty.
+    
+    For $f : U(p)\to \int U(q_s)$ the following are equivalents:
+    \begin{enumerate}
+        \item $f$ is in the image of $U$ \ie there is $\alpha : \nu\to\mu$ and $e : p \ultrato (q_{\alpha(t)})_{t:\nu}$ such that $U(e) = \alpha^*f$.
+        \item for $\overline{a}\in U(p)^n$ (so that $f(\overline{a})\in \int (U(q_s)^n) = (\int (U(q_s))^n$) 
+        \[\forall A\subseteq U^n,\ \overline{a}\in A(p) \Rightarrow f(\overline{a})\in \int A(q_s)\] 
+        \ie $f^n : U(p)^n\to\int_{s:\mu}U(q_s)^n$ restricts to $A(p)\to\int_{s:\mu}A(q_s)$.
+        
+        \item or equivalently
+        \[\overline{a}\vuleq{} (f(\overline{a})) \text{ in } \ty(U^n).\]
+
+    \end{enumerate}
+    If moreover $U$ is faithful, we can add
+    \begin{enumerate}
+        \item[(iv)] $f$ is in the strict image of $U$ \ie $f = U(e)$ for some $e : p\ultrato(q_s)$.
+    \end{enumerate}
+\end{Thm}
+Note that the lemma above corresponds to the case $U = 1$. Logically the lemma says that if any geometric formula satsfied by $M$ is also satisfied by $N$ then there is a morphism from $M$ to an ultrapower of $N$.
+
+Logically $U$ is tough of as a sort of the models of $\X$ (not necessarily a generating one), and this proposition says that a set-function defined on the underlying set specified by $U$, respects all the formulas with parameters in $U$ iff it can be thicken so that it arises from a morphism of models. It is actually be also seen as a special case of the above by adding constant to the theory.
+
+Maybe separated the prop with first the case $U(p)$ finite?
+
+We prove (iii) implies (i) the other implications are not too hard.
+\begin{proof}[Proof of (iii) implies (i)]
+     We suppose $f$ satisfies (iii), and want to construct an $e : p \ultrato (q_{\alpha(t)})$ for some $\alpha : \nu\to\mu$ such that $U(e) = \alpha^*f$.
+
+     First, we construct for any $I\subseteq U(p)$ finite subset, an ultraarow $e_I : p \ultrato(q_{\alpha_I(t)})_{t:\nu_I}$ such that $U(e_I)(a) = \alpha_I^*f(a)$ for $a\in I$. Let say $I := \{a_1,\dots,a_n\}$, the hypothesis plus the lemma above gives an ultraarow $(a_1,\cdots,a_n)\ultrato_{\nu_I}(f(a_1),\cdots,f(a_n))$ with $\alpha_I : \nu_I\to\mu$ in $\U\times_\X\cdots\times_\X\U$, and so $n$ ultraarows $(a_i\ultrato_{\nu_I}(f(a_i)))$ that live above the same $e_I : p\ultrato(q_{\alpha_I(t)})_{t:\nu_I}$.
+
+     Then by choosing a cofinal ultrafilter $\lambda$ on the poset of finite subsets of $U(p)$, so that we can merge the $e_I$ into an ultraarow $e : p \ultrato (q_{\alpha_I(t)})_{\sum_{I:\lambda}(t:\nu_I)}$. And for any $a \in U(p)$, one can compute $U(e)(a) = \alpha^*f(a)$ where $\alpha : \sum_{I:\lambda}(t:\nu_I) \to \mu$ is given by the sum of the $\alpha_I$.
+\end{proof}
+
+\begin{rmk}
+    This theorem doesn't use the reconstruction theorem (to verify!).
+\end{rmk}
+
+\begin{rmk}
+    The lemma \ref{Lemprebound} gives another proof (more elementary?) of the special case of $\X$ sober and $U$ prebound.
+\end{rmk}
+
+The crucial corollary is the following.
+\begin{cor}
+    Let $U : \X\to\Set$ an ultrasheaf, and consider the hyperconnected/localic factorization $\Sh(\X)\twoheadrightarrow\E\to\SetO$. Then $g : \X\to\pt(\E)$ is the full up to thickening.
+\end{cor}
+\begin{proof}
+    We consider $p,(q_s)$ in $\X$ and we take $h : g(p)\ultrato(g(q_s))_{s:\mu}$. First note that $V : \pt(\E)\to\Set$ is faithful as points of a localic geometric morphism, $h$ induces a map $V(h) : U(p)\to\int_{s:\mu}U(q_s)$.
+    
+    It is enough to show that satisfies the above hypothesis, so that we get $k : p \ultrato(q_{\alpha(t)})_{t:\nu}$ with $U(k) = \alpha^*V(h)$, \ie $V(g(k)) = V(\alpha^*h)$ and we conclude that $g(k) = \alpha^*h$ by faithfulness of $V$.
+
+    Let's show that $V(h)$ satisfies the hypothesis of the theorem above. There is a geometric morphism $\Sh(\X)/(U^n) \to \E/(V^n)$ that is hyperconnected as a pullback of an hyperconnected morphism. So that the localic relfection given by the morphism of locals $Sub_{\Sh(\X)}(U^n) \to Sub_{\E}(V^n)$ is an equivalence and taking the points we get an equivalence of topological spaces $\ty(U^n)\to\ty(V^n)$.
+\end{proof}
+
+\begin{cor}
+    \begin{enumerate}
+        \item For $f : \sh(\X)\twoheadrightarrow\E$ hyperconnected, $\X\to\pt(\E)$ is full up to thickening.
+        \item If there exists $U : \X\to\Set$ faithful with $\X$ ultrad, then $\X$ is locally sober and $\sh(X)\to\Set$ is localic.
+        \item More generally if $U : \X\to\pt(\E)$ is faithful with $\X$ ultrad, then $\X$ is locally sober and $\sh(X)\to\E$ is localic.
+    \end{enumerate}
+\end{cor}
+\begin{proof}
+    \begin{enumerate}
+        \item Chose a prebound of $\E$ and apply the above.
+        \item Using that $\X$ ultrad implies that faithful plus full up to fhick gives $\X$ fullyfaithful into $\pt(\E)$ sober, we get $\X$ locally sober, and moreover $\sh(\X)\to\E$ embedding.
+    \end{enumerate}
+    
+\end{proof}
