@@ -203,6 +203,30 @@ $\Open(\X)$. Note that every vf-functor $\X \to \Y$ induces, by precomposition, 
 Let $\E$ be a topos and fix a full subcategory $A \subseteq \pt(\E)$, where we identify points of $\E$ with their inverse images $\E \to \Set$. Generalizing the canonical vu-category structure, we can endow $A$ with a canonical vf-category structure such that the evaluation map $\ev \colon \E \to{} [A, \Set]$ factors through $\Sh(A) \coloneqq \vfCat(A, \Set)$. \UT{i personally don't like the notation $\Sh(\pt(\E)_{\res A})$ that much; if anything, i'd just write $\Sh(A)$} \gabrielnote{i do agree, i changed it!}
 Concretely, a vf-arrow $x \vuto{s:\sigma} y_s$ in $A$ is given by a natural transformation $x \Rightarrow \int_{s:\sigma} y_s$, where $\int_{s:\sigma} y_s$ is the \emph{reduced product} functor. 
 
+
+We now show that vu-categories arising as points of a topos are taut.
+\begin{lem}\label{lemma:taut-sober}
+    Let $\phi : \tau\to\sigma$ in $\UF$ and $(A_s)_{s:\sigma}$ a $\sigma$-family of sets. Then the image of $\int_{s:\sigma}A_s\hookrightarrow\int_{t:\tau}A_{\phi t}$ is described by the $x$ such that $\psi_1^*x = \psi_2^*x$ for all pair of maps $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$.
+\end{lem}
+\begin{proof}
+    An element $\int_{t:\tau}A_{\phi t}$ that can be lift to $\int_{s:\sigma}A_s$ clearly satisfies the condition.
+    %
+    We suppose now that $(a_t)\in \int_{t:\tau}A_{\phi t}$ cannot be lift to $\int_{s:\sigma}A_s$. We chose underlying sets $\phi : T\to S$ and we claim than the subsets $T_0\times_{\phi(T_0)}T_0 \subseteq T \times_S T$, for $T_0$ $\tau$-large, together with the subset $D = \{(t,t')\in T \times_S T\ |\ a_t \neq a_{t'}\}$ satisfy \newnote{ref}. We can thus extend them into ultrafilter $\lambda$ on $T\times_S T$, the sets $(T_0\times_{\phi(T_0)}T_0)$ ensure that the projections give maps $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$ and the set $D$ ensures that $\psi_1^*(a_t)\neq\psi_2^*(a_t)$.
+    %Conversely, we suppose that $(a_t\in A_{\phi t})$ is such that for any $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$ we have $(\forall \ell:\lambda)\ a_{\psi_1\ell} = a_{\psi_2\ell}$, and we want to show that it lift to $\int_{s:\sigma}A_s$. Considering $\tau\times_\sigma\tau$-large (the product as filters), it is enough to show that the set $D = \{(t,t')\in T \times_S T\ |\ a_t = a_{t'}\}$ is $\tau\times_\sigma\tau$-large. If it were not, then we could extend $\tau\times_\sigma\tau$ into an ultrafilter $\lambda$ such that $(\forall (t,t'):\lambda)\ a_t = a_{t'}$. \newnote{ajuster!}
+\end{proof}
+\begin{prop}
+    Any sober vu-category $\X = \pt(\E)$ is taut.
+\end{prop}
+\begin{proof}
+    We take some points $p$, $(q_s)_{s:\sigma}$ of $\E$ and $f : p \vuto{\tau}q_{\phi t}$ in $\pt(\E)$, that is, maps $f_E : E_p\to\int_{t:\tau}E_{q_{\phi t}}$ natural in $E\in\E$, that can be unthicken along $\phi : \tau\to\sigma$.
+    %
+    It is enough to show that for any $\xi\in E_p$, $f_E(\xi)$ is in the image of $\int_{s:\sigma}E_{q_s}\hookrightarrow\int_{t:\tau}E_{q_{\phi t}}$. 
+    % that is for $\xi \in E_p$, that $f_E(\xi) \in \int_{s:\sigma}E_{q_s}\subseteq\int_{t:\tau}E_{q_{\phi t}}$.
+    %
+    The hypothesis that $f$ can be unthicken along $\phi$ ensures that $\psi_1^*f_E(\xi) = \psi_2^*f_E(\xi)$ for all $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$, and so we can conclude with \Cref{lemma:taut-sober}.
+\end{proof}
+
+
 \begin{lem}
     The canonical vf-category structure on $A \subseteq \pt(\E)$ is taut. \UT{is it always?} \gabrielnote{i hope so! i will write the proof}
 \end{lem}
@@ -262,22 +286,21 @@ Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objec
 \end{prop}
 
 \begin{lem}\label{SUJ-lem}
-    Let $\C$ be a small filtered category and $A \colon \C\to\Set$ a functor together with a function $\gamma \colon \Ob(\C) \to \sum_{x \in \Ob(\C)}A(x)$ such that $\gamma(c) \in A(c)$. Then, there exists an inhabited filter $\lambda$ such that the reduced product functor $A^{\lambda} \colon \C \to \Set$ defined by $c\mapsto (A(c))^{\lambda}$ admits a global section.
+    Let $\C$ be a small filtered category and $A \colon \C\to\Set$ such that there exist a family $(a_x)_{x:\Ob(\C)}$. Then, there exists an inhabited filter $\lambda$ such that the reduced product functor $A^{\lambda} \colon \C \to \Set$ defined by $x\mapsto A(x)^\lambda$ admits a global section.
 \end{lem}
-\begin{proof}    
-    We now consider a filter $\lambda$ and $\lambda$-families $({\theta^x}_\ell : {d^x}_\ell\to x)_{\ell:\lambda}\in\Ob(\C/x)^{\lambda}$ for any $x\in\Ob(\C)$, such that for each $f : y\to x$
-    \[(\forall \ell:\lambda)\ f\circ {\theta^y}_\ell = {\theta^x}_\ell \ \text{ (and so in particular ${d^y}_\ell = {d^x}_\ell$)}.\]
-    Such a filter $\lambda$ can be obtained by extending the prebase of filter on $L \coloneqq \prod_{x:\Ob(\C)}\Ob(\C/x)$ given by the $L_f \coloneqq \{ (\theta^x)_{x:\Ob(\C)} \in L \ |\  f\circ \theta^y = \theta^x\}\subseteq L$, the filtered hypothesis on $\C$ ensures precisely that the $L_f$ form a prebase. \UT{do you mean that the filter is inhabited? because any family of subsets of $L$ generates a (possibly improper) filter. anyway i don't understand how the hypothesis gives that $L_f$ is always nonempty: we only know that there exists a cocone on $f$, but this only amounts to some $\theta^c$ and $\theta^d$, not to a whole family $(\theta^x)_{x\in \C}$. i'm also worried by the fact that the choice of $a_c$ for each $c$ can't be maide choice-free...}\gabrielnote{i think we can always chose $\theta_x = \id_x$ for $x$ not $x,y$, so no choice needed here. And yes, this was wrongly said, i just meant that the $L_f$ generate a proper filter.}
+\begin{proof}
+    We consider the filter $\lambda$ on $L \coloneqq \prod_{x:\Ob(\C)}\Ob(\C/x)$ defined by:
+    %
+    $L_0\subseteq L$ is $\lambda$-large iff there exists a non-empty finite sub-category $C\subseteq \C$, such that $L_0$ contains all the $(\theta^x : {d^x}\to x)_{x:\Ob(\C)} \in L$ with the $(\theta^x)_{x:C}$ inducing a cone on $C$.
 
-    Concretely, a subset $L_0\subseteq L$ is large iff there exists a finite sub-category $C\subseteq \C$, such that $L_0$ contains all the $(\theta^x)_{x:\Ob(\C)} \in L$ inducing a cone $(\theta^c)_{c:C}$ on $C$. \gabrielnote{otherwise i think this is a good definition of $\lambda$ no? a clearer one than the $L_f$ actually. I would suggest just to keep this one}
+    It is clear that $\lambda$ defines a filter, and $\lambda$ proper is equivalent to $\C$ being filtered, that is true by hypothesis.
 
-    For $\gamma(c) \coloneqq a_c$, the global section of $A^{\lambda}$ will then be given on $x\in\C$ by
-    \[(({\theta^x}_\ell)_*(a_{{d^x}_\ell}))_{\ell:\lambda} \in A(x)^{\lambda}\]
-    and the functoriality on $f : y\to x$ amounts to show that $(({\theta^y}_\ell)_*(a_{{d^y}_\ell}))_{\ell:\lambda} \in A(y)^{\lambda}$ is sent by $f$ on $(({\theta^x}_\ell)_*(a_{{d^x}_\ell}))_{\ell:\lambda} \in A(x)^{\lambda}$, \ie that 
-    \[(\forall \ell:\lambda)\ f_*(({\theta^y}_\ell)_*(a_{{d^y}_\ell})) = ({\theta^x}_\ell)_*(a_{{d^x}_\ell})\]
-    and this is true by construction of $\lambda$.
-
-    \UT{i'm unsure about this lemma. the good news is that the notion of vf-fullness you're stating in 2.1 is potentially more restrictive than we need (i.e. the one coming from \Cref{lem:magic-choice-lemma})}
+    We define a global section of $A^{\lambda}$ given on $x\in\C$ by
+    \[(\theta^x_*(a_{d^x}))_{(\theta^x : {d^x}\rightarrow x):\lambda} \in A(x)^{\lambda}.\]
+    %
+    We check the functoriality of this family along $f : y\to x$. This amounts to show that 
+    \[(\forall (\theta^x : {d^x}\rightarrow x):\lambda)\ f_*((\theta^y_*(a_{d^y})) = \theta^x_*(a_{d^x})\]
+    and this is true by construction of $\lambda$ (as for $(\theta^x : {d^x}\rightarrow x):\lambda$ we can assume $f\circ \theta^y = \theta^x$).
 \end{proof}
 
 \begin{proof}
