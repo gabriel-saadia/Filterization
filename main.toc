@@ -1,0 +1,14 @@
+\contentsline {section}{\tocsection {}{1}{Vf-categories}}{1}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{1.1}{Blass' category of filters}}{1}{thmt@dummyctr.dummy.1}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{Vf-categories}}{2}{thmt@dummyctr.dummy.4}%
+\contentsline {subsection}{\tocsubsection {}{1.3}{Tautness}}{2}{subsection.1.3}%
+\contentsline {subsection}{\tocsubsection {}{1.4}{Subspaces}}{4}{subsection.1.4}%
+\contentsline {subsection}{\tocsubsection {}{1.5}{Vf-categories of points}}{4}{subsection.1.5}%
+\contentsline {section}{\tocsection {}{2}{points of the localic reflection (5.3 of SUJ)}}{5}{section.2}%
+\contentsline {section}{\tocsection {}{3}{proving the theorems}}{7}{section.3}%
+\contentsline {section}{\tocsection {Appendix}{A}{Tautness: the sheaf definition}}{9}{appendix.A}%
+\contentsline {section}{\tocsection {Appendix}{B}{Vu-vF?}}{9}{appendix.B}%
+\contentsline {section}{\tocsection {Appendix}{C}{Direct image}}{10}{appendix.C}%
+\contentsline {section}{\tocsection {Appendix}{D}{Tautness 2: the stack definition}}{11}{appendix.D}%
+\contentsline {section}{\tocsection {Appendix}{E}{Tautness 3: The algebraic definition}}{11}{appendix.E}%
+\contentsline {section}{\tocsection {Appendix}{F}{Filters as germs of closed, an alternative}}{14}{appendix.F}%

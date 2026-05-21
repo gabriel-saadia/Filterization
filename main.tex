@@ -1,8 +1,400 @@
-\input{preamble}
+\documentclass[a4paper,12pt, reqno]{amsart}
+
+\usepackage[svgnames]{xcolor}
+%% Geometry adjustment 
+%\usepackage[verbose]{geometry}
+%\geometry{
+%  paperheight=242mm,
+%  paperwidth=165mm,
+%  left=22.5mm,
+%  right=22.5mm,
+%  top=22.5mm,
+%  bottom=22.5mm
+%}
+%\geometry{twoside=false,textwidth=380pt,textheight=560pt}
+%\geometry{a5paper, hmargin=1cm, tmargin=1.3cm, bmargin=1.1cm}
+\usepackage[centering, margin = 1in]{geometry}
+%\setlength{\parskip}{2pt}
+
+\usepackage[bbgreekl]{mathbbol}
+\usepackage[new]{old-arrows}
+
+\usepackage{amsmath, amssymb, amsthm, enumerate, url}
+\usepackage{euscript}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{tikz-cd}
+\usepackage{quiver}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{thmtools}
+\usepackage{braket}
+\renewcommand{\Set}{\set}
+\let\Set\relax
+
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+
+%% bibilography management (old)
+% \usepackage[style=alphabetic]{biblatex}
+% \addbibresource{blibli.bib}
+
+%% bibilography management (new)
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{paper.bib}
+\usepackage[simplepostnote]{lumsdaine-biblatex-misc}
+
+%% hyperref (old)
+%\usepackage[colorlinks,citecolor=DarkRed,linkcolor=blue,urlcolor=blue]{hyperref}
+%\usepackage{cleveref}
+
+%% hyperref and friends (new)
+\usepackage[svgnames]{xcolor}
+\definecolor{darkgreen}{rgb}{0,0.45,0}
+\definecolor{darkred}{rgb}{0.75,0,0}
+\definecolor{darkblue}{rgb}{0,0,0.6}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\hypersetup{
+	colorlinks = true,
+  allcolors = NavyBlue,
+}
+
+\usepackage{soul}
+\setul{3pt}{.4pt}
+%\usepackage{pxfonts}
+\usepackage{dsfont}
+
+\usetikzlibrary{arrows.meta}
+\newcommand{\ultrato}{\mathrel{\tikz[>={To}, line cap=round, anchor=base] \draw[-<] (0,0) -- (3.375mm,0);}}
+\newcommand{\longultrato}{\mathrel{\tikz[>={To}, line cap=round, anchor=base] \draw[-<] (-13mm,0) -- (5mm,0);}}
+
+%UA-command
+\newcommand{\ult}{\mathrel{\tikz [line width=.11ex, double distance=.33ex]
+    \draw[>-]
+    (0.3,0) -- (0,0);}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Peter's ultra arrows
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+%% Library imports
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{positioning}
+\usetikzlibrary{intersections}
+
+%%%% Set default styles for tikz-cd
+
+\tikzset{
+  commutative diagrams/arrow style=tikz,
+%  commutative diagrams/diagrams={row sep=large},
+}
+
+%%%% Commands for using tikz-cd style in \tikzpicture 
+
+\tikzset{cd-style/.style={commutative diagrams/every diagram}}
+\tikzset{cd-arrow-style/.style={commutative diagrams/.cd, every arrow, every label}}
+\newcommand{\arr}[1][]{\draw[cd-arrow-style,#1]}
+
+% clone of how tikz-cd places arrow labels
+% for use in tikzpicture environment as e.g. “\arr (A) to[label={f}{}] (B);” 
+\makeatletter
+\tikzset{
+  label/.style n args={2}{
+    edge node={node [
+      execute at begin node=\iftikzcd@mathmode$\fi,%$
+      execute at end node=\iftikzcd@mathmode$\fi,%$
+      /tikz/commutative diagrams/.cd,every label,
+      #2
+      ] {#1}}
+  }
+}
+\makeatother
+
+
+%% Custom arrow tips & aliases
+
+\tikzset{fibtip/.tip={Triangle[open,angle=60:4.5pt]}}
+\tikzset{tfibtip/.tip={Bar[sep]Triangle[open,angle=45:4pt]}} % Based on http://tex.stackexchange.com/a/150213
+
+\pgfarrowsdeclaredouble{fibbtip}{fibbtip}{fibtip}{.fibtip}
+
+\tikzset{ulttip/.tip={Computer Modern Rightarrow[reversed]}}
+% see PGF manual §16.5 for other arrow tip types 
+
+\pgfarrowsdeclarealias{c}{c}{left hook}{right hook}
+\pgfarrowsdeclarealias{c'}{c'}{right hook}{left hook}
+
+%% Semantic arrow styles
+
+% tip/tail styles: work in inline arrows, tikzpictures, and tikz-cd diagrams
+\tikzset{fib/.code={\pgfsetarrowsend{fibtip}}}
+\tikzset{fibb/.code={\pgfsetarrowsend{fibbtip}}}
+\tikzset{tfib/.code={\pgfsetarrowsend{tfibtip}}}
+\tikzset{inj/.code={\pgfsetarrowsstart{c}}}
+\tikzset{inj'/.code={\pgfsetarrowsstart{c'}}}
+\tikzset{cover/.style={->>}}
+\tikzset{tcof/.style={tail}}
+\tikzset{zigzag/.style={commutative diagrams/rightsquigarrow}}
+\tikzset{ulttip/.code={\pgfsetarrowsend{ulttip}}}
+
+% “label”-based styles: use in tikzpictures as “\arr (A) to[sub={\sigma}] (B)”
+\tikzset{suplabel/.style={label={#1}{auto=left,pos=1}}}
+\tikzset{sublabel/.style={label={#1}{auto=right,pos=1}}}
+\tikzset{sub/.style={label={#1}{auto=right,pos=1}}}
+
+% tikzcd-label-syntax-based styles: use in tikzcd diagrams
+\tikzset{lw/.style={"lw"{#1}},lw/.default={very near end}}
+\tikzset{lw'/.style={"lw"'{#1}},lw'/.default={very near end}}
+\tikzset{weq/.style={"\sim"}}
+\tikzset{weq'/.style={"\sim"'}}
+\tikzset{ult/.style={ulttip,"#1"'{very near end}}}
+\tikzset{ult'/.style={ulttip,"#1"{very near end}}}
+
+%% Inline arrows
+
+% TikZ inline arrows, adapted from http://tex.stackexchange.com/a/116324 and http://tex.stackexchange.com/a/188351
+
+\newcommand{\generalto}[2]{ \mathrel{\mkern-1mu
+  \tikz[baseline={([yshift=-0.58ex]a.south)}]{%
+    \node[minimum width=1em,align=center,inner xsep=0.5ex,inner ysep=0.25ex] (a) {$\scriptstyle #2$};
+    \draw[cd-arrow-style,#1] (a.south west) -- (a.south east);}
+ \mkern-1mu}}
+
+\newcommand{\generalfrom}[2]{ \mathrel{\mkern-1mu
+  \tikz[baseline={([yshift=-0.58ex]a.south)}]{%
+    \node[minimum width=1em,align=center,inner xsep=0.5ex,inner ysep=0.25ex] (a) {$\scriptstyle #2$};
+    \draw[cd-arrow-style,#1] (a.south east) -- (a.south west);}
+  \mkern-1mu}}
+
+\renewcommand{\to}[1][]{ \generalto{->}{#1} }
+\newcommand{\from}[1][]{ \generalfrom{->}{#1} }
+\newcommand{\fibto}[1][]{ \generalto{fib}{#1} }
+\newcommand{\fibbto}[1][]{ \generalto{fibb}{#1} }
+\newcommand{\extto}[1][]{ \generalto{>->}{#1} }
+\newcommand{\injto}[1][]{ \generalto{->,inj}{#1} }
+\newcommand{\lwto}[1][]{ \generalto{->}{#1}_{\lw} }
+\newcommand{\coverto}[1][]{ \generalto{->>}{#1\ \,} }
+\newcommand{\vuto}[2][]{ \mathrel{{\generalto{ulttip}{#1}}\mkern2mu_{{#2}}\mkern-2mu}}
+\newcommand{\vuleq}[2][]{ \mathrel{\preccurlyeq_{{#2}}^{{#1}}\mkern-2mu}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Errol: J'ai remplacé ça, normalement c'est mieux comme ça pour les références.
+\setlist[enumerate]{label={(\roman*)}, ref={(\roman*)}} 
+% \renewcommand{\labelitemi}{\boldmath$\cdot$}
+% \renewcommand{\theenumi}{\roman{enumi}}
+
+%\swapnumbers
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}[section]
+\newtheorem*{nThm}{Theorem}
+\newtheorem{prop}[Thm]{Proposition}
+\newtheorem{cor}[Thm]{Corollary}
+\newtheorem{lem}[Thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[Thm]{Definition}
+\newtheorem{para}[Thm]{}
+\newtheorem{cons}[Thm]{Construction}
+\newtheorem{nota}[Thm]{Notation}
+\newtheorem*{nnota}{Notation}
+\newtheorem{ex}[Thm]{Example}
+\newtheorem{rmk}[Thm]{Remark}
+\newtheorem*{nrmk}{Remark}
+\newtheorem{claim}[Thm]{Claim}
+\newtheorem*{nclaim}{Claim}
+\newtheorem{question}[Thm]{Question}
+
+\newcommand\pref[1]{\ref{#1}}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\coeq}{coeq}
+\DeclareMathOperator*{\Nat}{Nat}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\cl}{\mathsf{cl}}
+\DeclareMathOperator{\subcl}{\mathsf{scl}}
+ 
+% Arrows
+\newcommand{\mono}{\hookrightarrow}
+\newcommand{\epi}{\twoheadrightarrow}
+
+
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\G}{\mathscr{G}}
+\newcommand{\R}{\mathscr{R}}
+\newcommand{\I}{\mathscr{I}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\T}{\mathscr{T}}
+\newcommand{\M}{\mathscr{M}}
+\newcommand{\N}{\mathscr{N}}
+\newcommand{\X}{\mathscr{X}}
+\newcommand{\K}{\mathscr{K}}
+\newcommand{\U}{\mathscr{U}}
+\newcommand{\Z}{\mathscr{Z}}
+\newcommand{\Y}{\mathscr{Y}}
+
+\newcommand{\eC}{\EuScript{C}}
+\newcommand{\eP}{\EuScript{P}}
+\newcommand{\eO}{\EuScript{O}}
+\newcommand{\eE}{\EuScript{E}}
+\newcommand{\eF}{\EuScript{F}}
+\newcommand{\eG}{\EuScript{G}}
+\newcommand{\eB}{\EuScript{B}}
+\newcommand{\eI}{\EuScript{I}}
+\newcommand{\eD}{\EuScript{D}}
+\newcommand{\eA}{\EuScript{A}}
+\newcommand{\eT}{\EuScript{T}}
+\newcommand{\eM}{\EuScript{M}}
+\newcommand{\eZ}{\EuScript{Z}}
+\newcommand{\eX}{\EuScript{X}}
+\newcommand{\eY}{\EuScript{Y}}
+\newcommand{\dsA}{\mathds{A}}
+\newcommand{\dsD}{\mathds{D}}
+
+\newcommand{\ptuf}{\star}
+\newcommand{\bb}{\bbbeta}
+\newcommand{\En}{\mathrm{En}}
+\newcommand{\Sh}{\mathsf{Sh}}
+\newcommand{\sh}{\mathsf{sh}}
+\newcommand{\vSh}{\mathfrak{sh}}
+\newcommand{\Sub}{\mathsf{Sub}}
+\newcommand{\Desc}{\mathsf{Desc}}
+\newcommand{\Topos}{\mathsf{Topos}}
+\newcommand{\Toposwep}{\mathsf{Topos}_{\mathrm{wep}}}
+\newcommand{\CohTop}{\mathsf{CohTop}}
+\newcommand{\Psh}{\mathsf{P}\Sh}
+\newcommand{\vUlt}{\mathsf{vUlt}}
+\newcommand{\vUltb}{\mathsf{vUlt}_{\mathrm{bounded}}}
+\newcommand{\UMat}{\mathsf{UMat}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\amp}{\mathsf{amp}}
+\newcommand{\In}{\mathsf{in}}
+\newcommand{\Cat}{\mathsf{Cat}}
+\newcommand{\Pos}{\mathsf{Pos}}
+\newcommand{\CAT}{\mathsf{CAT}}
+\newcommand{\TopSp}{\mathsf{TopSp}}
+\newcommand{\Ult}{\mathsf{Ult}}
+\newcommand{\UltL}{\Ult^{\mathsf{L}}}
+\newcommand{\pt}{\mathsf{pt}}
+\newcommand{\vpt}{\mathfrak{pt}}
+\newcommand{\id}{\mathsf{id}}
+\newcommand{\ev}{\mathsf{ev}}
+\newcommand{\Set}{\mathsf{Set}}
+\newcommand{\SET}{\mathsf{SET}}
+\newcommand{\SetO}{\mathsf{Set}[\mathbb{O}]}
+%\newcommand{\UF}{\EuScript{U}\EuScript{F}}
+\newcommand{\UF}{\mathds{U}}
+\newcommand{\Pretop}{\mathsf{Pretop}}
+\newcommand{\Latt}{\mathsf{Latt}}
+\newcommand{\Loc}{\mathsf{Loc}}
+\newcommand{\Ind}{\mathsf{Ind}}
+\newcommand{\FC}{\mathsf{FC}}
+\newcommand{\Open}{\mathcal{O}}
+\newcommand{\Ob}{\mathsf{Ob}}
+\newcommand{\Hom}{\mathsf{Hom}}
+\newcommand{\Mod}{\mathsf{Mod}}
+\newcommand{\Alex}{\mathsf{Alex}}
+\newcommand{\res}[1]{{\upharpoonright{#1}}}
+\newcommand{\ie}{i.e., }
+\newcommand{\eg}{e.g., }
+\newcommand{\paronto}{\rightharpoonup\mathrel{\mspace{-15mu}}\rightharpoonup}
+\newcommand{\li}{\mathsf{h}}
+\newcommand{\lii}{\mathsf{k}}
+\newcommand{\ty}{\mathsf{ty}}
+\newcommand{\topo}{\mathsf{topo}}
+%\usepackage{MnSymbol}
+\newcommand{\vuCat}{\mathsf{vuCat}}
+\newcommand{\vuCAT}{\mathsf{vuCAT}}
+\newcommand{\vuPos}{\mathsf{vuPos}}
+\newcommand{\vuPOS}{\mathsf{vuPOS}}
+\newcommand{\vuPostaut}{\mathsf{vuPos_{taut}}}
+\newcommand{\vuPOStaut}{\mathsf{vuPOS_{taut}}}
+\newcommand{\vupt}{\pt}
+
+%\usepackage{bbm}
+\newcommand{\Tref}{\rho_\mathrm{T}}
+\newcommand{\Lref}{\rho_\mathrm{L}}
+\newcommand{\Tinj}{\iota_\mathrm{T}}
+\newcommand{\Linj}{\iota_\mathrm{L}}
+\newcommand{\Et}{\mathrm{Et}}
+
+\newcommand{\Ext}{\mathsf{Ext}}
+\newcommand{\onespace}{\mathsf{1space}}
+\newcommand{\Onespace}{\mathsf{1Space}}
+\newcommand{\FF}{\mathds{F}}
+\newcommand{\vf}{\mathsf{vf}}
+\newcommand{\vfCat}{\mathsf{vfCat}}
+
+
+\newcommand{\Fam}{\mathsf{Fam}}
+\newcommand{\Conn}{\mathsf{Conn}}
+\newcommand{\Comp}{\mathsf{Comp}}
+\DeclareFontFamily{U}{dmjhira}{}
+\DeclareFontShape{U}{dmjhira}{m}{n}{ <-> dmjhira }{}
+\DeclareRobustCommand{\yo}{\text{\usefont{U}{dmjhira}{m}{n}\symbol{"48}}}
+
+\newcommand{\colorier}[1]{\color{Grey}{#1}\color{black}}
+
+
+%\usepackage[inline]{showlabels} % comment to hide labels
+
+
+%%% Comments 
+
+\newcommand{\todo}[1]{{\color{red} To do: #1}}
+\newcommand{\note}[1]{\textcolor{Blue}{#1}}
+\newcommand{\UT}[1]{\textcolor{ForestGreen}{UT: #1}}
+\newcommand{\gabrielnote}[1]{\textcolor{Teal}{GS: #1}}
+
+\newcommand{\nocomments}{
+    \renewcommand{\todo}[1]{}
+    \renewcommand{\note}[1]{}
+    \renewcommand{\gabrielnote}[1]{}
+    \renewcommand{\errolnote}[1]{}
+}
+
+\newcommand{\emaillink}[1]{\href{mailto:#1}{\sf #1}}
+
+%\nocomments % uncomment to hide all comments
+\title{Filterization}
+
+\date{\today}
+
+\author{Gabriel Saadia}
+\author{Umberto Tarantino}
+
+\address{
+Gabriel \textsc{Saadia}: \newline
+Department of Mathematics\newline
+Stockholm University\newline
+Stockholm, Sweden\newline
+\emaillink{gabriel.saadia@math.su.se}
+}
+
+
+\thanks{The author was supported by the KAW Foundation, under the project “Type Theory for Mathematics and Computer Science” (PI Thierry Coquand).}
+
 
 \begin{document}
 
 \begin{abstract}
+    x
 \end{abstract}
 
 \maketitle
@@ -113,29 +505,31 @@ This data is required to satisfy the following axioms:
     \item \note{axioms}
 \end{enumerate}
 
+We say that $\X$ is \emph{small} if so is $X_0$.
+\end{defn}
+
 For any vf-arrow $r \colon p \vuto{s:\sigma} q_s$ and any $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ --- seen as an arrow $\phi\to \id_{\sigma}$ in $\FF/\sigma$ --- we denote by $\phi^*(r)$ the vf-arrow $\X_{p, (q_s)} (\phi) (r) \colon p \vuto{t : \tau} q_{\phi t }$, which we refer to as the \emph{reindexing} of $r$ along $\phi$.
 \begin{itemize}
     \item If $\phi$ is monic, we also say that $\phi^*(r)$ is a \emph{specialization} of $r$.
     \item If $\phi$ is epic, we also say that $\phi^*(r)$ is a \emph{thickening} of $r$. 
 \end{itemize}
-\end{defn}
 
-\begin{defn}
-    A vf-category is \emph{small} if there is a set of vf-arrows such that any vf-arrow is a reindexing (equivalently, thickening) of a vf-arrow of that set. \UT{is this the same as asking for the profunctor defining vf-arrows to be small? doesn't seem so, but then i don't understand your notion of smallness}\gabrielnote{concretely its the same as asking a small number of objects, and that the homsets are generated by a small number of arrows (to avoid the case of having $\sigma$-arrows of arbitrary large type $\sigma$)}
 
-    In particular, a small vf-category has a small set of objects. \UT{how?}\gabrielnote{by the identities i think}
-\end{defn}
+% \begin{defn}
+%     A vf-category is \emph{small} if there is a set of vf-arrows such that any vf-arrow is a reindexing (equivalently, thickening) of a vf-arrow of that set. \UT{is this the same as asking for the profunctor defining vf-arrows to be small? doesn't seem so, but then i don't understand your notion of smallness}\gabrielnote{concretely its the same as asking a small number of objects, and that the homsets are generated by a small number of arrows (to avoid the case of having $\sigma$-arrows of arbitrary large type $\sigma$)}
+
+%     In particular, a small vf-category has a small set of objects. \UT{how?}\gabrielnote{by the identities i think}
+% \end{defn}
 
 \subsection{Tautness}
 
 Recall from \cite{Awodey_Eliasson_2004} that we can consider a Grothendieck topology $J_\infty$ on the category $\FF$ of filters, where coverings of $\sigma \in \FF$ are generated by (possibly infinite) jointly-epimorphic families, i.e.\ families $\set{ \gamma_i \colon \sigma_i \to \sigma }_{i\in I}$ such that $\bigcup_{i\in I} \gamma_i(S_i) \in \sigma$ for any $\set{ S_i \in \sigma_i }_{i\in I}$. We also denote by $J_{\infty}$ the topology induced on each slice category of $\FF$, i.e.\ where a covering of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ is a covering of $\tau$ in $\FF$ seen as a collection of morphisms to $\phi$ in $\FF/\sigma$. % both topologies are subcanonical 
-\gabrielnote{I suspected this is a standard consturction of slice of a (large) site} \UT{yes ofc i just wrote it for extra clarity / me being pedantic lol}
 
 \begin{defn}
     A vf-category $\X$ is \emph{taut} if for any filter $\sigma\in \FF$, any point $p \in \X_0$ and any tuple $(q_s)_{s:\sigma} \in \X_0^\sigma$, the functor $\X_{p, (q_s)} \colon (\FF/\sigma)^{\op}\to\Set$ % mapping $(\phi \colon \tau\to\sigma) \mapsto \X(p,(q_{\phi t})_{t:\tau})$ 
     is a sheaf for the topology $J_{\infty}$ on $\FF/\sigma$.
     
-    A small taut vf-category is called a \emph{1-space}.
+    A small taut vf-category is called a \emph{1-space}. \UT{figure out if we need this}
 \end{defn}
 
 \begin{rmk}
@@ -147,6 +541,27 @@ For a $2$-valued vu-category, tautness is equivalent to the condition characteri
 \end{ex}
 
 
+We now give two other equivalent characterizations of tautness.
+\begin{Thm}
+    Let $\X$ be a vf-category. The following are equivalent:
+    \begin{enumerate}
+        \item $\X$ is taut;
+        \item for any small vf-poset $\Y$ and any vf-functor $F \colon \Y \to \X$, there exists an essentially unique lift $\bar F \colon \Tref(\Y) \to \X$ of $F$ along the tautification map $\eta_{\Y} \colon \Y \to \Tref(\Y)$:
+\[\begin{tikzcd}
+	\Y & \X \\
+	{\Tref(\Y)}
+	\arrow["F", from=1-1, to=1-2]
+	\arrow["{\eta_{\Y}}"', from=1-1, to=2-1]
+	\arrow["\bar F"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+        \item every unthickenable vf-arrow can be uniquely unthickened, i.e.\ for every vf-arrow $r \colon p \vuto\tau q_{\phi t}$ such that $\psi_1^* r = \psi_2^* r$ for all pairs of $\F$-arrows $\psi_1$ and $\psi_2$ such that $\phi \psi_1 = \phi\psi_2$, there exists a unique vf-arrow $r_0 \colon p \vuto\sigma q_s$ such that $r = \phi^* r_0$.
+    \end{enumerate}
+\end{Thm}
+
+
+
+
+
 \begin{defn}
     A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-faithful} (resp.\ \emph{vf-fully-faithful}) if, for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the function
     \[ \X( p, (q_s)_{s:\sigma}) \to \Y (F(p), (F(q_s))_{s:\sigma}) \]
@@ -154,9 +569,8 @@ For a $2$-valued vu-category, tautness is equivalent to the condition characteri
 \end{defn}
 
 \begin{defn}
-    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-full} if for each vf-arrow $r \colon F(x) \vuto{s:\sigma} F(y_s)$ in $\Y$ there exist a covering $\set{ \phi_i \colon \tau_i\to\sigma}_{i\in I}$ of $\sigma$ in $\FF$ \gabrielnote{(or covering in $\FF/\sigma$? i don't know how it is better to think about it)} \UT{to me it makes more sense to stay on $\FF$ here, the covered object of $\FF/\sigma$ would be $\id_\sigma$ anyway, no?} and a family of vf-arrows $\set{ g_i \colon x \vuto{t:\tau_i}y_{\phi_it} }_{i\in I}$ in $\X$ such that $F(g_i) = \phi_i^*(r)$ for each $i\in I$.
-
-    % In particular, a vf-functor $F \colon \X \to \Y$ is full as a functor between the underlying categories. \UT{categories of points? specialization categories?}\gabrielnote{so no, a vf-full functor doesn't necesarely induced a full functor on the category of points (eg the functor sending a walking $\sigma$-arrow on the walking $\ptuf$-arrow i.e. Sierpinsky), but a full functor of categories induces a vu-full functor of vf-categories}
+    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-full} if for each vf-arrow $u \colon F(x) \vuto{s:\sigma} F(y_s)$ in $\Y$ there exist a covering $\set{ \phi_i \colon \tau_i\to\sigma}_{i\in I}$ of $\sigma$ in $\FF$ % \gabrielnote{(or covering in $\FF/\sigma$? i don't know how it is better to think about it)} \UT{to me it makes more sense to stay on $\FF$ here, the covered object of $\FF/\sigma$ would be $\id_\sigma$ anyway, no?}
+    and a family of vf-arrows $\set{ v_i \colon x \vuto{t:\tau_i}y_{\phi_it} }_{i\in I}$ in $\X$ such that $F(v_i) = \phi_i^*(u)$ for each $i\in I$.
 \end{defn}
 
 \begin{rmk}
@@ -164,22 +578,20 @@ For a $2$-valued vu-category, tautness is equivalent to the condition characteri
 \end{rmk}
 
 \begin{lem}
-    Let $F \colon\X \to \Y$ be a vf-functor and suppose that $\X$ and $\Y$ are taut. Then, the following are equivalent:
+    Let $F \colon \X \to \Y$ be a vf-functor and suppose that $\X$ and $\Y$ are taut. Then, the following are equivalent:
     \begin{enumerate}
         \item $F$ is vf-full and vf-faithful;
         \item $F$ is vf-fully-faithful.
     \end{enumerate}
 \end{lem}
 \begin{proof}
-    Let $F$ be vf-full and faithful, we show that $F$ is (strictly) full. We take $p$ and $(q_s)_{s:\sigma}$ and $g : F(p)\vuto{\sigma}F(q_s)$.
-    Vf-fullness gives us some $\phi : \tau\to\sigma$ with some $h:p\vuto{\tau}q_{\phi t}$ such that $F(h) = \phi^*g$.
-    Notice that for any $\psi_1,\psi_2 : \lambda\rightrightarrows\tau$ equalizing $\phi$, we have 
-    \[F(\psi_1^*h) = \psi_1^*F(h) = \psi_1^*\phi^*g = \psi_2^*\phi^*g = \psi_2^*F(h) = F(\psi_2^*h)\]
-    and so by faithfulness of $F$ we have $\psi_1^*h = \psi_2^*h$.
-    Hence, the tautness hypothesis on $\X$ (existence) ensures that $h = \phi^*f$ for some $f:p\vuto{\sigma}q_s$.
-    So
-    \[\phi^*g = F(h) = F(\phi^*f) = \phi^*F(f)\]
-    and the tautness hypothesis on $\Y$ (unicity) ensures that $F(f) = g$.
+    Clearly, $(2)\Rightarrow (1)$. Conversely, suppose $F$ is vf-full and vf-faithful. To show that it is vf-fully-faithful we need to show that, for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the function
+    \[ \X( p, (q_s)_{s:\sigma}) \to \Y (F(p), (F(q_s))_{s:\sigma}) \]
+    is surjective, so let $u \colon F(p) \vuto\sigma F(q_s)$ be a vf-arrow in $\Y$. By vf-fullness of $F$, there exist a cover $\phi \colon \tau \epi \sigma$ and a vf-arrow $v \colon p \vuto\tau q_{\phi t}$ in $\X$ such that $F(v)= \phi^* u$. Now, for any $\psi_1,\psi_2 \colon \lambda\to \tau$ equalizing $\phi$, we have 
+    \[F(\psi_1^*v) = \psi_1^*F(v) = \psi_1^*\phi^*u = \psi_2^*\phi^*u = \psi_2^*F(v) = F(\psi_2^*v)\]
+    and hence $\psi_1^*v = \psi_2^*v$ by vf-faithfulness of $F$. In other words, $v$ is unthickenable: since $\X$ is taut, it follows that there is a (unique) vf-arrow $v_0 \colon p \vuto\sigma q_s$ such that $v = \phi^* v_0$. Thus,
+    \[ \phi^* u = F(v) = F(\phi^* v_0) = \phi^* F(v_0)\]
+    and hence $u = F(v_0)$ by tautness of $\Y$.
 \end{proof}
 
 \subsection{Subspaces}
