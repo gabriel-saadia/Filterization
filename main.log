@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.16)  21 MAY 2026 16:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.16)  21 MAY 2026 17:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1064,27 +1064,27 @@ Package hyperref Info: bookmark level for unknown lem defaults to 0 on input lin
 [1{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 [2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/old-arrows/oasy.enc}]
-Package hyperref Info: bookmark level for unknown ex defaults to 0 on input line 539.
-Package hyperref Info: bookmark level for unknown cons defaults to 0 on input line 543.
-Package hyperref Info: bookmark level for unknown Thm defaults to 0 on input line 559.
-Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 576.
+Package hyperref Info: bookmark level for unknown ex defaults to 0 on input line 543.
+Package hyperref Info: bookmark level for unknown cons defaults to 0 on input line 547.
+Package hyperref Info: bookmark level for unknown Thm defaults to 0 on input line 563.
+Package hyperref Info: bookmark level for unknown rmk defaults to 0 on input line 592.
 
 
 [3]
 
 [4]
-Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 646.
+Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 662.
 
 
 [5]
 pdfTeX warning (ext4): destination with the same identifier (name{lem.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.716 \begin{lem}\label
+l.732 \begin{lem}\label
                        {SUJ-lem}
 
 [6]
-Package hyperref Info: bookmark level for unknown cor defaults to 0 on input line 746.
+Package hyperref Info: bookmark level for unknown cor defaults to 0 on input line 762.
 
 
 [7]
@@ -1093,9 +1093,9 @@ Package hyperref Info: bookmark level for unknown cor defaults to 0 on input lin
 pdfTeX warning (ext4): destination with the same identifier (name{defn.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.850     F
+l.866     F
            or any $f:p\vuto{\tau}(q_{\phi t})_{t:\tau}$, such that
-Overfull \hbox (6.5406pt too wide) in paragraph at lines 902--904
+Overfull \hbox (6.5406pt too wide) in paragraph at lines 918--920
 []\OT1/cmr/bx/n/12 Construction B.4. []\OT1/cmr/m/n/12 We now to de-fine the com-po-si-tion. Let $\OML/cmm/m/it/12 f \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 p [] q[]$ \OT1/cmr/m/n/12 in $[](\U/rsfs/m/n/12 X\OT1/cmr/m/n/12 )(\OML/cmm/m/it/12 p; \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 q[]\OT1/cmr/m/n/12 )[])$
  []
 
@@ -1105,47 +1105,47 @@ Overfull \hbox (6.5406pt too wide) in paragraph at lines 902--904
 pdfTeX warning (ext4): destination with the same identifier (name{rmk.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.905     T
+l.921     T
            o define the composite, we need for each $\theta\in\Ext(\sum_{s:\...]
 pdfTeX warning (ext4): destination with the same identifier (name{defn.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.967     A
+l.983     A
             vu-category $\X$ if it is right orthogonal to all $X\to\Tref(X)$...
 
 [10]
 pdfTeX warning (ext4): destination with the same identifier (name{lem.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.973     L
+l.989     L
            et $f:p\vuto{\tau}(q_{\phi t})$. We chose $\phi = T\to S$ represe...
 pdfTeX warning (ext4): destination with the same identifier (name{prop.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1006     F
+l.1022     F
             or $\X$ to be taut, it is enough to ask for any $f : p \vuto{\la...
 
 [11]
 
 [12]
-Package hyperref Info: bookmark level for unknown question defaults to 0 on input line 1109.
+Package hyperref Info: bookmark level for unknown question defaults to 0 on input line 1125.
 
 
 [13]
 
-LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1192.
+LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1208.
 
 
-LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1194.
+LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1210.
 
 
-LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1196.
+LaTeX Warning: Citation 'Moer' on page 14 undefined on input line 1212.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{prop.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1201     T
+l.1217     T
             hese constructions are inverse from each other.
 
 [14]
@@ -1162,8 +1162,8 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40484 strings out of 467800
- 827321 string characters out of 5431882
+ 40486 strings out of 467800
+ 827335 string characters out of 5431882
  1672913 words of memory out of 5000000
  68200 multiletter control sequences out of 15000+600000
  641138 words of font info for 104 fonts, out of 8000000 for 9000
@@ -1176,10 +1176,10 @@ pdfTeX warning (dest): name{cite.0@Awodey_Eliasson_2004} has been referenced but
 pdfTeX warning (dest): name{cite.0@SUJ} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/old-arrows/oasy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/old-arrows/oasy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs5.pfb>
-Output written on main.pdf (15 pages, 377622 bytes).
+Output written on main.pdf (15 pages, 379221 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
- 327 compressed objects within 4 object streams
- 136 named destinations out of 1000 (max. 500000)
+ 402 PDF objects out of 1000 (max. 8388607)
+ 329 compressed objects within 4 object streams
+ 138 named destinations out of 1000 (max. 500000)
  85 words of extra memory for PDF output out of 10000 (max. 10000000)
 

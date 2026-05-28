@@ -529,14 +529,18 @@ Let $\X$ be a vf-category. Note first that if a vf-arrow $u \colon p \vuto\tau q
     A vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in $\X$ is \emph{unthickenable} if $\psi_1^* u = \psi_2^*u$ for every pair of $\F$-arrows $\psi_1,\psi_2$ such that $\phi \circ \psi_1 = \phi\circ\psi_2$. 
 \end{defn}
 
-As we now define, a \emph{taut} vf-category is one in which unthickenable vf-arrows can be \emph{uniquely unthickened}.
+As we now define, in a \emph{taut} vf-category, unthickenable vf-arrows can be \emph{uniquely unthickened}.
 
 \begin{defn}
-    A vf-category $\X$ is \emph{taut} if for every unthickenable vf-arrow $u \colon p \vuto\tau q_{\phi t}$  there exists a unique vf-arrow $u_0 \colon p \vuto\sigma q_s$ such that $u = \phi^* u_0$.
+    A vf-category $\X$ is \emph{taut} if:
+    \begin{enumerate}
+        \item for every unthickenable vf-arrow $u \colon p \vuto\tau q_{\phi t}$  there exists a unique vf-arrow $u_0 \colon p \vuto\sigma q_s$ such that $u = \phi^* u_0$;
+        \item the canonical map $\X(p, (q_t)_{t:\coprod_{i} \sigma_i} ) \to \prod_{i} \X(p, (q_s)_{s:\sigma_i})$ defined by specialization along each coproduct injection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection. 
+    \end{enumerate} 
 \end{defn}
 
 \begin{ex}
-    It is evident that tautness can be defined analogously for vu-categories; a vu-poset is taut if and only if it is a topological space. \UT{for vf-posets, this is *stronger* than the the condition characterizing relational $F$-algebras?}
+    Tautness can be defined analogously for vu-categories, disregarding the second condition; a vu-poset is taut if and only if it is a topological space. \UT{for vf-posets, this is *stronger* than the the condition characterizing relational $F$-algebras?}
 \end{ex}
 
 \begin{cons}
@@ -559,18 +563,30 @@ First, recall from \cite{Awodey_Eliasson_2004} that we can consider a Grothendie
     Let $\X$ be a vf-category. The following are equivalent:
     \begin{enumerate}
         \item $\X$ is taut;
-        \item for any small vf-poset $\Y$ and any vf-functor $F \colon \Y \to \X$, there exists an essentially unique lift $\bar F \colon \Tref(\Y) \to \X$ of $F$ along the tautification map $\eta_{\Y} \colon \Y \to \Tref(\Y)$:
+        \item for any small vf-poset $Y$ and any vf-functor $F \colon Y \to \X$, there exists an essentially unique lift $\bar F \colon \Tref(Y) \to \X$ of $F$ along the tautification map $\eta_{Y} \colon Y \to \Tref(Y)$:
 \[\begin{tikzcd}
-	\Y & \X \\
-	{\Tref(\Y)}
+	Y & \X \\
+	{\Tref(Y)}
 	\arrow["F", from=1-1, to=1-2]
-	\arrow["{\eta_{\Y}}"', from=1-1, to=2-1]
+	\arrow["{\eta_{Y}}"', from=1-1, to=2-1]
 	\arrow["\bar F"', dashed, from=2-1, to=1-2]
 \end{tikzcd}\]
         \item for any $p \in \X_0$ and any $(q_s)_{s:\sigma} \in \X_0^\sigma$, the functor $\X_{p, (q_s)} \colon (\FF/\sigma)^{\op}\to\Set$ mapping $(\phi \colon \tau\to\sigma) \mapsto \X(p,(q_{\phi t})_{t:\tau})$ 
     is a $J_{\infty}$-sheaf on $\FF/\sigma$.
     \end{enumerate}
 \end{Thm}
+\begin{proof}
+    Towards $(1)\Rightarrow (3)$, consider a (generating) $J_\infty$-covering family $\set{\gamma_i \colon \tau_i \to \tau}_{i\in I}$ of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ and a compatible family $\set{ u_i \colon p \vuto{\tau_i} q_{\gamma_i \phi t}}_{i\in I}$ in $\X_{p, (q_s)}$. We need to find a unique $v \colon p \vuto\tau q_{\phi t}$ such that $u_i = \gamma_i^* v$ for each $i\in I$. 
+
+    Taking coproducts, we can consider the cover $\gamma \colon \coprod_i \tau_i \epi \tau$: if we show that $\gamma^* u$ is unthickenable 
+
+
+
+    $(3)\Rightarrow(2)$
+
+    $(2)\Rightarrow(1)$
+
+\end{proof}
 
 \begin{rmk}
   The Grothendieck topology $J_\infty$ restricts to the atomic topology on $\UF$. \note{we expect that vu-categories and vf-categories are equivalent notions (see Vu-vF appendix)} 
