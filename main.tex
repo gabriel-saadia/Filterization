@@ -794,25 +794,31 @@ Now we can show the second part.
     Let $\pi:\A\to\X$ étale with $\pi : a\mapsto p$, then the following are equivalent:
     \begin{enumerate}
         \item for any two parallel vf-arrows $f,g:p\vuto{}(-)$, $f_*a = g_*a$.
-        \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\sigma\to\A_0$ factorizes trough $\sigma\twoheadrightarrow q_*(\sigma)$.
-        \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\pi$ is injective on $b_*(\sigma)$ and so establish an isomorphism $b_*\sigma\cong q_*\sigma$.
-        \item if $(b_s)_{\sigma}$ converges to $a$, then $\pi$ is $b_*\sigma$-injective.
+        \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\mathbb F (q) (\sigma) = \mathbb F (b) (\sigma)$ %  $\sigma\to\A_0$ factorizes trough $\sigma\twoheadrightarrow q_*(\sigma)$.
+        % \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\pi$ is injective on $b_*(\sigma)$ and so establish an isomorphism $b_*\sigma\cong q_*\sigma$.
+        \item if $(b_s)_{\sigma}$ converges to $a$ in the topological reflection, then $\pi$ is $b_*\sigma$-injective.
         \item there exists an open $a\in V\subseteq \A$ such that $V\to\X$ is an embedding.
     \end{enumerate}
 \end{lem}
 \begin{proof}[SUJ 4.7]
     \begin{enumerate}
-        \item[$(i\Rightarrow ii)$] we note that $(b_s)\in \A_0^\sigma$ can be lift to some element of $\A_0^{q_*\sigma}$ using the sheaf condition on $\sigma\mapsto\A_0^{\sigma}$.
-        \item[$(ii\Rightarrow iii)$] \gabrielnote{really constructive?} denoting $\phi : \sigma\to q_*\sigma$ and $\tau = \phi_*\sigma$ we have some $(q'_t)_{t:\tau}$ such that $q'_{\phi s} = q_s$, and similarly, some $(b'_t)_{t:\tau}$ such that $b'_{\phi s} = b_s$. Moreover, the families $(b'_t)$ and $(q'_t)$ are $\tau$-injective.
-        \item[$(iii\Rightarrow iv)$] if $(b_s)_\sigma$ converges to $a$, by the proposition above we have a vf-arrow $a\vuto{\sigma}(b_s)$, and we can apply $(iii)$ on its image by $\pi$.
-        \item[$(iv\Rightarrow v)$] apply $(iv)$ to the filter of open neighborhoods of $a$.
+\item[$(i\Rightarrow ii)$] For this we use the fact that the functor $\op\FF \to \Set$ defined by $\sigma \mapsto X^{\sigma}$, for each set $X$, maps kernel pairs to coequalizers. In practice, we might just make this follow from the fact that it is a $J_\infty$-sheaf, which is needed to prove that $\Set$ is taut anyway.
+
+Then the point is, lift $(q_s)_{s:\sigma} = \phi^* (r_l)_{l:\lambda}$, where $\phi \colon \sigma \epi \lambda$ is the image factorization of $q \colon \sigma \to \X_0$, to $(b_s)_{s:\sigma}$. We need to express $(b_s)$ as $\phi^*(?)$ too, and for this we use the sheaf condition to find a sequence $\lambda \to \A_0$. Then, diagram chase to prove that the two image factorizations coincide.
+
+        % \item[$(i\Rightarrow ii)$] we note that $(b_s)\in \A_0^\sigma$ can be lift to some element of $\A_0^{q_*\sigma}$ using the sheaf condition on $\sigma\mapsto\A_0^{\sigma}$.
+        % \item[$(ii\Rightarrow iii)$] \gabrielnote{really constructive?} denoting $\phi : \sigma\to q_*\sigma$ and $\tau = \phi_*\sigma$ we have some $(q'_t)_{t:\tau}$ such that $q'_{\phi s} = q_s$, and similarly, some $(b'_t)_{t:\tau}$ such that $b'_{\phi s} = b_s$. Moreover, the families $(b'_t)$ and $(q'_t)$ are $\tau$-injective.
+        \item[$(ii\Rightarrow iii)$]Take the vf-arrow given by the convergence, see it as the unique lift of its projection, and apply (2).
+        
+        % if $(b_s)_\sigma$ converges to $a$, by the proposition above we have a vf-arrow $a\vuto{\sigma}(b_s)$, and we can apply $(iii)$ on its image by $\pi$.
+        \item[$(iii\Rightarrow iv)$] Apply $(iii)$ to the filter of open neighborhoods of $a$, recalling that for topological spaces we can characterize convergence in terms of opens.
         % \item[$(v\Rightarrow vi)$] take $V$ the image of the open neighborhood given by $(v)$.
-        \item[$(v\Rightarrow i)$] clear.
+        \item[$(iv\Rightarrow i)$] clear.
     \end{enumerate}
 \end{proof}
 
 \begin{proof}[proof of the theorem -- SUJ 5.5-5.6]
-    Let $A\in\Sh(\X)$, it is enough to show that for any $a\in A_p$ there is $X\in\E$, $V\subseteq f^*(X)$, and a map $V\to A$ touching $a$. It is enough to show that we can find a $X\in\E$ and $\xi\in X_{Fp}$ such that 
+    Let $A\in\Sh(\X)$, it is enough to show that for any $a\in A_p$ for $p \in \X$ there is $X\in\E$, $V\subseteq f^*(X)$, and a map $V\to A$ touching $a$. It is enough to show that we can find a $X\in\E$ and $\xi\in X_{Fp}$ such that 
     \[\forall f,g:p\vuto{\sigma}q_s \ F(f)_*\xi = F(g)_*\xi \Rightarrow f_*a = g_*a.\]
     as then it is easy to conclude by applying the above on the map $(a,\xi)\in \A\times_{\X}\Et(f^*X)\to \Et(f^*X)$. We now show the existence of such a $\xi\in X_{Fp}$.
 
