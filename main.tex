@@ -697,7 +697,7 @@ The goal of the following is to prove that the functor $\ev \colon \E \to{} \Sh(
 We will obtain this by combining two more general results. Note that any vf-functor $F \colon \X \to \pt(\E)$ naturally induces a functor $f^* \colon \E \to \Sh(\X)$ where, for $e  \in \E$ \gabrielnote{i usuallt prefer capital letters for objects in a topos (as their are tought as sheaf)}, the vf-functor $f^*(e) \colon \X \to \Set$ is given:
 \begin{itemize}
     \item on objects, by mapping $x \in \X_0$ to the set $F(x)(e)$;
-    \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $e$ of the natural transformation $F(r) \colon x \Rightarrow\prod_{s:\sigma} y_s$.
+    \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $e$ of the natural transformation $F(r) \colon x \Rightarrow\int_{s:\sigma} y_s$.
 \end{itemize}
 Thus, we will now study study how properties of $F$ induce properties on $f^*$, in such a way that taking $F$ to be the inclusion $A \hookrightarrow \pt(\E)$ the corresponding functor $\E \to \Sh(A)$ will be an equivalence. Intuitively, we will proceed as if $f^*$ were the inverse image of a geometric morphism $\Sh(\X) \to \E$, determining sufficient conditions on $F$ making it localic and conditions making it hyperconnected. Since a geometric morphism which is both localic and hyperconnected is an equivalence, we will derive our conclusion in the case of $\E \to \Sh(A)$.
 
@@ -725,9 +725,6 @@ $\Theta\colon \Tref(\pt(\E))\to\pt(\Lref(\E))$.
 
 Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objects and vf-faithful; we will now show that it is also vf-full, and hence an equivalence of vf-categories.
 
-\begin{prop}
-    The functor $\Tref(\pt(\E))\to\pt(\Lref(\E))$ is vf-full, \ie for any $p$ and $(q_s)_{s:\sigma}$ such that $p\vuleq{\sigma}q_s$ in $\pt(\Lref(\E))$, there exists $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some filter $\lambda$ inhabited.
-\end{prop}
 
 \begin{lem}\label{SUJ-lem}
     Let $\C$ be a small filtered category and $A \colon \C\to\Set$ such that there exist a family $(a_x)_{x:\Ob(\C)}$. Then, there exists an inhabited filter $\lambda$ such that the reduced product functor $A^{\lambda} \colon \C \to \Set$ defined by $x\mapsto A(x)^\lambda$ admits a global section.
@@ -747,15 +744,22 @@ Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objec
     and this is true by construction of $\lambda$ (as for $(\theta^x : {d^x}\rightarrow x):\lambda$ we can assume $f\circ \theta^y = \theta^x$).
 \end{proof}
 
+
+\begin{prop}
+    The functor $\Tref(\pt(\E))\to\pt(\Lref(\E))$ is vf-full, \ie for any $p$ and $(q_s)_{s:\sigma}$ such that $p\vuleq{\sigma}q_s$ in $\pt(\Lref(\E))$, there exists $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some filter $\lambda$ inhabited.
+\end{prop}
 \begin{proof}
-Let $p \in \pt(\Tref(\E))$.  Fix a small dense full subcategory $\mathcal G\subseteq\E$ of the topos $\E$ and let $\C$ be the category of elements of the functor $(-)_p \colon \mathcal G \to\Set$, which is then filtered. % (for example, any $S$ lex would work). 
-\UT{who is $(-)_p$?}\gabrielnote{it is $p^*$, like the functor taking the stalk at $p$.}
+    We take $p,(q_s) \in \pt(\E)$ such that $p\vuleq[\pt(\Lref(\E))]{\sigma}q_s$ and we want to construct some $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some proper filter $\lambda$. 
     
-    The hypothesis $p \vuleq{\sigma} (q_s)$ in $\pt(\Lref(\E))$ implies that for all $E\in\E$ such that $E_p$ is non-empty then $\int_{s:\sigma}E_{q_s}$ is also non-empty, thus we can apply the above \Cref{SUJ-lem} to the functor $\C\to\Set$ mapping $(E,\xi\in E_p) \in \C$ to the set $\int_{s:\sigma} E_{q_s}$.
-    
-    We obtain some filter $\lambda$ and some $\alpha_E(\xi) \in \int_{\lambda\cdot\sigma}E_{q_s}$ natural in $(E,\xi\in E_p)\in\C$.
+    We fix a small dense full subcategory $\mathcal G\subseteq\E$ of the topos $\E$ such that the category $\C$ of elements of the functor $p^* \colon \mathcal G \to\Set$ is filtered, for example given by a lex site.
+
+    Classically (apparently choice here!),  $p \vuleq[\pt(\Lref(\E))]{\sigma} (q_s)$ implies that the functor 
+    \[(E,\xi\in E_p) \in\C \mapsto \int_{s:\sigma} E_{q_s}\in \Set\]
+    satisfies the hypothesis of the lemma above.
     %
-    This gives a natural transformation $\alpha \in \Nat_{E:S}(E_p,\int_{\lambda\cdot\sigma}E_{q_s})$ that we then can extend to all $\E$ by density of $S$, obtaining thus some vu-arrow $p\vuto{\lambda\cdot\sigma}{(q_s)}$ in $\pt(\E)$ showing that $p\vuleq{\sigma}{(q_s)}$ in $\Tref(\pt(\E))$ as desired.
+    We obtain some filter $\lambda$ and some family $(\alpha_E(\xi) \in \int_{\lambda\cdot\sigma}E_{q_s})$ natural in $(E,\xi\in E_p)\in\C$.
+    %
+    This gives a natural transformation $\alpha \in \Nat_{E:S}(E_p,\int_{\lambda\cdot\sigma}E_{q_s})$ that we then can extend to all $\E$ by density of $\mathcal G$, obtaining thus some vu-arrow $p\vuto{\lambda\cdot\sigma}{(q_s)}$ in $\pt(\E)$.
 \end{proof}
 
 \begin{cor}
@@ -806,25 +810,31 @@ Now we can show the second part.
     Let $\pi:\A\to\X$ étale with $\pi : a\mapsto p$, then the following are equivalent:
     \begin{enumerate}
         \item for any two parallel vf-arrows $f,g:p\vuto{}(-)$, $f_*a = g_*a$.
-        \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\sigma\to\A_0$ factorizes trough $\sigma\twoheadrightarrow q_*(\sigma)$.
-        \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\pi$ is injective on $b_*(\sigma)$ and so establish an isomorphism $b_*\sigma\cong q_*\sigma$.
-        \item if $(b_s)_{\sigma}$ converges to $a$, then $\pi$ is $b_*\sigma$-injective.
+        \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\mathbb F (q) (\sigma) = \mathbb F (b) (\sigma)$ %  $\sigma\to\A_0$ factorizes trough $\sigma\twoheadrightarrow q_*(\sigma)$.
+        % \item for any vf-arrow $f : p\vuto{\sigma}q_s$ with lift $\tilde f : a\vuto{\sigma}b_s$, then $\pi$ is injective on $b_*(\sigma)$ and so establish an isomorphism $b_*\sigma\cong q_*\sigma$.
+        \item if $(b_s)_{\sigma}$ converges to $a$ in the topological reflection, then $\pi$ is $b_*\sigma$-injective.
         \item there exists an open $a\in V\subseteq \A$ such that $V\to\X$ is an embedding.
     \end{enumerate}
 \end{lem}
 \begin{proof}[SUJ 4.7]
     \begin{enumerate}
-        \item[$(i\Rightarrow ii)$] we note that $(b_s)\in \A_0^\sigma$ can be lift to some element of $\A_0^{q_*\sigma}$ using the sheaf condition on $\sigma\mapsto\A_0^{\sigma}$.
-        \item[$(ii\Rightarrow iii)$] \gabrielnote{really constructive?} denoting $\phi : \sigma\to q_*\sigma$ and $\tau = \phi_*\sigma$ we have some $(q'_t)_{t:\tau}$ such that $q'_{\phi s} = q_s$, and similarly, some $(b'_t)_{t:\tau}$ such that $b'_{\phi s} = b_s$. Moreover, the families $(b'_t)$ and $(q'_t)$ are $\tau$-injective.
-        \item[$(iii\Rightarrow iv)$] if $(b_s)_\sigma$ converges to $a$, by the proposition above we have a vf-arrow $a\vuto{\sigma}(b_s)$, and we can apply $(iii)$ on its image by $\pi$.
-        \item[$(iv\Rightarrow v)$] apply $(iv)$ to the filter of open neighborhoods of $a$.
+\item[$(i\Rightarrow ii)$] For this we use the fact that the functor $\op\FF \to \Set$ defined by $\sigma \mapsto X^{\sigma}$, for each set $X$, maps kernel pairs to coequalizers. In practice, we might just make this follow from the fact that it is a $J_\infty$-sheaf, which is needed to prove that $\Set$ is taut anyway.
+
+Then the point is, lift $(q_s)_{s:\sigma} = \phi^* (r_l)_{l:\lambda}$, where $\phi \colon \sigma \epi \lambda$ is the image factorization of $q \colon \sigma \to \X_0$, to $(b_s)_{s:\sigma}$. We need to express $(b_s)$ as $\phi^*(?)$ too, and for this we use the sheaf condition to find a sequence $\lambda \to \A_0$. Then, diagram chase to prove that the two image factorizations coincide.
+
+        % \item[$(i\Rightarrow ii)$] we note that $(b_s)\in \A_0^\sigma$ can be lift to some element of $\A_0^{q_*\sigma}$ using the sheaf condition on $\sigma\mapsto\A_0^{\sigma}$.
+        % \item[$(ii\Rightarrow iii)$] \gabrielnote{really constructive?} denoting $\phi : \sigma\to q_*\sigma$ and $\tau = \phi_*\sigma$ we have some $(q'_t)_{t:\tau}$ such that $q'_{\phi s} = q_s$, and similarly, some $(b'_t)_{t:\tau}$ such that $b'_{\phi s} = b_s$. Moreover, the families $(b'_t)$ and $(q'_t)$ are $\tau$-injective.
+        \item[$(ii\Rightarrow iii)$]Take the vf-arrow given by the convergence, see it as the unique lift of its projection, and apply (2).
+        
+        % if $(b_s)_\sigma$ converges to $a$, by the proposition above we have a vf-arrow $a\vuto{\sigma}(b_s)$, and we can apply $(iii)$ on its image by $\pi$.
+        \item[$(iii\Rightarrow iv)$] Apply $(iii)$ to the filter of open neighborhoods of $a$, recalling that for topological spaces we can characterize convergence in terms of opens.
         % \item[$(v\Rightarrow vi)$] take $V$ the image of the open neighborhood given by $(v)$.
-        \item[$(v\Rightarrow i)$] clear.
+        \item[$(iv\Rightarrow i)$] clear.
     \end{enumerate}
 \end{proof}
 
 \begin{proof}[proof of the theorem -- SUJ 5.5-5.6]
-    Let $A\in\Sh(\X)$, it is enough to show that for any $a\in A_p$ there is $X\in\E$, $V\subseteq f^*(X)$, and a map $V\to A$ touching $a$. It is enough to show that we can find a $X\in\E$ and $\xi\in X_{Fp}$ such that 
+    Let $A\in\Sh(\X)$, it is enough to show that for any $a\in A_p$ for $p \in \X$ there is $X\in\E$, $V\subseteq f^*(X)$, and a map $V\to A$ touching $a$. It is enough to show that we can find a $X\in\E$ and $\xi\in X_{Fp}$ such that 
     \[\forall f,g:p\vuto{\sigma}q_s \ F(f)_*\xi = F(g)_*\xi \Rightarrow f_*a = g_*a.\]
     as then it is easy to conclude by applying the above on the map $(a,\xi)\in \A\times_{\X}\Et(f^*X)\to \Et(f^*X)$. We now show the existence of such a $\xi\in X_{Fp}$.
 
