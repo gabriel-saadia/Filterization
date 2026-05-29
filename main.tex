@@ -526,21 +526,21 @@ For any vf-arrow $r \colon p \vuto{s:\sigma} q_s$ and any $\phi \colon \tau \to 
 Let $\X$ be a vf-category. Note first that if a vf-arrow $u \colon p \vuto\tau q_{\phi t}$ is the thickening of $v \colon p \vuto\sigma q_s$ with respect to some $\FF$-arrow $\phi \colon \tau \epi \sigma$, i.e.\ $u = \phi^* v$, then in particular $\psi_1^* u= \psi_2^* v$ for any pair of $\FF$-arrows $\psi_1 ,\psi_2$ such that $\phi \circ \psi_1 = \phi\circ\psi_2$.  
 
 \begin{defn}
-    A vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in $\X$ is \emph{unthickenable} if $\psi_1^* u = \psi_2^*u$ for every pair of $\F$-arrows $\psi_1,\psi_2$ such that $\phi \circ \psi_1 = \phi\circ\psi_2$. 
+    A vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in $\X$ is \emph{$\phi$-reducible} (or \emph{reducible along $\phi$}) if $\psi_1^* u = \psi_2^*u$ for every pair of parallel $\FF$-arrows $\psi_1,\psi_2$ such that $\phi \circ \psi_1 = \phi\circ\psi_2$. 
 \end{defn}
 
-As we now define, in a \emph{taut} vf-category, unthickenable vf-arrows can be \emph{uniquely unthickened}.
+As we now define, in a \emph{taut} vf-category, reducible vf-arrows can be {uniquely reduced}.
 
 \begin{defn}
     A vf-category $\X$ is \emph{taut} if:
     \begin{enumerate}
-        \item for every unthickenable vf-arrow $u \colon p \vuto\tau q_{\phi t}$  there exists a unique vf-arrow $u_0 \colon p \vuto\sigma q_s$ such that $u = \phi^* u_0$;
+        \item for every $\phi$-reducible vf-arrow $u \colon p \vuto\tau q_{\phi t}$ there exists a unique vf-arrow $u_0 \colon p \vuto\sigma q_s$ such that $u = \phi^* u_0$;
         \item the canonical map $\X(p, (q_t)_{t:\coprod_{i} \sigma_i} ) \to \prod_{i} \X(p, (q_s)_{s:\sigma_i})$ defined by specialization along each coproduct injection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection. 
     \end{enumerate} 
 \end{defn}
 
 \begin{ex}
-    Tautness can be defined analogously for vu-categories, disregarding the second condition; a vu-poset is taut if and only if it is a topological space. \UT{for vf-posets, this is *stronger* than the the condition characterizing relational $F$-algebras?}
+    Tautness can be defined analogously for vu-categories, disregarding the second condition; a vu-poset is taut if and only if it is a topological space. \UT{for vf-posets, this is *stronger* than the the condition characterizing relational $F$-algebras}
 \end{ex}
 
 \begin{cons}
@@ -563,7 +563,7 @@ First, recall from \cite{Awodey_Eliasson_2004} that we can consider a Grothendie
     Let $\X$ be a vf-category. The following are equivalent:
     \begin{enumerate}
         \item $\X$ is taut;
-        \item for any small vf-poset $Y$ and any vf-functor $F \colon Y \to \X$, there exists an essentially unique lift $\bar F \colon \Tref(Y) \to \X$ of $F$ along the tautification map $\eta_{Y} \colon Y \to \Tref(Y)$:
+        \item for any small vf-poset $Y$ and any vf-functor $F \colon Y \to \X$, there exists a unique lift $\bar F \colon \Tref(Y) \to \X$ of $F$ along the tautification map $\eta_{Y} \colon Y \to \Tref(Y)$:
 \[\begin{tikzcd}
 	Y & \X \\
 	{\Tref(Y)}
@@ -576,9 +576,29 @@ First, recall from \cite{Awodey_Eliasson_2004} that we can consider a Grothendie
     \end{enumerate}
 \end{Thm}
 \begin{proof}
-    Towards $(1)\Rightarrow (3)$, consider a (generating) $J_\infty$-covering family $\set{\gamma_i \colon \tau_i \to \tau}_{i\in I}$ of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ and a compatible family $\set{ u_i \colon p \vuto{\tau_i} q_{\gamma_i \phi t}}_{i\in I}$ in $\X_{p, (q_s)}$. We need to find a unique $v \colon p \vuto\tau q_{\phi t}$ such that $u_i = \gamma_i^* v$ for each $i\in I$. 
+    Towards $(1)\Rightarrow (3)$, consider a (generating) $J_\infty$-covering family $\set{\gamma_i \colon \tau_i \to \tau}_{i\in I}$ of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ and a compatible family $\set{ u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}}_{i\in I}$ in $\X_{p, (q_s)}$. We need to find a unique $u_0 \colon p \vuto\tau q_{\phi t}$ such that $u_i = \gamma_i^* u_0$ for each $i\in I$. 
 
-    Taking coproducts, we can consider the cover $\gamma \colon \coprod_i \tau_i \epi \tau$: if we show that $\gamma^* u$ is unthickenable 
+    Consider the coproduct map $\gamma \colon \coprod_i \tau_i \epi \tau$ and denote by $\iota_i \colon \tau_i \to \coprod_i \tau_i$ the coproduct injection at each $i\in I$. By tautness, the family $\set{ u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}}_{i\in I}$ uniquely detects a vf-arrow $u \colon p \vuto{\coprod_i \tau_i} q_{\phi \gamma t}$ such that $u_i = \iota_i^* u$ for each $i\in I$. Note now that $u$ is $\gamma$-reducible, since coproducts in $\FF$ are disjoint \UT{are they?} and $\set{ u_i }_{i\in I}$ is a compatible family in $\X_{p, (q_s)}$. Therefore, again by tautness it follows that there exists a unique vf-arrow $u_0 \colon p \vuto\tau q_{\phi t}$ such that $u = \gamma^* u_0$; this vf-arrow then clearly satisfies $u_i = \gamma_i^* u_0$ for each $i\in I$. To show uniqueness, suppose that $v_0$ is another vf-arrow satisfying $u_i = \gamma_i^* v_0$ for each $i\in I$; then, $\iota_i^* u = u_i =\gamma_i^* v_0$ for each $i\in I$, so that necessarily $\gamma^* v_0= u$ by the uniqueness property of $u$ and hence $v_0 = u_0$ by the uniqueness property of $u_0$.
+
+
+    % Note that each $u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}$ is unthickenable. Indeed, if $\psi_1,\psi_2$ in $\FF$ are such that $\phi \circ \psi_1 = \phi \circ \psi_2$, then
+    
+    % Therefore,  by tautness, for each $i\in I$ there exists a unique vf-arrow $v_i \colon p \vuto{\sigma} q_s$ such that $u_i = (\phi\gamma_i)^* v_i$. We now show that the vf-arrows $\phi^* v_i$'s all coincide. 
+
+    % Note that each $u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}$ is unthickenable along $\phi$. Indeed, if $\psi_1,\psi_2$ in $\FF$ are such that $\phi \circ \psi_1 = \phi \circ \psi_2$, then
+    
+    
+    
+    % Therefore, by tautness, for each $i\in I$ there exists a unique vf-arrow $v_i \colon p \vuto{\tau_i} q_{\gamma_i t}$ such that $u_i = \phi^* v_i$. 
+
+%     Note now that the map 
+% \[\begin{tikzcd}
+% 	{\X(p, (q_t)_{t:\tau})} & {\X(p, (q_{\gamma t})_{t:\coprod_i\tau_i})} & {\prod_{i\in I}\X(p, (q_{\gamma_i t})_{t:\tau_i})}
+% 	\arrow[from=1-1, to=1-2]
+% 	\arrow[from=1-2, to=1-3]
+% \end{tikzcd}\]
+%     is a bijection by composition: the first component is bijective since the coproduct map $\gamma \colon \coprod_i \tau_i \epi \tau$ is a cover \UT{todo}, and the second again by tautness. Therefore, there exists a unique $u_0 \colon p \vuto{\tau} q_{t}$ such that $v_i = \gamma_i^* u_0$. In particular, 
+%     we now show that $\gamma^* u \colon $ is unthickenable, so that by 
 
 
 

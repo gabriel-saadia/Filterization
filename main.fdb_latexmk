@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1779373884.25696 "main.bcf" "main.bbl" "main" 1779377309.12705 0
-  "main.bcf" 1779377309.04382 108552 1c77a920707cc0635669ba25c85ed718 "pdflatex"
+["biber main"] 1779373884.25696 "main.bcf" "main.bbl" "main" 1780054615.81506 0
+  "main.bcf" 1780054615.73177 108552 1c77a920707cc0635669ba25c85ed718 "pdflatex"
   "paper.bib" 1779370366.38866 28011 04e981fa6998e6321d26d98ca24e3902 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1779377306.96231 "/Users/umbertotarantino/github/Filterization/main.tex" "main.pdf" "main" 1779377309.12727 0
-  "/Users/umbertotarantino/github/Filterization/main.tex" 1779377306.88425 70998 448481a5596a77ce3776d67a74ee1253 ""
+["pdflatex"] 1780054613.69255 "/Users/umbertotarantino/github/Filterization/main.tex" "main.pdf" "main" 1780054615.81529 0
+  "/Users/umbertotarantino/github/Filterization/main.tex" 1780054613.61313 74336 9a486a35d231f767a0183cf89205508e ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/old-arrows/oasy.enc" 1442011508 2739 66af0f5eb1b89b756159d34a01e31375 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1136768653 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -79,6 +79,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb" 1248133631 30273 87a352d78b6810ae5cfdc68d2fb827b2 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb" 1290383964 25452 d4e98a3bf6b13d4b7dcffd6302990a65 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb" 1136849748 17091 559f388d601cc54898d17f9de70e2e87 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/old-arrows/oasy10.pfb" 1442011508 4828 f7080b23038b087dde5f50117a43ee1b ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/old-arrows/oasy8.pfb" 1442011508 4890 7f4435f2dba2eadc46f46bb4b49a9dc4 ""
@@ -284,12 +285,12 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1755334047 3605825 5f814fa174001793c37801b0752ce6d7 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "lumsdaine-biblatex-misc.sty" 1779370366.38813 7424 0ece67114b3b21d7a76252ce57ef6b98 ""
-  "main.aux" 1779377309.04246 10253 44a5e6be433eb5a2bb88f5e3c31bc033 "pdflatex"
+  "main.aux" 1780054615.73032 10261 63d38971c191c2547ab8b634877f2cb3 "pdflatex"
   "main.bbl" 1779373886.52646 4087 aaf29db5621580e8237631837bbeb8ad "biber main"
-  "main.out" 1779377309.04315 2110 cc13b51a1ca5c298170947e0c925139b "pdflatex"
-  "main.run.xml" 1779377309.04434 2306 2d23207d66b8b49dd648a44c1c22a755 "pdflatex"
-  "main.tex" 1779377306.88425 70998 448481a5596a77ce3776d67a74ee1253 ""
-  "main.toc" 1779377309.0444 1391 7affa8437f10f32bcdbbb88ee2670973 "pdflatex"
+  "main.out" 1780054615.7311 2110 cc13b51a1ca5c298170947e0c925139b "pdflatex"
+  "main.run.xml" 1780054615.7323 2306 2d23207d66b8b49dd648a44c1c22a755 "pdflatex"
+  "main.tex" 1780054613.61313 74336 9a486a35d231f767a0183cf89205508e ""
+  "main.toc" 1780054615.73241 1393 d1cc181a06bff22213547fb691b11ebf "pdflatex"
   "quiver.sty" 1779370366.38951 2012 6b41918bbf39b730018cad0db93eaa5e ""
   (generated)
   "main.aux"

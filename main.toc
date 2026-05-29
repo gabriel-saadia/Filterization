@@ -7,9 +7,9 @@
 \contentsline {subsection}{\tocsubsection {}{1.6}{Vf-categories of points}}{5}{subsection.1.6}%
 \contentsline {section}{\tocsection {}{2}{points of the localic reflection (5.3 of SUJ)}}{6}{section.2}%
 \contentsline {section}{\tocsection {}{3}{proving the theorems}}{7}{section.3}%
-\contentsline {section}{\tocsection {Appendix}{A}{Tautness: the sheaf definition}}{9}{appendix.A}%
-\contentsline {section}{\tocsection {Appendix}{B}{Vu-vF?}}{9}{appendix.B}%
-\contentsline {section}{\tocsection {Appendix}{C}{Direct image}}{10}{appendix.C}%
-\contentsline {section}{\tocsection {Appendix}{D}{Tautness 2: the stack definition}}{11}{appendix.D}%
-\contentsline {section}{\tocsection {Appendix}{E}{Tautness 3: The algebraic definition}}{11}{appendix.E}%
-\contentsline {section}{\tocsection {Appendix}{F}{Filters as germs of closed, an alternative}}{14}{appendix.F}%
+\contentsline {section}{\tocsection {Appendix}{A}{Tautness: the sheaf definition}}{10}{appendix.A}%
+\contentsline {section}{\tocsection {Appendix}{B}{Vu-vF?}}{10}{appendix.B}%
+\contentsline {section}{\tocsection {Appendix}{C}{Direct image}}{11}{appendix.C}%
+\contentsline {section}{\tocsection {Appendix}{D}{Tautness 2: the stack definition}}{12}{appendix.D}%
+\contentsline {section}{\tocsection {Appendix}{E}{Tautness 3: The algebraic definition}}{12}{appendix.E}%
+\contentsline {section}{\tocsection {Appendix}{F}{Filters as germs of closed, an alternative}}{15}{appendix.F}%
