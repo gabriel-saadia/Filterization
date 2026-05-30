@@ -1,375 +1,4 @@
-\documentclass[a4paper,12pt, reqno]{amsart}
-
-\usepackage[svgnames]{xcolor}
-%% Geometry adjustment 
-%\usepackage[verbose]{geometry}
-%\geometry{
-%  paperheight=242mm,
-%  paperwidth=165mm,
-%  left=22.5mm,
-%  right=22.5mm,
-%  top=22.5mm,
-%  bottom=22.5mm
-%}
-%\geometry{twoside=false,textwidth=380pt,textheight=560pt}
-%\geometry{a5paper, hmargin=1cm, tmargin=1.3cm, bmargin=1.1cm}
-\usepackage[centering, margin = 1in]{geometry}
-%\setlength{\parskip}{2pt}
-
-\usepackage[bbgreekl]{mathbbol}
-\usepackage[new]{old-arrows}
-
-\usepackage{amsmath, amssymb, amsthm, enumerate, url}
-\usepackage{euscript}
-\usepackage{amsfonts}
-\usepackage{enumitem}
-\usepackage{comment}
-\usepackage{tikz-cd}
-\usepackage{quiver}
-\usepackage{mathrsfs}
-\usepackage{mathtools}
-\usepackage{graphicx}
-\usepackage{thmtools}
-\usepackage{braket}
-\renewcommand{\Set}{\set}
-\let\Set\relax
-
-\usepackage{stmaryrd}
-\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
-
-%% bibilography management (old)
-% \usepackage[style=alphabetic]{biblatex}
-% \addbibresource{blibli.bib}
-
-%% bibilography management (new)
-\usepackage[backend=biber,style=alphabetic]{biblatex}
-\addbibresource{paper.bib}
-\usepackage[simplepostnote]{lumsdaine-biblatex-misc}
-
-%% hyperref (old)
-%\usepackage[colorlinks,citecolor=DarkRed,linkcolor=blue,urlcolor=blue]{hyperref}
-%\usepackage{cleveref}
-
-%% hyperref and friends (new)
-\usepackage[svgnames]{xcolor}
-\definecolor{darkgreen}{rgb}{0,0.45,0}
-\definecolor{darkred}{rgb}{0.75,0,0}
-\definecolor{darkblue}{rgb}{0,0,0.6}
-\usepackage{hyperref}
-\usepackage{cleveref}
-\hypersetup{
-	colorlinks = true,
-  allcolors = NavyBlue,
-}
-
-\usepackage{soul}
-\setul{3pt}{.4pt}
-%\usepackage{pxfonts}
-\usepackage{dsfont}
-
-\usetikzlibrary{arrows.meta}
-\newcommand{\ultrato}{\mathrel{\tikz[>={To}, line cap=round, anchor=base] \draw[-<] (0,0) -- (3.375mm,0);}}
-\newcommand{\longultrato}{\mathrel{\tikz[>={To}, line cap=round, anchor=base] \draw[-<] (-13mm,0) -- (5mm,0);}}
-
-%UA-command
-\newcommand{\ult}{\mathrel{\tikz [line width=.11ex, double distance=.33ex]
-    \draw[>-]
-    (0.3,0) -- (0,0);}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Peter's ultra arrows
-
-\usepackage{tikz}
-\usepackage{tikz-cd}
-
-%% Library imports
-\usetikzlibrary{calc}
-\usetikzlibrary{fit}
-\usetikzlibrary{shapes}
-\usetikzlibrary{arrows}
-\usetikzlibrary{decorations.markings}
-\usetikzlibrary{decorations.pathmorphing}
-\usetikzlibrary{positioning}
-\usetikzlibrary{intersections}
-
-%%%% Set default styles for tikz-cd
-
-\tikzset{
-  commutative diagrams/arrow style=tikz,
-%  commutative diagrams/diagrams={row sep=large},
-}
-
-%%%% Commands for using tikz-cd style in \tikzpicture 
-
-\tikzset{cd-style/.style={commutative diagrams/every diagram}}
-\tikzset{cd-arrow-style/.style={commutative diagrams/.cd, every arrow, every label}}
-\newcommand{\arr}[1][]{\draw[cd-arrow-style,#1]}
-
-% clone of how tikz-cd places arrow labels
-% for use in tikzpicture environment as e.g. “\arr (A) to[label={f}{}] (B);” 
-\makeatletter
-\tikzset{
-  label/.style n args={2}{
-    edge node={node [
-      execute at begin node=\iftikzcd@mathmode$\fi,%$
-      execute at end node=\iftikzcd@mathmode$\fi,%$
-      /tikz/commutative diagrams/.cd,every label,
-      #2
-      ] {#1}}
-  }
-}
-\makeatother
-
-
-%% Custom arrow tips & aliases
-
-\tikzset{fibtip/.tip={Triangle[open,angle=60:4.5pt]}}
-\tikzset{tfibtip/.tip={Bar[sep]Triangle[open,angle=45:4pt]}} % Based on http://tex.stackexchange.com/a/150213
-
-\pgfarrowsdeclaredouble{fibbtip}{fibbtip}{fibtip}{.fibtip}
-
-\tikzset{ulttip/.tip={Computer Modern Rightarrow[reversed]}}
-% see PGF manual §16.5 for other arrow tip types 
-
-\pgfarrowsdeclarealias{c}{c}{left hook}{right hook}
-\pgfarrowsdeclarealias{c'}{c'}{right hook}{left hook}
-
-%% Semantic arrow styles
-
-% tip/tail styles: work in inline arrows, tikzpictures, and tikz-cd diagrams
-\tikzset{fib/.code={\pgfsetarrowsend{fibtip}}}
-\tikzset{fibb/.code={\pgfsetarrowsend{fibbtip}}}
-\tikzset{tfib/.code={\pgfsetarrowsend{tfibtip}}}
-\tikzset{inj/.code={\pgfsetarrowsstart{c}}}
-\tikzset{inj'/.code={\pgfsetarrowsstart{c'}}}
-\tikzset{cover/.style={->>}}
-\tikzset{tcof/.style={tail}}
-\tikzset{zigzag/.style={commutative diagrams/rightsquigarrow}}
-\tikzset{ulttip/.code={\pgfsetarrowsend{ulttip}}}
-
-% “label”-based styles: use in tikzpictures as “\arr (A) to[sub={\sigma}] (B)”
-\tikzset{suplabel/.style={label={#1}{auto=left,pos=1}}}
-\tikzset{sublabel/.style={label={#1}{auto=right,pos=1}}}
-\tikzset{sub/.style={label={#1}{auto=right,pos=1}}}
-
-% tikzcd-label-syntax-based styles: use in tikzcd diagrams
-\tikzset{lw/.style={"lw"{#1}},lw/.default={very near end}}
-\tikzset{lw'/.style={"lw"'{#1}},lw'/.default={very near end}}
-\tikzset{weq/.style={"\sim"}}
-\tikzset{weq'/.style={"\sim"'}}
-\tikzset{ult/.style={ulttip,"#1"'{very near end}}}
-\tikzset{ult'/.style={ulttip,"#1"{very near end}}}
-
-%% Inline arrows
-
-% TikZ inline arrows, adapted from http://tex.stackexchange.com/a/116324 and http://tex.stackexchange.com/a/188351
-
-\newcommand{\generalto}[2]{ \mathrel{\mkern-1mu
-  \tikz[baseline={([yshift=-0.58ex]a.south)}]{%
-    \node[minimum width=1em,align=center,inner xsep=0.5ex,inner ysep=0.25ex] (a) {$\scriptstyle #2$};
-    \draw[cd-arrow-style,#1] (a.south west) -- (a.south east);}
- \mkern-1mu}}
-
-\newcommand{\generalfrom}[2]{ \mathrel{\mkern-1mu
-  \tikz[baseline={([yshift=-0.58ex]a.south)}]{%
-    \node[minimum width=1em,align=center,inner xsep=0.5ex,inner ysep=0.25ex] (a) {$\scriptstyle #2$};
-    \draw[cd-arrow-style,#1] (a.south east) -- (a.south west);}
-  \mkern-1mu}}
-
-\renewcommand{\to}[1][]{ \generalto{->}{#1} }
-\newcommand{\from}[1][]{ \generalfrom{->}{#1} }
-\newcommand{\fibto}[1][]{ \generalto{fib}{#1} }
-\newcommand{\fibbto}[1][]{ \generalto{fibb}{#1} }
-\newcommand{\extto}[1][]{ \generalto{>->}{#1} }
-\newcommand{\injto}[1][]{ \generalto{->,inj}{#1} }
-\newcommand{\lwto}[1][]{ \generalto{->}{#1}_{\lw} }
-\newcommand{\coverto}[1][]{ \generalto{->>}{#1\ \,} }
-\newcommand{\vuto}[2][]{ \mathrel{{\generalto{ulttip}{#1}}\mkern2mu_{{#2}}\mkern-2mu}}
-\newcommand{\vuleq}[2][]{ \mathrel{\preccurlyeq_{{#2}}^{{#1}}\mkern-2mu}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% Errol: J'ai remplacé ça, normalement c'est mieux comme ça pour les références.
-\setlist[enumerate]{label={(\roman*)}, ref={(\roman*)}} 
-% \renewcommand{\labelitemi}{\boldmath$\cdot$}
-% \renewcommand{\theenumi}{\roman{enumi}}
-
-%\swapnumbers
-\theoremstyle{plain}
-\newtheorem{Thm}{Theorem}[section]
-\newtheorem*{nThm}{Theorem}
-\newtheorem{prop}[Thm]{Proposition}
-\newtheorem{cor}[Thm]{Corollary}
-\newtheorem{lem}[Thm]{Lemma}
-\theoremstyle{definition}
-\newtheorem{defn}[Thm]{Definition}
-\newtheorem{para}[Thm]{}
-\newtheorem{cons}[Thm]{Construction}
-\newtheorem{nota}[Thm]{Notation}
-\newtheorem*{nnota}{Notation}
-\newtheorem{ex}[Thm]{Example}
-\newtheorem{rmk}[Thm]{Remark}
-\newtheorem*{nrmk}{Remark}
-\newtheorem{claim}[Thm]{Claim}
-\newtheorem*{nclaim}{Claim}
-\newtheorem{question}[Thm]{Question}
-
-\newcommand\pref[1]{\ref{#1}}
-
-\DeclareMathOperator{\dom}{dom}
-\DeclareMathOperator{\cod}{cod}
-\DeclareMathOperator{\coeq}{coeq}
-\DeclareMathOperator*{\Nat}{Nat}
-\DeclareMathOperator*{\colim}{colim}
-\DeclareMathOperator{\cl}{\mathsf{cl}}
-\DeclareMathOperator{\subcl}{\mathsf{scl}}
- 
-% Arrows
-\newcommand{\mono}{\hookrightarrow}
-\newcommand{\epi}{\twoheadrightarrow}
-
-
-\newcommand{\C}{\mathscr{C}}
-\newcommand{\E}{\mathscr{E}}
-\newcommand{\F}{\mathscr{F}}
-\newcommand{\B}{\mathscr{B}}
-\newcommand{\G}{\mathscr{G}}
-\newcommand{\R}{\mathscr{R}}
-\newcommand{\I}{\mathscr{I}}
-\newcommand{\D}{\mathscr{D}}
-\newcommand{\A}{\mathscr{A}}
-\newcommand{\T}{\mathscr{T}}
-\newcommand{\M}{\mathscr{M}}
-\newcommand{\N}{\mathscr{N}}
-\newcommand{\X}{\mathscr{X}}
-\newcommand{\K}{\mathscr{K}}
-\newcommand{\U}{\mathscr{U}}
-\newcommand{\Z}{\mathscr{Z}}
-\newcommand{\Y}{\mathscr{Y}}
-
-\newcommand{\eC}{\EuScript{C}}
-\newcommand{\eP}{\EuScript{P}}
-\newcommand{\eO}{\EuScript{O}}
-\newcommand{\eE}{\EuScript{E}}
-\newcommand{\eF}{\EuScript{F}}
-\newcommand{\eG}{\EuScript{G}}
-\newcommand{\eB}{\EuScript{B}}
-\newcommand{\eI}{\EuScript{I}}
-\newcommand{\eD}{\EuScript{D}}
-\newcommand{\eA}{\EuScript{A}}
-\newcommand{\eT}{\EuScript{T}}
-\newcommand{\eM}{\EuScript{M}}
-\newcommand{\eZ}{\EuScript{Z}}
-\newcommand{\eX}{\EuScript{X}}
-\newcommand{\eY}{\EuScript{Y}}
-\newcommand{\dsA}{\mathds{A}}
-\newcommand{\dsD}{\mathds{D}}
-
-\newcommand{\ptuf}{\star}
-\newcommand{\bb}{\bbbeta}
-\newcommand{\En}{\mathrm{En}}
-\newcommand{\Sh}{\mathsf{Sh}}
-\newcommand{\sh}{\mathsf{sh}}
-\newcommand{\vSh}{\mathfrak{sh}}
-\newcommand{\Sub}{\mathsf{Sub}}
-\newcommand{\Desc}{\mathsf{Desc}}
-\newcommand{\Topos}{\mathsf{Topos}}
-\newcommand{\Toposwep}{\mathsf{Topos}_{\mathrm{wep}}}
-\newcommand{\CohTop}{\mathsf{CohTop}}
-\newcommand{\Psh}{\mathsf{P}\Sh}
-\newcommand{\vUlt}{\mathsf{vUlt}}
-\newcommand{\vUltb}{\mathsf{vUlt}_{\mathrm{bounded}}}
-\newcommand{\UMat}{\mathsf{UMat}}
-\newcommand{\op}{\mathrm{op}}
-\newcommand{\amp}{\mathsf{amp}}
-\newcommand{\In}{\mathsf{in}}
-\newcommand{\Cat}{\mathsf{Cat}}
-\newcommand{\Pos}{\mathsf{Pos}}
-\newcommand{\CAT}{\mathsf{CAT}}
-\newcommand{\TopSp}{\mathsf{TopSp}}
-\newcommand{\Ult}{\mathsf{Ult}}
-\newcommand{\UltL}{\Ult^{\mathsf{L}}}
-\newcommand{\pt}{\mathsf{pt}}
-\newcommand{\vpt}{\mathfrak{pt}}
-\newcommand{\id}{\mathsf{id}}
-\newcommand{\ev}{\mathsf{ev}}
-\newcommand{\Set}{\mathsf{Set}}
-\newcommand{\SET}{\mathsf{SET}}
-\newcommand{\SetO}{\mathsf{Set}[\mathbb{O}]}
-%\newcommand{\UF}{\EuScript{U}\EuScript{F}}
-\newcommand{\UF}{\mathds{U}}
-\newcommand{\Pretop}{\mathsf{Pretop}}
-\newcommand{\Latt}{\mathsf{Latt}}
-\newcommand{\Loc}{\mathsf{Loc}}
-\newcommand{\Ind}{\mathsf{Ind}}
-\newcommand{\FC}{\mathsf{FC}}
-\newcommand{\Open}{\mathcal{O}}
-\newcommand{\Ob}{\mathsf{Ob}}
-\newcommand{\Hom}{\mathsf{Hom}}
-\newcommand{\Mod}{\mathsf{Mod}}
-\newcommand{\Alex}{\mathsf{Alex}}
-\newcommand{\res}[1]{{\upharpoonright{#1}}}
-\newcommand{\ie}{i.e., }
-\newcommand{\eg}{e.g., }
-\newcommand{\paronto}{\rightharpoonup\mathrel{\mspace{-15mu}}\rightharpoonup}
-\newcommand{\li}{\mathsf{h}}
-\newcommand{\lii}{\mathsf{k}}
-\newcommand{\ty}{\mathsf{ty}}
-\newcommand{\topo}{\mathsf{topo}}
-%\usepackage{MnSymbol}
-\newcommand{\vuCat}{\mathsf{vuCat}}
-\newcommand{\vuCAT}{\mathsf{vuCAT}}
-\newcommand{\vuPos}{\mathsf{vuPos}}
-\newcommand{\vuPOS}{\mathsf{vuPOS}}
-\newcommand{\vuPostaut}{\mathsf{vuPos_{taut}}}
-\newcommand{\vuPOStaut}{\mathsf{vuPOS_{taut}}}
-\newcommand{\vupt}{\pt}
-
-%\usepackage{bbm}
-\newcommand{\Tref}{\rho_\mathrm{T}}
-\newcommand{\Lref}{\rho_\mathrm{L}}
-\newcommand{\Tinj}{\iota_\mathrm{T}}
-\newcommand{\Linj}{\iota_\mathrm{L}}
-\newcommand{\Et}{\mathrm{Et}}
-
-\newcommand{\Ext}{\mathsf{Ext}}
-\newcommand{\onespace}{\mathsf{1space}}
-\newcommand{\Onespace}{\mathsf{1Space}}
-\newcommand{\FF}{\mathds{F}}
-\newcommand{\vf}{\mathsf{vf}}
-\newcommand{\vfCat}{\mathsf{vfCat}}
-
-
-\newcommand{\Fam}{\mathsf{Fam}}
-\newcommand{\Conn}{\mathsf{Conn}}
-\newcommand{\Comp}{\mathsf{Comp}}
-\DeclareFontFamily{U}{dmjhira}{}
-\DeclareFontShape{U}{dmjhira}{m}{n}{ <-> dmjhira }{}
-\DeclareRobustCommand{\yo}{\text{\usefont{U}{dmjhira}{m}{n}\symbol{"48}}}
-
-\newcommand{\colorier}[1]{\color{Grey}{#1}\color{black}}
-
-
-%\usepackage[inline]{showlabels} % comment to hide labels
-
-
-%%% Comments 
-
-\newcommand{\todo}[1]{{\color{red} To do: #1}}
-\newcommand{\note}[1]{\textcolor{Blue}{#1}}
-\newcommand{\UT}[1]{\textcolor{ForestGreen}{UT: #1}}
-\newcommand{\gabrielnote}[1]{\textcolor{Teal}{GS: #1}}
-
-\newcommand{\nocomments}{
-    \renewcommand{\todo}[1]{}
-    \renewcommand{\note}[1]{}
-    \renewcommand{\gabrielnote}[1]{}
-    \renewcommand{\errolnote}[1]{}
-}
-
-\newcommand{\emaillink}[1]{\href{mailto:#1}{\sf #1}}
+\include{preamble.tex}
 
 %\nocomments % uncomment to hide all comments
 \title{Filterization}
@@ -390,7 +19,6 @@ Stockholm, Sweden\newline
 
 \thanks{The author was supported by the KAW Foundation, under the project “Type Theory for Mathematics and Computer Science” (PI Thierry Coquand).}
 
-
 \begin{document}
 
 \begin{abstract}
@@ -398,8 +26,9 @@ Stockholm, Sweden\newline
 \end{abstract}
 
 \maketitle
-\setcounter{tocdepth}{1} 
+\setcounter{tocdepth}{2} 
 \tableofcontents
+
 
 \section{Vf-categories}
 
@@ -415,7 +44,8 @@ Stockholm, Sweden\newline
 
 Recall that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is monic if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is epic if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = F\phi(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
 
-Note also that, for a set $S$, the hom-set $\FF( \tau, (S, \{ S\} ))$ is in bijection with the \emph{reduced power} of $S$ with respect to $\tau$, generalizing ultrapowers to filters.
+We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$, generalizing ultrapowers to filters. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine a functor:
+\[ X^{-}\colon \FF^{\op} \to \Set.\]
 
 We note here the following property of $\FF$, first remarked by the authors of \cite{SUJ}.
 
@@ -664,9 +294,10 @@ $\Open(\X)$. Note that every vf-functor $\X \to \Y$ induces, by precomposition, 
 
 \subsection{Vf-categories of points}
 
-Let $\E$ be a topos and fix a full subcategory $A \subseteq \pt(\E)$, where we identify points of $\E$ with their inverse images $\E \to \Set$. Generalizing the canonical vu-category structure, we can endow $A$ with a canonical vf-category structure such that the evaluation map $\ev \colon \E \to{} [A, \Set]$ factors through $\Sh(A) \coloneqq \vfCat(A, \Set)$. \UT{i personally don't like the notation $\Sh(\pt(\E)_{\res A})$ that much; if anything, i'd just write $\Sh(A)$} \gabrielnote{i do agree, i changed it!}
+Let $\E$ be a topos and fix a full subcategory $A \subseteq \pt(\E)$, where we identify points of $\E$ with their inverse images $\E \to \Set$. Generalizing the canonical vu-category structure, we can endow $A$ with a canonical vf-category structure such that the evaluation map $\ev \colon \E \to{} [A, \Set]$ factors through $\Sh(A) \coloneqq \vfCat(A, \Set)$. 
 Concretely, a vf-arrow $x \vuto{s:\sigma} y_s$ in $A$ is given by a natural transformation $x \Rightarrow \int_{s:\sigma} y_s$, where $\int_{s:\sigma} y_s$ is the \emph{reduced product} functor. 
 
+{\color{red} UT: i don't think this goes here. ideally we need to figure out how to separate the vu story from the vf story otherwise it gets too messy (also considering the different constructive status)
 
 We now show that vu-categories arising as points of a topos are taut.
 \begin{lem}\label{lemma:taut-sober}
@@ -689,7 +320,7 @@ We now show that vu-categories arising as points of a topos are taut.
     %
     The hypothesis that $f$ can be unthicken along $\phi$ ensures that $\psi_1^*f_E(\xi) = \psi_2^*f_E(\xi)$ for all $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$, and so we can conclude with \Cref{lemma:taut-sober}.
 \end{proof}
-
+}
 
 \begin{lem}
     The canonical vf-category structure on $A \subseteq \pt(\E)$ is taut. \UT{is it always?} \gabrielnote{i hope so! i will write the proof}
@@ -714,10 +345,10 @@ We now show that vu-categories arising as points of a topos are taut.
 
 The goal of the following is to prove that the functor $\ev \colon \E \to{} \Sh(A)$ is an equivalence when $A$ is a separating set of points of $\E$.
 
-We will obtain this by combining two more general results. Note that any vf-functor $F \colon \X \to \pt(\E)$ naturally induces a functor $f^* \colon \E \to \Sh(\X)$ where, for $e  \in \E$ \gabrielnote{i usuallt prefer capital letters for objects in a topos (as their are tought as sheaf)}, the vf-functor $f^*(e) \colon \X \to \Set$ is given:
+We will obtain this by combining two more general results. Note that any vf-functor $F \colon \X \to \pt(\E)$ naturally induces a functor $f^* \colon \E \to \Sh(\X)$ where, for $E  \in \E$, the vf-functor $f^*(E) \colon \X \to \Set$ is given:
 \begin{itemize}
-    \item on objects, by mapping $x \in \X_0$ to the set $F(x)(e)$;
-    \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $e$ of the natural transformation $F(r) \colon x \Rightarrow\int_{s:\sigma} y_s$.
+    \item on objects, by mapping $x \in \X_0$ to the set $F(x)(E)$;
+    \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $E$ of the natural transformation $F(r) \colon x \Rightarrow\int_{s:\sigma} y_s$.
 \end{itemize}
 Thus, we will now study study how properties of $F$ induce properties on $f^*$, in such a way that taking $F$ to be the inclusion $A \hookrightarrow \pt(\E)$ the corresponding functor $\E \to \Sh(A)$ will be an equivalence. Intuitively, we will proceed as if $f^*$ were the inverse image of a geometric morphism $\Sh(\X) \to \E$, determining sufficient conditions on $F$ making it localic and conditions making it hyperconnected. Since a geometric morphism which is both localic and hyperconnected is an equivalence, we will derive our conclusion in the case of $\E \to \Sh(A)$.
 
@@ -725,16 +356,75 @@ Thus, we will now study study how properties of $F$ induce properties on $f^*$, 
 
 \UT{i assume the next theorems will assume tautness of $\X$, or at least make use of tautness of $\pt(\E)$?}\gabrielnote{I am actually not sure about how much tautness is used in these theorem, we need to check carefully.}
 
+
+\subsection{Localicness}
+In this section, we prove the following.
+
 \begin{Thm}[Localicness]
     If $F \colon \X\to\pt(\E)$ is vf-faithful, then any vf-sheaf on $\X$ is a subquotient of a vf-sheaf in the image of $f^* \colon \E\to\Sh(\X)$.
 \end{Thm}
 
+\todo{introduce étale spaces}
+
+The following proposition plays the role of \cite[Prop.\ 4.7]{SUJ}. Introducing an analogous notation, let $\pi \colon \A \to \X$ be an étale vf-functor and consider an element $a \in \A_0$ lying over some $p\in \X_0$: we denote by $u(a)$ the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ determined by the unique lift $\bar u \colon a \vuto{\sigma} b_s$ to $\A$ of a vf-arrow $u\colon p \vuto{\sigma} q_s$ in $\X$.
+
+\UT{i'm denoting by $\mathcal F$ the filter monad}
+
+\todo{note that the domain of an étale vf-functor is small if so is the codomain, as its class of objects is a small disjoint union of small sets}
+
+
+\begin{prop}
+    Let $\pi \colon \A \to \X$ be an étale vf-functor over a 
+    \red{small} taut vf-category $\X$ and fix an element $a \in \A_0$ lying over some $p\in \X_0$. The following are equivalent:
+\begin{enumerate}
+    \item for any parallel pair of vf-arrows $u,u' \colon p \vuto{\sigma} q_s$ in $\X$, we have that $u(a) = u'(a)$;
+    \item for any vf-arrow $u \colon p \vuto{\sigma}q_s$ with unique lift $\bar u \colon a \vuto{\sigma} b_s$, the two filters in the image factorizations of $q \colon \sigma \to \X_0$ and $b \colon \sigma \to \A_0$ are isomorphic;
+\[\begin{tikzcd}[column sep =25pt, row sep = 15pt]
+	&[8pt] &[-8pt] \sigma &[-8pt] & \\
+	\\
+	& {\mathcal F b(\sigma)} && {\mathcal F q(\sigma)} \\
+	{\A_0} &&&& {\X_0}
+	\arrow[two heads, from=1-3, to=3-2]
+	\arrow[two heads, from=1-3, to=3-4]
+	\arrow["b"', bend right=25, from=1-3, to=4-1]
+	\arrow["q", bend left=25, from=1-3, to=4-5]
+	\arrow["\cong"{description}, tail reversed, from=3-2, to=3-4]
+	\arrow[tail, from=3-2, to=4-1]
+	\arrow[tail, from=3-4, to=4-5]
+	\arrow["\pi"', from=4-1, to=4-5]
+\end{tikzcd}\]
+    \item if $a \vuleq{\sigma} b_s$ in $\Tref(\A)$, then $\pi$ is injective on a $\mathcal Fb(\sigma)$-large subset of $\A_0$;
+    \item there exists an open subspace $V \subseteq \A$ such that $a\in V$ and $\pi\vert_V \colon V \to \X$ is injective.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+    $(i)\Rightarrow(ii)$. First, let $\lambda \coloneqq \mathcal F q (\sigma)$ and denote by $\phi \colon \sigma \twoheadrightarrow \lambda$ be the corestriction of $q \colon \sigma \to \X_0$ to its image. Denoting by $r \colon \lambda \rightarrowtail \X_0$ the inclusion, by construction we have that $(q_s)_{s:\sigma} = \phi^* (r_l)_{l:\lambda}$.
+    
+    As it is epic by construction, the map $\phi \colon \sigma \twoheadrightarrow \lambda$ is a cover for the topology $J_\infty$ on $\FF$, and by \addref the functor $\A_0^{-}\colon \FF^{\op}\to\Set$ is a $J_\infty$-sheaf. Note then that the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ is a compatible family for $\phi$. Indeed, for all $\psi_1,\psi_2 \colon \tau \to \sigma$ such that $\phi \circ \psi_1 = \phi \circ \psi_2$, the vf-arrows $\psi_1^*(u)$ and $\psi_2^*(u)$ are parallel, which by hypothesis entails that the families $\psi_1^*(b_s)_{s:\sigma}$ and $\psi_2^* (b_s)_{s:\sigma}$ determined by their unique lifts to $\A$ must coincide.
+    
+    Thus, by the sheaf condition, there exists a unique family $(c_{l})_{l:\lambda} \in \A_0^\lambda$ such that $(b_s)_{s:\sigma}=\phi^*(c_{l})_{l:\lambda}$. In other words, $b \colon \sigma \to \A_0$ factors through $\mathcal F q (\sigma)$, from which we can conclude by taking appropriate image factorizations and chasing diagrams. \UT{state that $\FF$ is a regular category earlier}
+
+\end{proof}
+
+
+
+
+\subsection{Sub-hyperconnectedness}
+
+In this section, we prove the following.
 
 \begin{Thm}[Sub-hyperconnectedness]
     If $F \colon \X\to\pt(\E)$ is vf-full, then for each $e \in \E$ the frame homomorphism $\Sub_{\E}(e) \to \Sub_{\Sh(\X)}(f^*(e))$ induced by $f^* \colon  \E\to\Sh(\X)$ is a quotient map. % (embedding of locales).
 \end{Thm}
 
 
+
+
+
+
+
+
+\newpage
 
 \section{points of the localic reflection (5.3 of SUJ)}
 
@@ -989,7 +679,7 @@ This can be seen as taking the rep-vf-category of vf-arrows $y\vuto{-}F(-)$, giv
 We need to show this is small, and functorial. The smallness can follow from assuming $\X$ and $\Y$ small 1-spaces (but we can surely ask less). Let's try to give the functoriality, we take $g:y\vuto{\tau}y'_t$ in $\Y$, and some $(\xi^h)_{h}$ defining an element of $B(y)$, we want an element of $\int_{t:\tau}B(y'_t)$.
 
 We have an inclusion (where the limits are taking with the condition above, maybe not exactly limits...)
-\[\int_{t:\tau}B(y'_t) = \int_{t:\tau}\lim_{h : y'_t\vuto{\sigma_t} F(x^t_s)}\int_{s:\sigma_t} A(x^t_s) \longhookrightarrow \lim_{(h_t : y'_t\vuto{\sigma_t} F(x^t_s))}\int_{t:\tau}\int_{s:\sigma_t} A(x^t_s)\]
+\[\int_{t:\tau}B(y'_t) = \int_{t:\tau}\lim_{h : y'_t\vuto{\sigma_t} F(x^t_s)}\int_{s:\sigma_t} A(x^t_s) \hookrightarrow \lim_{(h_t : y'_t\vuto{\sigma_t} F(x^t_s))}\int_{t:\tau}\int_{s:\sigma_t} A(x^t_s)\]
 The $(\xi^h)_{h}$ gives for any $(h_t: y'_t\vuto{\sigma_t} F(x^t_s))_{t:\tau}$ an element $(\xi^{(h_t)\circ g})$ of $\int_{\tau}\int_{\sigma_t}A(x^t_s)$, so an element of the right set. We need to show it is in the left one.
 
 
