@@ -246,12 +246,12 @@ In other words, the 2-functor $\Open \colon \vfCat \to \TopSp$ --- mapping each 
 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
 \end{tikzcd}\]
 
-As we now show, the 2-adjunction on the left corestricts to an equivalence between topological spaces and \emph{taut} vf-posets. Recall indeed by \Cref{?} that, for each topological space $X$, the vf-poset $\Tinj(X)$ is defined by setting $p \vuleq{\sigma} q_s$ if for every open neighbourhood $U \subseteq X$ of $p$ it holds that $(q_s)_{s:\sigma} \in U^\sigma$; it is then immediate to see that $\Tinj(X)$ is taut. Thus, to conclude that the adjunction corestricts to an equivalence on taut vf-posets, it suffices to show that $\Tinj (\Open Y) \cong Y$ for every taut vf-poset $Y$. The proof of this fact, \Cref{prop:taut-vf-posets-come-from-spaces}, will make use of the following result: intuitively, taut vf-posets admit `canonical' vf-arrows, corresponding to \emph{neighborhood filters}, which are \emph{minimal} with respect to reindexing.
+As we now show, the 2-adjunction on the left corestricts to an equivalence between topological spaces and \emph{taut} vf-posets. Recall indeed by \Cref{?} that, for each topological space $X$, the vf-poset $\Tinj(X)$ is defined by setting $p \vuleq{\sigma} q_s$ if for every open neighborhood $U \subseteq X$ of $p$ it holds that $(q_s)_{s:\sigma} \in U^\sigma$; it is then immediate to see that $\Tinj(X)$ is taut. Thus, to conclude that the adjunction corestricts to an equivalence on taut vf-posets, it suffices to show that $\Tinj (\Open Y) \cong Y$ for every taut vf-poset $Y$. The proof of this fact, \Cref{prop:taut-vf-posets-come-from-spaces}, will make use of the following result: intuitively, taut vf-posets admit `canonical' vf-arrows, corresponding to \emph{neighborhood filters}, which are \emph{minimal} with respect to reindexing.
 
 \begin{prop}\label{prop:canonical-convergence-neighborhoods}
     Let $Y$ be a taut vf-poset and let $p\in Y_0$. Then, there exists a filter $\nu_p$ on $Y_0$ such that:
     \begin{enumerate}
-        \item $p \vuleq{\nu_p} y$, where the family $y \colon \nu_p \to Y_0$ is represented by the identity function;
+        \item $p \vuleq{\nu_p} y$, where the family $y \colon \nu_p \hookrightarrow Y_0$ is represented by the identity function;
         \item $p \vuleq{\sigma} q_s$ holds in $Y$ if and only if $q \colon \sigma \to Y_0$ defines an $\FF$-arrow $\sigma \to \nu_p$.%  satisfying $(q_s)_{s:\sigma} = \phi^*(y)_{y:\nu_p}$.
     \end{enumerate}  
     Moreover, $\nu_p$ can be described as the filter of {neighborhoods} of $p$ in $Y$.
@@ -267,10 +267,10 @@ As we now show, the 2-adjunction on the left corestricts to an equivalence betwe
 
     First we show that, by tautness, $p \vuleq{y:\nu_p} y$. Indeed, since $p \vuleq{y:\nu} y$ for each $\nu \in N$, by \Cref{def:taut}(ii) it follows that $p \vuleq{t: \coprod_\nu \nu} y_t$, and hence by \Cref{def:taut}(i) --- since reducibility trivializes in vf-posets --- we obtain $p \vuleq{y:\nu_p} y$.
 
-    To show property (ii), suppose that $p \vuleq{\sigma} q_s$ for some $q \colon \sigma \to Y_0$ and let $q_*(\sigma)$ be the filter in its image factorization. By tautness, $p \vuleq{\sigma} q_s$ entails that $p \vuleq{q_*(\sigma)} y$, i.e.\ that $q_*(\sigma) \in N$. Therefore, we can consider the inclusion into the coproduct:
+    To show property (ii), suppose that $p \vuleq{\sigma} q_s$ for some $q \colon \sigma \to Y_0$ and let $q_*(\sigma)$ be the filter in its image factorization. By tautness, $p \vuleq{\sigma} q_s$ entails that $p \vuleq{q_*(\sigma)} y$, i.e.\ that $q_*(\sigma) \in N$. Therefore, considering the inclusion $q_*(\sigma) \mono \coprod_{\nu\in N} \nu$, into the coproduct, we have that the following diagram commutes:
 \[\begin{tikzcd}
 	\sigma &&& \\
-	{q_*(\sigma)} & {\coprod_{\nu \in N}} && {Y_0} \\
+	{q_*(\sigma)} & {\coprod_{\nu \in N}\nu } && {Y_0} \\
 	&& {\nu_p}
 	\arrow[two heads, from=1-1, to=2-1]
 	\arrow["q", curve={height=-18pt}, from=1-1, to=2-4]
@@ -281,19 +281,19 @@ As we now show, the 2-adjunction on the left corestricts to an equivalence betwe
 	\arrow[two heads, from=2-2, to=3-3]
 	\arrow["y"', hook, from=3-3, to=2-4]
 \end{tikzcd}\]
-Since the outer border of the above diagram commutes, the composite $\FF$-arrow $\sigma \epi q_*(\sigma) \to \nu_p$ is represented by $q$. % above satisfies $(q_s)_{s:\sigma} = \phi^*(y)_{y:\nu_p}$.
+In particular, the composite $\FF$-arrow $\sigma \to \nu_p$ is represented by $q$. % above satisfies $(q_s)_{s:\sigma} = \phi^*(y)_{y:\nu_p}$.
 
 Finally, we describe $\nu_p$ explicitly as the filter of neighborhoods of $p$.
     \begin{itemize}
-        \item Let $U \subseteq Y$ be an open neighborhood of $p$. Then, since $p \vuleq{\nu_p} y$ by property (i), by openness it follows that $(y)_{y:\nu_p} \in U^{\nu_p}$, i.e.\ $U \in \nu_p$.
-        \item Conversely, let $V \in \nu_p$, which equivalently means that $(y)_{y:\nu_p} \in V^{\nu_p}$. Note that, by property (ii), $p \vuleq{\delta_p} p$ entails that the identity function realizes an $\FF$-arrow $\delta_p \to \nu_p$; thus, it induces a function $V^{\nu_p} \to V^{\delta_p}$. Since $(y)_{y:\nu_p} \in V^{\nu_p}$, it follows that $(y)_{y:\delta_p} \in V^{\delta_p}$, which is equivalent to $p \in V$.
+        \item Let $U \subseteq Y$ be an open neighborhood of $p$. Then, since $p \vuleq{\nu_p} y$ by property (i), by openness it follows that $(y)_{y:\nu_p} \in U_0^{\nu_p}$, i.e.\ $U_0 \in \nu_p$.
+        \item Conversely, let $V \subseteq Y$ be a subspace such that $V_0 \in \nu_p$, which equivalently means that $(y)_{y:\nu_p} \in V_0^{\nu_p}$. Note that, by property (ii), $p \vuleq{\delta_p} p$ entails that the identity function realizes an $\FF$-arrow $\delta_p \to \nu_p$; thus, it induces a function $V^{\nu_p} \to V_0^{\delta_p}$. Since $(y)_{y:\nu_p} \in V_0^{\nu_p}$, it follows that $(y)_{y:\delta_p} \in V_0^{\delta_p}$, which is equivalent to $p \in V_0$.
         
-        Consider then the set:
-        \[ U \coloneqq \set{ q \in V | V \in \nu_q } \subseteq V\]
-        By the above, $p \in U$; we now show that $U$ is open as a subspace of $Y$. Suppose that $q \vuleq{\sigma} r_s$ in $Y$ with $q \in U$: we need to show that $(r_s)_{s:\sigma} \in U^\sigma$, which explicitly means that $\set{ s | r_s \in U}\in \sigma$. Taking composites, we have 
+        Consider then the subspace $U \subseteq V$ defined by:
+        \[ U_0 \coloneqq \set{ q \in V_0 | V_0 \in \nu_q } \]
+        By the above, $p \in U_0$; we now show that $U$ is open in $Y$, which proves that $V$ is a neighborhood of $p$. Suppose that $q \vuleq{\sigma} r_s$ in $Y$ with $q \in U_0$: we need to show that $(r_s)_{s:\sigma} \in U_0^\sigma$, which explicitly means that $\set{ s | r_s \in U_0}\in \sigma$. Taking composites, we have 
         \[ q \vuleq{\sigma} (r_s \vuleq{\nu_{r_s}} y ), \mbox{ that is, }q \vuleq{\sum_{s:\sigma}\nu_{r_s}} y,\]
-        where now $y$ also denotes the projection $\sum_{s:\sigma}\nu_{r_s} \to Y_0$.  By property (ii) we then know that $y$ also defines an $\FF$-arrow $\sum_{s:\sigma}\nu_{r_s} \to \nu_q$; since $q \in U$, which by construction means that $V \in \nu_q$ i.e.\ $(y)_{y:\nu_q} \in V^{\nu_q}$, applying the induced function $V^{\nu_q} \to V^{\sum_{s:\sigma} \nu_{r_s}}$ we conclude that 
-        \[\set{ s | (y)_{y:\nu_{r_s}} \in V^{\nu_{r_s}} }  = \set{ s | V \in \nu_{r_s}} = \set{ s | r_s \in U}\in \sigma.\]
+        where now $y$ also denotes the projection $\sum_{s:\sigma}\nu_{r_s} \to Y_0$.  By property (ii) we then know that $y$ also defines an $\FF$-arrow $\sum_{s:\sigma}\nu_{r_s} \to \nu_q$; since $q \in U_0$, which by construction means that $V_0\in \nu_q$ i.e.\ $(y)_{y:\nu_q} \in V^{\nu_q}_0$, applying the induced function $V_0^{\nu_q} \to V_0^{\sum_{s:\sigma} \nu_{r_s}}$ we conclude that 
+        \[\set{ s | (y)_{y:\nu_{r_s}} \in V_0^{\nu_{r_s}} }  = \set{ s | V_0 \in \nu_{r_s}} = \set{ s | r_s \in U_0}\in \sigma.\]
     \end{itemize}  
 \end{proof}
 \end{prop}
@@ -303,7 +303,7 @@ Finally, we describe $\nu_p$ explicitly as the filter of neighborhoods of $p$.
     Let $Y$ be a taut vf-poset. For every $p \in Y_0$ and $(q_s)_{s:\sigma} \in Y_0^\sigma$, the following are equivalent:
     \begin{enumerate}
         \item $p \vuleq{\sigma} q_s$ in $Y$;
-        \item $p \vuleq{\sigma} q_s$ in $\Tinj( \Open  Y)$, i.e.\ for every open neighbourhood $U \subseteq Y$ of $p$ it holds that $(q_s)_{s:\sigma} \in U_0^\sigma$.
+        \item $p \vuleq{\sigma} q_s$ in $\Tinj( \Open  Y)$, i.e.\ for every open neighborhood $U \subseteq Y$ of $p$ it holds that $(q_s)_{s:\sigma} \in U_0^\sigma$.
     \end{enumerate}
 \begin{proof}
     Clearly $(i)\Rightarrow(ii)$ by definition of open subspace, so suppose $(ii)$. By \Cref{prop:canonical-convergence-neighborhoods} we know that $q$ realizes an $\FF$-arrow $\sigma \to \nu_p$ where $\nu_p$ is the filter of neighborhoods of $p$ in $\Tinj(\Open Y)$. Call $\nu_p'$ the filter of neighborhoods of $p$ in $Y$: if we show that the identity map realizes an $\FF$-arrow $\nu_p \to \nu_p'$, i.e.\ that $\nu_p' \subseteq \nu_p$, then by \Cref{prop:canonical-convergence-neighborhoods} we can conclude that $p \vuleq{\sigma} q_s$ in $Y$. In turn, $\nu_p' \subseteq \nu_p$ follows since  open subspaces of $Y$ are open in $\Open Y$ by definition, and the opens of any topological space $X$ are open as subspaces of $\Tinj (X)$.
