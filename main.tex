@@ -42,13 +42,13 @@ Paris, France\newline
 
 \subsection{Blass' category of filters}
 
-\todo{define the relative filter monad $\mathcal F \colon \Set \to \Pos$ and say that the notation $\phi_*(\tau)$ means $\mathcal F$ means $\mathcal F (\phi)(\tau)$. }
+\todo{define the relative filter monad $\mathcal F \colon \Set \to \Pos$ and say that the notation $\phi_*(\tau)$ means $\mathcal F (\phi)(\tau)$. }
 
 \begin{defn}
     The \emph{category of filters} $\FF$ is defined as follows:
     \begin{itemize}
         \item as objects, we let pairs $(S, \sigma)$ of a set $S$ and a filter $\sigma$ on $S$;
-        \item as morphisms $(T, \tau) \to (S, \sigma)$, we let equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, identified up to equality on a $\tau$-large subset.
+        \item as morphisms $(T, \tau) \to (S, \sigma)$, we let equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, i.e.\ $\sigma \subseteq \phi_*(\tau)$,identified up to equality on a $\tau$-large subset.
     \end{itemize}
     For ease of notation, we will often omit the set underlying a filter.
 \end{defn}
@@ -58,6 +58,7 @@ Recall that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is monic if 
 We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$, generalizing ultrapowers to filters. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine a functor:
 \[ X^{-}\colon \FF^{\op} \to \Set.\]
 
+{\color{darkred}
 We note here the following property of $\FF$, first remarked by the authors of \cite{SUJ}.
 
 \begin{lem}\label{lem:magic-choice-lemma}
@@ -98,12 +99,11 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
 \nu)$.
 \end{proof}
 \end{lem}
+}
+
 \gabrielnote{What we need to make it work is that $f : \tau\twoheadrightarrow\sigma$ satisfies that $\int_{s:\sigma}{T^0}_s$ is non-empty for all $T^0\subseteq T$ that is $\nu$-large. Maybe we can replace, in the statement, epi by map satisfying this property?}
 
-
-\begin{lem}
-    
-\end{lem}
+\UT{for now we're still not using this}
 
 
 \subsection{Vf-categories}
@@ -171,7 +171,7 @@ For any vf-arrow $r \colon p \vuto{s:\sigma} q_s$ and any $\phi \colon \tau \to 
 
 \subsection{Subspaces}
 
-Let $\X$ be a \red{small} vf-category. 
+Let $\X$ be a vf-category. 
 
 \begin{defn}
 A \emph{subspace} $\Y$ of $\X$ is simply a sub-vf-category, i.e.\ a vf-category defined by restricting the functors $\X_{p,(q_s)}$ to a subclass $\mathscr Y_0$ of $\X_0$, together with the same units and compositions. Clearly, the inclusion $\Y_0 \hookrightarrow \X_0$ extends to a vf-fully-faithful vf-functor $\Y \to \X$.
@@ -227,7 +227,7 @@ Both vf-category structures on $\X_0$, namely that of $\X$ and that of $\Tref(\X
 \begin{lem}
     For a small vf-category $\X$, a subclass $\Y_0 \subseteq \X_0$ detects an open subspace of $\X$ if and only if it detects an open subspace of $\Tref(\X)$.
 \begin{proof}
-    Suppose $\Y_0$ detects an open subspace $\Y$ of $\X$. To see that $\Y$ is also open as a subspace of $\Tref(\X)$, suppose that $p \vuleq{\sigma} q_s$ in $\Tref(\X)$ with $p \in \Y_0$. By definition, this means that there exists a vf-arrow $p \vuto{\tau} q_{\phi t}$ in $\X$ for some cover $\phi \colon \tau \epi \sigma$; by openness of $\Y$, this entails that $(q_{\phi t})_{t:\tau} \in \Y_0^\tau$. More explicitly:
+    Suppose that $\Y_0$ detects an open subspace $\Y$ of $\X$. To see that $\Y$ is also open as a subspace of $\Tref(\X)$, suppose that $p \vuleq{\sigma} q_s$ in $\Tref(\X)$ with $p \in \Y_0$. By definition, this means that there exists a vf-arrow $p \vuto{\tau} q_{\phi t}$ in $\X$ for some cover $\phi \colon \tau \epi \sigma$; by openness of $\Y$, this entails that $(q_{\phi t})_{t:\tau} \in \Y_0^\tau$. More explicitly:
     \[ \set{ t | q_{\phi t} \in \Y_0 } \in \tau \]
     from which, since $\phi$ is a cover in $\FF$:
     \[ \phi \left( \set{ t | q_{\phi t} \in \Y_0 }\right) = \set{ \phi t | q_{\phi t} \in \Y_0 } \in \sigma \]
