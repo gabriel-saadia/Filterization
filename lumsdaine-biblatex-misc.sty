@@ -1,0 +1,256 @@
+
+% This file provides several miscellaneous minor enhancements for biblatex:
+%
+% - [always] conditional url: don’t print the url if it’s redundant with the doi or eprint
+% - [optional, “concisebib”] concise citation style, useful for slides
+% - [optional, “simplepostnote”] don’t interpret citation postnotes as pages
+% - [always] typeset parentheses journal issue number in parens, “25 (2)” instead of default “25.2”
+
+% TODO: planned extra additions:
+% - add penalty to mildly discourage linebreak after “url:”, “doi:”, etc
+% - allow linebreaks in doi
+% - take eprinttype to be arxiv if not otherwise specified; or (better) autodetect; or at least give error message?
+% - concisefullcite command
+% - add author annotation functionality
+% - ensure “note” is correctly sentence-cased + puntuated?
+
+% TODO: improve option handling using keyvals, package kvoptions https://tex.stackexchange.com/questions/61487/ — make all items optiona, just with different defaults
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lumsdaine-biblatex-misc}[2025-05-06 Peter LeFanu Lumsdaine’s miscellaneous biblatex tweaks]
+
+\RequirePackage{biblatex}
+
+
+\newif\iflum@numberparens \lum@numberparenstrue
+
+\newif\iflum@concisebib \lum@concisebibfalse
+\DeclareOption{concisebib}{\lum@concisebibtrue}
+
+\newif\iflum@simplepostnote \lum@simplepostnotefalse
+\DeclareOption{simplepostnote}{\lum@simplepostnotetrue}
+
+\DeclareOption*{\PackageWarning{lumsdaine-biblatex-tweaks}{Unknown ‘\CurrentOption’}}
+
+\ProcessOptions
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CONDITIONAL URL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Ensures that if the url of a bib-item is the same as its eprint or doi,
+% then only one of these is printed in the bibliography;
+% see https://tex.stackexchange.com/questions/5660/redundancy-in-bib-file-conditionally-suppress-url-if-same-as-doi
+
+\RequirePackage{xstring}
+
+\protected\long\def\iffieldcontainsstr#1#2{%
+  \blx@imc@iffieldundef{#1}
+    {\@secondoftwo}
+    {\expandafter\expandafter\expandafter\IfSubStr
+     \expandafter\expandafter\expandafter{%
+       \csname abx@field@#1\endcsname}{#2}}}
+
+%% Logic:
+% If the given url is auto-generated from the doi/eprint, and that will be printed,
+% then we can don’t need to print the url separately, nor the urldate
+% (since doi/eprint links are “archival-quality” — same reason biblatex doesn’t expect “eprintdate”, “doidate”).
+% TODO: perhaps reconsider this: should we assume that if urldate provided, then it’s desired?
+%
+% If the doi is generated from the eprint, then we still print both (readers may want one),
+% but we provide a test for this anyway.
+
+% note: aims to catch several standard doi-urls (variants like http/https),
+% but avoid false positives for e.g. journal urls including doi as internal identifier
+\protected\long\def\ifDOIsubsumesURL{%
+  \iftoggle{bbx:doi}
+    {\iffieldundef{doi}%
+      {\@secondoftwo}%
+      {\edef\doiurlcore{\detokenize{doi.org/}\thefield{doi}}%
+       \iffieldcontainsstr{url}{\doiurlcore}%
+         {\@firstoftwo}%
+         {\@secondoftwo}%
+      }%
+    }%
+    {\@secondoftwo}%
+  }
+
+% note: similar logic to \ifDOIsubsumesURL
+% note: assumes eprinttype=arxiv.  TODO: generalise?
+\protected\long\def\ifeprintsubsumesURL{%
+  \iftoggle{bbx:eprint}
+    {\iffieldundef{eprint}%
+      {\@secondoftwo}%
+      {\edef\eprinturlcore{\detokenize{arxiv.org/}}%
+       \iffieldcontainsstr{url}{\eprinturlcore}%
+         {\iffieldcontainsstr{url}{\thefield{eprint}}%
+           {\@firstoftwo}%
+           {\@secondoftwo}%
+         }%
+         {\@secondoftwo}%
+      }%
+    }%
+    {\@secondoftwo}%     
+  }
+
+\protected\long\def\ifeprintsubsumesDOI{%
+  \iftoggle{bbx:eprint}
+    {\iffieldundef{eprint}%
+      {\@secondoftwo}%
+      {\iffieldcontainsstr{doi}{\thefield{eprint}}%
+         {\@firstoftwo}%
+         {\@secondoftwo}%
+      }%
+    }%
+    {\@secondoftwo}%     
+  }
+
+\renewbibmacro*{doi+eprint+url}{%
+  \iftoggle{bbx:doi}
+    {\printfield{doi}}
+    {}
+  \newunit\newblock
+  \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}
+    {}
+  \newunit\newblock
+  \iftoggle{bbx:url}
+   {\ifeprintsubsumesURL
+    {}
+    {\ifDOIsubsumesURL
+      {}
+      {\usebibmacro{url+urldate}}
+    }
+  }
+  {}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CONCISE BIBLIOGRAPHY STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\iflum@concisebib
+
+
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{maintitle+title}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+
+\DeclareBibliographyDriver{incollection}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+
+\DeclareBibliographyDriver{thesis}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \printfield{type}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PARENTHESES FOR ISSUE NUMBER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% based on answer by user “lockstep” at TeX-LaTeX Stack Exchange, https://tex.stackexchange.com/a/81573/1635
+
+\iflum@numberparens
+
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+%  \setunit*{\adddot}% DELETED from default format
+%  \setunit*{\addnbthinspace}% NEW (optional) nonbreakingspace
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
+
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SIMPLE POSTNOTE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Do *not* automatically try to interpret citation postnotes as page numbers:
+% print them just as supplied in optional argument,
+% to avoid mis-printing “\cite[D4]{elephant}” as “[Joh02, p. D4.1]” and similar.
+%
+% from answer by “lockstep”, https://tex.stackexchange.com/a/53055/1635
+
+\iflum@simplepostnote
+
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+
+\fi
