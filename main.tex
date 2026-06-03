@@ -111,45 +111,48 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
 \begin{defn}
     A \emph{vf-category} (resp. \emph{vu-category}) $\X$ is defined by the following data:
     \begin{enumerate}
-        \item a class of \emph{objects} $\X_0$ whose elements are sometimes \emph{points};
-        \item a class of \emph{vf-arrows} whose elements $f$ are given with a domain a point $p\in\X_0$ and codomain $(q_s\in\X_0)_{s:\sigma}$ a filter-family (resp. ultrafamily) of points.
-        \item 
-        \item for each $p\in X_0$ and each $(q_s)_{s:\sigma}\in {\X_0}^{\sigma}$ for some filter $\sigma\in\FF$, a functor:
-        \[\X_{p,(q_s)} \colon (\FF/\sigma)^{\op} \to \Set \qquad  (\phi \colon \tau\to\sigma) \mapsto \X(p,(q_{\phi t})_{t:\tau}) \]
-        % \begin{align*}
-        %     H_{p,(q_s)} : (\FF/\sigma)^{\op} & \to \Set \\
-        %     (\tau\stackrel{\phi}\to\sigma) & \mapsto \X(p,(q_{\phi t})_{t:\tau})
-        % \end{align*}
-        where elements of $\X(p, (q_{\phi t})_{t:\tau})$ are called \emph{vf-arrows} and denoted by
-        $r \colon p \vuto{t:\tau} q_{\phi t}$ or simply $r \colon p \vuto{\tau} q_{\phi t}$;
-    
-        \item for each $p$, $(q_s)_{s:\sigma}$, $(r_{s,t})_{(s,t) : \sum_{s:\sigma}\tau_s}$, a \emph{unit} and a \emph{composition}:
-\[\begin{tikzcd}
-	1 & {1} \\
-	\FF^{\op} & \Set
-	\arrow[""{name=0, anchor=center, inner sep=0}, from=1-1, to=1-2]
-	\arrow["\ptuf"', from=1-1, to=2-1]
-	\arrow["1",  from=1-2, to=2-2]
-	\arrow[""{name=1, anchor=center, inner sep=0}, "{H_{p,(p)}}"', from=2-1, to=2-2]
-	\arrow[Rightarrow, from=0, to=1, between={0.3}{0.7}]
-\end{tikzcd}
-\begin{tikzcd}[column sep = 100pt]
-	({\FF/\sigma \times \int_{s:\sigma}(\FF/\tau_s)})^{\op} & {\Set\times\Set} \\
-	({\FF/\sum_{s:\sigma}\tau_s})^{\op} & \Set
-	\arrow[""{name=0, anchor=center, inner sep=0}, "{\X_{p,(q_{- \ell})}\times\int_{s:\sigma}\X_{q_s,(r_{s,-k})}}", from=1-1, to=1-2]
-	\arrow["\sum"', from=1-1, to=2-1]
-	\arrow["\times", from=1-2, to=2-2]
-	\arrow[""{name=1, anchor=center, inner sep=0}, "{H_{p,-}}"', from=2-1, to=2-2]
-	\arrow[Rightarrow, from=0, to=1, between={0.3}{0.7}]
-\end{tikzcd}\]
+        \item A class of \emph{objects} $\X_0$ whose elements are sometimes \emph{points}.
+        \item A class of \emph{vf-arrows} whose elements $f$ are given with a domain a point $p\in\X_0$ and codomain $(q_s\in\X_0)_{s:\sigma}$ a filter-family (resp. ultrafamily) of points. Such a vf-arrow (resp. vu-arrow) $f$ is denoted by \[f : p \vuto{\sigma}q_s.\]
+        We denote $\Hom_\sigma(p,q_s)$ the class of vf-arrows (resp. vu-arrows) $f : p\vuto{\sigma}q_s$.
+        \item A \emph{identity} $\id_p : p\vuto{\ptuf}p$ for each point $p$. And a \emph{composition} $g_s\circ_\sigma f : p \vuto{\sigma\cdot\tau_s} r_{s,t}$ for each $f : p\vuto{\sigma}q_s$ and eahc filter-family (resp. ultrafamily) $(g_s:q_s\vuto{\tau_s}r_{s,t})_{s:\sigma}$. Such a composition will diagrammatically be denoted by
+        \[g_s\circ_\sigma f : p \vuto{\sigma} (q_s\vuto{\tau_s} r_{s,t}).\]
+        \item A vf-arrow (resp. vu-arrow) $\phi^*f : p\vuto{\tau}q_{\phi t}$ for each vf-arrow (resp. vu-arrow) $f : p\vuto{\sigma} q_s$ and each morphism of filters (resp. ultrafilters) $\phi : \tau\to\sigma$. This $\phi^*f$ is called the \emph{reindexing of $f$ along $\phi$}.
+        In particular the reindexing of $\id_p$ along the unique map $\sigma\to\ptuf$ is called a \emph{diagonal} and is denoted by
+        \[\delta : a\vuto{\sigma} a.\]
+        
     \end{enumerate}
-This data is required to satisfy the following axioms:
-\begin{enumerate}
-    \item \note{axioms}
-\end{enumerate}
-
-We say that $\X$ is \emph{small} if so is $X_0$.
+    We require the above data to satisfy the following properties.
+    \begin{enumerate}
+        \item The identity is neutral and the composition is associative: 
+        \[f\circ_{\ptuf} \id_p = f\]
+        \[\id_{q_s}\circ_{\sigma} f = f\]
+        \[(h_{s,t}\circ_{\tau_s} g_s)\circ_{\sigma} f = h_{s,t}\circ_{\sigma\cdot \tau_s} (g_s\circ_{\sigma} f).\] 
+        \item The thickening operation is functorial:
+        \[{\id_{\sigma}}^*f = f\]
+        \[\psi^*(\phi^*f) = (\phi\circ\psi)^*f\]
+        \item The thickening operation is compatible with the composition: for $f : p\vuto{\sigma} q_s$ and $(g_s : q_s\vuto{\tau_s} r_{s,t})_{s:\sigma}$
+        \begin{itemize}
+            \item for any $\phi : \lambda\to\sigma$ with $\phi\cdot\id_{\tau_s} : \lambda\cdot\tau_{\phi \ell}\to\sigma\cdot\tau_s$
+            \[g_{\phi \ell}\circ_{\lambda} (\phi^*f) = (\phi\cdot\id_{\tau_s})^*(g_s\circ_{\sigma} f)\]
+            \item and for any $(\psi_s : \kappa_s\to\tau_s)_{s:\sigma}$ with $\id_{\sigma}\cdot\psi_s : \sigma\cdot\kappa_s\to\sigma\cdot\tau_s$
+            \[({\psi_s}^*g_s)\circ_{\sigma} f = (\id_{\sigma}\cdot\psi_s)^*(g_s\circ_{\sigma} f).\]
+        \end{itemize}
+    \end{enumerate}
 \end{defn}
+
+\begin{defn}
+    
+\end{defn}
+
+We say that $\X$ is \emph{small} if it is locally small and moreover $\X_0$ is small.
+\gabrielnote{and in particular, it induces a functor
+        \begin{equation}\tag{$\star$} \label{reindex-functor}
+        \begin{split}
+            (\UF/\sigma)^{\op} &\to\Set \\
+            (\phi : \tau\to\sigma) &\mapsto \Hom_\tau(a,b_{\phi t}). 
+        \end{split}
+        \end{equation}}
+
 
 For any vf-arrow $r \colon p \vuto{s:\sigma} q_s$ and any $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ --- seen as an arrow $\phi\to \id_{\sigma}$ in $\FF/\sigma$ --- we denote by $\phi^*(r)$ the vf-arrow $\X_{p, (q_s)} (\phi) (r) \colon p \vuto{t : \tau} q_{\phi t }$, which we refer to as the \emph{reindexing} of $r$ along $\phi$.
 \begin{itemize}
@@ -243,16 +246,15 @@ In other words, the 2-functor $\Open \colon \vfCat \to \TopSp$ --- mapping each 
 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
 \end{tikzcd}\]
 
-As we now show, the 2-adjunction on the left corestricts to an equivalence between topological spaces and \emph{taut} vf-posets. Recall indeed by \Cref{?} that, for each topological space $X$, the vf-poset $\Tinj(X)$ is defined by setting $p \vuleq{\sigma} q_s$ if for every open neighbourhood $U \subseteq X$ of $p$ it holds that $(q_s)_{s:\sigma} \in U^\sigma$; it is then immediate to see that $\Tinj(X)$ is taut. Thus, to conclude that the adjunction corestricts to an equivalence on taut vf-posets, it suffices to show that $\Tinj (\Open Y) \cong Y$ for every taut vf-poset $Y$. The proof of this fact, \Cref{prop:taut-vf-posets-come-from-spaces}, will make use of the following result: intuitively, taut vf-posets admit `canonical' vf-arrows which are \emph{minimal} with respect to reindexing.
+As we now show, the 2-adjunction on the left corestricts to an equivalence between topological spaces and \emph{taut} vf-posets. Recall indeed by \Cref{?} that, for each topological space $X$, the vf-poset $\Tinj(X)$ is defined by setting $p \vuleq{\sigma} q_s$ if for every open neighbourhood $U \subseteq X$ of $p$ it holds that $(q_s)_{s:\sigma} \in U^\sigma$; it is then immediate to see that $\Tinj(X)$ is taut. Thus, to conclude that the adjunction corestricts to an equivalence on taut vf-posets, it suffices to show that $\Tinj (\Open Y) \cong Y$ for every taut vf-poset $Y$. The proof of this fact, \Cref{prop:taut-vf-posets-come-from-spaces}, will make use of the following result: intuitively, taut vf-posets admit `canonical' vf-arrows, corresponding to \emph{neighborhood filters}, which are \emph{minimal} with respect to reindexing.
 
-\begin{lem}
+\begin{prop}\label{prop:canonical-convergence-neighborhoods}
     Let $Y$ be a taut vf-poset and let $p\in Y_0$. Then, there exists a filter $\nu_p$ on $Y_0$ such that:
     \begin{enumerate}
         \item $p \vuleq{\nu_p} y$, where the family $y \colon \nu_p \to Y_0$ is represented by the identity function;
-        \item for every other family $q \colon \sigma \to Y_0$, $p \vuleq{\sigma} q_s$ holds in $Y$ if and only if $q$ defines an $\FF$-arrow $\sigma \to \nu_p$.%  satisfying $(q_s)_{s:\sigma} = \phi^*(y)_{y:\nu_p}$.
+        \item $p \vuleq{\sigma} q_s$ holds in $Y$ if and only if $q \colon \sigma \to Y_0$ defines an $\FF$-arrow $\sigma \to \nu_p$.%  satisfying $(q_s)_{s:\sigma} = \phi^*(y)_{y:\nu_p}$.
     \end{enumerate}  
-
-    In particular, $\nu_p$ can be described as the filter of {neighborhoods} of $p$ in $Y$.
+    Moreover, $\nu_p$ can be described as the filter of {neighborhoods} of $p$ in $Y$.
 \begin{proof}
     First, we construct a filter $\nu_p$ with the desired properties. Let $N$ be the set of filters $\nu$ on $Y_0$ such that $p \vuleq{y:\nu} y$, Note that $N$ is inhabited by the principal filter $\delta_p$ at $p\in Y_0$: this follows by thickening the identity vf-arrow $p \vuleq{1} p$ along the isomorphism $\delta_p \cong 1$.  Every filter $\nu \in N$ comes equipped with a canonical map $\nu \hookrightarrow Y_0$, represented by the identity function; thus, by the universal property of coproducts we also get a canonical map $\coprod_{\nu \in N} \nu\to Y_0$. Let $\nu_p$ be the filter on $Y_0$ arising via its image factorization.
     \[\begin{tikzcd}[sep = small]
@@ -281,17 +283,20 @@ As we now show, the 2-adjunction on the left corestricts to an equivalence betwe
 \end{tikzcd}\]
 Since the outer border of the above diagram commutes, the composite $\FF$-arrow $\sigma \epi q_*(\sigma) \to \nu_p$ is represented by $q$. % above satisfies $(q_s)_{s:\sigma} = \phi^*(y)_{y:\nu_p}$.
 
-Finally, we describe $\nu_p$ explicitly.
+Finally, we describe $\nu_p$ explicitly as the filter of neighborhoods of $p$.
     \begin{itemize}
         \item Let $U \subseteq Y$ be an open neighborhood of $p$. Then, since $p \vuleq{\nu_p} y$ by property (i), by openness it follows that $(y)_{y:\nu_p} \in U^{\nu_p}$, i.e.\ $U \in \nu_p$.
         \item Conversely, let $V \in \nu_p$, which equivalently means that $(y)_{y:\nu_p} \in V^{\nu_p}$. Note that, by property (ii), $p \vuleq{\delta_p} p$ entails that the identity function realizes an $\FF$-arrow $\delta_p \to \nu_p$; thus, it induces a function $V^{\nu_p} \to V^{\delta_p}$. Since $(y)_{y:\nu_p} \in V^{\nu_p}$, it follows that $(y)_{y:\delta_p} \in V^{\delta_p}$, which is equivalent to $p \in V$.
         
         Consider then the set:
         \[ U \coloneqq \set{ q \in V | V \in \nu_q } \subseteq V\]
-        By the above, $p \in U$; we now show that $U$ is open in $Y$. Suppose that $q \vuleq{\sigma} r_s$ in $Y$ with $q \in U$: we need to show that $(r_s)_{s:\sigma} \in U^\sigma$. By construction we know that 
+        By the above, $p \in U$; we now show that $U$ is open as a subspace of $Y$. Suppose that $q \vuleq{\sigma} r_s$ in $Y$ with $q \in U$: we need to show that $(r_s)_{s:\sigma} \in U^\sigma$, which explicitly means that $\set{ s | r_s \in U}\in \sigma$. Taking composites, we have 
+        \[ q \vuleq{\sigma} (r_s \vuleq{\nu_{r_s}} y ), \mbox{ that is, }q \vuleq{\sum_{s:\sigma}\nu_{r_s}} y,\]
+        where now $y$ also denotes the projection $\sum_{s:\sigma}\nu_{r_s} \to Y_0$.  By property (ii) we then know that $y$ also defines an $\FF$-arrow $\sum_{s:\sigma}\nu_{r_s} \to \nu_q$; since $q \in U$, which by construction means that $V \in \nu_q$ i.e.\ $(y)_{y:\nu_q} \in V^{\nu_q}$, applying the induced function $V^{\nu_q} \to V^{\sum_{s:\sigma} \nu_{r_s}}$ we conclude that 
+        \[\set{ s | (y)_{y:\nu_{r_s}} \in V^{\nu_{r_s}} }  = \set{ s | V \in \nu_{r_s}} = \set{ s | r_s \in U}\in \sigma.\]
     \end{itemize}  
 \end{proof}
-\end{lem}
+\end{prop}
 
 
 \begin{prop}\label{prop:taut-vf-posets-come-from-spaces}
@@ -301,21 +306,15 @@ Finally, we describe $\nu_p$ explicitly.
         \item $p \vuleq{\sigma} q_s$ in $\Tinj( \Open  Y)$, i.e.\ for every open neighbourhood $U \subseteq Y$ of $p$ it holds that $(q_s)_{s:\sigma} \in U_0^\sigma$.
     \end{enumerate}
 \begin{proof}
-    Clearly $(i)\Rightarrow(ii)$ by definition of open subspace, so suppose $(ii)$. We will construct a filter $\tau$ and a cover $\phi \colon \tau \epi \sigma$ such that $p \vuleq{\tau} q_{\phi t}$ in $Y$: in that case, since $\phi$-reducibility trivializes for vf-posets, by tautness we will conclude that $p \vuleq{\sigma} q_s$ in $Y$.
-
-    \todo{} 
+    Clearly $(i)\Rightarrow(ii)$ by definition of open subspace, so suppose $(ii)$. By \Cref{prop:canonical-convergence-neighborhoods} we know that $q$ realizes an $\FF$-arrow $\sigma \to \nu_p$ where $\nu_p$ is the filter of neighborhoods of $p$ in $\Tinj(\Open Y)$. Call $\nu_p'$ the filter of neighborhoods of $p$ in $Y$: if we show that the identity map realizes an $\FF$-arrow $\nu_p \to \nu_p'$, i.e.\ that $\nu_p' \subseteq \nu_p$, then by \Cref{prop:canonical-convergence-neighborhoods} we can conclude that $p \vuleq{\sigma} q_s$ in $Y$. In turn, $\nu_p' \subseteq \nu_p$ follows since  open subspaces of $Y$ are open in $\Open Y$ by definition, and the opens of any topological space $X$ are open as subspaces of $\Tinj (X)$.
 \end{proof}
 \end{prop}
-
-
-
-
 
 \begin{cor}
     $\TopSp \simeq \vfPostaut$.
 \end{cor}
 
-Crucially, topological reflections of small vf-categories are taut \UT{check}: combining the previous result, we thus obtain the following characterization.
+Crucially, topological reflections of small vf-categories are taut \UT{check}: combining this with the previous result, we thus obtain the following characterization.
 
 \begin{cor}\label{prop:convergence-in-topological-reflection-is-witnessed}
     Let $\X$ be a small vf-category. For every $p\in \X_0$ and $(q_s)_{s:\sigma} \in \X^\sigma_0$, the following are equivalent:
@@ -326,12 +325,12 @@ Crucially, topological reflections of small vf-categories are taut \UT{check}: c
 \end{cor}
 
 
-\begin{cor}\label{cor:canonical-convergence-neighborhoods}
-Let $\X$ be a small vf-category and let $p \in \X_0$. Let $\nu_p$ be the filter on $\X_0$ defined by the open neighborhoods of $p$. Then, $p \vuleq{x:\nu_p}x$ in $\Tref(\X)$. 
-\begin{proof}
-    By \Cref{prop:convergence-in-topological-reflection-is-witnessed}, it suffices to see that every open neighborhood $\Y$ of $p$ in $\X$ satisfies $(x)_{x:\nu_p} \in \Y_0^{\nu_p}$, which is trivial since $\Y_0$ lies in $\nu_p$.
-\end{proof}
-\end{cor}
+% \begin{cor}
+% Let $\X$ be a small vf-category and let $p \in \X_0$. Let $\nu_p$ be the filter on $\X_0$ defined by the open neighborhoods of $p$. Then, $p \vuleq{x:\nu_p}x$ in $\Tref(\X)$. 
+% \begin{proof}
+%     By \Cref{prop:convergence-in-topological-reflection-is-witnessed}, it suffices to see that every open neighborhood $\Y$ of $p$ in $\X$ satisfies $(x)_{x:\nu_p} \in \Y_0^{\nu_p}$, which is trivial since $\Y_0$ lies in $\nu_p$.
+% \end{proof}
+% \end{cor}
 
 
 
@@ -559,12 +558,10 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{SUJ}. Introducing 
 
     $(ii)\Rightarrow(iii)$. Let $v \colon a \vuto{\tau} b_{\phi t}$ be a vf-arrow in $\A$, for some cover $\phi \colon \tau \epi \sigma$, witnessing $a \vuleq{\sigma} b_s$; clearly, setting $q_t \coloneqq \pi(b_{\phi t})$, we have that $v$ is the unique lift of the vf-arrow $\pi(v) \colon p \vuto{\tau} q_t$. By hypothesis, this means that $(b\phi)_*(\tau) \cong q_*(\tau)$, and $(b\phi)_*(\tau) \cong b_*(\sigma)$ since $\phi$ is an epimorphism; the restriction of $\pi$ to (the carrier set of) $b_*(\sigma)$ is thus identifiable with the inclusion $r \colon q_*(\tau) \rightarrowtail \X_0$, and hence it is injective.
 
-    $(iii) \Rightarrow(iv)$. Let $\nu_a$ be the filter on $\A_0$ defined by the open neighborhoods of $a$ in $\A$ and let $b \colon \nu_a \to \A_0$ be represented by the identity map. By \Cref{cor:canonical-convergence-neighborhoods}, we know that $a \vuleq{s:\nu_a} b_s$ in $\Tref(\A)$, so that by hypothesis $\pi$ is injective on a $\nu_a$-large subset of $\A_0$, i.e.\ on an open neighborhood of $a$ in $\A$.
+    $(iii) \Rightarrow(iv)$. Let $\nu_a$ be the filter on $\A_0$ defined by the neighborhoods of $a$ in $\A$ and let $b \colon \nu_a \to \A_0$ be represented by the identity map. By \Cref{prop:canonical-convergence-neighborhoods}, we know that $a \vuleq{s:\nu_a} b_s$ in $\Tref(\A)$, so that by hypothesis $\pi$ is injective on a $\nu_a$-large subset of $\A_0$, i.e.\ on an open neighborhood of $a$ in $\A$.
 
     $(iv)\Rightarrow(i)$. Consider the two lifts $\bar u \colon a \vuto{\sigma} b_s$ and $\bar{u}' \colon a \vuto{\sigma} b_s'$ of $u$ and $u'$ to $\A$. Since $V$ is an open neighborhood of $a$, we know that $(b_s)_{s:\sigma}, (b_s')_{s:\sigma} \in V^\sigma$. Therefore, since $\pi$ is injective on $V$ and $(\pi(b_s))_{s:\sigma} = (\pi(b'_s))_{s:\sigma} = (q_s)_{s:\sigma}$, it follows that $(b_s)_{s:\sigma}= (b_s')_{s:\sigma}$.
 \end{proof}
-
-\UT{right now, the above prop uses \Cref{cor:canonical-convergence-neighborhoods}, which a priori might not be constructive}
 
 
 \subsection{Sub-hyperconnectedness}
@@ -584,6 +581,40 @@ In this section, we prove the following.
 
 \newpage
 \appendix
+
+
+
+
+        
+%         \item for each $p\in X_0$ and each $(q_s)_{s:\sigma}\in {\X_0}^{\sigma}$ for some filter $\sigma\in\FF$, a functor:
+%         \[\X_{p,(q_s)} \colon (\FF/\sigma)^{\op} \to \Set \qquad  (\phi \colon \tau\to\sigma) \mapsto \X(p,(q_{\phi t})_{t:\tau}) \]
+%         % \begin{align*}
+%         %     H_{p,(q_s)} : (\FF/\sigma)^{\op} & \to \Set \\
+%         %     (\tau\stackrel{\phi}\to\sigma) & \mapsto \X(p,(q_{\phi t})_{t:\tau})
+%         % \end{align*}
+%         where elements of $\X(p, (q_{\phi t})_{t:\tau})$ are called \emph{vf-arrows} and denoted by
+%         $r \colon p \vuto{t:\tau} q_{\phi t}$ or simply $r \colon p \vuto{\tau} q_{\phi t}$;
+    
+%         \item for each $p$, $(q_s)_{s:\sigma}$, $(r_{s,t})_{(s,t) : \sum_{s:\sigma}\tau_s}$, a \emph{unit} and a \emph{composition}:
+% \[\begin{tikzcd}
+% 	1 & {1} \\
+% 	\FF^{\op} & \Set
+% 	\arrow[""{name=0, anchor=center, inner sep=0}, from=1-1, to=1-2]
+% 	\arrow["\ptuf"', from=1-1, to=2-1]
+% 	\arrow["1",  from=1-2, to=2-2]
+% 	\arrow[""{name=1, anchor=center, inner sep=0}, "{H_{p,(p)}}"', from=2-1, to=2-2]
+% 	\arrow[Rightarrow, from=0, to=1, between={0.3}{0.7}]
+% \end{tikzcd}
+% \begin{tikzcd}[column sep = 100pt]
+% 	({\FF/\sigma \times \int_{s:\sigma}(\FF/\tau_s)})^{\op} & {\Set\times\Set} \\
+% 	({\FF/\sum_{s:\sigma}\tau_s})^{\op} & \Set
+% 	\arrow[""{name=0, anchor=center, inner sep=0}, "{\X_{p,(q_{- \ell})}\times\int_{s:\sigma}\X_{q_s,(r_{s,-k})}}", from=1-1, to=1-2]
+% 	\arrow["\sum"', from=1-1, to=2-1]
+% 	\arrow["\times", from=1-2, to=2-2]
+% 	\arrow[""{name=1, anchor=center, inner sep=0}, "{H_{p,-}}"', from=2-1, to=2-2]
+% 	\arrow[Rightarrow, from=0, to=1, between={0.3}{0.7}]
+% \end{tikzcd}\]
+
 \section{points of the localic reflection (5.3 of SUJ)}
 
 We denote by $\Lref \colon \Topos\to\Loc$ the usual localic reflection, i.e.\ $\Lref(\E)\coloneqq \Sub_{\E}(1)$.
