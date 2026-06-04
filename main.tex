@@ -46,32 +46,42 @@ Paris, France\newline
 \todo{define the relative filter monad $\mathcal F \colon \Set \to \Pos$ and say that the notation $\phi_*(\tau)$ means $\mathcal F (\phi)(\tau)$. }
 
 \begin{defn}
-    The \emph{category of filters} $\FF$ is defined as follows:
+    The \emph{category of filters} $\FF$, introduced in \cite{koubekCategoryFilters1970}, is defined as follows:
     \begin{itemize}
-        \item as objects, we let pairs $(S, \sigma)$ of a set $S$ and a filter $\sigma$ on $S$;
-        \item as morphisms $(T, \tau) \to (S, \sigma)$, we let equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, i.e.\ $\sigma \subseteq \phi_*(\tau)$, identified up to equality on a $\tau$-large subset.
+        \item objects of $\FF$ are pairs $(S, \sigma)$ of a set $S$ and a filter $\sigma$ on $S$;
+        \item $\FF$-arrows $(T, \tau) \to (S, \sigma)$ are equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, i.e.\ $\sigma \subseteq \phi_*(\tau)$, identified up to equality on a $\tau$-large subset.
     \end{itemize}
-    For ease of notation, we will often omit the set underlying a filter.
+    For ease of notation, we will often omit the carrier set of a filter, and we will not distinguish between a function and the morphism it defines up to equivalence.
 \end{defn}
 
-Recall that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is monic if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is epic if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
+Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is a monomorphism if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is an epimorphism if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
 
-\begin{lem}
-    Every epi in $\FF$ is regular.
+\begin{lem}\label{lem:epis-are-regular}
+    Every epimorphism in $\FF$ is regular.
 \begin{proof}
-    Consider an epimorphism $\phi \colon \tau \epi \sigma$, i.e.\ such that $\sigma = \phi_*(\tau)$. We need to show that $\phi$ is the coequalizer of its kernel pair $\psi_1,\psi_2 \colon \epsilon \rightrightarrows \tau$, so let $\chi \colon \tau \to \sigma'$ be another $\FF$-arrow such that $\chi \circ \psi_1 = \chi \circ \psi_2$. We define an $\FF$-arrow $\omega \colon \phi_*(\tau) \to \sigma'$ as follows. For $\phi_*(\tau)$-almost-all $s\in S$ we know that $s = \phi(t)$ for some $t \in T$; thus, we set $\omega(s) = \chi(t)$. If $s = \phi(t')$ for some other $t' \in T$, then the pair $(t,t')$ lies in the carrier set of $\epsilon$, so that $\chi(t) = \chi \psi_1(t,t') = \chi \psi_2(t,t') = \chi(t')$. Moreover, $\sigma' \subseteq \omega_*(\phi_*(\tau))$: indeed, $\omega \circ \phi = \chi$, so that this reduces to $\sigma ' \subseteq \chi_* (\tau)$, which is true since $\chi$ is an $\FF$-arrow. Thus, $\omega$ is well-defined, and it is evidently the unique $\FF$-arrow such that $\omega \circ \phi = \chi$. 
+    Consider an epimorphism $\phi \colon \tau \epi \sigma$, i.e.\ such that $\sigma = \phi_*(\tau)$. We need to show that $\phi$ is the coequalizer of its kernel pair $\psi_1,\psi_2 \colon \epsilon \rightrightarrows \tau$, so let $\chi \colon \tau \to \sigma'$ be another $\FF$-arrow such that $\chi \circ \psi_1 = \chi \circ \psi_2$. 
+    We define an $\FF$-arrow $\omega \colon \phi_*(\tau) \to \sigma'$ as follows. 
+    \[\begin{tikzcd}[row sep = 20pt]
+	\epsilon & \tau & {\phi_*(\tau)} \\
+	&& {\sigma'}
+	\arrow["{\psi_1}", shift left, from=1-1, to=1-2]
+	\arrow["{\psi_2}"', shift right, from=1-1, to=1-2]
+	\arrow["\phi", two heads, from=1-2, to=1-3]
+	\arrow["\chi"', from=1-2, to=2-3]
+	\arrow["\omega", dashed, from=1-3, to=2-3]
+    \end{tikzcd}\]
+    For $\phi_*(\tau)$-almost-all $s\in S$ we know that $s = \phi(t)$ for some $t \in T$; thus, we set $\omega(s) = \chi(t)$. If $s = \phi(t')$ for some other $t' \in T$, then the pair $(t,t')$ lies in the carrier set of $\epsilon$, so that $\chi(t) = \chi \psi_1(t,t') = \chi \psi_2(t,t') = \chi(t')$. Moreover, $\sigma' \subseteq \omega_*(\phi_*(\tau))$: indeed, $\omega \circ \phi = \chi$ as functions, so that this reduces to $\sigma ' \subseteq \chi_* (\tau)$, which is true since $\chi$ is an $\FF$-arrow. Thus, $\omega$ is well-defined, and it is evidently the unique $\FF$-arrow such that $\omega \circ \phi = \chi$. 
 \end{proof}
 \end{lem}
 
 We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$, generalizing ultrapowers to filters. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine the \emph{reduced power} functor:
 \[ X^{-}\colon \FF^{\op} \to \Set.\]
 
-\begin{prop}\label{prop:F-is-geometric}
-    $\FF$ is a \emph{geometric} category, i.e.\ a regular category in which subobject posets have all small unions which are moreover stable under pullback, and it is \emph{extensive}.
-    
-    In particular, the same holds for the slice $\FF/\sigma$ for each $\sigma \in \FF$.
-\begin{proof}
-    By \cite{blassTwoClosedCategories1977} we know that $\FF$ is finitely complete and it admits (small) coproducts. The image factorization of an arrow $\phi \colon \tau \to \sigma$ is given by $\tau \epi \phi_*(\tau) \mono \sigma$, where the first map acts as $\phi$ and the second one acts as the identity. \UT{check that the first one is a regular epi} The union of subobjects $\set{ \sigma_i \mono \sigma}_{i\in I}$ is computed by taking the image factorization of the universal arrow $\coprod_i \sigma_i \to \sigma$. The pullback of two distinct coproduct injections is a filter on $\emptyset$, hence it is the initial object $0$.
+\begin{prop}\label{prop:F-is-regular-extensive}
+    $\FF$ is regular and \emph{infinitary-extensive}, i.e.\ it admits small coproducts which are disjoint and pullback-stable. In particular, the same holds for each slice $\FF/\sigma$.
+\begin{proof}[Proof (sketch).]
+    \looseness=-1
+    By \cite[Thm.\ 9]{blassTwoClosedCategories1977} we know that $\FF$ is finitely complete and it admits small coproducts. The image factorization of an arrow $\phi \colon \tau \to \sigma$ is given by $\tau \epi \phi_*(\tau) \mono \sigma$, where the first map acts as $\phi$ and the second one acts as the identity. The union of subobjects $\set{ \sigma_i \mono \sigma}_{i\in I}$ is computed by taking the image factorization of the universal arrow $\coprod_i \sigma_i \to \sigma$. The pullback of two distinct coproduct injections is a filter on $\emptyset$, hence it is the initial object $0$ of $\FF$.
 \end{proof}
 \end{prop}
 
@@ -317,7 +327,8 @@ Finally, we describe $\nu_p$ explicitly as the filter of neighborhoods of $p$.
         \item $p \vuleq{\sigma} q_s$ in $\Tinj( \Open  Y)$, i.e.\ for every open neighborhood $U \subseteq Y$ of $p$ it holds that $(q_s)_{s:\sigma} \in U_0^\sigma$.
     \end{enumerate}
 \begin{proof}
-    Clearly $(i)\Rightarrow(ii)$ by definition of open subspace, so suppose $(ii)$. By \Cref{prop:canonical-convergence-neighborhoods} we know that $q$ realizes an $\FF$-arrow $\sigma \to \nu_p$ where $\nu_p$ is the filter of neighborhoods of $p$ in $\Tinj(\Open Y)$. Call $\nu_p'$ the filter of neighborhoods of $p$ in $Y$: if we show that the identity map realizes an $\FF$-arrow $\nu_p \to \nu_p'$, i.e.\ that $\nu_p' \subseteq \nu_p$, then by \Cref{prop:canonical-convergence-neighborhoods} we can conclude that $p \vuleq{\sigma} q_s$ in $Y$. In turn, $\nu_p' \subseteq \nu_p$ follows since  open subspaces of $Y$ are open in $\Open Y$ by definition, and the opens of any topological space $X$ are open as subspaces of $\Tinj (X)$.
+    \looseness=-1
+    Clearly $(i)\Rightarrow(ii)$ by definition of openness, so suppose $(ii)$. By \Cref{prop:canonical-convergence-neighborhoods} we know that $q$ realizes an $\FF$-arrow $\sigma \to \nu_p$ where $\nu_p$ is the filter of neighborhoods of $p$ in $\Tinj(\Open Y)$. Let $\nu_p'$ be the filter of neighborhoods of $p$ in $Y$: if we show that the identity map realizes an $\FF$-arrow $\nu_p \to \nu_p'$, i.e.\ that $\nu_p' \subseteq \nu_p$, then by \Cref{prop:canonical-convergence-neighborhoods} we can conclude that $p \vuleq{\sigma} q_s$ in $Y$. In turn, $\nu_p' \subseteq \nu_p$ follows since  open subspaces of $Y$ are open in $\Open Y$ by definition, and the opens of any topological space $X$ are open as subspaces of $\Tinj (X)$.
 \end{proof}
 \end{prop}
 
@@ -347,18 +358,78 @@ Crucially, topological reflections of small vf-categories are taut \UT{check}: c
 
 
 
-\subsection{Equivalent notions of tautness}
+\subsection{Tautness as a sheaf condition}In this section, we see how tautness can be rephrased as an appropriate sheaf condition.
 
-We can now give two equivalent characterizations of tautness.
-
-First, recall from \cite{awodeyUltrasheavesDoubleNegation2004} that we can consider a Grothendieck topology $J_\infty$ on the category $\FF$ of filters, where coverings of $\sigma \in \FF$ are generated by (possibly infinite) jointly-\UT{regular?-}epimorphic families, i.e.\ families $\set{ \gamma_i \colon \sigma_i \to \sigma }_{i\in I}$ such that $\bigcup_{i\in I} \gamma_i(S_i) \in \sigma$ for any $\set{ S_i \in \sigma_i }_{i\in I}$. We also denote by $J_{\infty}$ the topology induced on each slice category of $\FF$, i.e.\ where a covering of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ is a covering of $\tau$ in $\FF$ seen as a collection of morphisms to $\phi$ in $\FF/\sigma$. % both topologies are subcanonical 
+Recall that by \Cref{prop:F-is-regular-extensive} we can consider the \emph{geometric coverage} on the category $\FF$ of filters, that is, the Grothendieck topology $J_\infty$ whose coverings of $\sigma \in \FF$ are generated by (possibly infinite) jointly-epimorphic families, i.e.\ families $\set{ \gamma_i \colon \sigma_i \to \sigma }_{i\in I}$ such that $\bigcup_{i\in I} \gamma_i(S_i) \in \sigma$ for any $\set{ S_i \in \sigma_i }_{i\in I}$. We also denote by $J_{\infty}$ the topology induced on each slice category of $\FF$, i.e.\ where a covering of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ is a covering of $\tau$ in $\FF$ seen as a collection of morphisms to $\phi$ in $\FF/\sigma$. % both topologies are subcanonical 
 
 \begin{rmk}\label{rem:sheaf-condition}
-    Note that, for a cover $\phi \colon \tau\epi \sigma$, a vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in a vf-category $\X$ is $\phi$-reducible if and only if it determines a a \emph{compatible family} for the functor $\X_{p, (q_s)} \colon (\FF/\sigma)^{\op}\to\Set$ with respect to the topology $J_\infty$ on $\FF/\sigma$. In this sense, a vf-arrow $u_0 \colon p \vuto{\sigma} q_{s}$ such that $u = \phi^* u_0$ is then an \emph{amalgamation} of the family.
+    Note that, for a cover $\phi \colon \tau\epi \sigma$, a vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in a vf-category $\X$ is $\phi$-reducible if and only if it determines a a \emph{compatible family} for the functor $\X_{p, (q_s)} \colon (\FF/\sigma)^{\op}\to\Set$ with respect to the geometric coverage on $\FF/\sigma$. In this sense, a vf-arrow $u_0 \colon p \vuto{\sigma} q_{s}$ such that $u = \phi^* u_0$ is then an \emph{amalgamation} of the family.
 \end{rmk}
 
+Based on the previous remark, we now see how tautness can be rephrased in terms of sheaf conditions. The proof of this fact will exploit the following observation: on any regular infinitary-extensive category, the geometric coverage is the coarsest common refinement of the \emph{regular} topology and the \emph{infinitary-extensive} topology. This means that we can rephrase the sheaf condition with respect to $J_\infty$ as the combination of two simpler conditions. \addref 
+
+\begin{prop}\label{prop:sheaves-on-regular-extensive}
+    For a regular infinitary-extensive category $\mathcal C$, a presheaf $F \colon \mathcal C^{\op} \to \Set$ is a sheaf for the geometric coverage if and only if:
+    \begin{enumerate}
+        \item $F$ maps small coproducts in $\mathcal C$ to products in $\Set$;
+        \item for every effective epimorphism $f \colon d\to c$ in $\mathcal C$, the diagram 
+        \[\begin{tikzcd}
+            {F(c)} & {F(d)} & {F(d\times_c d)}
+            \arrow["{F(f)}", from=1-1, to=1-2]
+            \arrow["{F(\pi_1)}", shift left, from=1-2, to=1-3]
+            \arrow["{F(\pi_2)}"', shift right, from=1-2, to=1-3]
+        \end{tikzcd}\] 
+        is an equalizer in $\Set$, where $\pi_1,\pi_2 \colon d\times_c d \rightrightarrows d$ is the kernel pair of $f$.
+    \end{enumerate}
+\end{prop}
+
+\begin{cor}\label{cor:reduced-products-are-sheaves}
+    For any set $X$, the functor $X^{-}\colon \FF^{\op} \to \Set$ is a $J_\infty$-sheaf.
+\begin{proof}
+    By construction, the functor $X^{-}$ is isomorphic the representable presheaf $\FF(-, \delta_X)$, so it maps (small) coproducts and coequalizers in $\mathcal C$ to products and equalizers in $\Set$, respectively. The claim then follows recalling that by \Cref{lem:epis-are-regular} all epimorphisms in $\FF$ are regular, and hence effective. 
+\end{proof}
+\end{cor}
 
 
+
+
+\begin{Thm}
+        Let $\X$ be a vf-category. The following are equivalent:
+    \begin{enumerate}
+        \item $\X$ is taut;
+        \item for any $p \in \X_0$ and any $(q_s)_{s:\sigma} \in \X_0^\sigma$, the functor $\X_{p, (q_s)} \colon (\FF/\sigma)^{\op}\to\Set$ mapping $(\phi \colon \tau\to\sigma) \mapsto \X(p,(q_{\phi t})_{t:\tau})$ 
+    is a $J_{\infty}$-sheaf on $\FF/\sigma$.
+    \end{enumerate}
+\begin{proof}
+    $(i)\Rightarrow (ii)$. By \Cref{prop:sheaves-on-regular-extensive}, we need to show that the functor $\X_{p, (q_s)}$ maps (small) coproducts and effective coequalizers in $\FF/\sigma$ to products and equalizers in $\Set$, respectively.
+
+    First, consider the coproduct of a family $\set{ \phi_i \colon \tau_i \to \sigma}_{i\in I}$ in $\FF/\sigma$, which we can describe as the coproduct map $\phi \colon \coprod_{i\in I} \tau_i \to \sigma$. Applying $\X_{p, (q_s)}$, we obtain the set $\X(p, (q_{\phi t})_{t:\coprod_i \tau_i})$, which is in bijection with the product $\prod_{i\in I} \X(p, (q_t)_{t:\tau_i})$ by \Cref{def:taut}(ii).
+
+    Then, for $\phi \colon \tau \to \sigma$, consider an $\FF$-arrow $\psi \colon \tau' \to \tau$ regarded as an arrow $\psi \colon \phi\psi \to \phi$ in $\FF/\sigma$ and suppose it is an epimorphism (in $\FF/\sigma$, and hence in $\FF$). Its kernel pair in $\FF/\sigma$ is given by its kernel pair in $\FF$, together with the evident map $\chi \colon \tau'\times_\tau \tau' \to\sigma$:
+    \[\begin{tikzcd}
+	{\tau'\times_\tau \tau'} & {\tau'} & \tau \\
+	& \sigma
+	\arrow["{\pi_1}", shift left, from=1-1, to=1-2]
+	\arrow["{\pi_2}"', shift right, from=1-1, to=1-2]
+	\arrow["\chi"', curve={height=10pt}, from=1-1, to=2-2]
+	\arrow["\psi", two heads, from=1-2, to=1-3]
+	\arrow["{\phi\psi}", from=1-2, to=2-2]
+	\arrow["\phi", curve={height=-10pt}, from=1-3, to=2-2]
+    \end{tikzcd}\]
+    Consider then the diagram in $\Set$ obtained by applying $\X_{p, (q_s)}$:
+    \[\begin{tikzcd}
+        {\X(p, (q_{\phi t})_{t:\tau})} & {\X(p, (q_{\phi \psi t})_{t:\tau'})} & {\X(p, (q_{\chi t})_{t:\tau'\times_\tau \tau'})}
+        \arrow["{\psi^*}", from=1-1, to=1-2]
+        \arrow["{\pi_1^*}", shift left, from=1-2, to=1-3]
+        \arrow["{\pi_2^*}"', shift right, from=1-2, to=1-3]
+    \end{tikzcd}\]
+    To show that this diagram is an equalizer, let $u \colon p \vuto{\tau'} q_{\phi\psi t}$ be a vf-arrow in $\X$ such that $\pi_1^* u = \pi_2^* u$. Note that $u$ is $\psi$-reducible: if $\psi_1,\psi_2$ are such that $\psi \circ \psi_1 = \psi\circ \psi_2$, then $\psi_1,\psi_2$ factor through the kernel pair $\tau'\times_\tau \tau'$, and hence $\psi_1^* u = \psi_2^* u$. Thus, by \Cref{def:taut}(i), there exists a unique $u_0 \colon p \vuto{\tau} q_{\phi t}$ such that $u = \psi^* u_0$, which concludes the proof.
+
+    $(ii)\Rightarrow(i)$. Axiom (i) of \Cref{def:taut} follows by \Cref{rem:sheaf-condition}, while axiom (ii) follows by \Cref{prop:sheaves-on-regular-extensive}(ii). 
+\end{proof}
+\end{Thm}
+
+\begin{comment}
 \begin{Thm}
     Let $\X$ be a vf-category. The following are equivalent:
     \begin{enumerate}
@@ -378,7 +449,8 @@ First, recall from \cite{awodeyUltrasheavesDoubleNegation2004} that we can consi
 \begin{proof}
     $(i)\Rightarrow (iii)$. Consider a (generating) $J_\infty$-covering family $\set{\gamma_i \colon \tau_i \to \tau}_{i\in I}$ of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ and a compatible family $\set{ u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}}_{i\in I}$ in $\X_{p, (q_s)}$. We need to find a unique $u_0 \colon p \vuto\tau q_{\phi t}$ such that $u_i = \gamma_i^* u_0$ for each $i\in I$. 
 
-    Consider the coproduct map $\gamma \colon \coprod_i \tau_i \epi \tau$ and denote by $\iota_i \colon \tau_i \to \coprod_i \tau_i$ the coproduct injection at each $i\in I$. By tautness, the family $\set{ u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}}_{i\in I}$ uniquely detects a vf-arrow $u \colon p \vuto{\coprod_i \tau_i} q_{\phi \gamma t}$ such that $u_i = \iota_i^* u$ for each $i\in I$. Note now that $u$ is $\gamma$-reducible, \UT{why?}. Therefore, again by tautness it follows that there exists a unique vf-arrow $u_0 \colon p \vuto\tau q_{\phi t}$ such that $u = \gamma^* u_0$; this vf-arrow then clearly satisfies $u_i = \gamma_i^* u_0$ for each $i\in I$. To show uniqueness, suppose that $v_0$ is another vf-arrow satisfying $u_i = \gamma_i^* v_0$ for each $i\in I$; then, $\iota_i^* u = u_i =\gamma_i^* v_0$ for each $i\in I$, so that necessarily $\gamma^* v_0= u$ by the uniqueness property of $u$ and hence $v_0 = u_0$ by the uniqueness property of $u_0$.
+    Consider the coproduct map $\gamma \colon \coprod_i \tau_i \epi \tau$ and denote by $\iota_i \colon \tau_i \to \coprod_i \tau_i$ the coproduct injection at each $i\in I$. By tautness, the family $\set{ u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}}_{i\in I}$ uniquely detects a vf-arrow $u \colon p \vuto{\coprod_i \tau_i} q_{\phi \gamma t}$ such that $u_i = \iota_i^* u$ for each $i\in I$. Note now that $u$ is $\gamma$-reducible: 
+    \UT{why?}. Therefore, again by tautness it follows that there exists a unique vf-arrow $u_0 \colon p \vuto\tau q_{\phi t}$ such that $u = \gamma^* u_0$; this vf-arrow then clearly satisfies $u_i = \gamma_i^* u_0$ for each $i\in I$. To show uniqueness, suppose that $v_0$ is another vf-arrow satisfying $u_i = \gamma_i^* v_0$ for each $i\in I$; then, $\iota_i^* u = u_i =\gamma_i^* v_0$ for each $i\in I$, so that necessarily $\gamma^* v_0= u$ by the uniqueness property of $u$ and hence $v_0 = u_0$ by the uniqueness property of $u_0$.
 
 
     % Note that each $u_i \colon p \vuto{\tau_i} q_{ \phi \gamma_i t}$ is unthickenable. Indeed, if $\psi_1,\psi_2$ in $\FF$ are such that $\phi \circ \psi_1 = \phi \circ \psi_2$, then
@@ -411,10 +483,14 @@ First, recall from \cite{awodeyUltrasheavesDoubleNegation2004} that we can consi
     $(ii)\Rightarrow(i)$. First, for a cover $\phi \colon\tau \epi \sigma$, let $u \colon p \vuto{\tau} q_{\phi t}$ be a $\phi$-reducible vf-arrow in $\X$. Let $\Y$ be the subspace of $\X$ defined by \todo{}
 
 \end{proof}
+\end{comment}
 
 \begin{rmk}
-  The Grothendieck topology $J_\infty$ restricts to the atomic topology on $\UF$. \note{we expect that vu-categories and vf-categories are equivalent notions (see Vu-vF appendix)} 
+    The topology $J_\infty$ on $\FF$ is also considered in \cite{awodeyUltrasheavesDoubleNegation2004}, where it is shown to restrict to the \emph{atomic topology} $J_{at}$ on $\UF \subseteq \FF$ --- that is, the topology whose covering sieves are the inhabited ones. With respect to these topologies, one has that $\Sh(\FF , J_\infty) \simeq \Sh(\UF, J_{at})$: this observation will be the starting point of \Cref{sec:equivalence-under-tautness}.
 \end{rmk}
+
+
+
 
 \subsection{Fully-faithfulness}
 
@@ -432,7 +508,7 @@ First, recall from \cite{awodeyUltrasheavesDoubleNegation2004} that we can consi
 \gabrielnote{Maybe fist define vf-full, then the factorization vf-full surj-on-ob / ff, then define the topological reflection from the factorization of the morphism into the terminal.}
 
 \begin{rmk}
-    Taking coproducts in $\FF$, the previous definition can be reduced to the case $I = 1$; moreover, by \Cref{lem:magic-choice-lemma} we can assume $\phi = \pi_2 : \lambda\cdot\sigma\to\sigma$, \ie there exists an arrow $g : p \vuto{\lambda\cdot\sigma}((q_s)_{s:\sigma})_{\ell:\lambda}$, with $\lambda$ inhabited, such that $F(g) = \pi_2^*(f)$. \gabrielnote{a filter $\sigma$ is inhabited if $\sigma\to\ptuf$ is a covering, classically it means that it is not the initial filter} \UT{a priori \Cref{lem:magic-choice-lemma} uses classical logic so maybe we avoid it if possible/if we can't make it constructive}
+    Taking coproducts in $\FF$, the previous definition can be reduced to the case $I = 1$. {\color{darkred} moreover, by \Cref{lem:magic-choice-lemma} we can assume $\phi = \pi_2 : \lambda\cdot\sigma\to\sigma$, \ie there exists an arrow $g : p \vuto{\lambda\cdot\sigma}((q_s)_{s:\sigma})_{\ell:\lambda}$, with $\lambda$ inhabited, such that $F(g) = \pi_2^*(f)$. } \gabrielnote{a filter $\sigma$ is inhabited if $\sigma\to\ptuf$ is a covering, classically it means that it is not the initial filter} \UT{a priori \Cref{lem:magic-choice-lemma} uses classical logic so maybe we avoid it if possible/if we can't make it constructive}
 \end{rmk}
 
 \begin{lem}
@@ -517,14 +593,12 @@ Thus, we will now study study how properties of $F$ induce properties on $f^*$, 
 
 \UT{do we need to assume that $\Sh(\X)$ is a topos, or does infinitary-pretopos suffice? in principle we should have the latter with no problems}\gabrielnote{I hope we will only need infinitary-pretopos, i guess one can show the accessibility directely, but in our proofs it is deduced from the reconstruction theorem}
 
-\UT{i assume the next theorems will assume tautness of $\X$, or at least make use of tautness of $\pt(\E)$?}\gabrielnote{I am actually not sure about how much tautness is used in these theorem, we need to check carefully.}
-
 
 \subsection{Localicness}
 In this section, we prove the following.
 
 \begin{Thm}[Localicness]\label{thm:localicness}
-    If $F \colon \X\to\pt(\E)$ is vf-faithful, then any vf-sheaf on $\X$ is a subquotient of a vf-sheaf in the image of $f^* \colon \E\to\Sh(\X)$.
+    Let $\X$ be a small taut vf-category and let $F \colon \X\to\pt(\E)$ be a vf-functor. If $F$ is vf-faithful, then any vf-sheaf on $\X$ is a subquotient of a vf-sheaf in the image of $f^* \colon \E\to\Sh(\X)$.
 \end{Thm}
 
 \todo{introduce étale spaces}
@@ -563,7 +637,7 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 \begin{proof}
     $(i)\Rightarrow(ii)$. First, let $\lambda \coloneqq  q_* (\sigma)$ and denote by $\phi \colon \sigma \twoheadrightarrow \lambda$ be the corestriction of $q \colon \sigma \to \X_0$ to its image. Denoting by $r \colon \lambda \rightarrowtail \X_0$ the inclusion, by construction we have that $(q_s)_{s:\sigma} = \phi^* (r_l)_{l:\lambda}$.
     
-    As it is epic by construction, the map $\phi \colon \sigma \twoheadrightarrow \lambda$ is a cover for the topology $J_\infty$ on $\FF$, and by \addref the functor $\A_0^{-}\colon \FF^{\op}\to\Set$ is a $J_\infty$-sheaf. Note then that the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ is a compatible family for $\phi$. Indeed, for all $\psi_1,\psi_2 \colon \tau \to \sigma$ such that $\phi \circ \psi_1 = \phi \circ \psi_2$, the vf-arrows $\psi_1^*(u)$ and $\psi_2^*(u)$ are parallel, which by hypothesis entails that the families $\psi_1^*(b_s)_{s:\sigma}$ and $\psi_2^* (b_s)_{s:\sigma}$ determined by their unique lifts to $\A$ must coincide.
+    As it is epic by construction, the map $\phi \colon \sigma \twoheadrightarrow \lambda$ is a cover for the topology $J_\infty$ on $\FF$, and by \Cref{?} the functor $\A_0^{-}\colon \FF^{\op}\to\Set$ is a $J_\infty$-sheaf. Note then that the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ is a compatible family for $\phi$. Indeed, for all $\psi_1,\psi_2 \colon \tau \to \sigma$ such that $\phi \circ \psi_1 = \phi \circ \psi_2$, the vf-arrows $\psi_1^*(u)$ and $\psi_2^*(u)$ are parallel, which by hypothesis entails that the families $\psi_1^*(b_s)_{s:\sigma}$ and $\psi_2^* (b_s)_{s:\sigma}$ determined by their unique lifts to $\A$ must coincide.
     
     Thus, by the sheaf condition, there exists a unique family $(c_{l})_{l:\lambda} \in \A_0^\lambda$ such that $(b_s)_{s:\sigma}=\phi^*(c_{l})_{l:\lambda}$. In other words, $b \colon \sigma \to \A_0$ factors through $q_* (\sigma)$, from which we can conclude by taking appropriate image factorizations and chasing diagrams. 
 
@@ -1158,9 +1232,7 @@ We can defined the category of germs of closed subset: objects are given by a lo
 
 This defined the category of germes of closed subsets. If we restricted to locales of the form $\beta(S)$ (or explicitely the frame given by the poset of filters on $S$) and ask $f$ to be open maps, we get the category of filter. It would be interesting to see what happens if we relax the condition: considering all locales but still open maps, or all locals and all maps.
 
-\end{document}
-
-
-\printbibliography
+\bibliographystyle{alpha}
+\bibliography{filterization.bib}
 
 \end{document}
