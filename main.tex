@@ -720,16 +720,32 @@ $\Theta\colon \Tref(\pt(\E))\to\pt(\Lref(\E))$.
 
 Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objects and vf-faithful; we will now show that it is also vf-full, and hence an equivalence of vf-categories.
 
-
-\begin{lem}\label{SUJ-lem}
-    Let $\C$ be a small filtered category and $A \colon \C\to\Set$ such that there exist a family $(a_x)_{x:\Ob(\C)}$. Then, there exists an inhabited filter $\lambda$ such that the reduced product functor $A^{\lambda} \colon \C \to \Set$ defined by $x\mapsto A(x)^\lambda$ admits a global section.
+\begin{lem}
+    Let $(A_i)_{i:I}$ a family of non-empty sets. Then there exists a proper filter $\lambda$, such that $\prod_{i:I}({A_i}^\lambda)$ is inhabited.
 \end{lem}
 \begin{proof}
+    In a classical metatheory, choice gives us the result with $\lambda = \ptuf$. We show the result constructively.
+
+    We consider $L$ the set of finite partial families $(a_i\in A_i)_{i:I_0}$ with $I_0$ a finite subset of $I$ and consider on it the smallest filter $\lambda$ such that for any $i_0\in I$ we have
+    \[(\forall \ell:\lambda)\ \dom(\ell)\ni i_0.\]
+    This equation define a proper filter: if we take a finite number of such equations, let's say for $i_0, \dots, i_n$, then we can find a section over the finite set $\{i_0, \dots, i_n\}$ as finite choice is true constructively.
+
+    We get then an element of $\prod_{i:I}({A_i}^\lambda)$ given by $((\ell(i) \in A_i)_{\ell:\lambda})_{i:I}$.
+\end{proof}
+
+\begin{lem}\label{SUJ-lem}
+    Let $\C$ be a small filtered category and $A \colon \C\to\Set$ such that each $A(x)$ in non-empty. Then, there exists an inhabited filter $\lambda$ such that the reduced product functor $A^{\lambda} \colon \C \to \Set$ defined by $x\mapsto A(x)^\lambda$ admits a global section.
+\end{lem}
+\begin{proof}
+    By the above lemma, we can considere (up to thickening) a family $(a_x)_{x:\Ob(\C)}$.
+
     We consider the filter $\lambda$ on $L \coloneqq \prod_{x:\Ob(\C)}\Ob(\C/x)$ defined by:
     %
-    $L_0\subseteq L$ is $\lambda$-large iff there exists a non-empty finite sub-category $C\subseteq \C$, such that $L_0$ contains all the $(\theta^x : {d^x}\to x)_{x:\Ob(\C)} \in L$ with the $(\theta^x)_{x:C}$ inducing a cone on $C$.
+    \gabrielnote{$L_0\subseteq L$ is $\lambda$-large iff there exists a non-empty finite sub-category $C\subseteq \C$, such that $L_0$ contains all the $(\theta^x : {d^x}\to x)_{x:\Ob(\C)} \in L$ with the $(\theta^x)_{x:C}$ inducing a cone on $C$.}
 
-    It is clear that $\lambda$ defines a filter, and $\lambda$ proper is equivalent to $\C$ being filtered, that is true by hypothesis.
+    for all $f : x\to y$ we have 
+    \[(\forall (\theta^x : {d^x}\to x)_{x:\Ob(\C)}:\lambda)\ f\circ\theta^x = \theta^y.\]
+    and $\lambda$ is a proper filter is equivalent to $\C$ being filtered, that is true by hypothesis.
 
     We define a global section of $A^{\lambda}$ given on $x\in\C$ by
     \[(\theta^x_*(a_{d^x}))_{(\theta^x : {d^x}\rightarrow x):\lambda} \in A(x)^{\lambda}.\]
@@ -741,14 +757,14 @@ Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objec
 
 
 \begin{prop}
-    The functor $\Tref(\pt(\E))\to\pt(\Lref(\E))$ is vf-full, \ie for any $p$ and $(q_s)_{s:\sigma}$ such that $p\vuleq{\sigma}q_s$ in $\pt(\Lref(\E))$, there exists $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some filter $\lambda$ inhabited.
+    The functor $\Tref(\pt(\E))\to\pt(\Lref(\E))$ is vf-full, \ie for any $p$ and $(q_s)_{s:\sigma}$ such that $p\vuleq{\sigma}q_s$ in $\pt(\Lref(\E))$, there exists $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some proper filter $\lambda$.
 \end{prop}
 \begin{proof}
     We take $p,(q_s) \in \pt(\E)$ such that $p\vuleq[\pt(\Lref(\E))]{\sigma}q_s$ and we want to construct some $p\vuto{\lambda\cdot\sigma}q_s$ in $\pt(\E)$ for some proper filter $\lambda$. 
     
     We fix a small dense full subcategory $\mathcal G\subseteq\E$ of the topos $\E$ such that the category $\C$ of elements of the functor $p^* \colon \mathcal G \to\Set$ is filtered, for example given by a lex site.
 
-    Classically (apparently choice here!),  $p \vuleq[\pt(\Lref(\E))]{\sigma} (q_s)$ implies that the functor 
+    Then, $p \vuleq[\pt(\Lref(\E))]{\sigma} (q_s)$ implies that the functor 
     \[(E,\xi\in E_p) \in\C \mapsto \int_{s:\sigma} E_{q_s}\in \Set\]
     satisfies the hypothesis of the lemma above.
     %
