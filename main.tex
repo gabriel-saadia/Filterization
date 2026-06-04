@@ -48,15 +48,25 @@ Paris, France\newline
     The \emph{category of filters} $\FF$ is defined as follows:
     \begin{itemize}
         \item as objects, we let pairs $(S, \sigma)$ of a set $S$ and a filter $\sigma$ on $S$;
-        \item as morphisms $(T, \tau) \to (S, \sigma)$, we let equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, i.e.\ $\sigma \subseteq \phi_*(\tau)$,identified up to equality on a $\tau$-large subset.
+        \item as morphisms $(T, \tau) \to (S, \sigma)$, we let equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, i.e.\ $\sigma \subseteq \phi_*(\tau)$, identified up to equality on a $\tau$-large subset.
     \end{itemize}
     For ease of notation, we will often omit the set underlying a filter.
 \end{defn}
 
-Recall that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is monic if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is epic if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
+Recall that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is monic if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is \UT{regular?} epic if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
 
-We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$, generalizing ultrapowers to filters. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine a functor:
+We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$, generalizing ultrapowers to filters. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine the \emph{reduced power} functor:
 \[ X^{-}\colon \FF^{\op} \to \Set.\]
+
+\begin{prop}\label{prop:F-is-geometric}
+    $\FF$ is a \emph{geometric} category, i.e.\ a regular category in which subobject posets have all small unions which are moreover stable under pullback, and it is \emph{extensive}.
+    
+    In particular, the same holds for the slice $\FF/\sigma$ for each $\sigma \in \FF$.
+\begin{proof}
+    By \cite{blassTwoClosedCategories1977} we know that $\FF$ is finitely complete and it admits (small) coproducts. The image factorization of an arrow $\phi \colon \tau \to \sigma$ is given by $\tau \epi \phi_*(\tau) \mono \sigma$, where the first map acts as $\phi$ and the second one acts as the identity. \UT{check that the first one is a regular epi} The union of subobjects $\set{ \sigma_i \mono \sigma}_{i\in I}$ is computed by taking the image factorization of the universal arrow $\coprod_i \sigma_i \to \sigma$. The pullback of two distinct coproduct injections is a filter on $\emptyset$, hence it is the initial object $0$.
+\end{proof}
+\end{prop}
+
 
 {\color{darkred}
 We note here the following property of $\FF$, first remarked by the authors of \cite{vangoolToposesEnoughPoints2026}.
@@ -111,10 +121,10 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
 \begin{defn}
     A \emph{vf-category} (resp. \emph{vu-category}) $\X$ is defined by the following data:
     \begin{enumerate}
-        \item A class of \emph{objects} $\X_0$ whose elements are sometimes \emph{points}.
-        \item A class of \emph{vf-arrows} whose elements $f$ are given with a domain a point $p\in\X_0$ and codomain $(q_s\in\X_0)_{s:\sigma}$ a filter-family (resp. ultrafamily) of points. Such a vf-arrow (resp. vu-arrow) $f$ is denoted by \[f : p \vuto{\sigma}q_s.\]
+        \item A class of \emph{objects} $\X_0$ whose elements are also called \emph{points}.
+        \item A class of \emph{vf-arrows} whose elements $f$ are given with domain $p\in\X_0$ a point and codomain $(q_s\in\X_0)_{s:\sigma}$ a filter-family (resp. ultrafamily) of points. Such a vf-arrow (resp. vu-arrow) $f$ is denoted by \[f : p \vuto{\sigma}q_s.\]
         We denote $\Hom_\sigma(p,q_s)$ the class of vf-arrows (resp. vu-arrows) $f : p\vuto{\sigma}q_s$.
-        \item A \emph{identity} $\id_p : p\vuto{\ptuf}p$ for each point $p$. And a \emph{composition} $g_s\circ_\sigma f : p \vuto{\sigma\cdot\tau_s} r_{s,t}$ for each $f : p\vuto{\sigma}q_s$ and eahc filter-family (resp. ultrafamily) $(g_s:q_s\vuto{\tau_s}r_{s,t})_{s:\sigma}$. Such a composition will diagrammatically be denoted by
+        \item An \emph{identity} $\id_p : p\vuto{\ptuf}p$ for each point $p$. And a \emph{composition} $g_s\circ_\sigma f : p \vuto{\sigma\cdot\tau_s} r_{s,t}$ for each $f : p\vuto{\sigma}q_s$ and each filter-family (resp. ultrafamily) $(g_s:q_s\vuto{\tau_s}r_{s,t})_{s:\sigma}$. Such a composition will diagrammatically be denoted by
         \[g_s\circ_\sigma f : p \vuto{\sigma} (q_s\vuto{\tau_s} r_{s,t}).\]
         \item A vf-arrow (resp. vu-arrow) $\phi^*f : p\vuto{\tau}q_{\phi t}$ for each vf-arrow (resp. vu-arrow) $f : p\vuto{\sigma} q_s$ and each morphism of filters (resp. ultrafilters) $\phi : \tau\to\sigma$. This $\phi^*f$ is called the \emph{reindexing of $f$ along $\phi$}.
         In particular the reindexing of $\id_p$ along the unique map $\sigma\to\ptuf$ is called a \emph{diagonal} and is denoted by
@@ -132,9 +142,9 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
         \[\psi^*(\phi^*f) = (\phi\circ\psi)^*f\]
         \item The thickening operation is compatible with the composition: for $f : p\vuto{\sigma} q_s$ and $(g_s : q_s\vuto{\tau_s} r_{s,t})_{s:\sigma}$
         \begin{itemize}
-            \item for any $\phi : \lambda\to\sigma$ with $\phi\cdot\id_{\tau_s} : \lambda\cdot\tau_{\phi \ell}\to\sigma\cdot\tau_s$
+            \item for each $\phi : \lambda\to\sigma$ with $\phi\cdot\id_{\tau_s} : \lambda\cdot\tau_{\phi \ell}\to\sigma\cdot\tau_s$
             \[g_{\phi \ell}\circ_{\lambda} (\phi^*f) = (\phi\cdot\id_{\tau_s})^*(g_s\circ_{\sigma} f)\]
-            \item and for any $(\psi_s : \kappa_s\to\tau_s)_{s:\sigma}$ with $\id_{\sigma}\cdot\psi_s : \sigma\cdot\kappa_s\to\sigma\cdot\tau_s$
+            \item and for each $(\psi_s : \kappa_s\to\tau_s)_{s:\sigma}$ with $\id_{\sigma}\cdot\psi_s : \sigma\cdot\kappa_s\to\sigma\cdot\tau_s$
             \[({\psi_s}^*g_s)\circ_{\sigma} f = (\id_{\sigma}\cdot\psi_s)^*(g_s\circ_{\sigma} f).\]
         \end{itemize}
     \end{enumerate}
@@ -340,7 +350,7 @@ Crucially, topological reflections of small vf-categories are taut \UT{check}: c
 
 We can now give two equivalent characterizations of tautness.
 
-First, recall from \cite{awodeyUltrasheavesDoubleNegation2004} that we can consider a Grothendieck topology $J_\infty$ on the category $\FF$ of filters, where coverings of $\sigma \in \FF$ are generated by (possibly infinite) jointly-epimorphic families, i.e.\ families $\set{ \gamma_i \colon \sigma_i \to \sigma }_{i\in I}$ such that $\bigcup_{i\in I} \gamma_i(S_i) \in \sigma$ for any $\set{ S_i \in \sigma_i }_{i\in I}$. We also denote by $J_{\infty}$ the topology induced on each slice category of $\FF$, i.e.\ where a covering of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ is a covering of $\tau$ in $\FF$ seen as a collection of morphisms to $\phi$ in $\FF/\sigma$. % both topologies are subcanonical 
+First, recall from \cite{awodeyUltrasheavesDoubleNegation2004} that we can consider a Grothendieck topology $J_\infty$ on the category $\FF$ of filters, where coverings of $\sigma \in \FF$ are generated by (possibly infinite) jointly-\UT{regular?-}epimorphic families, i.e.\ families $\set{ \gamma_i \colon \sigma_i \to \sigma }_{i\in I}$ such that $\bigcup_{i\in I} \gamma_i(S_i) \in \sigma$ for any $\set{ S_i \in \sigma_i }_{i\in I}$. We also denote by $J_{\infty}$ the topology induced on each slice category of $\FF$, i.e.\ where a covering of $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ is a covering of $\tau$ in $\FF$ seen as a collection of morphisms to $\phi$ in $\FF/\sigma$. % both topologies are subcanonical 
 
 \begin{rmk}\label{rem:sheaf-condition}
     Note that, for a cover $\phi \colon \tau\epi \sigma$, a vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in a vf-category $\X$ is $\phi$-reducible if and only if it determines a a \emph{compatible family} for the functor $\X_{p, (q_s)} \colon (\FF/\sigma)^{\op}\to\Set$ with respect to the topology $J_\infty$ on $\FF/\sigma$. In this sense, a vf-arrow $u_0 \colon p \vuto{\sigma} q_{s}$ such that $u = \phi^* u_0$ is then an \emph{amalgamation} of the family.
