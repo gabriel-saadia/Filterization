@@ -123,11 +123,12 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
     A \emph{vf-category} (resp. \emph{vu-category}) $\X$ is defined by the following data:
     \begin{enumerate}
         \item A class of \emph{objects} $\X_0$ whose elements are also called \emph{points}.
-        \item A class of \emph{vf-arrows} whose elements $f$ are given with domain $p\in\X_0$ a point and codomain $(q_s\in\X_0)_{s:\sigma}$ a filter-family (resp. ultrafamily) of points. Such a vf-arrow (resp. vu-arrow) $f$ is denoted by \[f : p \vuto{\sigma}q_s.\]
-        We denote $\Hom_\sigma(p,q_s)$ the class of vf-arrows (resp. vu-arrows) $f : p\vuto{\sigma}q_s$.
-        \item An \emph{identity} $\id_p : p\vuto{\ptuf}p$ for each point $p$. And a \emph{composition} $g_s\circ_\sigma f : p \vuto{\sigma\cdot\tau_s} r_{s,t}$ for each $f : p\vuto{\sigma}q_s$ and each filter-family (resp. ultrafamily) $(g_s:q_s\vuto{\tau_s}r_{s,t})_{s:\sigma}$. Such a composition will diagrammatically be denoted by
-        \[g_s\circ_\sigma f : p \vuto{\sigma} (q_s\vuto{\tau_s} r_{s,t}).\]
-        \item A vf-arrow (resp. vu-arrow) $\phi^*f : p\vuto{\tau}q_{\phi t}$ for each vf-arrow (resp. vu-arrow) $f : p\vuto{\sigma} q_s$ and each morphism of filters (resp. ultrafilters) $\phi : \tau\to\sigma$. This $\phi^*f$ is called the \emph{reindexing of $f$ along $\phi$}.
+        \item A class of \emph{vf-arrows} whose elements $u$ are given with domain $p\in\X_0$ a point and codomain $(q_s\in\X_0)_{s:\sigma}$ a filter-family (resp. ultrafamily) of points. Such a vf-arrow (resp. vu-arrow) $f$ is denoted by \[u : p \vuto{\sigma}q_s.\]
+        We denote $\Hom_\sigma(p,q_s)$ the class of vf-arrows (resp. vu-arrows) $u : p\vuto{\sigma}q_s$.
+        \item An \emph{identity} $\id_p : p\vuto{\ptuf}p$ for each point $p$. And a \emph{composition} $v_s\circ_\sigma u : p \vuto{\sigma\cdot\tau_s} r_{s,t}$ for each $u : p\vuto{\sigma}q_s$ and each filter-family (resp. ultrafamily) $(v_s:q_s\vuto{\tau_s}r_{s,t})_{s:\sigma}$. Such a composition will diagrammatically be denoted by
+        \[v_s\circ_\sigma u : p \vuto{\sigma} (q_s\vuto{\tau_s} r_{s,t}).\]
+        \item A vf-arrow (resp. vu-arrow) $\phi^*u : p\vuto{\tau}q_{\phi t}$ for each vf-arrow (resp. vu-arrow) $u : p\vuto{\sigma} q_s$ and each morphism of filters (resp. ultrafilters) $\phi : \tau\to\sigma$. This $\phi^*u$ is called the \emph{reindexing of $u$ along $\phi$}.
+        In the case $\phi$ injective (resp. surjective), we say that $\phi^*u$ is a \emph{specialization} (resp. a \emph{thickening}) of $u$.
         In particular the reindexing of $\id_p$ along the unique map $\sigma\to\ptuf$ is called a \emph{diagonal} and is denoted by
         \[\delta : a\vuto{\sigma} a.\]
         
@@ -135,48 +136,38 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
     We require the above data to satisfy the following properties.
     \begin{enumerate}
         \item The identity is neutral and the composition is associative: 
-        \[f\circ_{\ptuf} \id_p = f\]
-        \[\id_{q_s}\circ_{\sigma} f = f\]
-        \[(h_{s,t}\circ_{\tau_s} g_s)\circ_{\sigma} f = h_{s,t}\circ_{\sigma\cdot \tau_s} (g_s\circ_{\sigma} f).\] 
+        \[u\circ_{\ptuf} \id_p = u\]
+        \[\id_{q_s}\circ_{\sigma} u = u\]
+        \[(w_{s,t}\circ_{\tau_s} v_s)\circ_{\sigma} u = w_{s,t}\circ_{\sigma\cdot \tau_s} (v_s\circ_{\sigma} u).\] 
         \item The thickening operation is functorial:
-        \[{\id_{\sigma}}^*f = f\]
-        \[\psi^*(\phi^*f) = (\phi\circ\psi)^*f\]
-        \item The thickening operation is compatible with the composition: for $f : p\vuto{\sigma} q_s$ and $(g_s : q_s\vuto{\tau_s} r_{s,t})_{s:\sigma}$
+        \[{\id_{\sigma}}^*u = u\]
+        \[\psi^*(\phi^*u) = (\phi\circ\psi)^*u\]
+        \item The thickening operation is compatible with the composition: for $u : p\vuto{\sigma} q_s$ and $(v_s : q_s\vuto{\tau_s} r_{s,t})_{s:\sigma}$
         \begin{itemize}
             \item for each $\phi : \lambda\to\sigma$ with $\phi\cdot\id_{\tau_s} : \lambda\cdot\tau_{\phi \ell}\to\sigma\cdot\tau_s$
-            \[g_{\phi \ell}\circ_{\lambda} (\phi^*f) = (\phi\cdot\id_{\tau_s})^*(g_s\circ_{\sigma} f)\]
+            \[v_{\phi \ell}\circ_{\lambda} (\phi^*u) = (\phi\cdot\id_{\tau_s})^*(v_s\circ_{\sigma} u)\]
             \item and for each $(\psi_s : \kappa_s\to\tau_s)_{s:\sigma}$ with $\id_{\sigma}\cdot\psi_s : \sigma\cdot\kappa_s\to\sigma\cdot\tau_s$
-            \[({\psi_s}^*g_s)\circ_{\sigma} f = (\id_{\sigma}\cdot\psi_s)^*(g_s\circ_{\sigma} f).\]
+            \[({\psi_s}^*v_s)\circ_{\sigma} u = (\id_{\sigma}\cdot\psi_s)^*(v_s\circ_{\sigma} u).\]
         \end{itemize}
     \end{enumerate}
 \end{defn}
 
 \begin{defn}
-    
+    A vf-category (resp. vu-category) $\X$ is \emph{locally small}, if each $\Hom_\sigma(p,q_s)$ is small, and the reindexing operation 
+    \begin{equation}\tag{$\star$} \label{reindex-functor}
+        \begin{split}
+            %(\FF/\sigma)^{\op} \text{ resp. }(\UF/\sigma)^{\op} &\to\Set \\
+            (\phi : \tau\to\sigma) &\mapsto \Hom_\tau(p,q_{\phi t}). 
+        \end{split}
+    \end{equation}
+    define a small presheaf over $\FF_\kappa/\sigma$ (resp. over $\UF_\kappa/\sigma$). \gabrielnote{Or equivalently, if this presheaf factorizes to $\Psh(\FF_\kappa/\sigma)\subseteq\Psh(\FF/\sigma)$ (resp. $\Psh(\UF_\kappa/\sigma)\subseteq\Psh(\UF/\sigma)$) for some large enough cardinal $\kappa$?}
 \end{defn}
 
-We say that $\X$ is \emph{small} if it is locally small and moreover $\X_0$ is small.
-\gabrielnote{and in particular, it induces a functor
-        \begin{equation}\tag{$\star$} \label{reindex-functor}
-        \begin{split}
-            (\UF/\sigma)^{\op} &\to\Set \\
-            (\phi : \tau\to\sigma) &\mapsto \Hom_\tau(a,b_{\phi t}). 
-        \end{split}
-        \end{equation}}
+\begin{defn}
+    We say that $\X$ is \emph{small} if it is locally small and $\X_0$ is small.
+\end{defn}
 
-
-For any vf-arrow $r \colon p \vuto{s:\sigma} q_s$ and any $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ --- seen as an arrow $\phi\to \id_{\sigma}$ in $\FF/\sigma$ --- we denote by $\phi^*(r)$ the vf-arrow $\X_{p, (q_s)} (\phi) (r) \colon p \vuto{t : \tau} q_{\phi t }$, which we refer to as the \emph{reindexing} of $r$ along $\phi$.
-\begin{itemize}
-    \item If $\phi$ is monic, we also say that $\phi^*(r)$ is a \emph{specialization} of $r$.
-    \item If $\phi$ is epic, we also say that $\phi^*(r)$ is a \emph{thickening} of $r$. 
-\end{itemize}
-
-
-% \begin{defn}
-%     A vf-category is \emph{small} if there is a set of vf-arrows such that any vf-arrow is a reindexing (equivalently, thickening) of a vf-arrow of that set. \UT{is this the same as asking for the profunctor defining vf-arrows to be small? doesn't seem so, but then i don't understand your notion of smallness}\gabrielnote{concretely its the same as asking a small number of objects, and that the homsets are generated by a small number of arrows (to avoid the case of having $\sigma$-arrows of arbitrary large type $\sigma$)}
-
-%     In particular, a small vf-category has a small set of objects. \UT{how?}\gabrielnote{by the identities i think}
-% \end{defn}
+%For any vf-arrow $r \colon p \vuto{s:\sigma} q_s$ and any $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ --- seen as an arrow $\phi\to \id_{\sigma}$ in $\FF/\sigma$ --- we denote by $\phi^*(r)$ the vf-arrow $\X_{p, (q_s)} (\phi) (r) \colon p \vuto{t : \tau} q_{\phi t }$, which we refer to as the \emph{reindexing} of $r$ along $\phi$.
 
 
 
