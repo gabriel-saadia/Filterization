@@ -53,7 +53,14 @@ Paris, France\newline
     For ease of notation, we will often omit the set underlying a filter.
 \end{defn}
 
-Recall that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is monic if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is \UT{regular?} epic if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
+Recall that an arrow $\phi \colon (T,\tau) \to (S,\sigma)$ in $\FF$ is monic if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is epic if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
+
+\begin{lem}
+    Every epi in $\FF$ is regular.
+\begin{proof}
+    Consider an epimorphism $\phi \colon \tau \epi \sigma$, i.e.\ such that $\sigma = \phi_*(\tau)$. We need to show that $\phi$ is the coequalizer of its kernel pair $\psi_1,\psi_2 \colon \epsilon \rightrightarrows \tau$, so let $\chi \colon \tau \to \sigma'$ be another $\FF$-arrow such that $\chi \circ \psi_1 = \chi \circ \psi_2$. We define an $\FF$-arrow $\omega \colon \phi_*(\tau) \to \sigma'$ as follows. For $\phi_*(\tau)$-almost-all $s\in S$ we know that $s = \phi(t)$ for some $t \in T$; thus, we set $\omega(s) = \chi(t)$. If $s = \phi(t')$ for some other $t' \in T$, then the pair $(t,t')$ lies in the carrier set of $\epsilon$, so that $\chi(t) = \chi \psi_1(t,t') = \chi \psi_2(t,t') = \chi(t')$. Moreover, $\sigma' \subseteq \omega_*(\phi_*(\tau))$: indeed, $\omega \circ \phi = \chi$, so that this reduces to $\sigma ' \subseteq \chi_* (\tau)$, which is true since $\chi$ is an $\FF$-arrow. Thus, $\omega$ is well-defined, and it is evidently the unique $\FF$-arrow such that $\omega \circ \phi = \chi$. 
+\end{proof}
+\end{lem}
 
 We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$, generalizing ultrapowers to filters. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine the \emph{reduced power} functor:
 \[ X^{-}\colon \FF^{\op} \to \Set.\]
@@ -152,23 +159,25 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
 \end{defn}
 
 \begin{defn}
-    A vf-category (resp. vu-category) $\X$ is \emph{locally small}, if each $\Hom_\sigma(p,q_s)$ is small, and the reindexing operation 
+    A vf-category (resp. vu-category) $\X$ is \emph{locally small}, all the $\Hom_\sigma(p,q_s)$ are small, and for each $p$, $(q_s)_{s:\sigma}$, the reindexing operation 
     \begin{equation}\tag{$\star$} \label{reindex-functor}
         \begin{split}
             %(\FF/\sigma)^{\op} \text{ resp. }(\UF/\sigma)^{\op} &\to\Set \\
-            (\phi : \tau\to\sigma) &\mapsto \Hom_\tau(p,q_{\phi t}). 
+            (\phi : \tau\to\sigma) &\mapsto \Hom_\tau(p,q_{\phi t}) 
         \end{split}
     \end{equation}
     define a small presheaf over $\FF_\kappa/\sigma$ (resp. over $\UF_\kappa/\sigma$). \gabrielnote{Or equivalently, if this presheaf factorizes to $\Psh(\FF_\kappa/\sigma)\subseteq\Psh(\FF/\sigma)$ (resp. $\Psh(\UF_\kappa/\sigma)\subseteq\Psh(\UF/\sigma)$) for some large enough cardinal $\kappa$?}
 \end{defn}
 
 \begin{defn}
-    We say that $\X$ is \emph{small} if it is locally small and $\X_0$ is small.
+    A vf-category (resp. vu-category) $\X$ is \emph{small} if it is locally small and $\X_0$ is small.
 \end{defn}
 
-%For any vf-arrow $r \colon p \vuto{s:\sigma} q_s$ and any $\phi \colon \tau \to \sigma$ in $\FF/\sigma$ --- seen as an arrow $\phi\to \id_{\sigma}$ in $\FF/\sigma$ --- we denote by $\phi^*(r)$ the vf-arrow $\X_{p, (q_s)} (\phi) (r) \colon p \vuto{t : \tau} q_{\phi t }$, which we refer to as the \emph{reindexing} of $r$ along $\phi$.
+\gabrielnote{rappeler les functors et nat transfo.}
 
+We denote $\vfCAT$, $\vfCat$, $\vfcat$ the 2-category of respectively large, locally small, small vf-categories. Similarely, we denote $\vuCAT$, $\vuCat$, $\vucat$ the 2-category of respectively large, locally small, small vu-categories.
 
+Note that we have a natural forgetful functor $\vfCat\to\vuCat$ that only retains the vf-arrows $u:p\vuto{\dot\sigma}q_s$ with $\dot\sigma$ an ultrafilter. However, it is not clear how to define an interesting functor in the other direction. This will be handle later.
 
 \subsection{Subspaces}
 
@@ -563,6 +572,17 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 
     $(iv)\Rightarrow(i)$. Consider the two lifts $\bar u \colon a \vuto{\sigma} b_s$ and $\bar{u}' \colon a \vuto{\sigma} b_s'$ of $u$ and $u'$ to $\A$. Since $V$ is an open neighborhood of $a$, we know that $(b_s)_{s:\sigma}, (b_s')_{s:\sigma} \in V^\sigma$. Therefore, since $\pi$ is injective on $V$ and $(\pi(b_s))_{s:\sigma} = (\pi(b'_s))_{s:\sigma} = (q_s)_{s:\sigma}$, it follows that $(b_s)_{s:\sigma}= (b_s')_{s:\sigma}$.
 \end{proof}
+
+Introducing some notation, for a vf-sheaf $A \in \Sh(\X)$, i.e.\ a vf-functor $A \colon\X \to \Set$, we denote by $\pi \colon \sem{A} \to \X$ the étale vf-functor corresponding to it by \Cref{?}. For each $p \in \X_0$, we also denote by $A_p$ the set $A(p)$, that is, the fiber of $\pi$ at $p$.
+
+\begin{proof}[proof of \Cref{thm:localicness}]
+To show that $A \colon \X \to \Set$ is a subquotient of some $f^*E$ for $E \in\E$, it suffices to show that for each $p \in \X_0$ and each $a \in A_p$ there exist some $E \in \E$ and some open subspace $V \subseteq \sem{f^*E}$ such that $a$ lies in the image of the restriction of $\pi \colon \sem{f^* E} \to \X$ to $V$. \UT{argue why}
+
+Let $S$ be 
+\end{proof}
+
+
+
 
 
 \subsection{Sub-hyperconnectedness}
