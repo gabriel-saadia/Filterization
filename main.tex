@@ -48,31 +48,29 @@ Paris, France\newline
 \begin{defn}
     The \emph{category of filters} $\FF$, introduced in \cite{koubekCategoryFilters1970}, is defined as follows:
     \begin{itemize}
-        \item objects of $\FF$ are pairs $(S, \sigma)$ of a set $S$ and a filter $\sigma$ on $S$;
-        \item $\FF$-arrows \gabrielnote{(i would write just arrow, or map in $\FF$, i don't like when sentence begin with math symbols)} $(T, \tau) \to (S, \sigma)$ are equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, i.e.\ $\sigma \subseteq \phi_*(\tau)$, identified up to equality on a $\tau$-large subset.
+        \item objects are pairs $(S, \sigma)$ of a set $S$ and a filter $\sigma$ on $S$;
+        \item arrows $(T, \tau) \to (S, \sigma)$ are equivalence classes of functions $\phi \colon T \to S$ such that $\phi^{-1}(S_0) \in \tau $ for each $S_0 \in \sigma$, i.e.\ $\sigma \subseteq \phi_*(\tau)$, identified up to equality on a $\tau$-large subset.
     \end{itemize}
     For ease of notation, we will often omit the carrier set of a filter, and we will not distinguish between a function and the morphism it defines up to equivalence.
 \end{defn}
 
-Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\phi \colon (T,\tau) \to (S,\sigma)$ is a monomorphism if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is an epimorphism if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. \gabrielnote{i personnaly like to call them surjection and injection for the rest of the paper (as this is what they are)}
-
-\gabrielnote{we need to say that $\FF$ is lex first}
+Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\phi \colon (T,\tau) \to (S,\sigma)$ is a monomorphism if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is an epimorphism if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. \gabrielnote{i personnaly like to call them surjection and injection for the rest of the paper (as this is what they are)} \UT{i don't like it too much but i can be fine with it}
 
 \begin{lem}\label{lem:epis-are-regular}
     Every epimorphism in $\FF$ is regular.
 \begin{proof}
-    Consider an epimorphism $\phi \colon \tau \epi \sigma$, i.e.\ such that $\sigma = \phi_*(\tau)$. We need to show that $\phi$ is the coequalizer of its kernel pair $\psi_1,\psi_2 \colon \epsilon \rightrightarrows \tau$, so let $\chi \colon \tau \to \sigma'$ be another $\FF$-arrow such that $\chi \circ \psi_1 = \chi \circ \psi_2$. 
+    Consider an epimorphism $\phi \colon \tau \epi \sigma$, i.e.\ such that $\sigma = \phi_*(\tau)$. Since $\FF$ is finitely complete (see, e.g., \cite[Thm.\ 9]{blassTwoClosedCategories1977}), it suffices to show that $\phi$ is the coequalizer of its kernel pair $\pi_1,\pi_2 \colon \tau\times_\sigma \tau  \rightrightarrows \tau$, so let $\chi \colon \tau \to \sigma'$ be another $\FF$-arrow such that $\chi \circ \pi_1 = \chi \circ \pi_2$. 
     We define an $\FF$-arrow $\omega \colon \phi_*(\tau) \to \sigma'$ as follows. 
     \[\begin{tikzcd}[row sep = 20pt]
-	\epsilon & \tau & {\phi_*(\tau)} \\
+	{\tau\times_\sigma\tau} & \tau & {\phi_*(\tau)} \\
 	&& {\sigma'}
-	\arrow["{\psi_1}", shift left, from=1-1, to=1-2]
-	\arrow["{\psi_2}"', shift right, from=1-1, to=1-2]
+	\arrow["{\pi_1}", shift left, from=1-1, to=1-2]
+	\arrow["{\pi_2}"', shift right, from=1-1, to=1-2]
 	\arrow["\phi", two heads, from=1-2, to=1-3]
 	\arrow["\chi"', from=1-2, to=2-3]
 	\arrow["\omega", dashed, from=1-3, to=2-3]
     \end{tikzcd}\]
-    For $\phi_*(\tau)$-almost-all $s\in S$ we know that $s = \phi(t)$ for some $t \in T$; thus, we set $\omega(s) = \chi(t)$. If $s = \phi(t')$ for some other $t' \in T$, then the pair $(t,t')$ lies in the carrier set of $\epsilon$, so that $\chi(t) = \chi \psi_1(t,t') = \chi \psi_2(t,t') = \chi(t')$. Moreover, $\sigma' \subseteq \omega_*(\phi_*(\tau))$: indeed, $\omega \circ \phi = \chi$ as functions, so that this reduces to $\sigma ' \subseteq \chi_* (\tau)$, which is true since $\chi$ is an $\FF$-arrow. Thus, $\omega$ is well-defined, and it is evidently the unique $\FF$-arrow such that $\omega \circ \phi = \chi$. 
+    For $\phi_*(\tau)$-almost-all $s\in S$ we know that $s = \phi(t)$ for some $t \in T$; thus, we set $\omega(s) = \chi(t)$. If $s = \phi(t')$ for some other $t' \in T$, then the pair $(t,t')$ lies in the carrier set of $\tau\times_\sigma \tau$, so that $\chi(t) = \chi \psi_1(t,t') = \chi \psi_2(t,t') = \chi(t')$. Moreover, $\sigma' \subseteq \omega_*(\phi_*(\tau))$: indeed, $\omega \circ \phi = \chi$ as functions, so that this reduces to $\sigma ' \subseteq \chi_* (\tau)$, which is true since $\chi$ is an $\FF$-arrow. Thus, $\omega$ is well-defined, and it is evidently the unique $\FF$-arrow such that $\omega \circ \phi = \chi$. 
 \end{proof}
 \end{lem}
 
@@ -83,7 +81,7 @@ We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \map
     $\FF$ is regular and \emph{infinitary-extensive}, i.e.\ it admits small coproducts which are disjoint and pullback-stable. In particular, the same holds for each slice $\FF/\sigma$.
 \begin{proof}[Proof (sketch).]
     \looseness=-1
-    By \cite[Thm.\ 9]{blassTwoClosedCategories1977} we know that $\FF$ is finitely complete and it admits small coproducts. The image factorization of an arrow $\phi \colon \tau \to \sigma$ is given by $\tau \epi \phi_*(\tau) \mono \sigma$, where the first map acts as $\phi$ and the second one acts as the identity. The union of subobjects $\set{ \sigma_i \mono \sigma}_{i\in I}$ is computed by taking the image factorization of the universal arrow $\coprod_i \sigma_i \to \sigma$. The pullback of two distinct coproduct injections is a filter on $\emptyset$, hence it is the initial object $0$ of $\FF$.
+    Again by \cite[Thm.\ 9]{blassTwoClosedCategories1977} we know that $\FF$ is finitely complete and it admits small coproducts; moreover, the pullback of two distinct coproduct injections is a filter on $\emptyset$, hence it is the initial object $0$ of $\FF$. The image factorization of an arrow $\phi \colon \tau \to \sigma$ is given by $\tau \epi \phi_*(\tau) \mono \sigma$, where the first map acts as $\phi$ and the second one acts as the identity. The union of subobjects $\set{ \sigma_i \mono \sigma}_{i\in I}$ is computed by taking the image factorization of the universal arrow $\coprod_i \sigma_i \to \sigma$.  
 \end{proof}
 \end{prop}
 
@@ -138,21 +136,21 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
 
 \subsection{Vf-categories}
 
-\UT{i made some slight tweaks below. what i have in mind is that we settle this at the beginning: for a class $X$, $X^\sigma$ is the reduced power, whose elements are the "filter families" $(q_s)_{s:\sigma}$; then, if $X$ is a set, it uniquely corresponds to an $\FF$-arrow $q \colon \sigma \to X$. this way we avoid the awkward "ultrafamily" or "filter family". also i think it's better to avoid $\delta$ for diagonals, both because we already use $\delta_X$ for the filter $\{X\}$ and because we always use latin letters for vf arrows. i like mathsf though for ids and diags. i also changed id to i cuz it looks less heavy}
+\UT{i made some slight tweaks below. what i have in mind is that we settle this at the beginning: for a class $X$, $X^\sigma$ is the reduced power, whose elements are the "filter families" $(q_s)_{s:\sigma}$; then, if $X$ is a set, it uniquely corresponds to an $\FF$-arrow $q \colon \sigma \to X$. this way we avoid the awkward "ultrafamily" or "filter family". also i think it's better to avoid $\delta$ for diagonals, both because we already use $\delta_X$ for the filter $\{X\}$ and because we always use latin letters for vf arrows. i like mathsf though for ids and diags. i also changed id to i cuz it looks less heavy}\gabrielnote{im happy with it}
 
-\UT{genuine question: do we ever need to consider unbounded vf/vu categories? i see no reason to go beyond the limitation of $\X(p, (q_s))$ being a set; algebraically in particular it makes no sense. i think it's best if we define vf cats exactly as vucats in our papers and then we call them small if the class of objects is a set (together with the small presheaf condition if we end up needing it). also i don't like $\vfcat$, it would be better if we could have simply $\vfCAT$ and $\vfCat$}
+\UT{genuine question: do we ever need to consider unbounded vf/vu categories? i see no reason to go beyond the limitation of $\X(p, (q_s))$ being a set; algebraically in particular it makes no sense. i think it's best if we define vf cats exactly as vucats in our papers and then we call them small if the class of objects is a set (together with the small presheaf condition if we end up needing it). also i don't like $\vfcat$, it would be better if we could have simply $\vfCAT$ and $\vfCat$}\gabrielnote{i don't this large vf-cats makes no-sense algebraically, the natural "algebraic" adjunction is between infinitary-pretopos and large vu-cats. The main reason is that assuming the homsets to be small is kind of a "wrong" condition, and it should always go together with the small presheaf conditions to make sense.} \UT{i don't agree that it's a wrong condition: it's simply saying that vf-arrows define a profunctor. but in any case we don't even mean the same thing with "algebraic": i'm talking about the point of view of my paper with quentin. i think that we should stick to homsets being sets by definition for consistency with both my papers and your paper, and then we can give the correct notions of local smallness and smallness if you want.} \gabrielnote{yes i understand your point. Its just that if we give a definition the usual way, it seems that we already give a definition of something locally small, so the definition of locally small after is strange. Anyway its only for the presentation, as i think we will always assume the vfcat locally small.}
 
-\UT{the definition is too heavy in my opinion to keep track of vf/vu, i think it reads better if we split it in two. once we define vf cats, it takes zero effort to say "well now consider only ultrafilters"}
 
 \todo{in our conventions for filters, say that we denote by $\sigma \cdot \tau_s$ the dependent sum of a family $(\tau_s)_{s:\sigma}$ of filters indexed by some filter $\sigma$}
 
 \begin{defn}
+\gabrielnote{you really prefer this presentation? i feel that using the equations was making it with more space and more agreeable to read}
     A \emph{vf-category} $\X$ is defined by the following data:
     \begin{enumerate}
         \item a class $\X_0$ whose elements are called \emph{points};
         \item a class of \emph{vf-arrows}, whose elements have a specified \emph{domain} $p\in \X_0$ and a specified \emph{codomain} $(q_s)_{s:\sigma} \in \X_0^\sigma$ for some filter $\sigma$, which we denote as $u \colon p \vuto{\sigma}q_s$; 
         \item for each point $p \in \X_0$, an \emph{identity} vf-arrow $\id_p \colon p \vuto{\ptuf} p$;
-        \item for each vf-arrow $u \colon p\vuto{\sigma}q_s$ and each family $(v_s\colon q_s\vuto{\tau_s}r_{s,t})_{s:\sigma}$ of vf-arrows indexed by some filter $\sigma$, a \emph{composition} $v_s\circ_\sigma u \colon p \vuto{\sigma\cdot\tau_s} r_{s,t}$, which we also denote diagrammatically as
+        \item for each vf-arrow $u \colon p\vuto{\sigma}q_s$ and each family $(v_s\colon q_s\vuto{\tau_s}r_{s,t})_{s:\sigma}$ of vf-arrows indexed by some filter $\sigma$, a \emph{composition} $v_s\circ_\sigma u \colon p \vuto{\sigma\cdot\tau_s} r_{s,t}$, which we also denote graphically as
         \[v_s\circ_\sigma u \colon p \vuto{\sigma} (q_s\vuto{\tau_s} r_{s,t});\]
         \item\looseness=-1 for each vf-arrow $u \colon p \vuto{\sigma} q_s$ and each $\FF$-arrow $\phi \colon \tau \to \sigma$, a \emph{reindexing} $\phi^* u \colon p \vuto{\tau} q_{\phi t}$.
         
@@ -186,15 +184,14 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
     \todo{explain the notation in (vi) and (vii) and make the axioms slightly more readable}
 \end{defn}
 
-We now introduce some useful notations and conventions; fix a vf-category $\X$. We denote by $\Hom_\sigma(p,q_s)$ the class of vf-arrows $u \colon p\vuto{\sigma}q_s$; for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the association  $(\phi \colon \tau\to\sigma) \mapsto \Hom_\tau(p,q_{\phi t})$ defines a presheaf
+We now introduce some useful notations and conventions; fix a vf-category $\X$. We denote by $\Hom_\sigma(p,q_s)$ the class of vf-arrows $u \colon p\vuto{\sigma}q_s$; for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the association  $(\phi \colon \tau\to\sigma) \mapsto \Hom_\tau(p,q_{\phi t})$ defines a presheaf \gabrielnote{in general its not a presheaf as its a class} \UT{right. this is another reason why i would just stick with homsets by definition instead of going to the unbounded case. }
 \[ \X_{p,(q_s)} \colon (\FF/\sigma)^{\op} \to \Set \]
 whose action on arrows is defined by reindexing.
 
-For an $\FF$-arrow $\phi \colon\tau \to \sigma$, we also refer to the reindexing of $u \colon p\vuto{\sigma}q_s$ along $\phi$ as a \emph{specialization} of $u$ if $\phi$ is a monomorphism, or a \emph{thickening} of $u$ if $\phi$ is an epimorphism. For each $p \in \X_0$, we denote by $\diag_p^\sigma \colon p \vuto{\sigma} p$ the vf-arrow obtained by reindexing $\id_p \colon p\vuto{\ptuf} p$ along the unique $\FF$-arrow $\sigma \to \ptuf$. 
+For an $\FF$-arrow $\phi \colon\tau \to \sigma$, we also refer to the reindexing of $u \colon p\vuto{\sigma}q_s$ along $\phi$ as a \emph{specialization} of $u$ if $\phi$ is a monomorphism, or a \emph{thickening} of $u$ if $\phi$ is an epimorphism. For each $p \in \X_0$, we denote by $\diag_p^\sigma \colon p \vuto{\sigma} p$ the vf-arrow obtained by reindexing $\id_p \colon p\vuto{\ptuf} p$ along the unique $\FF$-arrow $\sigma \to \ptuf$; we refer to vf-arrows of this form as \emph{diagonals}.
 
-\UT{would you hate $1$ for $\ptuf$?}
 
-\UT{we can talk about the notation $\Hom$/$\X_{p,(q_s)}$. i think that $\Hom$ is slightly awkward because then the presheaf would be $\Hom_{-}(p, q_{-})$? and just calling the presheaf $\Hom$ would be a bit confusing i think, considering it depends on $p$ and $(q_s)_\sigma$. i don't mind $\X_{p, (q_s)}$ but i'm open to discussing}
+\UT{we can talk about the notation $\Hom$/$\X_{p,(q_s)}$. i think that $\Hom$ is slightly awkward because then the presheaf would be $\Hom_{-}(p, q_{-})$? and just calling the presheaf $\Hom$ would be a bit confusing i think, considering it depends on $p$ and $(q_s)_\sigma$. i don't mind $\X_{p, (q_s)}$ but i'm open to discussing}\gabrielnote{I just find $\X_{p,(q_s)}$ a bit uggly (too much underscript) and the $\Hom$ is quite standard and suggestive. We can give another name for the presheaf if we need it (maybe something like $\mathds{H}_\sigma(p,q_s)$)} \UT{i see your point, but on one hand $\Hom$ is too aspecific (we need the dependency otherwise it gets confusing) and on the other $\mathds{H}_\sigma(p,q_s)$ makes it seem like $p$ and $q_s$ are the arguments, while it is really $\phi$... }\gabrielnote{And what about $\mathds{h}_\sigma^{p,q_s}$ ? so $\mathds{h}_\sigma^{p,q_s}(\phi) = \Hom_\tau(p,q_{\phi t})$}
 
 \begin{defn}
     A vf-category $\X$ is \emph{locally small} if, for each $p\in\X_0$ and $(q_s)_{s:\sigma} \in \X_0^\sigma$:
@@ -202,19 +199,19 @@ For an $\FF$-arrow $\phi \colon\tau \to \sigma$, we also refer to the reindexing
         \item $\Hom_\sigma(p,q_s)$ is small, and 
         \item $\X_{p,(q_s)} \colon (\FF/\sigma)^{\op} \to \Set$ is a \emph{small presheaf}, meaning that it is expressible as a small colimit of representable presheaves.
     \end{enumerate}
-    \gabrielnote{Or equivalently, if this presheaf factorizes to $\Psh(\FF_\kappa/\sigma)\subseteq\Psh(\FF/\sigma)$ (resp. $\Psh(\UF_\kappa/\sigma)\subseteq\Psh(\UF/\sigma)$) for some large enough cardinal $\kappa$?} \UT{maybe we avoid speaking of cardinals if we want to stay constructive..}
+    \gabrielnote{Or equivalently, if this presheaf factorizes to $\Psh(\FF_\kappa/\sigma)\subseteq\Psh(\FF/\sigma)$ (resp. $\Psh(\UF_\kappa/\sigma)\subseteq\Psh(\UF/\sigma)$) for some large enough cardinal $\kappa$?} \UT{maybe we avoid speaking of cardinals if we want to stay constructive.. sure sure, here it would just mean a set}
     
-    In particular, $\X$ is \emph{small} if moreover $\X_0$ is small.
+    A vf-category $\X$ is \emph{small} if it is locally small and moreover $\X_0$ is small.
 \end{defn}
 
 \gabrielnote{rappeler les functors et nat transfo.}
 
-We denote by $\vfCAT$, $\vfCat$, $\vfcat$ the 2-category of large, locally small, and small vf-categories respectively. 
+We denote by $\vfCAT$ and $\vfCat$ the 2-categories of locally small and small vf-categories respectively.
 
 \todo{mention vfposets}
 
 \begin{ex}
-    A topological space $X$ can be canonically seen as a vf-poset by setting $p \vuleq{\sigma} q_s$ if every neighborhood $U \subseteq X$ of $p$ satisfies $(q_s)_{s:\sigma} \in U^\sigma$. This definition gives rise to a 2-fully-faithful embedding $\Tinj \colon \TopSp \mono \vfPos$, where $\TopSp$ is regarded as a 2-category with the pointwise specialization order between continuous maps.
+    A topological space $X$ can be canonically seen as a vf-poset by setting $p \vuleq{\sigma} q_s$ if every neighborhood $U \subseteq X$ of $p$ satisfies $(q_s)_{s:\sigma} \in U^\sigma$ \gabrielnote{i prefere the notation $(q_s\in U)_{s:\sigma}$} \UT{i don't think $(q_s\in U)_{s:\sigma}$ makes much sense. $(q_s)_{s:\sigma} \in U^\sigma$ denotes the following sentence: the family $(q_s)$ defines an element of the reduced product $U^\sigma$, or in other words, the $\FF$-arrow $q \colon \sigma \to X$ defines an $\FF$-arrow $q \colon \sigma \to U$ (which as i was saying in my comments at the beginning would be my favorite way to phrase things once we establish that $\FF(\sigma, X) \cong X^\sigma$). i think that $(q_s\in U)_{s:\sigma}$ is an awkward notation for $(\forall s:\sigma) (q_s\in U)$, which i would be more okay with (or variations of the sort), but my point is that $(q_s\in U)_{s:\sigma}$ is not expressing a \emph{statement} as much as the other two options are.}\gabrielnote{yes you are right this notation doesn't actually make sense... let's go for $(\forall s:\sigma)\ q_s\in U$?}. This definition gives rise to a 2-fully-faithful \gabrielnote{i heard we should not put - between fully and faithful, even if i personnally also prefer like that ahah} \UT{who says? lmao i think it's more correct and it also looks better especially since we need to say 2-ff and vf-ff which already have the first dash, it would be weird to write like "2-fully faithful"}\gabrielnote{we had a full discussion about it with Errol for our paper lol, he was saying we shouldn't put the -, and the internet was kinda showing he was right, almost all paper are written without the -} embedding $\Tinj \colon \TopSp \mono \vfPos$, where $\TopSp$ is regarded as a 2-category with the pointwise specialization order between continuous maps.
 \end{ex}
 
 \subsection{Vu-categories}We define \emph{vu-categories}, \emph{vu-functors} and \emph{vu-transformations} in a totally analogous way, restricting to ultrafilters instead of arbitrary filters. All conventions and notations for vf-categories carry over for vu-categories: we denote by $\vuCAT$, $\vuCat$, $\vucat$ the 2-categories of large, locally small, and small vu-categories respectively.
@@ -534,7 +531,11 @@ A vu-category $\X$ is \emph{taut} if for every $\phi$-reducible vu-arrow $u \col
 \end{ex}
 
 
+\section{vu --- vf}
 
+\begin{cons}
+    Let $\X$ be a vu-category. We define the vf-category $\vf(\X)$ on the same object and an arrow from $p$ to $(q_s)_{s:\sigma}$ is given by a family $(f_{\dot\sigma} : p \vuto{\dot\sigma} q_s)_{\dot\sigma\subseteq\sigma}$
+\end{cons}
 
 
 
@@ -609,7 +610,7 @@ Thus, we will now study study how properties of $F$ induce properties on $f^*$, 
 \end{defn}
 
 \begin{defn}
-    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-full} if for each vf-arrow $u \colon F(x) \vuto{s:\sigma} F(y_s)$ in $\Y$ there exist a covering $\set{ \phi_i \colon \tau_i\to\sigma}_{i\in I}$ of $\sigma$ in $\FF$ % \gabrielnote{(or covering in $\FF/\sigma$? i don't know how it is better to think about it)} \UT{to me it makes more sense to stay on $\FF$ here, the covered object of $\FF/\sigma$ would be $\id_\sigma$ anyway, no?}
+    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-full} if for each vf-arrow $u \colon F(x) \vuto{s:\sigma} F(y_s)$ in $\Y$ there exists a covering $\set{ \phi_i \colon \tau_i\to\sigma}_{i\in I}$ of $\sigma$ in $\FF$ % \gabrielnote{(or covering in $\FF/\sigma$? i don't know how it is better to think about it)} \UT{to me it makes more sense to stay on $\FF$ here, the covered object of $\FF/\sigma$ would be $\id_\sigma$ anyway, no?}
     and a family of vf-arrows $\set{ v_i \colon x \vuto{t:\tau_i}y_{\phi_it} }_{i\in I}$ in $\X$ such that $F(v_i) = \phi_i^*(u)$ for each $i\in I$.
 \end{defn}
 
@@ -700,7 +701,39 @@ Let $S$ be
 \end{proof}
 
 
+\begin{proof}
+    We take $A : \X\to\Set$ and $a \in A(p)$. We will show that there is some $X\in\E$ with a subsheaf $V\subseteq f^*X$ and a map $V\to A$ having $a$ in its image.
 
+    Suppose that we have $X\in\E$ and $\xi\in X_{Fp} = (f^*X)_p$ such that: for any parallel pair $(u,v)$ of vf-arrows out of $p$
+    \[F(u)_*\xi = F(v)_*\xi \Rightarrow u_*a = v_*a.\]
+    Then the above lemma says that $(a,\xi)\in \A\times_{\X}\sem{f^*X}\to \sem{f^*X}$ is locally injective at 
+    as then it is easy to conclude by applying the above on the map $(a,\xi)\in \A\times_{\X}\sem{f^*X}\to \sem{f^*X}$. 
+    
+    We now show the existence of such a $\xi\in X_{Fp}$. (the following differ significantly from GMT to make it constructive)
+
+    ------
+
+    We consider $L$ some small set of parallel vf-arrows with domain $p$ --- so $\ell\in L$ corresponds to $(u_\ell,v_\ell)$ a pair of parallel $\sigma_\ell$-arrows out of $p$ --- such that for any other such pair $(u',v')$ of parallel $\sigma$-arrows out of $p$ there exists some $\ell\in L$ and a cover $\phi : \sigma\twoheadrightarrow\sigma_\ell$ such that $\phi^*u_\ell = u'$ and $\phi^*v_\ell = v'$.
+
+    The existence of such a small set $L$ can be deduce from the local smallness of $\X$ \gabrielnote{how? either use directly the smallness of the $(\mathds{h}_\sigma^{p,q_s})^2$, either by hand notice that if the $(u_i)_{i:I}$ is a family of $\sigma_i$-arrows out of $p$ that generate by thickening then $\{(\sigma_j^*u_i, \sigma_i^*u_j)\ | \ i,j:I\}$ (or something like that) works}.
+    
+    
+    For each $X\in\E$ and $\xi\in X_{Fp}$ we consider the subset \[L_{X,\xi}\coloneqq\{\ell\in L \ |\ F(u_\ell)_*\xi = F(v_\ell)_*\xi\}.\]
+    We notice that $L_{X,\xi}\cap L_{Y,\zeta} = L_{X\times Y,(\xi,\zeta)}$. So we can define the proper filter $\lambda$ on $L$, by saying that a subset is $\lambda$-large if and only if it contains some $L_{X,\xi}$.
+
+    We consider then the merging
+    \[u \coloneqq u_\ell\circ_\lambda\diag_p \qquad \text{and} \qquad v = v_\ell\circ_\lambda\diag_p.\]
+    These are two parallel vu-arrows out of $p$.
+    And for any $X\in\E$ and $\xi\in X_p$ we have
+    \[F(u)_*\xi = (F(u_\ell)_*\xi)_{\ell:\lambda} = (F(v_\ell)_*\xi)_{\ell:\lambda} = F(v)_*\xi\]
+    that is $F(u) = F(v)$ and by faithfulness of $F$ we deduce $u = v$.
+    %
+    Hence we have $u_*a = v_*a$.
+    This means that the set of $\ell$ such that ${u_\ell}_*a = {v_\ell}_*a$ is $\lambda$-large, and by definition of $\lambda$ we obtain some $X\in\E$ with some $\xi\in X_p$ such that 
+    \[F(u_\ell)_*\xi = F(v_\ell)_*\xi \Rightarrow {u_\ell}_*a = {v_\ell}_*a.\]
+
+    We got the implication for the pair $(u_\ell,v_\ell)$ but we want this implication for any pair $(u',v')$. By hypothesis $(u',v')$ is a thickening of some $(u_\ell,v_\ell)$ (by the same reindexing surjection), so we have $F(u_\ell)_*\xi = F(v_\ell)_*\xi$ iff $F(u)_*\xi = F(v)_*\xi$, and similarly ${u_\ell}_*a = {v_\ell}_*a$ iff ${u}_*a = {v}_*a$ and we are done.
+\end{proof}
 
 
 \subsection{Sub-hyperconnectedness}
@@ -712,16 +745,18 @@ In this section, we prove the following.
 \end{Thm}
 
 
-
-
-
-
-
-
 \newpage
 \appendix
 
 
+\begin{lem}
+    Let $A$ be a sheaf over $(\FF,J_{\infty})$. Then $A$ is a small sheaf (that is the sheafification of a small presheaf) if and only if it is small as a presheaf. 
+\end{lem}
+\begin{proof}
+    If $A$ is small as a presheaf, then, as $A$ is its own shefification, $A$ is trivially a small sheaf. We suppose now that $A$ is a small sheaf and we show that it is small as a presheaf.
+
+    As $A$ is a small sheaf, it is a small colimit (taken in the category of sheaves) of representables (the topology is subcanonical). We can assume $A$ is a colimit of representables in $\FF_\kappa\subseteq \FF$ for some large enough set $\kappa$. Hence, as the embedding of topos $\Sh(\FF_\kappa)\hookrightarrow\Sh(\FF)$ is a right adjoint, we have $A\in \Sh(\FF_\kappa)$. Then we have to notice that $A\in \Sh(\FF_\kappa)$ seen as a presheaf is send by $\Psh(\FF_\kappa)\hookrightarrow\Psh(\FF)$ to $A\in\Sh(\FF)$ seen as a presheaf.
+\end{proof}
 
 
         
@@ -769,22 +804,22 @@ Identified with its $\Tinj$-image, the vf-functor $\Theta$ is bijective on objec
 \begin{proof}
     In a classical metatheory, choice gives us the result with $\lambda = \ptuf$. We show the result constructively.
 
-    We consider $L$ the set of finite partial families $(a_i\in A_i)_{i:I_0}$ with $I_0$ a finite subset of $I$ and consider on it the smallest filter $\lambda$ such that for any $i_0\in I$ we have
+    We consider the set of finite partial families $(a_i\in A_i)_{i:I_0}$ with $I_0$ a finite subset of $I$ and consider on it the smallest filter $\lambda$ such that for any $i_0\in I$ we have
     \[(\forall \ell:\lambda)\ \dom(\ell)\ni i_0.\]
-    This equation define a proper filter: if we take a finite number of such equations, let's say for $i_0, \dots, i_n$, then we can find a section over the finite set $\{i_0, \dots, i_n\}$ as finite choice is true constructively.
+    These equations define a proper filter: if we take a finite number of such equations, let's say for $i_0, \dots, i_n$, then we can find a section over the finite set $\{i_0, \dots, i_n\}$ as finite choice is true constructively.
 
     We get then an element of $\prod_{i:I}({A_i}^\lambda)$ given by $((\ell(i) \in A_i)_{\ell:\lambda})_{i:I}$.
 \end{proof}
 
 \begin{lem}\label{SUJ-lem}
-    Let $\C$ be a small filtered category and $A \colon \C\to\Set$ such that each $A(x)$ in non-empty. Then, there exists an inhabited filter $\lambda$ such that the reduced product functor $A^{\lambda} \colon \C \to \Set$ defined by $x\mapsto A(x)^\lambda$ admits a global section.
+    Let $\C$ be a small filtered category and $A \colon \C\to\Set$ such that each $A(x)$ in non-empty. Then, there exists an inhabited filter $\lambda$ such that $A^\lambda:x\mapsto A(x)^\lambda$ admits a global section.
 \end{lem}
 \begin{proof}
     By the above lemma, we can suppose we have a family $(a_x\in A(x))_{x:\Ob(\C)}$.
 
     We consider $L$ the set of finite partial families $(\theta^x : {d^x}\to x \in \C)_{x:I_0}$ with $I_0$ a finite subset of $\Ob(\C)$ and consider on it the smallest filter $\lambda$ such that for any $f : x\to y$ we have 
     \[(\forall (\theta^x : {d^x}\to x)_{x:I_0}:\lambda)\ f\circ\theta^x = \theta^y.\]
-    This equation define a proper filter: if we take a finite number of such equations, let's say for $f_0, \dots, f_n$, then we can find a cone over it as $\C$ is filtered.
+    These equations define a proper filter: if we take a finite number of such equations, let's say for $f_0, \dots, f_n$, then we can find a cone over it as $\C$ is filtered.
     
     We define a global section of $A^{\lambda}$ given on $x\in\C$ by
     \[(\theta^x_*(a_{d^x}))_{(\theta^x : {d^x}\rightarrow x):\lambda} \in A(x)^{\lambda}.\]
