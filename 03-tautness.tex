@@ -29,7 +29,10 @@ We note here a property of taut vf-categories with respect to coproducts of filt
     \[\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i}) \]
     defined by specialization along each coprojection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection.
 \begin{proof}
-    For a family of vf-arrows $(u_i \colon p \vuto{\sigma_i} q_{i,s})_{i\in I}$, its merge $\bigvee_i u_i$ is a vf-arrow $p \vuto{\coprod_{i} \sigma_i} q_{i,s} $: we now show that this association defines an inverse for the map $\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i})$. \UT{to finish tomorrow}
+    For a family of vf-arrows $(u_i \colon p \vuto{\sigma_i} q_{i,s})_{i\in I}$, recall that we can consider its merge $\bigvee_i u_i$, which is the vf-arrow $p \vuto{\coprod_{i} \sigma_i} q_{i,s} $ defined as the composite $u_i \circ_{I} \diag^{I}_p$. Fixed any $i_0 \in I$, since the dependent product $\sigma_i \cdot I$ coincides with the coproduct $\coprod_i \sigma_i$, we can identify the coprojection $\iota_{i_0} \colon \sigma_{i_0} \mono \coprod_i \sigma_i$ with $\operatorname{id} \cdot i_0 \colon \sigma_{i_0} \cdot 1 \to \sigma_i \cdot I$ where the $\FF$-arrow $i_0 \colon 1 \to I$ is represented by the function picking the element $i_0$ in $I$. Thus, reindexing, \red{by the axioms} we have that 
+    \[ \iota_{i_0}^* (\bigvee_i u_i) = u_{i_0} \circ_1 (i_0^* \diag^I_p) = u_{i_0} \circ_1 \id_p = u_{i_0} .\]
+
+    To show that the association $(u_i)_{i\in I} \mapsto \bigvee_i u_i$ defines an inverse for the canonical map $\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i})$, consider now a vf-arrow $u \colon p \vuto{\coprod_i \sigma_i} q_{i,s}$. Merging its specializations along each coprojection we obtain the vf-arrow $(\iota_i^* u)_i \circ_I \diag^I_p$. \red{By the axioms}, this coincides with the vf-arrow $(\iota_i \cdot \operatorname{id} )^* (u \circ_I \diag^I) $, where $\iota_i \cdot \operatorname{id} \colon \sigma_i \cdot I \to (\coprod_i \sigma_i) \cdot I$ \UT{what now?}
 \end{proof}
 \end{lem}
 
