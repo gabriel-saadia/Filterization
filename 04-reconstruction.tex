@@ -1,0 +1,206 @@
+
+\section{The reconstruction theorem}
+\subsection{Vf-categories of points}
+
+Let $\E$ be a topos and fix a full subcategory $\X_0 \subseteq \pt(\E)$, where we identify points of $\E$ with their inverse images $\E \to \Set$. Generalizing the canonical vu-category structure, we can endow $\X_0$ with a canonical vf-category structure $\X$ such that the evaluation map $\ev \colon \E \to{} [\X_0, \Set]$ factors through $\Sh(\X) \coloneqq \vfCat(\X, \Set)$. 
+Concretely, a vf-arrow $x \vuto{s:\sigma} y_s$ in $\X$ is given by a natural transformation $x \Rightarrow \int_{s:\sigma} y_s$, where $\int_{s:\sigma} y_s$ is the \emph{reduced product} functor. 
+
+{\color{darkred}
+We now show that vu-categories arising as points of a topos are taut.
+\begin{lem}\label{lemma:taut-sober}
+    Let $\phi : \tau\to\sigma$ in $\UF$ and $(A_s)_{s:\sigma}$ a $\sigma$-family of sets. Then the image of $\int_{s:\sigma}A_s\hookrightarrow\int_{t:\tau}A_{\phi t}$ is described by the $x$ such that $\psi_1^*x = \psi_2^*x$ for all pair of maps $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$.
+\end{lem}
+\begin{proof}
+    An element $\int_{t:\tau}A_{\phi t}$ that can be lift to $\int_{s:\sigma}A_s$ clearly satisfies the condition.
+    %
+    We suppose now that $(a_t)\in \int_{t:\tau}A_{\phi t}$ cannot be lift to $\int_{s:\sigma}A_s$. We chose underlying sets $\phi : T\to S$ and we claim than the subsets $T_0\times_{\phi(T_0)}T_0 \subseteq T \times_S T$, for $T_0$ $\tau$-large, together with the subset $D = \{(t,t')\in T \times_S T\ |\ a_t \neq a_{t'}\}$ can be extended to a filter. We can thus extend them into ultrafilter $\lambda$ on $T\times_S T$, the sets $(T_0\times_{\phi(T_0)}T_0)$ ensure that the projections give maps $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$ and the set $D$ ensures that $\psi_1^*(a_t)\neq\psi_2^*(a_t)$.
+    %Conversely, we suppose that $(a_t\in A_{\phi t})$ is such that for any $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$ we have $(\forall \ell:\lambda)\ a_{\psi_1\ell} = a_{\psi_2\ell}$, and we want to show that it lift to $\int_{s:\sigma}A_s$. Considering $\tau\times_\sigma\tau$-large (the product as filters), it is enough to show that the set $D = \{(t,t')\in T \times_S T\ |\ a_t = a_{t'}\}$ is $\tau\times_\sigma\tau$-large. If it were not, then we could extend $\tau\times_\sigma\tau$ into an ultrafilter $\lambda$ such that $(\forall (t,t'):\lambda)\ a_t = a_{t'}$. \newnote{ajuster!}
+\end{proof}
+\begin{prop}
+    Any sober vu-category $\X = \pt(\E)$ is taut.
+\end{prop}
+\begin{proof}
+    We take some points $p$, $(q_s)_{s:\sigma}$ of $\E$ and $f : p \vuto{\tau}q_{\phi t}$ in $\pt(\E)$, that is, maps $f_E : E_p\to\int_{t:\tau}E_{q_{\phi t}}$ natural in $E\in\E$, that can be unthicken along $\phi : \tau\to\sigma$.
+    %
+    It is enough to show that for any $\xi\in E_p$, $f_E(\xi)$ is in the image of $\int_{s:\sigma}E_{q_s}\hookrightarrow\int_{t:\tau}E_{q_{\phi t}}$. 
+    % that is for $\xi \in E_p$, that $f_E(\xi) \in \int_{s:\sigma}E_{q_s}\subseteq\int_{t:\tau}E_{q_{\phi t}}$.
+    %
+    The hypothesis that $f$ can be unthicken along $\phi$ ensures that $\psi_1^*f_E(\xi) = \psi_2^*f_E(\xi)$ for all $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$, and so we can conclude with \Cref{lemma:taut-sober}.
+\end{proof}
+} \UT{ i don't think the above in red goes here. ideally we need to figure out how to separate the vu story from the vf story otherwise it gets too messy (also considering the different constructive status)
+}
+
+\begin{lem}
+    The canonical vf-category structure on $A \subseteq \pt(\E)$ is taut. 
+\end{lem}
+\begin{proof}
+    We first show that $\Set$ is taut. Let $A$ and $(B_s)_{s:\sigma}$ be sets, we want to show that 
+    \[\Set\left(A,\int_{t:\tau}B_{\phi t}\right)\]
+    is a sheaf over $(\tau\to[\phi]\sigma )\in \FF/\sigma$ for $J_\infty$.
+    As $\Set(A,-)$ is continuous, it is enough to show that 
+    \[\int_{t:\tau}B_{\phi t}\]
+    is a sheaf over $(\tau\to[\phi]\sigma )\in \FF/\sigma$.
+    
+    First, in the case $\sigma = \ptuf$, we noticed that $B^\tau \cong \FF(\tau,\delta_B)$, so it follows from $J_{\infty}$ being sub-canonical.
+
+    In the general case, we denote $\pi : \sum_{s:\sigma} (B_s,\{B_s\}) \to \sigma$ in $\FF/\sigma$ so that $\int_{t:\tau}B_{\phi t} = \FF/\sigma (\phi, \pi)$, and so this follows from $J_\infty$ on $\FF/\sigma$ being subcanonical.
+
+    Now we show that $\pt(\E)$ is taut \gabrielnote{à continuer} 
+    
+\end{proof}
+
+The goal of the following is to prove that the functor $\ev \colon \E \to{} \Sh(A)$ is an equivalence when $A$ is a separating set of points of $\E$.
+
+We will obtain this by combining two more general results. Note that any vf-functor $F \colon \X \to \pt(\E)$ naturally induces a functor $f^* \colon \E \to \Sh(\X)$ where, for $E  \in \E$, the vf-functor $f^*(E) \colon \X \to \Set$ is given:
+\begin{itemize}
+    \item on objects, by mapping $x \in \X_0$ to the set $F(x)(E)$;
+    \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $E$ of the natural transformation $F(r) \colon x \Rightarrow\int_{s:\sigma} y_s$.
+\end{itemize}
+Thus, we will now study study how properties of $F$ induce properties on $f^*$, in such a way that taking $F$ to be the inclusion $A \hookrightarrow \pt(\E)$ the corresponding functor $\E \to \Sh(A)$ will be an equivalence. Intuitively, we will proceed as if $f^*$ were the inverse image of a geometric morphism $\Sh(\X) \to \E$, determining sufficient conditions on $F$ making it localic and conditions making it hyperconnected. Since a geometric morphism which is both localic and hyperconnected is an equivalence, we will derive our conclusion in the case of $\E \to \Sh(A)$.
+
+\UT{do we need to assume that $\Sh(\X)$ is a topos, or does infinitary-pretopos suffice? in principle we should have the latter with no problems}\gabrielnote{I hope we will only need infinitary-pretopos, i guess one can show the accessibility directely, but in our proofs it is deduced from the reconstruction theorem}
+
+
+\subsection{Fully-faithfulness}
+
+\begin{defn}
+    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-faithful} (resp.\ \emph{vf-fully-faithful}) if, for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the function
+    \[ \X( p, (q_s)_{s:\sigma}) \to \Y (F(p), (F(q_s))_{s:\sigma}) \]
+    is injective (resp.\ bijective).
+\end{defn}
+
+\begin{defn}
+    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-full} if for each vf-arrow $u \colon F(x) \vuto{s:\sigma} F(y_s)$ in $\Y$ there exists a covering $\set{ \phi_i \colon \tau_i\to\sigma}_{i\in I}$ of $\sigma$ in $\FF$ % \gabrielnote{(or covering in $\FF/\sigma$? i don't know how it is better to think about it)} \UT{to me it makes more sense to stay on $\FF$ here, the covered object of $\FF/\sigma$ would be $\id_\sigma$ anyway, no?}
+    and a family of vf-arrows $\set{ v_i \colon x \vuto{t:\tau_i}y_{\phi_it} }_{i\in I}$ in $\X$ such that $F(v_i) = \phi_i^*(u)$ for each $i\in I$.
+\end{defn}
+
+\gabrielnote{Maybe fist define vf-full, then the factorization vf-full surj-on-ob / ff, then define the topological reflection from the factorization of the morphism into the terminal.}
+
+\begin{rmk}
+    Taking coproducts in $\FF$, the previous definition can be reduced to the case $I = 1$. {\color{darkred} moreover, by \Cref{lem:magic-choice-lemma} we can assume $\phi = \pi_2 : \lambda\cdot\sigma\to\sigma$, \ie there exists an arrow $g : p \vuto{\lambda\cdot\sigma}((q_s)_{s:\sigma})_{\ell:\lambda}$, with $\lambda$ inhabited, such that $F(g) = \pi_2^*(f)$. } \gabrielnote{a filter $\sigma$ is inhabited if $\sigma\to\ptuf$ is a covering, classically it means that it is not the initial filter} \UT{a priori \Cref{lem:magic-choice-lemma} uses classical logic so maybe we avoid it if possible/if we can't make it constructive}
+\end{rmk}
+
+\begin{lem}
+    Let $F \colon \X \to \Y$ be a vf-functor and suppose that $\X$ and $\Y$ are taut. Then, the following are equivalent:
+    \begin{enumerate}
+        \item $F$ is vf-full and vf-faithful;
+        \item $F$ is vf-fully-faithful.
+    \end{enumerate}
+\end{lem}
+\begin{proof}
+    Clearly, $(2)\Rightarrow (1)$. Conversely, suppose $F$ is vf-full and vf-faithful. To show that it is vf-fully-faithful we need to show that, for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the function
+    \[ \X( p, (q_s)_{s:\sigma}) \to \Y (F(p), (F(q_s))_{s:\sigma}) \]
+    is surjective, so let $u \colon F(p) \vuto\sigma F(q_s)$ be a vf-arrow in $\Y$. By vf-fullness of $F$, there exist a cover $\phi \colon \tau \epi \sigma$ and a vf-arrow $v \colon p \vuto\tau q_{\phi t}$ in $\X$ such that $F(v)= \phi^* u$. Now, for any $\psi_1,\psi_2 \colon \lambda\to \tau$ equalizing $\phi$, we have 
+    \[F(\psi_1^*v) = \psi_1^*F(v) = \psi_1^*\phi^*u = \psi_2^*\phi^*u = \psi_2^*F(v) = F(\psi_2^*v)\]
+    and hence $\psi_1^*v = \psi_2^*v$ by vf-faithfulness of $F$. In other words, $v$ is $\phi$-reducible: since $\X$ is taut, it follows that there is a (unique) vf-arrow $v_0 \colon p \vuto\sigma q_s$ such that $v = \phi^* v_0$. Thus,
+    \[ \phi^* u = F(v) = F(\phi^* v_0) = \phi^* F(v_0)\]
+    and hence $u = F(v_0)$ by tautness of $\Y$.
+\end{proof}
+
+
+\subsection{Localicness}
+In this section, we prove the following.
+
+\begin{Thm}[Localicness]\label{thm:localicness}
+    Let $\X$ be a small taut vf-category and let $F \colon \X\to\pt(\E)$ be a vf-functor. If $F$ is vf-faithful, then any vf-sheaf on $\X$ is a subquotient of a vf-sheaf in the image of $f^* \colon \E\to\Sh(\X)$.
+\end{Thm}
+
+\todo{introduce étale spaces}
+
+The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnoughPoints2026}. Introducing an analogous notation, let $\pi \colon \A \to \X$ be an étale vf-functor and consider an element $a \in \A_0$ lying over some $p\in \X_0$: we denote by $u(a)$ the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ determined by the unique lift $\bar u \colon a \vuto{\sigma} b_s$ to $\A$ of a vf-arrow $u\colon p \vuto{\sigma} q_s$ in $\X$.
+
+\todo{write somewhere: $\FF$ is a regular category, and the image factorization of some $\phi \colon \tau \to \sigma$ can be computed by considering $\phi_*(\tau)$.}
+
+\todo{write somewhere: the domain of an étale vf-functor is small if so is the codomain, as its class of objects is a small disjoint union of small sets}
+
+
+\begin{prop}\label{prop:local-injectivity}
+    Let $\pi \colon \A \to \X$ be an étale vf-functor over a 
+    \red{small} taut vf-category $\X$ and fix an element $a \in \A_0$ lying over some $p\in \X_0$. The following are equivalent:
+\begin{enumerate}
+    \item for any parallel pair of vf-arrows $u,u' \colon p \vuto{\sigma} q_s$ in $\X$, we have that $u(a) = u'(a)$;
+    \item for any vf-arrow $u \colon p \vuto{\sigma}q_s$ with unique lift $\bar u \colon a \vuto{\sigma} b_s$, the two filters in the image factorizations of $q \colon \sigma \to \X_0$ and $b \colon \sigma \to \A_0$ are isomorphic;
+\[\begin{tikzcd}[column sep =25pt, row sep = 15pt]
+	&[8pt] &[-8pt] \sigma &[-8pt] & \\
+	\\
+	& {b_*(\sigma)} && { q_*(\sigma)} \\
+	{\A_0} &&&& {\X_0}
+	\arrow[two heads, from=1-3, to=3-2]
+	\arrow[two heads, from=1-3, to=3-4]
+	\arrow["b"', bend right=25, from=1-3, to=4-1]
+	\arrow["q", bend left=25, from=1-3, to=4-5]
+	\arrow["\cong"{description}, tail reversed, from=3-2, to=3-4]
+	\arrow[tail, from=3-2, to=4-1]
+	\arrow[tail, from=3-4, to=4-5]
+	\arrow["\pi"', from=4-1, to=4-5]
+\end{tikzcd}\]
+    \item if $a \vuleq{\sigma} b_s$ in $\Tref(\A)$, then $\pi$ is injective on a $b_*(\sigma)$-large subset of $\A_0$;
+    \item there exists an open subspace $V \subseteq \A$ such that $a\in V$ and $\pi\vert_V \colon V \to \X$ is injective.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+    $(i)\Rightarrow(ii)$. First, let $\lambda \coloneqq  q_* (\sigma)$ and denote by $\phi \colon \sigma \twoheadrightarrow \lambda$ be the corestriction of $q \colon \sigma \to \X_0$ to its image. Denoting by $r \colon \lambda \rightarrowtail \X_0$ the inclusion, by construction we have that $(q_s)_{s:\sigma} = \phi^* (r_l)_{l:\lambda}$.
+    
+    As it is epic by construction, the map $\phi \colon \sigma \twoheadrightarrow \lambda$ is a cover for the topology $J_\infty$ on $\FF$, and by \Cref{cor:reduced-products-are-sheaves} the functor $\A_0^{-}\colon \FF^{\op}\to\Set$ is a $J_\infty$-sheaf. Note then that the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ is a compatible family for $\phi$. Indeed, for all $\psi_1,\psi_2 \colon \tau \to \sigma$ such that $\phi \circ \psi_1 = \phi \circ \psi_2$, the vf-arrows $\psi_1^*(u)$ and $\psi_2^*(u)$ are parallel, which by hypothesis entails that the families $\psi_1^*(b_s)_{s:\sigma}$ and $\psi_2^* (b_s)_{s:\sigma}$ determined by their unique lifts to $\A$ must coincide.
+    
+    Thus, by the sheaf condition, there exists a unique family $(c_{l})_{l:\lambda} \in \A_0^\lambda$ such that $(b_s)_{s:\sigma}=\phi^*(c_{l})_{l:\lambda}$. In other words, $b \colon \sigma \to \A_0$ factors through $q_* (\sigma)$, from which we can conclude by taking appropriate image factorizations and chasing diagrams. 
+
+    $(ii)\Rightarrow(iii)$. Let $v \colon a \vuto{\tau} b_{\phi t}$ be a vf-arrow in $\A$, for some cover $\phi \colon \tau \epi \sigma$, witnessing $a \vuleq{\sigma} b_s$; clearly, setting $q_t \coloneqq \pi(b_{\phi t})$, we have that $v$ is the unique lift of the vf-arrow $\pi(v) \colon p \vuto{\tau} q_t$. By hypothesis, this means that $(b\phi)_*(\tau) \cong q_*(\tau)$, and $(b\phi)_*(\tau) \cong b_*(\sigma)$ since $\phi$ is an epimorphism; the restriction of $\pi$ to (the carrier set of) $b_*(\sigma)$ is thus identifiable with the inclusion $r \colon q_*(\tau) \rightarrowtail \X_0$, and hence it is injective.
+
+    $(iii) \Rightarrow(iv)$. Let $\nu_a$ be the filter on $\A_0$ defined by the neighborhoods of $a$ in $\A$ and let $b \colon \nu_a \to \A_0$ be represented by the identity map. By \Cref{prop:canonical-convergence-neighborhoods}, we know that $a \vuleq{s:\nu_a} b_s$ in $\Tref(\A)$, so that by hypothesis $\pi$ is injective on a $\nu_a$-large subset of $\A_0$, i.e.\ on an open neighborhood of $a$ in $\A$.
+
+    $(iv)\Rightarrow(i)$. Consider the two lifts $\bar u \colon a \vuto{\sigma} b_s$ and $\bar{u}' \colon a \vuto{\sigma} b_s'$ of $u$ and $u'$ to $\A$. Since $V$ is an open neighborhood of $a$, we know that $(b_s)_{s:\sigma}, (b_s')_{s:\sigma} \in V^\sigma$. Therefore, since $\pi$ is injective on $V$ and $(\pi(b_s))_{s:\sigma} = (\pi(b'_s))_{s:\sigma} = (q_s)_{s:\sigma}$, it follows that $(b_s)_{s:\sigma}= (b_s')_{s:\sigma}$.
+\end{proof}
+
+Introducing some notation, for a vf-sheaf $A \in \Sh(\X)$, i.e.\ a vf-functor $A \colon\X \to \Set$, we denote by $\pi \colon \sem{A} \to \X$ the étale vf-functor corresponding to it by \Cref{?}. For each $p \in \X_0$, we also denote by $A_p$ the set $A(p)$, that is, the fiber of $\pi$ at $p$.
+
+\begin{proof}[proof of \Cref{thm:localicness}]
+To show that $A \colon \X \to \Set$ is a subquotient of some $f^*E$ for $E \in\E$, it suffices to show that for each $p \in \X_0$ and each $a \in A_p$ there exist some $E \in \E$ and some open subspace $V \subseteq \sem{f^*E}$ such that $a$ lies in the image of the restriction of $\pi \colon \sem{f^* E} \to \X$ to $V$. \UT{argue why}
+
+Let $S$ be 
+\end{proof}
+
+
+\begin{proof}
+    We take $A : \X\to\Set$ and $a \in A(p)$. We will show that there is some $X\in\E$ with a subsheaf $V\subseteq f^*X$ and a map $V\to A$ having $a$ in its image.
+
+    Suppose that we have $X\in\E$ and $\xi\in X_{Fp} = (f^*X)_p$ such that: for any parallel pair $(u,v)$ of vf-arrows out of $p$
+    \[F(u)_*\xi = F(v)_*\xi \Rightarrow u_*a = v_*a.\]
+    Then the above lemma says that $(a,\xi)\in \A\times_{\X}\sem{f^*X}\to \sem{f^*X}$ is locally injective at 
+    as then it is easy to conclude by applying the above on the map $(a,\xi)\in \A\times_{\X}\sem{f^*X}\to \sem{f^*X}$. 
+    
+    We now show the existence of such a $\xi\in X_{Fp}$. (the following differ significantly from GMT to make it constructive)
+
+    ------
+
+    We consider $L$ some small set of parallel vf-arrows with domain $p$ --- so $\ell\in L$ corresponds to $(u_\ell,v_\ell)$ a pair of parallel $\sigma_\ell$-arrows out of $p$ --- such that for any other such pair $(u',v')$ of parallel $\sigma$-arrows out of $p$ there exists some $\ell\in L$ and a cover $\phi : \sigma\twoheadrightarrow\sigma_\ell$ such that $\phi^*u_\ell = u'$ and $\phi^*v_\ell = v'$.
+
+    The existence of such a small set $L$ can be deduce from the local smallness of $\X$ \gabrielnote{how? either use directly the smallness of the $(\mathds{h}_\sigma^{p,q_s})^2$, either by hand notice that if the $(u_i)_{i:I}$ is a family of $\sigma_i$-arrows out of $p$ that generate by thickening then $\{(\sigma_j^*u_i, \sigma_i^*u_j)\ | \ i,j:I\}$ (or something like that) works}.
+    
+    
+    For each $X\in\E$ and $\xi\in X_{Fp}$ we consider the subset \[L_{X,\xi}\coloneqq\{\ell\in L \ |\ F(u_\ell)_*\xi = F(v_\ell)_*\xi\}.\]
+    We notice that $L_{X,\xi}\cap L_{Y,\zeta} = L_{X\times Y,(\xi,\zeta)}$. So we can define the proper filter $\lambda$ on $L$, by saying that a subset is $\lambda$-large if and only if it contains some $L_{X,\xi}$.
+
+    We consider then the merging
+    \[u \coloneqq u_\ell\circ_\lambda\diag_p \qquad \text{and} \qquad v = v_\ell\circ_\lambda\diag_p.\]
+    These are two parallel vu-arrows out of $p$.
+    And for any $X\in\E$ and $\xi\in X_p$ we have
+    \[F(u)_*\xi = (F(u_\ell)_*\xi)_{\ell:\lambda} = (F(v_\ell)_*\xi)_{\ell:\lambda} = F(v)_*\xi\]
+    that is $F(u) = F(v)$ and by faithfulness of $F$ we deduce $u = v$.
+    %
+    Hence we have $u_*a = v_*a$.
+    This means that the set of $\ell$ such that ${u_\ell}_*a = {v_\ell}_*a$ is $\lambda$-large, and by definition of $\lambda$ we obtain some $X\in\E$ with some $\xi\in X_p$ such that 
+    \[F(u_\ell)_*\xi = F(v_\ell)_*\xi \Rightarrow {u_\ell}_*a = {v_\ell}_*a.\]
+
+    We got the implication for the pair $(u_\ell,v_\ell)$ but we want this implication for any pair $(u',v')$. By hypothesis $(u',v')$ is a thickening of some $(u_\ell,v_\ell)$ (by the same reindexing surjection), so we have $F(u_\ell)_*\xi = F(v_\ell)_*\xi$ iff $F(u)_*\xi = F(v)_*\xi$, and similarly ${u_\ell}_*a = {v_\ell}_*a$ iff ${u}_*a = {v}_*a$ and we are done.
+\end{proof}
+
+
+\subsection{Sub-hyperconnectedness}
+
+In this section, we prove the following.
+
+\begin{Thm}[Sub-hyperconnectedness]
+    If $F \colon \X\to\pt(\E)$ is vf-full, then for each $e \in \E$ the frame homomorphism $\Sub_{\E}(e) \to \Sub_{\Sh(\X)}(f^*(e))$ induced by $f^* \colon  \E\to\Sh(\X)$ is a quotient map. % (embedding of locales).
+\end{Thm}
+
