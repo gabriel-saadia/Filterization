@@ -1,4 +1,3 @@
-
 \section{Vf-categories}
 
 \subsection{The category of filters}
@@ -6,7 +5,6 @@
 We begin by recalling the necessary background on \emph{filters}, so as to fix our notations and conventions. 
 
 \todo{define the relative filter monad $\mathcal F \colon \Set \to \Pos$ and say that the notation $\phi_*(\tau)$ means $\mathcal F (\phi)(\tau)$. }
-
 
 \begin{defn}
     The \emph{category of filters} $\FF$, introduced in \cite{koubekCategoryFilters1970}, is defined as follows:
@@ -17,56 +15,83 @@ We begin by recalling the necessary background on \emph{filters}, so as to fix o
     We will often omit the carrier set of a filter, and we will not distinguish notationally between a function and the morphism it defines up to equivalence.
 \end{defn}
 
-Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\phi \colon (T,\tau) \to (S,\sigma)$ is a monomorphism if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is an epimorphism if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, $\FF$ is balanced. 
+We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. 
+
+Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\phi \colon \tau \to \sigma$ is a monomorphism if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is an epimorphism if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, as implied by the lemma below, $\FF$ is balanced.
 
 \begin{lem}\label{lem:epis-are-regular}
-    Every epimorphism in $\FF$ is regular.
-\begin{proof}
-    Consider an epimorphism $\phi \colon \tau \epi \sigma$, i.e.\ such that $\sigma = \phi_*(\tau)$. Since $\FF$ is finitely complete (see, e.g., \cite[Thm.\ 9]{blassTwoClosedCategories1977}), it suffices to show that $\phi$ is the coequalizer of its kernel pair $\pi_1,\pi_2 \colon \tau\times_\sigma \tau  \rightrightarrows \tau$, so let $\chi \colon \tau \to \sigma'$ be another $\FF$-arrow such that $\chi \circ \pi_1 = \chi \circ \pi_2$. 
-    We define an $\FF$-arrow $\omega \colon \phi_*(\tau) \to \sigma'$ as follows. 
-    \[\begin{tikzcd}[row sep = 20pt]
-	{\tau\times_\sigma\tau} & \tau & {\phi_*(\tau)} \\
-	&& {\sigma'}
-	\arrow["{\pi_1}", shift left, from=1-1, to=1-2]
-	\arrow["{\pi_2}"', shift right, from=1-1, to=1-2]
-	\arrow["\phi", two heads, from=1-2, to=1-3]
-	\arrow["\chi"', from=1-2, to=2-3]
-	\arrow["\omega", dashed, from=1-3, to=2-3]
-    \end{tikzcd}\]
-    For $\phi_*(\tau)$-almost-all $s\in S$ we know that $s = \phi(t)$ for some $t \in T$; thus, we set $\omega(s) = \chi(t)$. If $s = \phi(t')$ for some other $t' \in T$, then the pair $(t,t')$ lies in the carrier set of $\tau\times_\sigma \tau$, so that $\chi(t) = \chi \psi_1(t,t') = \chi \psi_2(t,t') = \chi(t')$. Moreover, $\sigma' \subseteq \omega_*(\phi_*(\tau))$: indeed, $\omega \circ \phi = \chi$ as functions, so that this reduces to $\sigma ' \subseteq \chi_* (\tau)$, which is true since $\chi$ is an $\FF$-arrow. Thus, $\omega$ is well-defined, and it is evidently the unique $\FF$-arrow such that $\omega \circ \phi = \chi$. 
-\end{proof}
+    Every epimorphism in $\FF$ is effective. \todo{find ref in moerdijk and rephrase}
+% \begin{proof}
+%     Consider an epimorphism $\phi \colon \tau \epi \sigma$, i.e.\ such that $\sigma = \phi_*(\tau)$. Since $\FF$ is finitely complete (see, e.g., \cite[Thm.\ 9]{blassTwoClosedCategories1977}), it suffices to show that $\phi$ is the coequalizer of its kernel pair $\pi_1,\pi_2 \colon \tau\times_\sigma \tau  \rightrightarrows \tau$, so let $\chi \colon \tau \to \sigma'$ be another $\FF$-arrow such that $\chi \circ \pi_1 = \chi \circ \pi_2$. 
+%     We define an $\FF$-arrow $\omega \colon \phi_*(\tau) \to \sigma'$ as follows. 
+%     \[\begin{tikzcd}[row sep = 20pt]
+% 	{\tau\times_\sigma\tau} & \tau & {\phi_*(\tau)} \\
+% 	&& {\sigma'}
+% 	\arrow["{\pi_1}", shift left, from=1-1, to=1-2]
+% 	\arrow["{\pi_2}"', shift right, from=1-1, to=1-2]
+% 	\arrow["\phi", two heads, from=1-2, to=1-3]
+% 	\arrow["\chi"', from=1-2, to=2-3]
+% 	\arrow["\omega", dashed, from=1-3, to=2-3]
+%     \end{tikzcd}\]
+%     For $\phi_*(\tau)$-almost-all $s\in S$ we know that $s = \phi(t)$ for some $t \in T$; thus, we set $\omega(s) = \chi(t)$. If $s = \phi(t')$ for some other $t' \in T$, then the pair $(t,t')$ lies in the carrier set of $\tau\times_\sigma \tau$, so that $\chi(t) = \chi \psi_1(t,t') = \chi \psi_2(t,t') = \chi(t')$. Moreover, $\sigma' \subseteq \omega_*(\phi_*(\tau))$: indeed, $\omega \circ \phi = \chi$ as functions, so that this reduces to $\sigma ' \subseteq \chi_* (\tau)$, which is true since $\chi$ is an $\FF$-arrow. Thus, $\omega$ is well-defined, and it is evidently the unique $\FF$-arrow such that $\omega \circ \phi = \chi$. 
+% \end{proof}
 \end{lem}
 
 \begin{rmk}
     We thus also refer to epimorphisms in $\FF$ as \emph{covers}.
 \end{rmk}
 
-We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will typically leave implicit. For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$, generalizing ultrapowers to filters. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine the \emph{reduced power} functor
+
+We recall here the \emph{dependent product} of filters, combining an indexed family of filters with respect to a filter on the index set. In the non-dependent case, this reduces to the tensor product of filters considered already since \cite{blassTwoClosedCategories1977}; in the case where the filter on the index set is actually a set, this reduces instead to a description of coproducts in $\FF$. \todo{find a first ref for this too}
+
+\begin{cons}[Dependent products]
+    For a filter $\sigma$ on a set $S$ and a family $(\tau_s)_{s\in S}$ of filters, each on a set $T_s$, we denote by $\sigma \cdot \tau_s$ the filter on the set $\sum_{s\in S}T_s$ given by those subsets of the form $\sum_{s\in S_0} T_{s,0}$ where $S_0 \in \sigma$ and $T_{s,0} \in \tau_s$ for each $s \in S_0$. This construction subsumes both \emph{tensor products} and of \emph{coproducts} of filters.
+\begin{itemize}
+    \item[(a)]In the case where all filters $\tau_s$ coincide with a single filter $\tau$ on a set $T$, the filter $\sigma\cdot \tau$ is the \emph{tensor product} of $\sigma$ and $\tau$, i.e.\ the filter on the set $S \times T$ consisting of those subsets $R$ such that 
+    \[ \set{ s\in S | \set{ t \in T | (s,t) \in R } \in \tau } \in \sigma. \]
+    \item[(b)]In the case where $\sigma$ is the filter $\delta_S$, the filter $S\cdot \tau_s$ is the \emph{coproduct} of the family $(\tau_s)_{s\in S}$, i.e.\ the filter on the set $\sum_{s\in S}T_s$ consisting of those subsets of the form $\sum_{s\in S} T_{s,0}$ where $T_{s,0} \in \tau_s$ for all $s \in S$. 
+\end{itemize}
+\end{cons}
+
+Consider an $S$-family $(X_s)_{s\in S}$ of sets and a filter $\sigma$ on the set $S$. Its \emph{reduced product} is the set 
+\[ \int_{s:\sigma} X_s \coloneqq \colim_{ S_0 \in \nu^{\op}} \prod_{s\in S_0} X_s,\]
+whose elements are $\nu$-equivalence classes of tuples $(x_s \in X_s)_{s\in S_0}$ for some $S_0 \in \nu$. In the case where all sets $X_s$ coincide with a single set $X$, we also speak of the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$. These constructions, well-known in model theory \cite{?}, generalize the notions of \emph{ultraproduct} and \emph{ultrapower} to arbitrary filters. Categorically, we now see how they give rise to functors $\FF^{\op} \to \Set$; we start with the simpler case of reduced powers.
+
+\begin{cons}[Reduced powers]\label{cons:reduced-powers}
+For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the reduced power $X^\sigma$. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine the \emph{reduced power} functor
 \[ X^{-}\colon \FF^{\op} \to \Set.\]
 
-As explained in \cite{awodeyUltrasheavesDoubleNegation2004}, recall that we can consider the topology $J_\infty$ on $\FF$ generated by families $\set{ \gamma_i \colon \sigma_i \to \sigma }_{i\in I}$ such that $\bigcup_{i\in I} \gamma_i(S_i) \in \sigma$ for any $\set{ S_i \in \sigma_i }_{i\in I}$. As $\FF$ admits arbitrary (small) coproducts, it is immediate to see that this condition can be rephrased as asking for the family $\set{\gamma_i}$ to be jointly-epimorphic.
+% As explained in \cite{awodeyUltrasheavesDoubleNegation2004}, recall that we can consider the topology $J_\infty$ on $\FF$ generated by families $\set{ \gamma_i \colon \sigma_i \to \sigma }_{i\in I}$ such that $\bigcup_{i\in I} \gamma_i(S_i) \in \sigma$ for any $\set{ S_i \in \sigma_i }_{i\in I}$. As $\FF$ admits arbitrary (small) coproducts, it is immediate to see that this condition can be rephrased as asking for the family $\set{\gamma_i}$ to be jointly-epimorphic.
 
-\begin{lem}\label{lem:reduced-functors-are-sheaves}
-    For each set $X$, the functor $X^{-}\colon \FF^{\op} \to \Set$ is a $J_\infty$-sheaf.
-    \begin{proof}
-        It follows since the presheaf $X^{-}$ is represented by $\delta_X$ and the topology $J_\infty$ is subcanonical.
-    \end{proof}
-\end{lem}
+% \begin{lem}\label{lem:reduced-functors-are-sheaves}
+%     For each set $X$, the functor $X^{-}\colon \FF^{\op} \to \Set$ is a $J_\infty$-sheaf.
+%     \begin{proof}
+%         It follows since the presheaf $X^{-}$ is represented by $\delta_X$ and the topology $J_\infty$ is subcanonical.
+%     \end{proof}
+% \end{lem}
+\end{cons}
 
-We recall here the \emph{dependent product} of filters. For a filter $\sigma$ on a set $S$ and a family $(\tau_s)_{s\in S}$ of filters, each on a set $T_s$, we denote by $\tau_s \cdot \sigma$ the filter on the set $\sum_{s\in S}T_s$ given by those subsets of the form $\sum_{s\in S_0} T_{s,0}$ where $S_0 \in \sigma$ and $T_{s,0} \in \tau_s$ for each $s \in S_0$. This construction subsumes both \emph{tensor products} and of \emph{coproducts} of filters.
-\begin{itemize}
-    \item[(a)]In the case where all filters $\tau_s$ coincide with a single filter $\tau$ on a set $T$, the filter $\tau \cdot \sigma$ is the \emph{tensor product} of $\sigma$ and $\tau$, i.e.\ the filter on the set $T \times S$ consisting of those subsets $R$ such that 
-    \[ \set{ s\in S | \set{ t \in T | (t,s) \in R } \in \tau } \in \sigma. \]
-    \item[(b)]In the case where $\sigma$ is the filter $\delta_S$, the filter $\tau \cdot S$ is the \emph{coproduct} of the family $(\tau_s)_{s\in S}$, i.e.\ the filter on the set $\sum_{s\in S}T_s$ consisting of those subsets of the form $\sum_{s\in S} T_{s,0}$ where $T_{s,0} \in \tau_s$ for all $s \in S$. 
-\end{itemize}
+To generalize \Cref{cons:reduced-powers}, note that for an $S$-family $(X_s)_{s\in S}$ of sets and a filter $\sigma$ on $S$, we can see both $\sigma$ and $\sum_{s\in S} X_s$ as objects of $\FF/S$, respectively via the identity map and the projection map. 
 
-\UT{i'm choosing $\tau_s \cdot \sigma$ instead of the other way around otherwise it's a bit confusing with the composition of vf-arrows... i think it's fine if people are used to tensor products in the other way around as long as we tell them}
+\begin{cons}[Reduced products]
+    The hom-set $\FF/S (\sigma, \sum_{s\in S} X_s)$ is in bijection with the reduced product $\int_{s:\sigma} X_s$.
+\[\int_{s:\sigma} X_s \cong \left\{ \begin{tikzcd}[sep = small, cramped]
+	& {\sum_{s\in S}X_s} \\
+	\sigma & S
+	\arrow[from=1-2, to=2-2]
+	\arrow[dashed, from=2-1, to=1-2]
+	\arrow[hook, from=2-1, to=2-2]
+\end{tikzcd} \mbox{ in }\FF\right\} \]
+As above, an $\FF$-arrow $\phi \colon \tau \to \sigma$ induces by precomposition a map $\FF/S(\sigma, \sum_{s\in S} X_s) \to \FF/S(\tau, \sum_{s\in S} X_s)$ corresponding to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$, and these associations determine the \emph{reduced product} functor
+\[ \int_{s:-} X_s \colon \FF^{\op} \to \Set.\]
+
+\end{cons}
+
+
 
 \subsection{Vf-categories}
 
 \UT{we settle this at the beginning: for a class $X$, $X^\sigma$ is the reduced power, whose elements are the "filter families" $(q_s)_{s:\sigma}$; then, if $X$ is a set, it uniquely corresponds to an $\FF$-arrow $q \colon \sigma \to X$.}
-
-\todo{in our conventions for filters, say that we denote by $\sigma \cdot \tau_s$ the dependent sum of a family $(\tau_s)_{s:\sigma}$ of filters indexed by some filter $\sigma$}
 
 \begin{defn}
     A \emph{vf-category} $\X$ is defined by the following data:
@@ -106,51 +131,49 @@ We recall here the \emph{dependent product} of filters. For a filter $\sigma$ on
 We will typically write $\mathscr{X}$ in place of $\mathscr{X}_0$.
 \end{defn}
 
-For an $\FF$-arrow $\phi \colon\tau \to \sigma$, we also refer to the reindexing of $u \colon p\vuto{\sigma}q_s$ along $\phi$ as a \emph{specialization} of $u$ if $\phi$ is a monomorphism, or a \emph{thickening} of $u$ if $\phi$ is a cover. 
-
-For each point $p$, we denote by $\diag_p^\sigma \colon p \vuto{\sigma} p$ the vf-arrow obtained by reindexing $\id_p \colon p\vuto{\ptuf} p$ along the unique $\FF$-arrow $\sigma \to \ptuf$; we refer to vf-arrows of this form as \emph{diagonals}. Combining diagonals and compositions we can introduce the \emph{merging} operation on vf-arrows: for a family $(u_i \colon p \vuto{\sigma_i} q_{i,s})_{i\in I}$ of vf-arrows with the same domain, their \emph{merge} is the vf-arrow $p \vuto{\sigma_i \cdot I} q_{i,s}$ obtained as the composite
-\[ u_i \circ \diag^I_p \colon p \vuto{I} (p \vuto{\sigma_i} q_{i,s}),\]
-which we denote by $\bigvee_i u_i$.
-
+For an $\FF$-arrow $\phi \colon\tau \to \sigma$, we also refer to the reindexing of $u \colon p\vuto{\sigma}q_s$ along $\phi$ as a \emph{specialization} of $u$ if $\phi$ is a monomorphism, or a \emph{thickening} of $u$ if $\phi$ is a cover. For each point $p$, we denote by $\diag_p^\sigma \colon p \vuto{\sigma} p$ the vf-arrow obtained by reindexing $\id_p \colon p\vuto{\ptuf} p$ along the unique $\FF$-arrow $!_\sigma \colon \sigma \to \ptuf$; we refer to vf-arrows of this form as \emph{diagonals}. 
 
 \begin{defn}
-    A vf-category $\X$ is \emph{locally small} if, for each $p\in\X_0$ and $(q_s)_{s:\sigma} \in \X_0^\sigma$:
+    A vf-category $\X$ is \emph{locally small} if, for each point $p\in\X$, $S$-family of points $(q_s)_{s\in S}$, and filter $\sigma$ on $S$:
     \begin{enumerate}
         \item the class $\Hom_\sigma(p,q_s)$ of vf-arrows $p\vuto{\sigma}q_s$ is small, and 
         \item the presheaf 
         \[ \X_\sigma^{p,q_s} \colon (\FF/\sigma)^{\op} \to \Set \qquad (\phi \colon \tau\to\sigma) \mapsto \Hom_\tau(p,q_{\phi t})\]
         defined on arrows by reindexing is a \emph{small presheaf}, meaning that it is expressible as a small colimit of representables.
     \end{enumerate}
-    \gabrielnote{Or equivalently, if this presheaf factorizes to $\Psh(\FF_\kappa/\sigma)\subseteq\Psh(\FF/\sigma)$ (resp. $\Psh(\UF_\kappa/\sigma)\subseteq\Psh(\UF/\sigma)$) for some large enough cardinal $\kappa$?} \UT{maybe we avoid speaking of cardinals if we want to stay constructive.. sure sure, here it would just mean a set}
+    \gabrielnote{Or equivalently, if this presheaf factorizes to $\Psh(\FF_\kappa/\sigma)\subseteq\Psh(\FF/\sigma)$ (resp. $\Psh(\UF_\kappa/\sigma)\subseteq\Psh(\UF/\sigma)$) for some large enough cardinal $\kappa$?} \UT{maybe we avoid speaking of cardinals if we want to stay constructive..} \gabrielnote{sure sure, here it would just mean a set}
     
-    A vf-category $\X$ is \emph{small} if it is locally small and moreover $\X_0$ is small.
+    A vf-category $\X$ is \emph{small} if it is locally small and moreover its class of points is small, i.e.\ a set.
 \end{defn}
 
 \gabrielnote{rappeler les functors et nat transfo.}
 
-We denote by $\vfCAT$ and $\vfCat$ the 2-categories of locally small and small vf-categories respectively.
-
-\todo{mention vfposets}
+We denote by $\vfCAT$ and $\vfCat$ the 2-categories of locally small and small vf-categories respectively. A \emph{vf-poset} is a vf-category such that for each point $p$, $S$-family of points $(q_s)_{s\in S}$, and filter $\sigma$ on $S$, the class $\Hom_\sigma(p,q_s)$ is a subsingleton; in case it is inhabited, we also write $p \vuleq{\sigma} q_s$. We denote by $\vfPOS$ and $\vfPos$ the full sub-2-categories of $\vfCAT$ and $\vfCat$ spanned by vf-posets.
 
 \begin{ex}\label{ex:top-sp-as-vf-posets}
     A topological space $X$ can be canonically seen as a vf-poset by setting $p \vuleq{\sigma} q_s$ if every neighborhood $U \subseteq X$ of $p$ satisfies $q_s\in U$ for $s:\sigma$. \todo{in the preliminary, say that is a shorthand for  $(\forall s : \sigma) \ q_s \in U$, which in this case means that $q$ defines an element of $U^\sigma$} This definition gives rise to a 2-fully-faithful embedding $\Tinj \colon \TopSp \mono \vfPos$, where $\TopSp$ is regarded as a 2-category with the pointwise specialization order between continuous maps.
 \end{ex}
 
 
-\subsection{Subspaces}
+We introduce here an operation on vf-arrows obtained combining diagonals and compositions. For an $S$-family $(u_s \colon p \vuto{\tau_s} q_{s,t})_{s \in S}$ of vf-arrows with the same domain and a filter $\sigma$ on $S$, their \emph{merge} is the vf-arrow $p \vuto{\tau_i \cdot \sigma} q_{s,t}$ obtained as the composite
+\[ u_s \circ_\sigma \diag^\sigma_p \colon p \vuto{\sigma} (p \vuto{\tau_s} q_{s,t}),\]
+which we denote by $\bigmrg_{s:\sigma} u_s$. As shown by the following lemma, merging provides an inverse operation for specialization along the canonical maps into a coproduct of filters.
 
-Let $\X$ be a vf-category. 
+\begin{lem}
+    Let $\mathscr{X}$ be a vf-category and fix a family $\set{ \sigma_i }_{i\in I}$ of filters. For each point $p$ and each family $(q_{i,s})_{(i,s)\in \sum_i S_i}$ of points, the map 
+    \[\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i}) \]
+    defined by specialization along each coprojection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection.
+\begin{proof}
+Fix a family of vf-arrows $(u_i \colon p \vuto{\sigma_i} q_{i,s})_{i\in I}$ and consider its merge $\bigmrg_{i:I} u_i$, which we can identify with a vf-arrow $p \vuto{\coprod_{i} \sigma_i} q_{i,s} $ since $I \cdot \sigma_i$ coincides with the coproduct $\coprod_i \sigma_i$. To see that this is indeed an inverse for the canonical map, consider any $i_0 \in I$; identifying the the coprojection $\iota_{i_0} \colon \sigma_{i_0} \mono \coprod_i \sigma_i$ with $i_0\cdot \operatorname{id} \colon 1 \cdot \sigma_{i_0} \to I \cdot \sigma_i$ where the $\FF$-arrow $i_0 \colon 1 \to I$ is represented by the function picking the element $i_0$ in $I$, \red{by the axioms} we have that 
+    \[\textstyle \iota_{i_0}^* (\bigvee_i u_i) = u_{i_0} \circ_1 (i_0^* \diag^I_p) = u_{i_0} \circ_1 \id_p = u_{i_0} .\]
 
-\begin{defn}
-A \emph{subspace} $\Y$ of $\X$ is simply a sub-vf-category, i.e.\ a vf-category defined by restricting the functors $\X_{p,(q_s)}$ to a subclass $\mathscr Y_0$ of $\X_0$, together with the same units and compositions. Clearly, the inclusion $\Y_0 \hookrightarrow \X_0$ extends to a vf-fully-faithful vf-functor $\Y \to \X$.
-\end{defn}
-
-\begin{defn}
-A subspace $\Y \subseteq \X$ is \emph{open} if for any $p \in \Y_0$ and any $(q_s)_{s : \sigma} \in \X_0^\sigma$, if $p \vuleq{\sigma} q_s$ in $\Tref(\X)$, then $(q_s)_{s:\sigma} \in \Y_0^\sigma$. Equivalently, $\Y$ is open if the characteristic map $\X_0 \to \mathbf{2}$ of $\Y_0 \subseteq \X_0$ can be endowed with the structure of a vf-functor $\X \to \mathbf{2}$, where $\mathbf{2}$ is the \emph{Sierpinski vf-category}. \todo{write this better}
-
-A \emph{neighborhood} of $p\in \X_0$ in $\X$ is any subspace of $\X$ containing an open subspace $\Y\subseteq \X$ such that $p \in \Y_0$. 
-
-% A subspace $\Y \subseteq \X$ is \emph{open} if, for any $p \in \Y_0$ and any $(q_s)_{s : \sigma} \in \X_0^\sigma$, if there exists a vf-arrow $p \vuto{\sigma} q_s$ in $\X$, then $(q_s)_{s:\sigma} \in \Y_0^\sigma$. Equivalently, $\Y$ is open if the characteristic map $\X_0 \to \mathbf{2}$ of $\Y_0 \subseteq \X_0$ can be endowed with the structure of a vf-functor, where $\mathbf{2}$ is the \emph{Sierpinski vf-category}. \todo{write this better}
-% A subspace $C$ of $X$ is \emph{closed} if its complement is open;
-% explicitly, $C$ is closed if, whenever $x \preccurlyeq \lim_{i\to\mu} x_i$ and $x_i \in C$ holds $\mu$-eventually, we have $x \in C$.
-\end{defn}
+On the other hand, consider a vf-arrow $u \colon p \vuto{\coprod_i \sigma_i} q_{i,s}$. Merging its specializations along each coprojection we obtain the vf-arrow $(\iota_i^* u)_i \circ_I \diag^I_p$. \red{By the axioms}, this coincides with the vf-arrow $(\operatorname{id}\cdot \iota_i )^* (u \circ_I \diag^I) $, where $\operatorname{id}\cdot \iota_i \colon I \cdot \sigma_i \to I\cdot (I\cdot \sigma_i)$. Moreover, again \red{by the axioms}, the vf-arrow $u\circ_I \diag^I_p = u \circ_I (!_I)^*\id_p$ coincides itself with $(!_I\cdot \operatorname{id} )^* u$, where $!_I \cdot \operatorname{id}_\sigma \colon I\cdot (I\cdot \sigma_i) \to \coprod_i \sigma_i$. Thus, since the composite 
+\[\begin{tikzcd}
+	{I\cdot \sigma_i} & {I \cdot (I\cdot \sigma_i)} & {I\cdot \sigma_i}
+	\arrow["{\operatorname{id}\cdot \iota_i}", from=1-1, to=1-2]
+	\arrow["{!_I\cdot\operatorname{id}}", from=1-2, to=1-3]
+\end{tikzcd}\]
+is the identity, we conclude:
+\[ (\iota_i^* u)_i \circ_I \diag^I_p = (\operatorname{id}\cdot \iota_i )^* (u \circ_I \diag_p^I)  = (\operatorname{id}\cdot \iota_i )^* (!_I\cdot \operatorname{id} )^* u = u.\] 
+\end{proof}
+\end{lem}

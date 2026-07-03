@@ -7,34 +7,58 @@ Let $\X$ be a vf-category. Note first that if a vf-arrow $u \colon p \vuto\tau q
 \begin{defn}
     For a cover $\phi \colon \tau \epi \sigma$, a vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in $\X$ is \emph{$\phi$-reducible} (or \emph{reducible along $\phi$}) if $\psi_1^* u = \psi_2^*u$ for every pair of parallel $\FF$-arrows $\psi_1,\psi_2$ such that $\phi \circ \psi_1 = \phi\circ\psi_2$. 
 \end{defn}
+\begin{rmk}
+    Equivalently, to see that $u \colon p \vuto{\tau} q_{\phi t}$ is $\phi$-reducible, it suffices to see that $\pi_1^* u = \pi_2^* u$ where $\pi_1,\pi_2 \colon \tau \times_\sigma \tau \rightrightarrows \tau$ are the kernel pair of $\phi$.
+\end{rmk}
 
 As we now define, in a \emph{taut} vf-category, reducible vf-arrows can be {uniquely reduced}.
 
 \begin{defn}\label{def:taut}
-    A vf-category $\X$ is \emph{taut} if:
-    \begin{enumerate}
-        \item for every $\phi$-reducible vf-arrow $u \colon p \vuto\tau q_{\phi t}$ there exists a unique vf-arrow $u_0 \colon p \vuto\sigma q_s$ such that $u = \phi^* u_0$;
-        \item the canonical map $\X(p, (q_t)_{t:\coprod_{i} \sigma_i} ) \to \prod_{i} \X(p, (q_s)_{s:\sigma_i})$ defined by specialization along each coproduct injection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection. 
-    \end{enumerate} 
+    A vf-category $\X$ is \emph{taut} if for every $\phi$-reducible vf-arrow $u \colon p \vuto\tau q_{\phi t}$ there exists a unique vf-arrow $u_0 \colon p \vuto\sigma q_s$ such that $u = \phi^* u_0$.
+    % \begin{enumerate}
+    %     \item for every $\phi$-reducible vf-arrow $u \colon p \vuto\tau q_{\phi t}$ there exists a unique vf-arrow $u_0 \colon p \vuto\sigma q_s$ such that $u = \phi^* u_0$;
+    %     % \item the canonical map $\X(p, (q_t)_{t:\coprod_{i} \sigma_i} ) \to \prod_{i} \X(p, (q_s)_{s:\sigma_i})$ defined by specialization along each coproduct injection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection. 
+    % \end{enumerate} 
 \end{defn}
 
 \begin{ex}\label{ex:top-sp-are-taut-vf-posets}
-    Topological spaces, seen as vf-posets as in \Cref{ex:top-sp-as-vf-posets}, are taut. \todo{}
+    Topological spaces, seen as vf-posets as in \Cref{ex:top-sp-as-vf-posets}, are taut. 
 \end{ex}
 
-We note here a property of taut vf-categories with respect to coproducts of filters.
-
 \begin{lem}
-    Let $\mathscr{X}$ be a taut vf-category and fix a family $\set{ \sigma_i }_{i\in I}$ of filters. For each point $p$ and each family $(q_{i,s})_{(i,s)\in \sum_i S_i}$ of points, the map 
-    \[\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i}) \]
-    defined by specialization along each coprojection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection.
+The vf-category $\Set$ is taut.
 \begin{proof}
-    For a family of vf-arrows $(u_i \colon p \vuto{\sigma_i} q_{i,s})_{i\in I}$, recall that we can consider its merge $\bigvee_i u_i$, which is the vf-arrow $p \vuto{\coprod_{i} \sigma_i} q_{i,s} $ defined as the composite $u_i \circ_{I} \diag^{I}_p$. Fixed any $i_0 \in I$, since the dependent product $\sigma_i \cdot I$ coincides with the coproduct $\coprod_i \sigma_i$, we can identify the coprojection $\iota_{i_0} \colon \sigma_{i_0} \mono \coprod_i \sigma_i$ with $\operatorname{id} \cdot i_0 \colon \sigma_{i_0} \cdot 1 \to \sigma_i \cdot I$ where the $\FF$-arrow $i_0 \colon 1 \to I$ is represented by the function picking the element $i_0$ in $I$. Thus, reindexing, \red{by the axioms} we have that 
-    \[ \iota_{i_0}^* (\bigvee_i u_i) = u_{i_0} \circ_1 (i_0^* \diag^I_p) = u_{i_0} \circ_1 \id_p = u_{i_0} .\]
-
-    To show that the association $(u_i)_{i\in I} \mapsto \bigvee_i u_i$ defines an inverse for the canonical map $\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i})$, consider now a vf-arrow $u \colon p \vuto{\coprod_i \sigma_i} q_{i,s}$. Merging its specializations along each coprojection we obtain the vf-arrow $(\iota_i^* u)_i \circ_I \diag^I_p$. \red{By the axioms}, this coincides with the vf-arrow $(\iota_i \cdot \operatorname{id} )^* (u \circ_I \diag^I) $, where $\iota_i \cdot \operatorname{id} \colon \sigma_i \cdot I \to (\coprod_i \sigma_i) \cdot I$ \UT{what now?}
+    Fix a set $X$, an $S$-family of sets $(Y_s)_{s\in S}$, and a filter $\sigma$ on $S$. For a cover $\phi \colon \tau \epi \sigma$, let $u \colon X \to \int_{t:\tau} Y_{\phi t}$ be a function into the reduced product of the family $(Y_{\phi t})_{t\in T}$ which, seen as a vf-arrow, is $\phi$-reducible. We need to show that $u$ factors uniquely through the reindexing function $\phi^* \colon \int_{s:\sigma} Y_s \to \int_{t:\tau} Y_{\phi t}$.
+    \[\begin{tikzcd}
+        X & {\int_{t:\tau}Y_{\phi t}} \\
+        {\int_{s:\sigma}Y_{s}}
+        \arrow["u", from=1-1, to=1-2]
+        \arrow["{u_0}"', dashed, from=1-1, to=2-1]
+        \arrow["{\phi^*}"', from=2-1, to=1-2]
+    \end{tikzcd}\]
+    Let $\rho \coloneqq \tau\times_\sigma\tau$ be the kernel pair of $\phi$, with its two projections $\pi_1,\pi_2 \colon \rho \rightrightarrows \tau$, and denote by $\gamma \colon \rho \epi \sigma$ the composite $\phi\pi_1=\phi\pi_2$. Since $u$ is $\phi$-reducible, we know that $\pi_1^* u = \pi_2^*u$, so that the claim follows if we show that the following diagram is an equalizer in $\Set$:
+\[\begin{tikzcd}
+	{\int_{s:\sigma} Y_s} & {\int_{t:\tau}Y_{\phi t}} & {\int_{r:\rho}Y_{\gamma r}}
+	\arrow["{\phi^*}", from=1-1, to=1-2]
+	\arrow["{\pi_2^*}"', shift right, from=1-2, to=1-3]
+	\arrow["{\pi_1^*}", shift left, from=1-2, to=1-3]
+\end{tikzcd}\]
+To see this, recall first that elements of the reduced product $\int_{s:\sigma}Y_{s}$ are in bijection with $\FF$-arrows $\sigma \to \sum_{s\in S} Y_s$ lying above $S$, as shown below. 
+\[\begin{tikzcd}
+	&&& {\sum_{s\in S}Y_s} \\
+	\rho & \tau & \sigma & S
+	\arrow[from=1-4, to=2-4]
+	\arrow["{\pi_2}"', shift right, from=2-1, to=2-2]
+	\arrow["{\pi_1}", shift left, from=2-1, to=2-2]
+	\arrow["\phi", two heads, from=2-2, to=2-3]
+	\arrow[dashed, from=2-3, to=1-4]
+	\arrow[hook, from=2-3, to=2-4]
+\end{tikzcd}\]
+The claim follows then recalling that $\phi$ is the coequalizer of its kernel pair since every epimorphism in $\FF$ is effective.
 \end{proof}
 \end{lem}
+
+
 
 
 

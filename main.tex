@@ -105,6 +105,29 @@ that $g^{-1}(A) \in \kappa \otimes \nu$ as well, i.e., $A \in g(\kappa \otimes
 \gabrielnote{or maybe use some Peter's trick}
 
 \UT{for now we're still not using this}
+******
+
+
+\subsection{Subspaces}
+
+Let $\X$ be a vf-category. 
+
+\begin{defn}
+A \emph{subspace} $\Y$ of $\X$ is simply a sub-vf-category, i.e.\ a vf-category defined by restricting vf-arrows to a subclass $\mathscr Y_0$ of $\X_0$, together with the same units, compositions, and reindexings. Clearly, the inclusion $\Y_0 \hookrightarrow \X_0$ extends to a vf-fully-faithful vf-functor $\Y \to \X$.
+\end{defn}
+
+\begin{defn}
+A subspace $\Y \subseteq \X$ is \emph{open} if for any point $p$ in $\Y$, any $S$-family of points $(q_s)_{s\in S}$ in $\X$, and any filter $\sigma$ on $S$, having $p \vuleq{\sigma} q_s$ in $\Tref(\X)$ implies that $q_s \in \Y$ for $s:\sigma$. Equivalently, $\Y$ is open if the characteristic map $\X_0 \to \mathbf{2}$ of $\Y_0 \subseteq \X_0$ can be endowed with the structure of a vf-functor $\X \to \mathbf{2}$, where $\mathbf{2}$ is the \emph{Sierpinski vf-category}. \todo{write this better}
+
+A \emph{neighborhood} of $p\in \X_0$ in $\X$ is any subspace of $\X$ containing an open subspace $\Y\subseteq \X$ such that $p \in \Y_0$. 
+
+% A subspace $\Y \subseteq \X$ is \emph{open} if, for any $p \in \Y_0$ and any $(q_s)_{s : \sigma} \in \X_0^\sigma$, if there exists a vf-arrow $p \vuto{\sigma} q_s$ in $\X$, then $(q_s)_{s:\sigma} \in \Y_0^\sigma$. Equivalently, $\Y$ is open if the characteristic map $\X_0 \to \mathbf{2}$ of $\Y_0 \subseteq \X_0$ can be endowed with the structure of a vf-functor, where $\mathbf{2}$ is the \emph{Sierpinski vf-category}. \todo{write this better}
+% A subspace $C$ of $X$ is \emph{closed} if its complement is open;
+% explicitly, $C$ is closed if, whenever $x \preccurlyeq \lim_{i\to\mu} x_i$ and $x_i \in C$ holds $\mu$-eventually, we have $x \in C$.
+\end{defn}
+
+
+******
 
 
 
