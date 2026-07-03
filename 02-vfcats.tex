@@ -160,12 +160,12 @@ We introduce here an operation on vf-arrows obtained combining diagonals and com
 which we denote by $\bigmrg_{s:\sigma} u_s$. As shown by the following lemma, merging provides an inverse operation for specialization along the canonical maps into a coproduct of filters.
 
 \begin{lem}
-    Let $\mathscr{X}$ be a vf-category and fix a family $\set{ \sigma_i }_{i\in I}$ of filters. For each point $p$ and each family $(q_{i,s})_{(i,s)\in \sum_i S_i}$ of points, the map 
+    Let $\mathscr{X}$ be a vf-category and fix a family $(\sigma_i)_{i\in I}$ of filters. For each point $p$ and each family $(q_{i,s})_{(i,s)\in \sum_i S_i}$ of points, the map 
     \[\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i}) \]
     defined by specialization along each coprojection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection.
 \begin{proof}
 Fix a family of vf-arrows $(u_i \colon p \vuto{\sigma_i} q_{i,s})_{i\in I}$ and consider its merge $\bigmrg_{i:I} u_i$, which we can identify with a vf-arrow $p \vuto{\coprod_{i} \sigma_i} q_{i,s} $ since $I \cdot \sigma_i$ coincides with the coproduct $\coprod_i \sigma_i$. To see that this is indeed an inverse for the canonical map, consider any $i_0 \in I$; identifying the the coprojection $\iota_{i_0} \colon \sigma_{i_0} \mono \coprod_i \sigma_i$ with $i_0\cdot \operatorname{id} \colon 1 \cdot \sigma_{i_0} \to I \cdot \sigma_i$ where the $\FF$-arrow $i_0 \colon 1 \to I$ is represented by the function picking the element $i_0$ in $I$, \red{by the axioms} we have that 
-    \[\textstyle \iota_{i_0}^* (\bigvee_i u_i) = u_{i_0} \circ_1 (i_0^* \diag^I_p) = u_{i_0} \circ_1 \id_p = u_{i_0} .\]
+    \[\textstyle \iota_{i_0}^* (\bigmrg_i u_i) = u_{i_0} \circ_1 (i_0^* \diag^I_p) = u_{i_0} \circ_1 \id_p = u_{i_0} .\]
 
 On the other hand, consider a vf-arrow $u \colon p \vuto{\coprod_i \sigma_i} q_{i,s}$. Merging its specializations along each coprojection we obtain the vf-arrow $(\iota_i^* u)_i \circ_I \diag^I_p$. \red{By the axioms}, this coincides with the vf-arrow $(\operatorname{id}\cdot \iota_i )^* (u \circ_I \diag^I) $, where $\operatorname{id}\cdot \iota_i \colon I \cdot \sigma_i \to I\cdot (I\cdot \sigma_i)$. Moreover, again \red{by the axioms}, the vf-arrow $u\circ_I \diag^I_p = u \circ_I (!_I)^*\id_p$ coincides itself with $(!_I\cdot \operatorname{id} )^* u$, where $!_I \cdot \operatorname{id}_\sigma \colon I\cdot (I\cdot \sigma_i) \to \coprod_i \sigma_i$. Thus, since the composite 
 \[\begin{tikzcd}
