@@ -161,7 +161,8 @@ which we denote by $\bigmrg_{s:\sigma} u_s$. As shown by the following lemma, me
 
 \begin{lem}
     Let $\mathscr{X}$ be a vf-category and fix a family $(\sigma_i)_{i\in I}$ of filters. For each point $p$ and each family $(q_{i,s})_{(i,s)\in \sum_i S_i}$ of points, the map 
-    \[\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i}) \]
+    \[ \Hom_{\coprod_i \sigma_i} (p, q_{i,s} ) \to \prod_i \Hom_{\sigma_i} (p, q_{i,s})\]
+    % \[\X(p, (q_{i,s})_{(i,s): \coprod_i \sigma_i } ) \to \prod_{i} \X(p, (q_{i,s})_{s:\sigma_i}) \]
     defined by specialization along each coprojection $\sigma_i \hookrightarrow \coprod_i \sigma_i$ is a bijection.
 \begin{proof}
 Fix a family of vf-arrows $(u_i \colon p \vuto{\sigma_i} q_{i,s})_{i\in I}$ and consider its merge $\bigmrg_{i:I} u_i$, which we can identify with a vf-arrow $p \vuto{\coprod_{i} \sigma_i} q_{i,s} $ since $I \cdot \sigma_i$ coincides with the coproduct $\coprod_i \sigma_i$. To see that this is indeed an inverse for the canonical map, consider any $i_0 \in I$; identifying the the coprojection $\iota_{i_0} \colon \sigma_{i_0} \mono \coprod_i \sigma_i$ with $i_0\cdot \operatorname{id} \colon 1 \cdot \sigma_{i_0} \to I \cdot \sigma_i$ where the $\FF$-arrow $i_0 \colon 1 \to I$ is represented by the function picking the element $i_0$ in $I$, \red{by the axioms} we have that 

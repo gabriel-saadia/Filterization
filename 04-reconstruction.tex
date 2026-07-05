@@ -2,33 +2,7 @@
 \section{The reconstruction theorem}
 \subsection{Vf-categories of points}
 
-Let $\E$ be a topos and fix a full subcategory $\X_0 \subseteq \pt(\E)$, where we identify points of $\E$ with their inverse images $\E \to \Set$. Generalizing the canonical vu-category structure, we can endow $\X_0$ with a canonical vf-category structure $\X$ such that the evaluation map $\ev \colon \E \to{} [\X_0, \Set]$ factors through $\Sh(\X) \coloneqq \vfCat(\X, \Set)$. 
-Concretely, a vf-arrow $x \vuto{s:\sigma} y_s$ in $\X$ is given by a natural transformation $x \Rightarrow \int_{s:\sigma} y_s$, where $\int_{s:\sigma} y_s$ is the \emph{reduced product} functor. 
-
-{\color{darkred}
-We now show that vu-categories arising as points of a topos are taut.
-\begin{lem}\label{lemma:taut-sober}
-    Let $\phi : \tau\to\sigma$ in $\UF$ and $(A_s)_{s:\sigma}$ a $\sigma$-family of sets. Then the image of $\int_{s:\sigma}A_s\hookrightarrow\int_{t:\tau}A_{\phi t}$ is described by the $x$ such that $\psi_1^*x = \psi_2^*x$ for all pair of maps $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$.
-\end{lem}
-\begin{proof}
-    An element $\int_{t:\tau}A_{\phi t}$ that can be lift to $\int_{s:\sigma}A_s$ clearly satisfies the condition.
-    %
-    We suppose now that $(a_t)\in \int_{t:\tau}A_{\phi t}$ cannot be lift to $\int_{s:\sigma}A_s$. We chose underlying sets $\phi : T\to S$ and we claim than the subsets $T_0\times_{\phi(T_0)}T_0 \subseteq T \times_S T$, for $T_0$ $\tau$-large, together with the subset $D = \{(t,t')\in T \times_S T\ |\ a_t \neq a_{t'}\}$ can be extended to a filter. We can thus extend them into ultrafilter $\lambda$ on $T\times_S T$, the sets $(T_0\times_{\phi(T_0)}T_0)$ ensure that the projections give maps $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$ and the set $D$ ensures that $\psi_1^*(a_t)\neq\psi_2^*(a_t)$.
-    %Conversely, we suppose that $(a_t\in A_{\phi t})$ is such that for any $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$ we have $(\forall \ell:\lambda)\ a_{\psi_1\ell} = a_{\psi_2\ell}$, and we want to show that it lift to $\int_{s:\sigma}A_s$. Considering $\tau\times_\sigma\tau$-large (the product as filters), it is enough to show that the set $D = \{(t,t')\in T \times_S T\ |\ a_t = a_{t'}\}$ is $\tau\times_\sigma\tau$-large. If it were not, then we could extend $\tau\times_\sigma\tau$ into an ultrafilter $\lambda$ such that $(\forall (t,t'):\lambda)\ a_t = a_{t'}$. \newnote{ajuster!}
-\end{proof}
-\begin{prop}
-    Any sober vu-category $\X = \pt(\E)$ is taut.
-\end{prop}
-\begin{proof}
-    We take some points $p$, $(q_s)_{s:\sigma}$ of $\E$ and $f : p \vuto{\tau}q_{\phi t}$ in $\pt(\E)$, that is, maps $f_E : E_p\to\int_{t:\tau}E_{q_{\phi t}}$ natural in $E\in\E$, that can be unthicken along $\phi : \tau\to\sigma$.
-    %
-    It is enough to show that for any $\xi\in E_p$, $f_E(\xi)$ is in the image of $\int_{s:\sigma}E_{q_s}\hookrightarrow\int_{t:\tau}E_{q_{\phi t}}$. 
-    % that is for $\xi \in E_p$, that $f_E(\xi) \in \int_{s:\sigma}E_{q_s}\subseteq\int_{t:\tau}E_{q_{\phi t}}$.
-    %
-    The hypothesis that $f$ can be unthicken along $\phi$ ensures that $\psi_1^*f_E(\xi) = \psi_2^*f_E(\xi)$ for all $\psi_1,\psi_2 : \lambda\rightrightarrows \tau$ equalizing $\phi$, and so we can conclude with \Cref{lemma:taut-sober}.
-\end{proof}
-} \UT{ i don't think the above in red goes here. ideally we need to figure out how to separate the vu story from the vf story otherwise it gets too messy (also considering the different constructive status)
-}
+Let $\E$ be a topos and fix a full subcategory $\X_0 \subseteq \pt(\E)$, where we identify points of $\E$ with their inverse images $\E \to \Set$. Generalizing the canonical vu-category structure, we can endow $\X_0$ with a canonical vf-category structure $\X$ by setting vf-arrows $x \vuto{s:\sigma} y_s$ to be natural transformations $x \Rightarrow \int_{s:\sigma} y_s$ where $\int_{s:\sigma} y_s$ is the \emph{reduced product functor}. As for the analogous vu-category structure, the evaluation map $\ev \colon \E \to{} [\X_0, \Set]$ then extends to $\Sh(\X) \coloneqq \vfCat(\X, \Set)$ along the evident forgetful functor $\Sh(\X) \to{} [\X_0, \Set]$.
 
 \begin{lem}
     The canonical vf-category structure on $A \subseteq \pt(\E)$ is taut. 
@@ -59,44 +33,6 @@ We will obtain this by combining two more general results. Note that any vf-func
 Thus, we will now study study how properties of $F$ induce properties on $f^*$, in such a way that taking $F$ to be the inclusion $A \hookrightarrow \pt(\E)$ the corresponding functor $\E \to \Sh(A)$ will be an equivalence. Intuitively, we will proceed as if $f^*$ were the inverse image of a geometric morphism $\Sh(\X) \to \E$, determining sufficient conditions on $F$ making it localic and conditions making it hyperconnected. Since a geometric morphism which is both localic and hyperconnected is an equivalence, we will derive our conclusion in the case of $\E \to \Sh(A)$.
 
 \UT{do we need to assume that $\Sh(\X)$ is a topos, or does infinitary-pretopos suffice? in principle we should have the latter with no problems}\gabrielnote{I hope we will only need infinitary-pretopos, i guess one can show the accessibility directely, but in our proofs it is deduced from the reconstruction theorem}
-
-
-\subsection{Fully-faithfulness}
-
-\begin{defn}
-    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-faithful} (resp.\ \emph{vf-fully-faithful}) if, for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the function
-    \[ \X( p, (q_s)_{s:\sigma}) \to \Y (F(p), (F(q_s))_{s:\sigma}) \]
-    is injective (resp.\ bijective).
-\end{defn}
-
-\begin{defn}
-    A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-full} if for each vf-arrow $u \colon F(x) \vuto{s:\sigma} F(y_s)$ in $\Y$ there exists a covering $\set{ \phi_i \colon \tau_i\to\sigma}_{i\in I}$ of $\sigma$ in $\FF$ % \gabrielnote{(or covering in $\FF/\sigma$? i don't know how it is better to think about it)} \UT{to me it makes more sense to stay on $\FF$ here, the covered object of $\FF/\sigma$ would be $\id_\sigma$ anyway, no?}
-    and a family of vf-arrows $\set{ v_i \colon x \vuto{t:\tau_i}y_{\phi_it} }_{i\in I}$ in $\X$ such that $F(v_i) = \phi_i^*(u)$ for each $i\in I$.
-\end{defn}
-
-\gabrielnote{Maybe fist define vf-full, then the factorization vf-full surj-on-ob / ff, then define the topological reflection from the factorization of the morphism into the terminal.}
-
-\begin{rmk}
-    Taking coproducts in $\FF$, the previous definition can be reduced to the case $I = 1$. {\color{darkred} moreover, by \Cref{lem:magic-choice-lemma} we can assume $\phi = \pi_2 : \lambda\cdot\sigma\to\sigma$, \ie there exists an arrow $g : p \vuto{\lambda\cdot\sigma}((q_s)_{s:\sigma})_{\ell:\lambda}$, with $\lambda$ inhabited, such that $F(g) = \pi_2^*(f)$. } \gabrielnote{a filter $\sigma$ is inhabited if $\sigma\to\ptuf$ is a covering, classically it means that it is not the initial filter} \UT{a priori \Cref{lem:magic-choice-lemma} uses classical logic so maybe we avoid it if possible/if we can't make it constructive}
-\end{rmk}
-
-\begin{lem}
-    Let $F \colon \X \to \Y$ be a vf-functor and suppose that $\X$ and $\Y$ are taut. Then, the following are equivalent:
-    \begin{enumerate}
-        \item $F$ is vf-full and vf-faithful;
-        \item $F$ is vf-fully-faithful.
-    \end{enumerate}
-\end{lem}
-\begin{proof}
-    Clearly, $(2)\Rightarrow (1)$. Conversely, suppose $F$ is vf-full and vf-faithful. To show that it is vf-fully-faithful we need to show that, for each $p \in \X_0$ and each $(q_s)_{s:\sigma} \in \X_0^\sigma$, the function
-    \[ \X( p, (q_s)_{s:\sigma}) \to \Y (F(p), (F(q_s))_{s:\sigma}) \]
-    is surjective, so let $u \colon F(p) \vuto\sigma F(q_s)$ be a vf-arrow in $\Y$. By vf-fullness of $F$, there exist a cover $\phi \colon \tau \epi \sigma$ and a vf-arrow $v \colon p \vuto\tau q_{\phi t}$ in $\X$ such that $F(v)= \phi^* u$. Now, for any $\psi_1,\psi_2 \colon \lambda\to \tau$ equalizing $\phi$, we have 
-    \[F(\psi_1^*v) = \psi_1^*F(v) = \psi_1^*\phi^*u = \psi_2^*\phi^*u = \psi_2^*F(v) = F(\psi_2^*v)\]
-    and hence $\psi_1^*v = \psi_2^*v$ by vf-faithfulness of $F$. In other words, $v$ is $\phi$-reducible: since $\X$ is taut, it follows that there is a (unique) vf-arrow $v_0 \colon p \vuto\sigma q_s$ such that $v = \phi^* v_0$. Thus,
-    \[ \phi^* u = F(v) = F(\phi^* v_0) = \phi^* F(v_0)\]
-    and hence $u = F(v_0)$ by tautness of $\Y$.
-\end{proof}
-
 
 \subsection{Localicness}
 In this section, we prove the following.
