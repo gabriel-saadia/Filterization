@@ -42,10 +42,10 @@ Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\p
 \end{rmk}
 
 
-We recall here the \emph{dependent product} of filters, combining an indexed family of filters with respect to a filter on the index set. In the non-dependent case, this reduces to the tensor product of filters considered already since \cite{blassTwoClosedCategories1977}; in the case where the filter on the index set is actually a set, this reduces instead to a description of coproducts in $\FF$. \todo{find a first ref for this too}
+We recall here the \emph{dependent product} of filters, combining an indexed family of filters with respect to a filter on the index set. In the non-dependent case, this construction reduces to the tensor product of filters considered already since \cite{blassTwoClosedCategories1977}; in the case where the filter on the index set is actually a set, this recovers instead a description of coproducts in $\FF$. \todo{find a first ref for this too}
 
 \begin{cons}[Dependent products]
-    For a filter $\sigma$ on a set $S$ and a family $(\tau_s)_{s\in S}$ of filters, each on a set $T_s$, we denote by $\sigma \cdot \tau_s$ the filter on the set $\sum_{s\in S}T_s$ given by those subsets of the form $\sum_{s\in S_0} T_{s,0}$ where $S_0 \in \sigma$ and $T_{s,0} \in \tau_s$ for each $s \in S_0$. This construction subsumes both \emph{tensor products} and of \emph{coproducts} of filters.
+    For a filter $\sigma$ on a set $S$ and a family $(\tau_s)_{s\in S}$ of filters, each on a set $T_s$, we denote by $\sigma \cdot \tau_s$ the filter on the set $\sum_{s\in S}T_s$ given by those subsets of the form $\sum_{s\in S_0} T_{s,0}$ where $S_0 \in \sigma$ and $T_{s,0} \in \tau_s$ for each $s \in S_0$. 
 \begin{itemize}
     \item[(a)]In the case where all filters $\tau_s$ coincide with a single filter $\tau$ on a set $T$, the filter $\sigma\cdot \tau$ is the \emph{tensor product} of $\sigma$ and $\tau$, i.e.\ the filter on the set $S \times T$ consisting of those subsets $R$ such that 
     \[ \set{ s\in S | \set{ t \in T | (s,t) \in R } \in \tau } \in \sigma. \]
@@ -53,9 +53,9 @@ We recall here the \emph{dependent product} of filters, combining an indexed fam
 \end{itemize}
 \end{cons}
 
-Consider an $S$-family $(X_s)_{s\in S}$ of sets and a filter $\sigma$ on the set $S$. Its \emph{reduced product} is the set 
+Consider an $S$-family $(X_s)_{s\in S}$ of sets. Its \emph{reduced product} with respect to some filter $\sigma$ on $S$ is the set 
 \[ \int_{s:\sigma} X_s \coloneqq \colim_{ S_0 \in \nu^{\op}} \prod_{s\in S_0} X_s,\]
-whose elements are $\nu$-equivalence classes of tuples $(x_s \in X_s)_{s\in S_0}$ for some $S_0 \in \nu$. In the case where all sets $X_s$ coincide with a single set $X$, we also speak of the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$. These constructions, well-known in model theory \cite{?}, generalize the notions of \emph{ultraproduct} and \emph{ultrapower} to arbitrary filters. Categorically, we now see how they give rise to functors $\FF^{\op} \to \Set$; we start with the simpler case of reduced powers.
+whose elements are $\nu$-equivalence classes of tuples $(x_s \in X_s)_{s\in S_0}$ for some $S_0 \in \nu$, denoted as $(x_s)_{s:\sigma}$. In the case where all sets $X_s$ coincide with a single set $X$, we also speak of the \emph{reduced power} of $X$ with respect to $\sigma$, which we denote by $X^\sigma$. These constructions, well-known in model theory \cite{?}, generalize \emph{ultraproducts} and \emph{ultrapowers} to arbitrary filters. Using the category of filters $\FF$ we can describe them in a more useful way.
 
 \begin{cons}[Reduced powers]\label{cons:reduced-powers}
 For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijection with the reduced power $X^\sigma$. For an $\FF$-arrow $\phi \colon \tau \to \sigma$, the map $\FF(\sigma, X) \to \FF(\tau,X)$ given by precomposition with $\phi$ corresponds to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. These associations determine the \emph{reduced power} functor
@@ -71,10 +71,10 @@ For a set $X$ and a filter $\sigma$, the hom-set $\FF( \sigma, X)$ is in bijecti
 % \end{lem}
 \end{cons}
 
-To generalize \Cref{cons:reduced-powers}, note that for an $S$-family $(X_s)_{s\in S}$ of sets and a filter $\sigma$ on $S$, we can see both $\sigma$ and $\sum_{s\in S} X_s$ as objects of $\FF/S$, respectively via the identity map and the projection map. 
+To generalize \Cref{cons:reduced-powers}, note first that, for an $S$-family $(X_s)_{s\in S}$ of sets, we can see $\sum_{s\in S} X_s$ as an object of $\FF/S$ via the projection. Moreover, filters on $S$ can be identified with objects of $\FF/S$ that are monomorphisms in $\FF$, which we can always assume to be represented by the identity map.
 
 \begin{cons}[Reduced products]
-    The hom-set $\FF/S (\sigma, \sum_{s\in S} X_s)$ is in bijection with the reduced product $\int_{s:\sigma} X_s$.
+   For an $S$-family $(X_s)_{s\in S}$ of sets and a filter $\sigma$ on $S$, the hom-set $\FF/S (\sigma, \sum_{s\in S} X_s)$ is in bijection with the reduced product $\int_{s:\sigma} X_s$.
 \[\int_{s:\sigma} X_s \cong \left\{ \begin{tikzcd}[sep = small, cramped]
 	& {\sum_{s\in S}X_s} \\
 	\sigma & S
@@ -82,8 +82,8 @@ To generalize \Cref{cons:reduced-powers}, note that for an $S$-family $(X_s)_{s\
 	\arrow[dashed, from=2-1, to=1-2]
 	\arrow[hook, from=2-1, to=2-2]
 \end{tikzcd} \mbox{ in }\FF\right\} \]
-As above, an $\FF$-arrow $\phi \colon \tau \to \sigma$ induces by precomposition a map $\FF/S(\sigma, \sum_{s\in S} X_s) \to \FF/S(\tau, \sum_{s\in S} X_s)$ corresponding to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$, and these associations determine the \emph{reduced product} functor
-\[ \int_{s:-} X_s \colon \FF^{\op} \to \Set.\]
+As above, an $\FF$-arrow $\phi \colon \tau \to \sigma$ induces by precomposition a map $\FF/S(\sigma, \sum_{s\in S} X_s) \to \FF/S(\tau, \sum_{s\in S} X_s)$ corresponding to the function defined by mapping $(x_{s})_{s:\sigma} \mapsto (x_{\phi t})_{t:\tau}$. % and these associations determine the \emph{reduced product} functor
+% \[ \int_{s:-} X_s \colon \FF^{\op} \to \Set.\]
 
 \end{cons}
 
