@@ -5,32 +5,20 @@
 Let $\E$ be a topos and fix a full subcategory $\X_0 \subseteq \pt(\E)$, where we identify points of $\E$ with their inverse images $\E \to \Set$. Generalizing the canonical vu-category structure, we can endow $\X_0$ with a canonical vf-category structure $\X$ by setting vf-arrows $x \vuto{s:\sigma} y_s$ to be natural transformations $x \Rightarrow \int_{s:\sigma} y_s$ where $\int_{s:\sigma} y_s$ is the \emph{reduced product functor}. As for the analogous vu-category structure, the evaluation map $\ev \colon \E \to{} [\X_0, \Set]$ then extends to $\Sh(\X) \coloneqq \vfCat(\X, \Set)$ along the evident forgetful functor $\Sh(\X) \to{} [\X_0, \Set]$.
 
 \begin{lem}
-    The canonical vf-category structure on $A \subseteq \pt(\E)$ is taut. 
+    The canonical vf-category structure on $\X \subseteq \pt(\E)$ is taut. 
 \end{lem}
 \begin{proof}
-    We first show that $\Set$ is taut. Let $A$ and $(B_s)_{s:\sigma}$ be sets, we want to show that 
-    \[\Set\left(A,\int_{t:\tau}B_{\phi t}\right)\]
-    is a sheaf over $(\tau\to[\phi]\sigma )\in \FF/\sigma$ for $J_\infty$.
-    As $\Set(A,-)$ is continuous, it is enough to show that 
-    \[\int_{t:\tau}B_{\phi t}\]
-    is a sheaf over $(\tau\to[\phi]\sigma )\in \FF/\sigma$.
-    
-    First, in the case $\sigma = \ptuf$, we noticed that $B^\tau \cong \FF(\tau,\delta_B)$, so it follows from $J_{\infty}$ being sub-canonical.
-
-    In the general case, we denote $\pi : \sum_{s:\sigma} (B_s,\{B_s\}) \to \sigma$ in $\FF/\sigma$ so that $\int_{t:\tau}B_{\phi t} = \FF/\sigma (\phi, \pi)$, and so this follows from $J_\infty$ on $\FF/\sigma$ being subcanonical.
-
-    Now we show that $\pt(\E)$ is taut \gabrielnote{à continuer} 
-    
+    It suffices to show that the canonical vf-category structure on $\pt(\E)$ is taut. \UT{and maybe we do this above after $\Set$}
 \end{proof}
 
-The goal of the following is to prove that the functor $\ev \colon \E \to{} \Sh(A)$ is an equivalence when $A$ is a separating set of points of $\E$.
+The goal of the following is to prove that the functor $\ev \colon \E \to{} \Sh(\X)$ is an equivalence when $\X_0$ is a separating set of points of $\E$.
 
 We will obtain this by combining two more general results. Note that any vf-functor $F \colon \X \to \pt(\E)$ naturally induces a functor $f^* \colon \E \to \Sh(\X)$ where, for $E  \in \E$, the vf-functor $f^*(E) \colon \X \to \Set$ is given:
 \begin{itemize}
     \item on objects, by mapping $x \in \X_0$ to the set $F(x)(E)$;
     \item on vf-arrows, by mapping $r \colon x \vuto{s:\sigma} y_s$ to the component at $E$ of the natural transformation $F(r) \colon x \Rightarrow\int_{s:\sigma} y_s$.
 \end{itemize}
-Thus, we will now study study how properties of $F$ induce properties on $f^*$, in such a way that taking $F$ to be the inclusion $A \hookrightarrow \pt(\E)$ the corresponding functor $\E \to \Sh(A)$ will be an equivalence. Intuitively, we will proceed as if $f^*$ were the inverse image of a geometric morphism $\Sh(\X) \to \E$, determining sufficient conditions on $F$ making it localic and conditions making it hyperconnected. Since a geometric morphism which is both localic and hyperconnected is an equivalence, we will derive our conclusion in the case of $\E \to \Sh(A)$.
+Thus, we will now study study how properties of $F$ induce properties on $f^*$, in such a way that taking $F$ to be the inclusion $\X \hookrightarrow \pt(\E)$ the corresponding functor $\E \to \Sh(\X)$ will be an equivalence. Intuitively, we will proceed as if $f^*$ were the inverse image of a geometric morphism $\Sh(\X) \to \E$, determining sufficient conditions on $F$ making it localic and conditions making it hyperconnected. Since a geometric morphism which is both localic and hyperconnected is an equivalence, we will derive our conclusion in the case of $\E \to \Sh(\X)$.
 
 \UT{do we need to assume that $\Sh(\X)$ is a topos, or does infinitary-pretopos suffice? in principle we should have the latter with no problems}\gabrielnote{I hope we will only need infinitary-pretopos, i guess one can show the accessibility directely, but in our proofs it is deduced from the reconstruction theorem}
 
