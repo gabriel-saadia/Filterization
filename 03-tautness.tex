@@ -8,7 +8,7 @@ Let $\X$ be a vf-category. Note first that if a vf-arrow $u \colon p \vuto\tau q
     For a cover $\phi \colon \tau \epi \sigma$, a vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in $\X$ is \emph{$\phi$-reducible} (or \emph{reducible along $\phi$}) if $\psi_1^* u = \psi_2^*u$ for every pair of parallel $\FF$-arrows $\psi_1,\psi_2$ such that $\phi \circ \psi_1 = \phi\circ\psi_2$. 
 \end{defn}
 \begin{rmk}
-    Equivalently, to see that $u \colon p \vuto{\tau} q_{\phi t}$ is $\phi$-reducible, it suffices to see that $\pi_1^* u = \pi_2^* u$ where $\pi_1,\pi_2 \colon \tau \times_\sigma \tau \rightrightarrows \tau$ are the kernel pair of $\phi$.
+    Equivalently, to see that $u \colon p \vuto{\tau} q_{\phi t}$ is $\phi$-reducible, it suffices to see that $\pi_1^* u = \pi_2^* u$ where $\pi_1,\pi_2 \colon \tau \times_\sigma \tau \rightrightarrows \tau$ is the kernel pair of $\phi$.
 \end{rmk}
 
 As we now define, in a \emph{taut} vf-category, reducible vf-arrows can be {uniquely reduced}.
@@ -106,14 +106,14 @@ Concretely, a subspace $\Y$ of $\X$ is determined by a subclass $\Y_0 \subseteq 
 \end{lem}
 
 
-\begin{defn}
+\begin{defn}\label{defn:open-subspace}
 A subspace $\Y \subseteq \X$ is \emph{open} if for any point $p$ in $\Y$, any $S$-family of points $(q_s)_{s\in S}$ in $\X$, and any filter $\sigma$ on $S$, the class $\Hom^{\X}_\sigma (p, q_s)$ being inhabited implies that $q_s \in \Y$ for $s:\sigma$. A \emph{neighborhood} of a point $p$ in $\X$ is a subspace of $\X$ containing an open subspace $\Y\subseteq \X$ such that $p \in \Y_0$. 
 \end{defn}
 
 \begin{rmk}
 Denote by $\bf{\Omega}$ the \emph{vf-category of truth values}, i.e.\ the vf-poset structure defined on the frame $\Omega \coloneqq \mathcal P(1)$ by setting $\alpha \vuleq{\sigma} \beta_s$ if and only if $\alpha \subseteq \int_{s:\sigma} \beta_s$, where 
 \[ \int_{s:\sigma} \beta_s \coloneqq \bigcup_{S_0 \in \sigma^\op} \bigcap_{s\in S_0} \beta_s.\]
-Then, a a subspace $\Y\subseteq \X$ is open if the characteristic map $\X_0 \to {\Omega}$ of $\Y_0 \subseteq \X_0$ can be endowed with the structure of a vf-functor $\X \to \mathbf{\Omega}$.
+Then, a subspace $\Y\subseteq \X$ is open if the characteristic map $\X_0 \to {\Omega}$ of $\Y_0 \subseteq \X_0$ can be endowed with the structure of a vf-functor $\X \to \mathbf{\Omega}$.
 
 Assuming classical logic, $\bf{\Omega}$ can be identified with the \emph{Sierpinski vf-category} $\mathbf{2}$. \todo{write this better}
 \end{rmk}
@@ -121,10 +121,10 @@ Assuming classical logic, $\bf{\Omega}$ can be identified with the \emph{Sierpin
 
 
 
-\subsection{Tautness for vf-posets}Let us start by giving the following construction. 
+\subsection{Tautness for vf-posets}As remarked in \Cref{ex:top-sp-are-taut-vf-posets}, topological spaces are taut as vf-posets. In this subsection, we show that this association yields an equivalence of 2-categories between topological spaces and (small) taut vf-posets, where the inverse construction is determined by the notion of openness of \Cref{defn:open-subspace}. Let us start by showing how to canonically associate a taut vf-poset to each vf-category.
 
 \begin{cons}[The topological reflection]\label{cons:top-refl}
-The \emph{topological reflection} $\Tref(\X)$ of a small vf-category $\X$ is the vf-poset defined as follows:
+The \emph{topological reflection} $\Tref(\X)$ of a vf-category $\X$ is the vf-poset defined as follows:
 \begin{enumerate}
     \item points of $\Tref(\X)$ are the same as those of $\X$;
     \item for each $p \in \X_0$ and $(q_s)_{s:\sigma} \in \X_0^\sigma$, we let $p \vuleq{\sigma} q_s$ hold if and only if there exists a vf-arrow $p \vuto\tau q_{\phi t}$ in $\X$ for some cover $\phi \colon \tau \epi \sigma$ in $\FF$.
@@ -133,10 +133,10 @@ The \emph{topological reflection} $\Tref(\X)$ of a small vf-category $\X$ is the
 \end{cons}
 
 
-Both vf-category structures on $\X_0$, namely that of $\X$ and that of $\Tref(\X)$, yield a notion of \emph{openness}. As we now show, the two notions actually coincide.
+Both vf-category structures on $\X_0$, namely that of $\X$ and that of $\Tref(\X)$, detect a notion of open subspace: as we now show, in fact, the two coincide.
 
 \begin{lem}
-    For a small vf-category $\X$, a subclass $\Y_0 \subseteq \X_0$ detects an open subspace of $\X$ if and only if it detects an open subspace of $\Tref(\X)$.
+    For a vf-category $\X$, a subclass $\Y_0 \subseteq \X_0$ detects an open subspace of $\X$ if and only if it detects an open subspace of $\Tref(\X)$.
 \begin{proof}
     Suppose that $\Y_0$ detects an open subspace $\Y$ of $\X$. To see that $\Y$ is also open as a subspace of $\Tref(\X)$, suppose that $p \vuleq{\sigma} q_s$ in $\Tref(\X)$ with $p \in \Y_0$. By definition, this means that there exists a vf-arrow $p \vuto{\tau} q_{\phi t}$ in $\X$ for some cover $\phi \colon \tau \epi \sigma$; by openness of $\Y$, this entails that $q_{\phi t} \in \Y_0$ for $t :\tau$. More explicitly:
     \[ \set{ t | q_{\phi t} \in \Y_0 } \in \tau \]
