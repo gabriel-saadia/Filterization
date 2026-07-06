@@ -58,7 +58,7 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 	\arrow[tail, from=3-4, to=4-5]
 	\arrow["\pi"', from=4-1, to=4-5]
 \end{tikzcd}\]
-    \item if $a \vuleq{\sigma} b_s$ in $\Tref(\A)$, then $\pi$ is injective on a $b_*(\sigma)$-large subset of $\A_0$;
+    \item if $a \vuleq{\sigma} b_s$ in $\Tref{\A}$, then $\pi$ is injective on a $b_*(\sigma)$-large subset of $\A_0$;
     \item there exists an open subspace $V \subseteq \A$ such that $a\in V$ and $\pi\vert_V \colon V \to \X$ is injective.
 \end{enumerate}
 \end{prop}
@@ -71,7 +71,7 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 
     $(ii)\Rightarrow(iii)$. Let $v \colon a \vuto{\tau} b_{\phi t}$ be a vf-arrow in $\A$, for some cover $\phi \colon \tau \epi \sigma$, witnessing $a \vuleq{\sigma} b_s$; clearly, setting $q_t \coloneqq \pi(b_{\phi t})$, we have that $v$ is the unique lift of the vf-arrow $\pi(v) \colon p \vuto{\tau} q_t$. By hypothesis, this means that $(b\phi)_*(\tau) \cong q_*(\tau)$, and $(b\phi)_*(\tau) \cong b_*(\sigma)$ since $\phi$ is an epimorphism; the restriction of $\pi$ to (the carrier set of) $b_*(\sigma)$ is thus identifiable with the inclusion $r \colon q_*(\tau) \rightarrowtail \X_0$, and hence it is injective.
 
-    $(iii) \Rightarrow(iv)$. Let $\nu_a$ be the filter on $\A_0$ defined by the neighborhoods of $a$ in $\A$ and let $b \colon \nu_a \to \A_0$ be represented by the identity map. By \Cref{prop:canonical-convergence-neighborhoods}, we know that $a \vuleq{s:\nu_a} b_s$ in $\Tref(\A)$, so that by hypothesis $\pi$ is injective on a $\nu_a$-large subset of $\A_0$, i.e.\ on an open neighborhood of $a$ in $\A$.
+    $(iii) \Rightarrow(iv)$. Let $\nu_a$ be the filter on $\A_0$ defined by the neighborhoods of $a$ in $\A$ and let $b \colon \nu_a \to \A_0$ be represented by the identity map. By \Cref{prop:canonical-convergence-neighborhoods}, we know that $a \vuleq{s:\nu_a} b_s$ in $\Tref{\A}$, so that by hypothesis $\pi$ is injective on a $\nu_a$-large subset of $\A_0$, i.e.\ on an open neighborhood of $a$ in $\A$.
 
     $(iv)\Rightarrow(i)$. Consider the two lifts $\bar u \colon a \vuto{\sigma} b_s$ and $\bar{u}' \colon a \vuto{\sigma} b_s'$ of $u$ and $u'$ to $\A$. Since $V$ is an open neighborhood of $a$, we know that $(b_s)_{s:\sigma}, (b_s')_{s:\sigma} \in V^\sigma$. Therefore, since $\pi$ is injective on $V$ and $(\pi(b_s))_{s:\sigma} = (\pi(b'_s))_{s:\sigma} = (q_s)_{s:\sigma}$, it follows that $(b_s)_{s:\sigma}= (b_s')_{s:\sigma}$.
 \end{proof}
