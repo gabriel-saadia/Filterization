@@ -268,9 +268,11 @@ We conclude this subsection with a useful characterization of convergence in top
 \subsection{Points of the localic reflection}Throughout this subsection, fix a topos $\E$. There are two vf-posets that we can canonically associate to $\E$:
 \begin{enumerate}
     \item[i.]on one hand, as we saw in \Cref{ex:points-of-toposes}, we can consider its canonical vf-category of points $\pt(\E)$, and take its topological reflection $\Tref{\pt(\E)}$; 
-    \item[ii.]\looseness=-1 on the other, we can consider its localic reflection $\Lref{\E}$, take its space of points $\pt(\Lref{\E})$, and endow it with the canonical vf-poset structure induced by its topology.
+    \item[ii.]\looseness=-1 on the other hand, we can consider its localic reflection $\Lref{\E}$, take its space of points $\pt(\Lref{\E})$, and endow the latter with the canonical vf-poset structure induced by its topology.
 \end{enumerate}
 Note then that there is an evident vf-functor $\Theta \colon \Tref{\pt (\E)} \to \pt(\Lref{\E})$, defined by mapping each point $p \colon \E \to \Set$ to its restriction $p|_{\Sub_{\E}(1)} \colon \Sub_{\E}(1) \to \Omega$ to subterminal objects, which is a frame homomorphism and hence a point of $\Lref{\E}$. The goal of this subsection is to show that this vf-functor is in fact an \emph{equivalence} of vf-posets.
+
+\red{we're working under the assumption that it is bijective on objects, so that vf-ff implies equivalence: but why is it so?}
 
 First, we show that $\Theta$ is vf-fully-faithful. As it is trivially vf-faithful and its codomain $\pt(\Lref{\E})$ is taut, by \Cref{lem:vf-fully-faithful-equiv} it suffices to show that $\Theta$ is vf-full. To this end, we will make use of a choice-like result which we can prove constructively by taking appropriate reduced powers. Recall here that a small category $\mathcal C$ is \emph{filtered} if every finite diagram in $\mathcal C$ admits a cocone.
 
