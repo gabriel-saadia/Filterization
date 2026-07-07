@@ -315,12 +315,12 @@ For each family $(q_s)_{s\in S}$ of points of $\E$ and each filter $\sigma$ on t
 
 }
 
-\begin{prop}
+\begin{prop}\label{prop:theta-is-vf-full}
     The vf-functor $\Theta \colon \Tref{\pt(\E)} \to \pt(\Lref{\E})$ is vf-full.
 \begin{proof}
     Fix $p$ and $(q_s)_{s\in S}$ points of $\E$ and, for a filter $\sigma$ on $S$, suppose that $p \vuleq{\sigma} q_s$ in $\pt(\Lref{\E})$. Concretely, we need to prove that there exist a cover $\phi \colon \tau \epi \sigma$ in $\FF$ and a vf-arrow $p \vuto{t:\tau} q_{\phi t}$ in $\pt(\E)$, i.e.\ a natural transformation $p \Rightarrow \int_{t:\tau} q_{\phi t}$.
 
-    Fix a small dense subcategory $\mathcal G$ of $\E$ which, without loss of generality, we can assume to admit finite limits.\footnote{Constructively, we can suppose that $\E$ is given as the category of sheaves on a lex site, so that $\mathcal G$ can be taken as its underlying category.} By density, to define a natural $p \Rightarrow \int_{t:\tau} q_{\phi t}$ it suffices to define one between the restrictions $p\vert_{\mathcal G} \Rightarrow \int_{t:\tau} q_{\phi t}\vert_{\mathcal G}$. 
+    Fix a small dense subcategory $\mathcal G$ of $\E$ which, without loss of generality, we can assume to admit finite limits.\footnote{Constructively, we can suppose that $\E$ is given as the category of sheaves on a lex site, so that $\mathcal G$ can be taken as its underlying category.} By density and by cocontinuity of $p$ \UT{here add ref to kelly as i did in my paper because typically people want both functors to be cocontinuous}, to define a natural $p \Rightarrow \int_{t:\tau} q_{\phi t}$ it suffices to define one between the restrictions $p\vert_{\mathcal G} \Rightarrow \int_{t:\tau} q_{\phi t}\vert_{\mathcal G}$. 
     
     Let $\mathcal C$ be the category of elements of the restriction $p\vert_{\mathcal G} \colon \mathcal G \to \Set$, which is cofiltered as the latter preserves finite limits, and consider the functor $A \colon \mathcal C \to \Set$ defined by $A(E, \xi) \coloneqq \int_{s:\sigma} E_{q_s}$. Note that, for each pair $(E,\xi)$ in $\mathcal C$, since $\xi \in E_p$, the set  $\int_{s:\sigma} E_{q_s}$ is inhabited, as can be seen from the following diagram of surjections and inclusions:
     \[\begin{tikzcd}[sep =small]
