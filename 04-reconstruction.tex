@@ -78,7 +78,7 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 
 Introducing some notation, for a vf-sheaf $A \in \Sh(\X)$, i.e.\ a vf-functor $A \colon\X \to \Set$, we denote by $\pi \colon \sem{A} \to \X$ the étale vf-functor corresponding to it by \Cref{?}. For each $p \in \X_0$, we also denote by $A_p$ the set $A(p)$, that is, the fiber of $\pi$ at $p$.
 
-\begin{proof}[proof of \Cref{thm:localicness}]
+\begin{proof}[Proof of \Cref{thm:localicness}]
 To show that $A \colon \X \to \Set$ is a subquotient of some $f^*E$ for $E \in\E$, it suffices to show that for each $p \in \X_0$ and each $a \in A_p$ there exist some $E \in \E$ and some open subspace $V \subseteq \sem{f^*E}$ such that $a$ lies in the image of the restriction of $\pi \colon \sem{f^* E} \to \X$ to $V$. \UT{argue why}
 
 Let $S$ be 
@@ -124,7 +124,36 @@ Let $S$ be
 
 In this section, we prove the following.
 
-\begin{Thm}[Sub-hyperconnectedness]
-    If $F \colon \X\to\pt(\E)$ is vf-full, then for each $e \in \E$ the frame homomorphism $\Sub_{\E}(e) \to \Sub_{\Sh(\X)}(f^*(e))$ induced by $f^* \colon  \E\to\Sh(\X)$ is a quotient map. % (embedding of locales).
+\begin{Thm}\label{thm:subhyperconnectedness}[Sub-hyperconnectedness]
+    If $F \colon \X\to\pt(\E)$ is vf-full, then for each $E \in \E$ the frame homomorphism $\Sub_{\E}(E) \to \Sub_{\Sh(\X)}(f^*E)$ induced by $f^* \colon  \E\to\Sh(\X)$ is a quotient map. % (embedding of locales).
 \end{Thm}
 
+
+\todo{describe pullbacks}
+
+The proof of \Cref{thm:subhyperconnectedness} will make use of the following lemmas, whose proof is straightforward from the definition of vf-fullness.
+
+\begin{lem}
+    Vf-full vf-functors are stable under pullback.
+% \begin{proof}
+%     Let $F \colon \X\to\Y$ be a vf-full vf-functor and let $G \colon \mathscr{Z} \to \Y$ be another vf-functor. Consider the pullback:
+% \[\begin{tikzcd}[sep = 25pt]
+% 	{\X \times_{\Y} \mathscr{Z}} & {\mathscr{Z}} \\
+% 	\X & \Y
+% 	\arrow["{\bar F}", from=1-1, to=1-2]
+% 	\arrow["{\bar G}"', from=1-1, to=2-1]
+% 	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+% 	\arrow["G", from=1-2, to=2-2]
+% 	\arrow["F"', from=2-1, to=2-2]
+% \end{tikzcd}\]
+% Fix a point $(x,z)$ and an $S$-family of points $(x_s, z_s)_{s\in S}$ in $\X \times_{\Y} \mathscr{Z}$ and, for a filter $\sigma$ on $S$, consider a vf-arrow $u \colon z \vuto{\sigma} z_s$ in $\mathscr{Z}$. Then, the vf-arrow $G(u) \colon G(z) \vuto{\sigma} G(z_s)$ in $\Y$ can be identified with a vf-arrow $F(x) \vuto{\sigma} F(x_s)$ since $F(x) = G(z)$ and $F(x_s) = G(z_s)$ for each $s\in S$. By vf-fullness of $F$, this means that $\phi^*(G(u)) = F(v)$ for some cover $\phi \colon \tau \epi \sigma$ and some vf-arrow $v \colon x \vuto{\tau} x_{\phi t}$ in $\X$. Since $\phi^*(G(u))= G(\phi^*u)$, this means that the pair $(v, \phi^*u )$ defines a vf-arrow $(x, z)\vuto{\tau} (x_{\phi t}, z_{\phi t})$ in $\X \times_{\Y} \mathscr{Z}$, and clearly $\bar{F}(v, \phi^*u) = \phi^*u$, witnessing vf-fullness of $\bar F$.
+% \end{proof}
+\end{lem}
+
+\begin{lem}
+    The topological reflection 2-functor $\Tref{-}$ preserves vf-fullness.
+\end{lem}
+
+\begin{proof}[Proof of \Cref{thm:subhyperconnectedness}]
+x
+\end{proof}
