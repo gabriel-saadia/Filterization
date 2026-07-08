@@ -110,7 +110,8 @@ Concretely, a subspace $\Y$ of $\X$ is determined by a subclass $\Y_0 \subseteq 
 A subspace $\Y \subseteq \X$ is \emph{open} if for any point $p$ in $\Y$, any $S$-family of points $(q_s)_{s\in S}$ in $\X$, and any filter $\sigma$ on $S$, the class $\Hom^{\X}_\sigma (p, q_s)$ being inhabited implies that $q_s \in \Y$ for $s:\sigma$. A \emph{neighborhood} of a point $p$ in $\X$ is a subspace of $\X$ containing an open subspace $\Y\subseteq \X$ such that $p \in \Y_0$. 
 \end{defn}
 
-If $\X$ is a small vf-category, the set of its open subspaces determines a topology on $\X_0$: this construction yields a 2-functor $\Open \colon \vfCat \to \TopSp$ mapping each small vf-category to the topological space determined by its open subspaces and each vf-functor to its underlying map of points.
+We denote by $\Open (\X)$ the (possibly large) poset of open subspaces of $\X$. If $\X$ is small, then $\Open(X)$ is a frame, and it determines a topology on $\X_0$: with respect to these topologies, the underlying maps of points of vf-functors are continuous. This construction gives thus rise to a 2-functor $\vfCat \to \TopSp$ which, with a slight abuse of notation, we also denote by $\Open$.
+
 
 \begin{rmk}
 Denote by $\bf{\Omega}$ the \emph{vf-category of truth values}, i.e.\ the vf-poset structure defined on the frame $\Omega \coloneqq \mathcal P(1)$ by setting $\alpha \vuleq{\sigma} \beta_s$ if and only if $\alpha \subseteq \int_{s:\sigma} \beta_s$, where 
@@ -265,7 +266,7 @@ We conclude this subsection with a useful characterization of convergence in top
 % \end{proof}
 % \end{cor}
 
-\subsection{Points of the localic reflection}Throughout this subsection, fix a topos $\E$. There are two vf-posets that we can canonically associate to $\E$:
+\subsection{Points of the localic reflection}Throughout this subsection, fix a topos $\E$. Recall that its \emph{localic reflection} $\Lref{\E}$ is defined as the frame $\Sub_{\E}(1)$ of subterminal objects. There are then two vf-posets that we can canonically associate to $\E$:
 \begin{enumerate}
     \item[i.]on one hand, as we saw in \Cref{ex:points-of-toposes}, we can consider its canonical vf-category of points $\pt(\E)$, and take its topological reflection $\Tref{\pt(\E)}$; 
     \item[ii.]\looseness=-1 on the other hand, we can consider its localic reflection $\Lref{\E}$, take its space of points $\pt(\Lref{\E})$, and endow the latter with the canonical vf-poset structure induced by its topology.

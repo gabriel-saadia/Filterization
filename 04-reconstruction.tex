@@ -124,7 +124,7 @@ Let $S$ be
 
 In this section, we prove the following.
 
-\begin{Thm}\label{thm:subhyperconnectedness}[Sub-hyperconnectedness]
+\begin{Thm}[Sub-hyperconnectedness]\label{thm:subhyperconnectedness}
     If $F \colon \X\to\pt(\E)$ is vf-full, then for each $E \in \E$ the frame homomorphism $\Sub_{\E}(E) \to \Sub_{\Sh(\X)}(f^*E)$ induced by $f^* \colon  \E\to\Sh(\X)$ is a quotient map. % (embedding of locales).
 \end{Thm}
 
@@ -133,7 +133,7 @@ In this section, we prove the following.
 
 The proof of \Cref{thm:subhyperconnectedness} will make use of the following lemmas, whose proof is straightforward from the definition of vf-fullness.
 
-\begin{lem}
+\begin{lem}\label{lem:vf-fullness-stable-pullback}
     Vf-full vf-functors are stable under pullback.
 % \begin{proof}
 %     Let $F \colon \X\to\Y$ be a vf-full vf-functor and let $G \colon \mathscr{Z} \to \Y$ be another vf-functor. Consider the pullback:
@@ -150,10 +150,58 @@ The proof of \Cref{thm:subhyperconnectedness} will make use of the following lem
 % \end{proof}
 \end{lem}
 
-\begin{lem}
+\begin{lem}\label{lem:tref-preserves-vf-fullness}
     The topological reflection 2-functor $\Tref{-}$ preserves vf-fullness.
 \end{lem}
 
+We will also make use of the following, less trivial, property of vf-full vf-functors.
+
+\begin{lem}\label{lem:vf-full-between-vf-posets-induces-quotient}
+    Let $F \colon X \to Y$ be a vf-full vf-functor between vf-posets and suppose that $X$ is taut. Then, the induced map $\Open Y \to \Open X$ is surjective.
+\begin{proof}
+    Let $U$ be an open subspace of $X$; concretely, we need to show that $U = F^{-1}(V)$ for some open subspace $V \subseteq Y$. Let:
+    \[ V \coloneqq \set{ y \in Y | \mbox{if }y \vuleq{\sigma} F(x_s) \mbox{ then }x_s \in U \mbox{ for }s:\sigma}.\]
+
+    First, let us see that $U = F^{-1}(V)$. If $x \in U$ and a vf-inequality $F(x) \vuleq{\sigma} F(x_s)$ holds in $Y$, then by vf-fullness of $F$ we know that $x \vuleq{\tau} x_{\phi t}$ holds in $X$ for some cover $\phi \colon \tau \epi \phi$, and hence $x \vuleq{\sigma} x_s$ holds too by tautness of $X$; since $x\in U$ and $U$ is open, it then follows that $x_s \in U$ for $s:\sigma$. Conversely, if $x \in F^{-1}(V)$, then the vf-inequality $F(x) \vuleq{1} F(x)$ in $Y$ entails that $x \in U$. 
+
+    Let us now see that $V$ is open in $Y$: suppose that $y \vuleq{\sigma} y_s$ with $y \in V$. To see that $y_s \in V$ for $s:\sigma$, suppose for each $s\in S$ that $y_s \vuleq{\tau_s} F(x_{s,t})$ holds in $Y$. Composing vf-arrows, it follows that $y \vuleq{\sigma\cdot \tau_s} F(x_{s,t})$, and hence that $x_{s,t} \in U$ for $(s,t) : \sigma\cdot \tau_s$ by definition of $V$. Concretely, this means that $\set{t |  x_{s,t} \in U} \in \tau_s$ for $s:\sigma$, which implies that $y_s \in V$ for $s: \sigma$.
+\end{proof}
+\end{lem}
+
+\UT{the thing below needs to go somewhere else, where we speak of étaleness}
+
+Moreover, exactly as in \cite[Lem.\ 4.17]{vangoolToposesEnoughPoints2026}, we can characterize subobjects of étale vf-functors as open subspaces of the domain. 
+
+\begin{lem}
+    Let $A \colon \X \to \Set$ be a vf-functor and let $\pi \colon \sem{A} \to \X$ the corresponding étale vf-functor. Subobjects of $\pi$ in $\mathsf{Et}(\X)$ coincide with restrictions of $\pi$ to open subspaces of $\sem{A}$, so that there is an isomorphism of frames
+\[ \Sub_{\Sh(\X)}(A) \cong \Open(\sem{A}).\]
+\end{lem}
+
+Consider now the slice topos $\E/E$. Identifying points of $\E/E$ with pairs $(p, \xi)$ of a point $p$ of $\E$ and an element $\xi \in E_p$ \todo{add ref}, the canonical vf-category structure on $\pt(\E/E)$ can be described by setting vf-arrows $(p, \xi) \vuto{s:\sigma} (q_s, \zeta_s)$ to be natural transformations $p \Rightarrow \int_{s:\sigma} q_s$ whose component at $E$ maps $\xi \mapsto (\zeta_s)_{s:\sigma}$. This means that the vf-functor $\pt(\E/E)\to\pt(E)$ is étale, and that the étale vf-functor $\sem{f^*E} \to \X$ arises as its pullback along $F \colon \X \to \pt(\E)$.
+\[\begin{tikzcd}
+	{\sem{f^*E}} & {\pt(\E/E)} \\
+	\X & {\pt(\E)}
+	\arrow["\bar F", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow["F"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+
 \begin{proof}[Proof of \Cref{thm:subhyperconnectedness}]
-x
+    First, recall that $\Sub_{\E}(E) \cong \Sub_{\E/E}(1)$ as frames, and the latter is by definition the localic reflection $\Lref{\E/E}$. Recall also that for any vf-category $\Y$ there is an isomorphism of posets $\Open(\Y) \cong \Open(\Tref{\Y})$. By direct inspection we can then see that the frame homomorphism $\Sub_{\E} (E) \to \Sub_{\Sh(\X)}(f^*E)$ induced by $f^*$ factors as the composite
+\[\hspace{-55pt}\begin{tikzcd}[sep = 20pt]
+	{\Sub_{\E}(E)\cong {\Lref{\E/E}}} & {\Open(\pt(\Lref{\E/E}))} & {\Open(\Tref{\pt(\E/E)})} & {\Open(\Tref{\sem{f^*E}})\cong \Open(\sem{f^*E})\cong \Sub_{\Sh(\X)}(f^*E)}
+	\arrow[two heads, from=1-1, to=1-2]
+	\arrow[two heads, from=1-2, to=1-3]
+	\arrow[two heads, from=1-3, to=1-4]
+\end{tikzcd}\]
+where:
+\begin{itemize}
+    \item[i.] $\Lref{\E/E} \epi \Open (\pt (\Lref{\E/E}))$ is the unit of the adjunction $\Open \dashv \pt$ between frames and topological spaces, which is always a quotient map;
+    \item[ii.]$\Open (\pt (\Lref{\E/E})) \epi \Open(\Tref{\pt(\E/E)})$ is the map induced on opens by the vf-functor $\Theta \colon \Tref{\pt(\E/E)} \to \pt (\Lref{\E/E})$, which is a quotient map by \Cref{lem:vf-full-between-vf-posets-induces-quotient} since $\Theta$ is vf-full by \Cref{prop:theta-is-vf-full};
+    \item[iii.]$\Open(\Tref{\pt(\E/E)}) \epi \Open(\Tref{\sem{f^*E}})$ is the map induced by the topological reflection of the vf-functor $\bar F \colon \sem{f^*E} \to \pt(\E/E)$, which again is a quotient map by \Cref{lem:vf-full-between-vf-posets-induces-quotient} since $\Tref{\bar F}$ is vf-full by combining \Cref{lem:tref-preserves-vf-fullness} and \Cref{lem:vf-fullness-stable-pullback}.
+\end{itemize}
+Thus, the homomorphism $\Sub_{\E} (E) \to \Sub_{\Sh(\X)}(f^*E)$ is a quotient map by composition.
 \end{proof}
