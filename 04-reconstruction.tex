@@ -31,16 +31,17 @@ In this section, we prove the following.
 
 \todo{introduce étale spaces}
 
-The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnoughPoints2026}. Introducing an analogous notation, let $\pi \colon \A \to \X$ be an étale vf-functor and consider an element $a \in \A_0$ lying over some $p\in \X_0$: we denote by $u(a)$ the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ determined by the unique lift $\bar u \colon a \vuto{\sigma} b_s$ to $\A$ of a vf-arrow $u\colon p \vuto{\sigma} q_s$ in $\X$.
+The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnoughPoints2026}. Introducing an analogous notation, let $\pi \colon \A \to \X$ be an étale vf-functor and consider an element $a \in \A_0$ lying over some $p\in \X_0$: we denote by $u(a)$ the codomain $(b_s)_{s\in S}$ of the unique lift $\bar u \colon a \vuto{\sigma} b_s$ to $\A$ of a vf-arrow $u\colon p \vuto{\sigma} q_s$ in $\X$.
 
 \todo{write somewhere: $\FF$ is a regular category, and the image factorization of some $\phi \colon \tau \to \sigma$ can be computed by considering $\phi_*(\tau)$.}
 
 \todo{write somewhere: the domain of an étale vf-functor is small if so is the codomain, as its class of objects is a small disjoint union of small sets}
 
+\UT{we used tautness of $\X$ before but now i don't think so?}
 
 \begin{prop}\label{prop:local-injectivity}
     Let $\pi \colon \A \to \X$ be an étale vf-functor over a 
-    \red{small} taut vf-category $\X$ and fix an element $a \in \A_0$ lying over some $p\in \X_0$. The following are equivalent:
+    \red{small} vf-category $\X$ and fix a point $a \in \A$ lying over some $p\in \X$. Fix also an $S$-family of points $(q_s)_{s\in S}$ in $\X$ and a filter $\sigma$ on $S$. The following are equivalent:
 \begin{enumerate}
     \item for any parallel pair of vf-arrows $u,u' \colon p \vuto{\sigma} q_s$ in $\X$, we have that $u(a) = u'(a)$;
     \item for any vf-arrow $u \colon p \vuto{\sigma}q_s$ with unique lift $\bar u \colon a \vuto{\sigma} b_s$, the two filters in the image factorizations of $q \colon \sigma \to \X_0$ and $b \colon \sigma \to \A_0$ are isomorphic;
@@ -63,13 +64,23 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 \end{enumerate}
 \end{prop}
 \begin{proof}
-    $(i)\Rightarrow(ii)$. First, let $\lambda \coloneqq  q_* (\sigma)$ and denote by $\phi \colon \sigma \twoheadrightarrow \lambda$ be the corestriction of $q \colon \sigma \to \X_0$ to its image. Denoting by $r \colon \lambda \rightarrowtail \X_0$ the inclusion, by construction we have that $(q_s)_{s:\sigma} = \phi^* (r_l)_{l:\lambda}$.
-    
-    As it is epic by construction, the map $\phi \colon \sigma \twoheadrightarrow \lambda$ is a cover for the topology $J_\infty$ on $\FF$, and by \Cref{cor:reduced-products-are-sheaves} the functor $\A_0^{-}\colon \FF^{\op}\to\Set$ is a $J_\infty$-sheaf. \red{change with tautness of set} Note then that the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ is a compatible family for $\phi$. Indeed, for all $\psi_1,\psi_2 \colon \tau \to \sigma$ such that $\phi \circ \psi_1 = \phi \circ \psi_2$, the vf-arrows $\psi_1^*(u)$ and $\psi_2^*(u)$ are parallel, which by hypothesis entails that the families $\psi_1^*(b_s)_{s:\sigma}$ and $\psi_2^* (b_s)_{s:\sigma}$ determined by their unique lifts to $\A$ must coincide.
-    
-    Thus, by the sheaf condition, there exists a unique family $(c_{l})_{l:\lambda} \in \A_0^\lambda$ such that $(b_s)_{s:\sigma}=\phi^*(c_{l})_{l:\lambda}$. In other words, $b \colon \sigma \to \A_0$ factors through $q_* (\sigma)$, from which we can conclude by taking appropriate image factorizations and chasing diagrams. 
+    $(i)\Rightarrow(ii)$. Fix a vf-arrow $u\colon p \vuto{\sigma}q_s$ in $\X$ with its unique lift $\bar u \colon a \vuto{\sigma} b_s$ to $\A$. Considering $(q_s)_{s\in S}$ as an $\FF$-arrow $q \colon \sigma\to \X_0$, let $\lambda \coloneqq q_*(\sigma)$ and denote by $\phi \colon \sigma \epi \lambda$ the corestriction of $q$ to its image. Denoting by $r \colon \lambda \rightarrowtail \X_0$ the inclusion, by construction we have that $q_s = r_{\phi s}$ for each $s\in S$, so that we can identify $u$ with a vf-arrow $u \colon p \vuto{\sigma} r_{\phi s}$. 
 
-    $(ii)\Rightarrow(iii)$. Let $v \colon a \vuto{\tau} b_{\phi t}$ be a vf-arrow in $\A$, for some cover $\phi \colon \tau \epi \sigma$, witnessing $a \vuleq{\sigma} b_s$; clearly, setting $q_t \coloneqq \pi(b_{\phi t})$, we have that $v$ is the unique lift of the vf-arrow $\pi(v) \colon p \vuto{\tau} q_t$. By hypothesis, this means that $(b\phi)_*(\tau) \cong q_*(\tau)$, and $(b\phi)_*(\tau) \cong b_*(\sigma)$ since $\phi$ is an epimorphism; the restriction of $\pi$ to (the carrier set of) $b_*(\sigma)$ is thus identifiable with the inclusion $r \colon q_*(\tau) \rightarrowtail \X_0$, and hence it is injective.
+    Consider the kernel pair $\psi_1,\psi_2 \colon \tau \rightrightarrows \sigma$ of $\phi$, so that $\psi_1^* u$ and $\psi_2^* u$ are parallel vf-arrows. By hypothesis, the codomains of their lifts $\psi_1^* \bar u$ and $\psi_2^* \bar u$ to $\A$ coincide, i.e.\ $\psi_1^*(b_s)_{s\in S} = \psi_2^* (b_s)_{s\in S}$. Recall then that, by tautness of $\Set$, the diagram 
+\[\begin{tikzcd}
+	{\A_0^{\lambda}} & {\A_0^\sigma} & {\A_0^\tau}
+	\arrow[hook, "{\phi^*}", from=1-1, to=1-2]
+	\arrow["{\psi_1^*}", shift left, from=1-2, to=1-3]
+	\arrow["{\psi_2^*}"', shift right, from=1-2, to=1-3]
+\end{tikzcd}\]
+    is an equalizer (cf.\ \Cref{lem:set-is-taut}). This means that there exists a (unique) $\FF$-arrow $c \colon \lambda \to \A_0$ such that $b = c \phi$. In other words, the $\FF$-arrow $b \colon \sigma \to \A_0$ factors through $q_* (\sigma)$, from which we can conclude that $q_*(\sigma) \cong b_*(\sigma)$ by taking appropriate image factorizations and chasing diagrams. 
+
+
+    % As it is epic by construction, the map $\phi \colon \sigma \twoheadrightarrow \lambda$ is a cover for the topology $J_\infty$ on $\FF$, and by \Cref{cor:reduced-products-are-sheaves} the functor $\A_0^{-}\colon \FF^{\op}\to\Set$ is a $J_\infty$-sheaf. \red{change with tautness of set} Note then that the family $(b_s)_{s:\sigma} \in \A_0^\sigma$ is a compatible family for $\phi$. Indeed, for all $\psi_1,\psi_2 \colon \tau \to \sigma$ such that $\phi \circ \psi_1 = \phi \circ \psi_2$, the vf-arrows $\psi_1^*(u)$ and $\psi_2^*(u)$ are parallel, which by hypothesis entails that the families $\psi_1^*(b_s)_{s:\sigma}$ and $\psi_2^* (b_s)_{s:\sigma}$ determined by their unique lifts to $\A$ must coincide.
+    
+    % Thus, by the sheaf condition, there exists a unique family $(c_{l})_{l:\lambda} \in \A_0^\lambda$ such that $(b_s)_{s:\sigma}=\phi^*(c_{l})_{l:\lambda}$. In other words, $b \colon \sigma \to \A_0$ factors through $q_* (\sigma)$, from which we can conclude by taking appropriate image factorizations and chasing diagrams. 
+
+    $(ii)\Rightarrow(iii)$. Let $v \colon a \vuto{\tau} b_{\phi t}$ be a vf-arrow in $\A$, for some cover $\phi \colon \tau \epi \sigma$, witnessing $a \vuleq{\sigma} b_s$; clearly, setting $(q_t )_{t\in T}\coloneqq (\pi(b_{\phi t}))_{t\in T}$, we have that $v$ is the unique lift of the vf-arrow $\pi(v) \colon p \vuto{\tau} q_t$. By hypothesis, this means that $(b\phi)_*(\tau) \cong q_*(\tau)$, and $(b\phi)_*(\tau) \cong b_*(\sigma)$ since $\phi$ is an epimorphism; the restriction of $\pi$ to (the carrier set of) $b_*(\sigma)$ is thus identifiable with the inclusion $r \colon q_*(\tau) \rightarrowtail \X_0$, and hence it is injective.
 
     $(iii) \Rightarrow(iv)$. Let $\nu_a$ be the filter on $\A_0$ defined by the neighborhoods of $a$ in $\A$ and let $b \colon \nu_a \to \A_0$ be represented by the identity map. By \Cref{prop:canonical-convergence-neighborhoods}, we know that $a \vuleq{s:\nu_a} b_s$ in $\Tref{\A}$, so that by hypothesis $\pi$ is injective on a $\nu_a$-large subset of $\A_0$, i.e.\ on an open neighborhood of $a$ in $\A$.
 
@@ -177,7 +188,7 @@ Moreover, exactly as in \cite[Lem.\ 4.17]{vangoolToposesEnoughPoints2026}, we ca
 \[ \Sub_{\Sh(\X)}(A) \cong \Open(\sem{A}).\]
 \end{lem}
 
-Consider now the slice topos $\E/E$. Identifying points of $\E/E$ with pairs $(p, \xi)$ of a point $p$ of $\E$ and an element $\xi \in E_p$ \todo{add ref}, the canonical vf-category structure on $\pt(\E/E)$ can be described by setting vf-arrows $(p, \xi) \vuto{s:\sigma} (q_s, \zeta_s)$ to be natural transformations $p \Rightarrow \int_{s:\sigma} q_s$ whose component at $E$ maps $\xi \mapsto (\zeta_s)_{s:\sigma}$. This means that the vf-functor $\pt(\E/E)\to\pt(E)$ is étale, and that the étale vf-functor $\sem{f^*E} \to \X$ arises as its pullback along $F \colon \X \to \pt(\E)$.
+Consider now the slice topos $\E/E$. Identifying points of $\E/E$ with pairs $(p, \xi)$ of a point $p$ of $\E$ and an element $\xi \in E_p$ \todo{add ref}, a vf-arrow $(p, \xi) \vuto{s:\sigma} (q_s, \zeta_s)$ in the canonical vf-category structure on $\pt(\E/E)$ can be described as a natural transformations $p \Rightarrow \int_{s:\sigma} q_s$ whose component at $E$ maps $\xi \mapsto (\zeta_s)_{s:\sigma}$. This means that the vf-functor $\pt(\E/E)\to\pt(E)$ is étale, and that the étale vf-functor $\sem{f^*E} \to \X$ arises as its pullback along $F \colon \X \to \pt(\E)$.
 \[\begin{tikzcd}
 	{\sem{f^*E}} & {\pt(\E/E)} \\
 	\X & {\pt(\E)}

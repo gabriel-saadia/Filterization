@@ -25,7 +25,7 @@ As we now define, in a \emph{taut} vf-category, reducible vf-arrows can be {uniq
     Topological spaces, seen as vf-posets as in \Cref{ex:top-sp-as-vf-posets}, are taut. 
 \end{ex}
 
-\begin{lem}
+\begin{lem}\label{lem:set-is-taut}
 The vf-category $\Set$ is taut.
 \begin{proof}
     Fix a set $X$, an $S$-family of sets $(Y_s)_{s\in S}$, and a filter $\sigma$ on $S$. For a cover $\phi \colon \tau \epi \sigma$, let $u \colon X \to \int_{t:\tau} Y_{\phi t}$ be a function into the reduced product of the family $(Y_{\phi t})_{t\in T}$ which, seen as a vf-arrow, is $\phi$-reducible. We need to show that $u$ factors uniquely through the reindexing function $\phi^* \colon \int_{s:\sigma} Y_s \to \int_{t:\tau} Y_{\phi t}$.
@@ -293,7 +293,7 @@ Recall now that a small category $\mathcal C$ is \emph{cofiltered} if every fini
 \begin{prop}\label{prop:section-up-to-filter}
     Let $\mathcal C$ be a small cofiltered category and let $A \colon \mathcal C \to \Set$ be a functor such that $A(c)$ is inhabited for each $c$ in $\mathcal C$. Then, there exists a proper filter $\lambda$ such that the functor $A^\lambda \colon \mathcal C \to \Set$ defined by $A^\lambda(c) \coloneqq A(c)^\lambda$ admits a global section. 
 \begin{proof}
-    First, note that it suffices to prove the claim under the additional hypothesis of $\prod_{c\in \Ob\mathcal C} A(c)$ being inhabited. Indeed, this `weaker' version can be applied to some reduced power $A^\lambda \colon \mathcal C \to \Set$ with respect to a proper filter $\lambda$, given by applying \Cref{lem:choice-up-to-filter} to the family $(A(c))_{c\in \mathcal C}$, obtaining that $(A^\lambda)^{\lambda'} \cong A^{\lambda \times \lambda'}\colon \mathcal C \to \Set$ admits a global section for some proper filter $\lambda'$. 
+    First, note that it suffices to prove the claim under the additional hypothesis of $\prod_{c\in \Ob\mathcal C} A(c)$ being inhabited. Indeed, this `weaker' version can be applied to some reduced power $A^\lambda \colon \mathcal C \to \Set$ with respect to a proper filter $\lambda$, given by applying \Cref{lem:choice-up-to-filter} to the family $(A(c))_{c\in \mathcal C}$, obtaining that $(A^\lambda)^{\lambda'} \cong A^{\lambda' \times \lambda}\colon \mathcal C \to \Set$ admits a global section for some proper filter $\lambda'$. 
     
     Fix then an element $(a_c)_{c\in \mathcal C}$ of $\prod_{c\in \mathcal C} A(c)$. Consider the set:
     \[ L \coloneqq \sum_{I_0 \in \mathcal P_\omega (\Ob\mathcal C)} \prod_{c \in I_0} \Ob(\mathcal C/c),\] 
