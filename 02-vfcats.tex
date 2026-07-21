@@ -17,7 +17,7 @@ We begin by recalling the necessary background on \emph{filters}, so as to fix o
 
 We denote by $\delta_X$ the filter $\{X\}$ on a set $X$. The association $X \mapsto \delta_X$ realizes an embedding $\Set \hookrightarrow \FF$, which we will leave implicit when unambiguous.
 
-Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\phi \colon \tau \to \sigma$ is a monomorphism if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset; on the other hand, it is an epimorphism if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, as implied by the lemma below, $\FF$ is balanced.
+Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\phi \colon \tau \to \sigma$ is a monomorphism if and only if it is injective on a $\tau$-large subset, in which case it can be identified with the inclusion of a $\sigma$-large subset \gabrielnote{true constructively? im not sure...}; on the other hand, it is an epimorphism if and only if $\phi(T_0) \in \sigma$ for each $T_0 \in \tau$, or equivalently $\sigma = \phi_*(\tau)$, in which case it can be assumed to be surjective. Moreover, as implied by the lemma below, $\FF$ is balanced.
 
 \begin{lem}\label{lem:epis-are-regular}
     Every epimorphism in $\FF$ is effective. \todo{find ref in moerdijk and rephrase}
@@ -43,14 +43,14 @@ Recall from \cite[Thm.\ 6]{blassTwoClosedCategories1977} that an $\FF$-arrow $\p
 
 We denote by $0$ the initial object of $\FF$, isomorphic to any pair $(S, \mathcal P S)$. A filter $\sigma$ is \emph{proper} if the terminal map $\sigma \to 1$ is a cover, i.e.\ if every element of $\sigma$ is inhabited; clearly, this implies that (and is classically equivalent to) $\sigma$ is not isomorphic to $0$.
 
-We recall here the \emph{dependent product} of filters, combining an indexed family of filters with respect to a filter on the index set. In the non-dependent case, this construction reduces to the tensor product of filters considered already since \cite{blassTwoClosedCategories1977}; in the case where the filter on the index set is actually a set, this recovers instead a description of coproducts in $\FF$. \todo{find a first ref for this too}
+We recall here the \emph{dependent product}\gabrielnote{id prefere the term dependent tensor, product is a bit ambiguous as its not a categorical product when in the non-dependent case} of filters, combining an indexed family of filters with respect to a filter on the index set. In the non-dependent case, this construction reduces to the tensor product of filters considered already since \cite{blassTwoClosedCategories1977}; in the case where the filter on the index set is actually a set, this recovers instead a description of coproducts in $\FF$. \todo{find a first ref for this too}\gabrielnote{i think this is not true constructively}
 
 \begin{cons}[Dependent products]
     For a filter $\sigma$ on a set $S$ and a family $(\tau_s)_{s\in S}$ of filters, each on a set $T_s$, we denote by $\sigma \cdot \tau_s$ the filter on the set $\sum_{s\in S}T_s$ given by those subsets of the form $\sum_{s\in S_0} T_{s,0}$ where $S_0 \in \sigma$ and $T_{s,0} \in \tau_s$ for each $s \in S_0$. 
 \begin{itemize}
     \item[(a)]In the case where all filters $\tau_s$ coincide with a single filter $\tau$ on a set $T$, the filter $\sigma\cdot \tau$ is the \emph{tensor product} of $\sigma$ and $\tau$, i.e.\ the filter on the set $S \times T$ consisting of those subsets $R$ such that 
     \[ \set{ s\in S | \set{ t \in T | (s,t) \in R } \in \tau } \in \sigma. \]
-    \item[(b)]In the case where $\sigma$ is the filter $\delta_S$, the filter $S\cdot \tau_s$ is the \emph{coproduct} of the family $(\tau_s)_{s\in S}$, i.e.\ the filter on the set $\sum_{s\in S}T_s$ consisting of those subsets of the form $\sum_{s\in S} T_{s,0}$ where $T_{s,0} \in \tau_s$ for all $s \in S$. 
+    \item[(b)]In the case where $\sigma$ is the filter $\delta_S$, the filter $S\cdot \tau_s$ is the \emph{coproduct} of the family $(\tau_s)_{s\in S}$, i.e.\ the filter on the set $\sum_{s\in S}T_s$ consisting of those subsets of the form $\sum_{s\in S} T_{s,0}$ where $T_{s,0} \in \tau_s$ for all $s \in S$.
 \end{itemize}
 \end{cons}
 
@@ -74,6 +74,7 @@ For a set $X$ and a filter $\sigma$, the reduced power $X^\sigma$ is in bijectio
 To generalize \Cref{cons:reduced-powers} to reduced products note first that, for an $S$-family $(X_s)_{s\in S}$ of sets, we can see $\sum_{s\in S} X_s$ as an object of $\FF/S$ via the projection. Moreover, filters on $S$ can be identified with objects of $\FF/S$ that are monomorphisms in $\FF$, which we can always assume to be represented by the identity map.
 
 \begin{cons}[Reduced products]
+    \gabrielnote{Id be to take this as a definition of reduced product, and then notice that it is the usual formula (at least classically)}
    For an $S$-family $(X_s)_{s\in S}$ of sets and a filter $\sigma$ on $S$, the reduced product $\int_{s:\sigma} X_s$ is in bijection with the hom-set $\FF/S (\sigma, \sum_{s\in S} X_s)$.
 \[\int_{s:\sigma} X_s \cong \left\{ \begin{tikzcd}[sep = small, cramped]
 	& {\sum_{s\in S}X_s} \\
@@ -97,7 +98,7 @@ is a pullback, the set $\FF/S(\tau, \sum_{s\in S} X_s)$ is in bijection with $\F
 
 \end{cons}
 
-\UT{i'm not entirely sure that, in both constructions, we can say "corresponding to the function..." without assuming some degree of choice, in that we're defining a function on equivalence classes by looking at a representative... though i don't think it's an actual problem for us}
+\UT{i'm not entirely sure that, in both constructions, we can say "corresponding to the function..." without assuming some degree of choice, in that we're defining a function on equivalence classes by looking at a representative... though i don't think it's an actual problem for us}\gabrielnote{i agree with you, this is why id propose to use it as a definition, and do the equivalence with the usual expression as a (at least classically true) consequence}
 
 \begin{rmk}[Reduced products of reduced products]\label{rmk:monoidal-structure-on-F}
     Recall by \cite[\S 4]{blassTwoClosedCategories1977} that the tensor product defines a monoidal closed structure on $\FF$:
@@ -121,11 +122,11 @@ is a pullback, the set $\FF/S(\tau, \sum_{s\in S} X_s)$ is in bijection with $\F
     A \emph{vf-category} $\X$ is defined by the following data:
     \begin{enumerate}
         \item a class $\X_0$ whose elements are called \emph{points};
-        \item a class of \emph{vf-arrows}, whose elements have a \emph{domain} given by a point $p$, a \emph{codomain} given by a family of points $(q_s)_{s\in S}$ for some set $S$, and a \emph{type} given by a filter $\sigma$ on the set $S$, which we denote as $u \colon p \vuto{\sigma}q_s$; 
+        \item a class of \emph{vf-arrows}, whose elements have a \emph{domain} given by a point $p$, a \emph{codomain} given by a family of points $(q_s)_{s\in S}$ for some set $S$, and a \emph{type} given by a filter $\sigma$ on the set $S$, which we denote as $u \colon p \vuto{\sigma}q_s$; \gabrielnote{i think we need $(q_s)$ to be defined on a $\sigma$-large set for the reindexing to make sense}
         \item for each point $p$, an \emph{identity} vf-arrow $\id_p \colon p \vuto{\ptuf} p$;
         \item for each vf-arrow $u \colon p\vuto{\sigma}q_s$ and each family $(v_s\colon q_s\vuto{\tau_s}r_{s,t})_{s\in S}$ of vf-arrows, a \emph{composition} $v_s\circ_\sigma u \colon p \vuto{\sigma\cdot\tau_s} r_{s,t}$, which we also denote graphically as
         \[v_s\circ_\sigma u \colon p \vuto{\sigma} (q_s\vuto{\tau_s} r_{s,t});\]
-        \item\looseness=-1 for each vf-arrow $u \colon p \vuto{\sigma} q_s$ and each $\FF$-arrow $\phi \colon \tau \to \sigma$, a \emph{reindexing} $\phi^* u \colon p \vuto{\tau} q_{\phi t}$.
+        \item\looseness=-1 for each vf-arrow $u \colon p \vuto{\sigma} q_s$ and each $\FF$-arrow $\phi \colon \tau \to \sigma$, a \emph{reindexing} $\phi^* u \colon p \vuto{\tau} q_{\phi t}$. \gabrielnote{we should be more carefull here about the meaning of it}
         
         % \item A vf-arrow (resp. vu-arrow) $\phi^*u : p\vuto{\tau}q_{\phi t}$ for each vf-arrow (resp. vu-arrow) $u : p\vuto{\sigma} q_s$ and each morphism of filters (resp. ultrafilters) $\phi : \tau\to\sigma$. This $\phi^*u$ is called the \emph{reindexing of $u$ along $\phi$}.
         % In the case $\phi$ injective (resp. surjective), we say that $\phi^*u$ is a \emph{specialization} (resp. a \emph{thickening}) of $u$.
@@ -155,10 +156,10 @@ is a pullback, the set $\FF/S(\tau, \sum_{s\in S} X_s)$ is in bijection with $\F
 We will typically write $\mathscr{X}$ in place of $\mathscr{X}_0$.
 \end{defn}
 
-For an $\FF$-arrow $\phi \colon\tau \to \sigma$, we also refer to the reindexing of $u \colon p\vuto{\sigma}q_s$ along $\phi$ as a \emph{specialization} of $u$ if $\phi$ is a monomorphism, or a \emph{thickening} of $u$ if $\phi$ is a cover. For each point $p$, we denote by $\diag_p^\sigma \colon p \vuto{\sigma} p$ the vf-arrow obtained by reindexing $\id_p \colon p\vuto{\ptuf} p$ along the unique $\FF$-arrow $!_\sigma \colon \sigma \to \ptuf$; we refer to vf-arrows of this form as \emph{diagonals}. 
+For an $\FF$-arrow $\phi \colon\tau \to \sigma$, we also refer to the reindexing of $u \colon p\vuto{\sigma}q_s$ along $\phi$ as a \emph{specialization} of $u$ if $\phi$ is a monomorphism, or a \emph{thickening} of $u$ if $\phi$ is a cover. For each point $p$, we denote by $\diag_p^\sigma \colon p \vuto{\sigma} p$ the vf-arrow obtained by reindexing\gabrielnote{thickening} \UT{not necessarily: it's a thickening iff $\sigma$ is proper}\gabrielnote{yes sure!} $\id_p \colon p\vuto{\ptuf} p$ along the unique $\FF$-arrow $!_\sigma \colon \sigma \to \ptuf$; we refer to vf-arrows of this form as \emph{diagonals}. 
 
 \begin{defn}
-    A vf-category $\X$ is \emph{locally small} if, for each point $p\in\X$, $S$-family of points $(q_s)_{s\in S}$, and filter $\sigma$ on $S$:
+    A vf-category $\X$ is \emph{locally small}\gabrielnote{to change in: locally, there is a small set of arrow st every arrow is a thickening of one in it} if, for each point $p\in\X$, $S$-family of points $(q_s)_{s\in S}$, and filter $\sigma$ on $S$:
     \begin{enumerate}
         \item the class $\Hom_\sigma(p,q_s)$ of vf-arrows $p\vuto{\sigma}q_s$ is small, and 
         \item the presheaf 

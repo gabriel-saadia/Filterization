@@ -7,7 +7,7 @@ Let $\X$ be a vf-category. Note first that if a vf-arrow $u \colon p \vuto\tau q
 \begin{defn}
     For a cover $\phi \colon \tau \epi \sigma$, a vf-arrow $u \colon p \vuto{\tau} q_{\phi t}$ in $\X$ is \emph{$\phi$-reducible} (or \emph{reducible along $\phi$}) if $\psi_1^* u = \psi_2^*u$ for every pair of parallel $\FF$-arrows $\psi_1,\psi_2$ such that $\phi \circ \psi_1 = \phi\circ\psi_2$. 
 \end{defn}
-\begin{rmk}
+\begin{rmk}\gabrielnote{maybe we should take this as the def?} \UT{this rephrasing only works for vfcats whereas the definition above can be given verbatim for vucats}
     Equivalently, to see that $u \colon p \vuto{\tau} q_{\phi t}$ is $\phi$-reducible, it suffices to see that $\pi_1^* u = \pi_2^* u$ where $\pi_1,\pi_2 \colon \tau \times_\sigma \tau \rightrightarrows \tau$ is the kernel pair of $\phi$.
 \end{rmk}
 
@@ -70,7 +70,7 @@ The claim follows then recalling that $\phi$ is the coequalizer of its kernel pa
     A vf-functor $F \colon \X \to \mathscr Y$ is \emph{vf-full} if for each vf-arrow $u \colon F(x) \vuto{s:\sigma} F(y_s)$ in $\Y$ there exists a cover $\phi \colon \tau \epi \sigma$ in $\FF$ and a vf-arrow $v \colon x \vuto{t:\tau} y_{\phi t}$ in $\X$ such that $F(v) = \phi^*(u)$.
 \end{defn}
 
-\gabrielnote{Maybe fist define vf-full, then the factorization vf-full surj-on-ob / ff, then define the topological reflection from the factorization of the morphism into the terminal.}
+\gabrielnote{say somewhere that there is a factorization vf-full surj-on-ob / ff, and the topological reflection arise from the factorization into the terminal?}
 
 \begin{lem}\label{lem:vf-fully-faithful-equiv}
     Let $F \colon \X \to \Y$ be a vf-functor between taut vf-categories. Then, the following are equivalent:
@@ -93,7 +93,7 @@ The claim follows then recalling that $\phi$ is the coequalizer of its kernel pa
 Recall now that a monomorphism of categories is a functor which is injective on objects and faithful; similarly, a monomorphism of vf-categories is a vf-functor which is injective on points and vf-faithful. Therefore, we could define a \emph{sub-vf-category} of a vf-category $\X$ as a vf-category $\Y$ together with a vf-faithful vf-functor $\Y \to \X$ which is also injective on objects. However, just as how in ordinary category theory we are usually more interested in \emph{full} subcategories, here we also care about a more restrictive notion of sub-vf-category, which we call \emph{subspace}. For instance, tautness will be preserved under subspaces, but not under arbitrary sub-vf-categories.
 
 \begin{defn}
-A \emph{subspace} of $\X$ is a vf-category $\Y$ endowed with a vf-fully-faithful functor $\Y \mono \X$ which is also injective on points.
+A \emph{subspace} of $\X$ is a vf-category $\Y$ endowed with a vf-fully-faithful functor $\Y \mono \X$ which is also injective on points.\gabrielnote{id be to call a subspace a full-vu-subcategory. like an embedding (vf-ff-functor) gives a subspace by looking at the image.} \UT{i think that we need to say "subspace" too often to say "full sub-vf-category"... i had tried conveying the idea of a full sub-vf-category in the text above}
 \end{defn}
 
 Concretely, a subspace $\Y$ of $\X$ is determined by a subclass $\Y_0 \subseteq \X_0$ of points, together with the vf-arrows, identities, composites, and reindexings inherited from $\X$. Notationally, we then also write $\Y \subseteq \X$.
@@ -113,7 +113,7 @@ A subspace $\Y \subseteq \X$ is \emph{open} if for any point $p$ in $\Y$, any $S
 We denote by $\Open (\X)$ the (possibly large) poset of open subspaces of $\X$. If $\X$ is small, then $\Open(X)$ is a frame, and it determines a topology on $\X_0$: with respect to these topologies, the underlying maps of points of vf-functors are continuous. This construction gives thus rise to a 2-functor $\vfCat \to \TopSp$ which, with a slight abuse of notation, we also denote by $\Open$.
 
 
-\begin{rmk}
+\begin{rmk}\gabrielnote{Classically $\Omega$ is $2$ and not Sierpinski, so id go with a different notation recalling Sierpinski for this vf-category of truth values.}
 Denote by $\bf{\Omega}$ the \emph{vf-category of truth values}, i.e.\ the vf-poset structure defined on the frame $\Omega \coloneqq \mathcal P(1)$ by setting $\alpha \vuleq{\sigma} \beta_s$ if and only if $\alpha \subseteq \int_{s:\sigma} \beta_s$, where 
 \[ \int_{s:\sigma} \beta_s \coloneqq \bigcup_{S_0 \in \sigma^\op} \bigcap_{s\in S_0} \beta_s.\]
 Then, a subspace $\Y\subseteq \X$ is open if the characteristic map $\X_0 \to {\Omega}$ of $\Y_0 \subseteq \X_0$ can be endowed with the structure of a vf-functor $\X \to \mathbf{\Omega}$.

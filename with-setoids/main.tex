@@ -1,0 +1,108 @@
+\input{preamble.tex}
+
+
+%\nocomments % uncomment to hide all comments
+\title{Setoid-enriched vf-categories}
+
+\date{\today}
+
+\author{Gabriel Saadia}
+\author{Umberto Tarantino}
+
+\address{
+Gabriel \textsc{Saadia} \newline
+Department of Mathematics\newline
+Stockholm University\newline
+Stockholm, Sweden\newline
+\emaillink{gabriel.saadia@math.su.se}
+}
+
+\address{
+Umberto \textsc{Tarantino} \newline
+Université Paris Cité, CNRS, IRIF, F-75013\newline
+Paris, France\newline
+\href{mailto:tarantino@irif.fr}{\sf tarantino@irif.fr}
+}
+
+
+\thanks{The first-named author was supported by the KAW Foundation, under the project “Type Theory for Mathematics and Computer Science” (PI Thierry Coquand). The second-named author acknowledges financial support from the Agence Nationale de la Recherche
+(ANR), project ANR-23-CE48-0012-01.}
+
+\begin{document}
+
+\begin{abstract}
+    x
+\end{abstract}
+
+\maketitle
+\setcounter{tocdepth}{2} 
+\tableofcontents
+
+\begin{defn}
+    A setoid $(X,\sim)$ is a set $X$ together with $\sim\subseteq X\times X$ an equivalence relation. A morphism of setoid $f : (X\sim_X)\to(Y,\sim_Y)$ is given by a map $f : X\to Y$ respecting the relation, two such morphims $f,g$ are equivalent, $f\sim g$, if for all $x\in X$, $fx\sim_Y gx$. We denote $\Setoid((X\sim_X),(Y,\sim_Y))$ the setoid.
+\end{defn}
+
+\begin{defn}
+    For $\sigma$ a filter on a set $S$, and $(X_s,\sim)_{s\in S}$ setoids, $\int_{\sigma}X_s$ is the setoid  whose objects are $(S_0, (x_s)) \in \sum_{S_0\in\sigma}\prod_{s\in S_0}X_{s}$ and $(S_0,x)\sim(S_0',x')$ if $\{s\in S_0\cap S_0' | x_s = x'_s\}\in \sigma$.
+\end{defn}
+
+\begin{prop}
+    \[\textstyle\int_{\sigma}\int_{\tau_s}X_{s,t} \cong \textstyle\int_{\sigma\cdot\tau_s}X_{s,t}\]
+    is an isomorphism of setoids
+\end{prop}
+\begin{proof}
+
+    \[\textstyle\int_{\sigma}\int_{\tau_s}X_{s,t}
+    = \sum_{S_0\in\sigma}\prod_{s\in S_0}\int_{\tau_s}X_{s,t}
+    \cong \sum_{S_0\in\sigma}\prod_{s\in S_0}\sum_{T_{s,0}\in\tau_s}\prod_{t\in T_{s,0}}X_{s,t}\]
+    \[\cong \textstyle\sum_{S_0\cdot T_{s,0}\in\sigma\cdot\tau_s}\prod_{(s\in S_0, t\in T_{s,0})}X_{s,t}
+    = \int_{\sigma\cdot\tau_s}X_{s,t}.\]
+    we need to check that this bijection transport the equivalence relation...
+\end{proof}
+
+
+\begin{defn}
+    A \emph{vf-category} $\X$ is defined by the following data:
+    \begin{enumerate}
+        \item a class $\X_0$ whose elements are called \emph{points};
+        \item for each $(S,\sigma)$, for each point $p$ and $(S_0\in\sigma, q : S_0\to \X_0)$, a setoid $\X_{\sigma}(p,q_s)$ (the set $S$ on which $\sigma$ is defined as well as the set $S_0$ on which $q$ is defined are let implicit in this notion).
+
+        Elements $u\in\X_{\sigma}(p,q_s)$ are denoted as $u \colon p \vuto{\sigma}q_s$, and called vf-arrow of \emph{shape} $(S,\sigma)$ with \emph{domain} $p$ and \emph{codomain} $(q_s)_{s\in S_0}$. And the equivalence relation is denoted by $u\sim v$. 
+        
+        \item for each point $p$, an \emph{identity} $\id_p\in\X_{(1,\ptuf)}(p,p)$;
+
+        \item for $(S,\sigma)$ a filter, $(T_s,\tau_s)_{s\in S}$ filters, $p$ a point, $(q : S_0\to\X)$, and $(r_s : T_{s,0} \to \X)_{s\in S}$, a \emph{composition} operation
+        \[\X_\sigma(p,q_s)\times \prod_{s\in S}\X_{\tau_s}(q_s,r_{s,t})\to \X_{\sigma\cdot\tau_s}(p,r_{s,t})\]
+        the composition of $u \colon p\vuto{\sigma}q_s$ with $(v_s\colon q_s\vuto{\tau_s}r_{s,t})_{s\in S}$ is denoted $v_s\circ_\sigma u \colon p \vuto{\sigma\cdot\tau_s} r_{s,t}$ and denote graphically as
+        \[v_s\circ_\sigma u \colon p \vuto{\sigma} (q_s\vuto{\tau_s} r_{s,t});\]
+
+        \item for $\phi : (T,\tau)\to (S,\sigma)$, $q : S_0\to \X$, we denote by $q_{\phi s} : T_0 \to \X$ with $T_0 \coloneqq \phi^{-1}(S_0)$, there is a \emph{reindexing} operation
+        \[\X_\sigma(p,q_s)\to\X_\tau(p,q_{\phi s})\]
+        % \[\delta : a\vuto{\sigma} a.\]
+        
+    \end{enumerate}
+    The above data must satisfy the following axioms (all of these are true equalities!):
+    \begin{itemize}
+        \item composition is unital and associative:
+            \[u\circ_{\ptuf} \id_p = u\]
+            \[\id_{q_s}\circ_{\sigma} u = u\]
+            \[ (w_{s,t}\circ_{\tau_s} v_s)\circ_{\sigma} u = w_{s,t}\circ_{\sigma\cdot \tau_s} (v_s\circ_{\sigma} u)\]
+        \item reindexing is functorial:
+        \[\operatorname{id}^*_\sigma u = u\]
+        \[\psi^*(\phi^*u) = (\phi\circ\psi)^*u\]
+        \item reindexing is compatible with composition, in the sense that for all vf-arrows $u\colon p\vuto{\sigma} q_s$ and all families $(v_s \colon q_s\vuto{\tau_s} r_{s,t})_{s:\sigma}$ for some filter $\sigma$:
+        \begin{enumerate}
+            \item[] for each $\phi : \lambda\to\sigma$ with $\phi\cdot \operatorname{id}_{\tau_s} \colon \lambda\cdot\tau_{\phi \ell}\to\sigma\cdot\tau_s$
+            \[v_{\phi \ell}\circ_{\lambda} (\phi^*u) = (\phi\cdot \operatorname{id}_{\tau_s})^*(v_s\circ_{\sigma} u),\]
+            \item[] and for each $(\psi_s \colon \kappa_s\to\tau_s)_{s:\sigma}$ with $\operatorname{id}_{\sigma}\cdot\psi_s : \sigma\cdot\kappa_s\to\sigma\cdot\tau_s$
+            \[({\psi_s}^*v_s)\circ_{\sigma} u = (\operatorname{id}_{\sigma}\cdot\psi_s)^*(v_s\circ_{\sigma} u).\]
+        \end{enumerate}
+    \end{itemize}
+\end{defn}
+
+\begin{ex}
+    There is a vf-category $\Set$ of small sets. Objects are small sets, and for $A$ and $(B_s)_{s\in S_0}$ the setoid $\Set_{\sigma}(A,B_s)$ is given by $\Setoid((A,=),\int_{s:\sigma}(B_s,=))$.
+\end{ex}
+
+% *** quiver ***
+\end{document}

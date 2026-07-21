@@ -39,6 +39,7 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 
 \UT{we used tautness of $\X$ before but now i don't think so?}
 
+\gabrielnote{I propose to put this (and its cor) in section 3, as it is a general result on arbitrary vu-categories. And also to replace the hypothesis $\X$ small by $\Tref{\A}$ essentially small (so we can use it later for $\X$ not necessarily small), to remove (iii) and prove directly (ii) implies (iv)}
 \begin{prop}\label{prop:local-injectivity}
     Let $\pi \colon \A \to \X$ be an étale vf-functor over a 
     \red{small} vf-category $\X$ and fix a point $a \in \A$ lying over some $p\in \X$. Fix also an $S$-family of points $(q_s)_{s\in S}$ in $\X$ and a filter $\sigma$ on $S$. The following are equivalent:
@@ -89,47 +90,77 @@ The following proposition plays the role of \cite[Prop.\ 4.7]{vangoolToposesEnou
 
 Introducing some notation, for a vf-sheaf $A \in \Sh(\X)$, i.e.\ a vf-functor $A \colon\X \to \Set$, we denote by $\pi \colon \sem{A} \to \X$ the étale vf-functor corresponding to it by \Cref{?}. For each $p \in \X_0$, we also denote by $A_p$ the set $A(p)$, that is, the fiber of $\pi$ at $p$.
 
-\begin{proof}[Proof of \Cref{thm:localicness}]
-To show that $A \colon \X \to \Set$ is a subquotient of some $f^*E$ for $E \in\E$, it suffices to show that for each $p \in \X_0$ and each $a \in A_p$ there exist some $E \in \E$ and some open subspace $V \subseteq \sem{f^*E}$ such that $a$ lies in the image of the restriction of $\pi \colon \sem{f^* E} \to \X$ to $V$. \UT{argue why}
 
-Let $S$ be 
-\end{proof}
-
+\begin{cor}\label{cor:local-injectivity}
+    Let $\pi \colon \A \to \X$ be an étale vf-functor over a small vf-category $\X$. Then for any subset $A \subseteq \A$ the following are equivalent: 
+\begin{enumerate}
+    \item for any parallel $u,v \colon \pi(a) \vuto{\sigma} q_s$ with $a\in A$, we have $u_*a = v_*a$,
+    \item $\pi$ is locally injective around $A$, i.e., there is an open $V \subseteq \A$ containing $A$ such that $\pi\vert_V \colon V \to \X$ is injective.
+\end{enumerate}
+\end{cor}
 
 \begin{proof}
-    We take $A : \X\to\Set$ and $a \in A(p)$. We will show that there is some $X\in\E$ with a subsheaf $V\subseteq f^*X$ and a map $V\to A$ having $a$ in its image.
-
-    Suppose that we have $X\in\E$ and $\xi\in X_{Fp} = (f^*X)_p$ such that: for any parallel pair $(u,v)$ of vf-arrows out of $p$
-    \[F(u)_*\xi = F(v)_*\xi \Rightarrow u_*a = v_*a.\]
-    Then the above lemma says that $(a,\xi)\in \A\times_{\X}\sem{f^*X}\to \sem{f^*X}$ is locally injective at 
-    as then it is easy to conclude by applying the above on the map $(a,\xi)\in \A\times_{\X}\sem{f^*X}\to \sem{f^*X}$. 
-    
-    We now show the existence of such a $\xi\in X_{Fp}$. (the following differ significantly from GMT to make it constructive)
-
-    ------
-
-    We consider $L$ some small set of parallel vf-arrows with domain $p$ --- so $\ell\in L$ corresponds to $(u_\ell,v_\ell)$ a pair of parallel $\sigma_\ell$-arrows out of $p$ --- such that for any other such pair $(u',v')$ of parallel $\sigma$-arrows out of $p$ there exists some $\ell\in L$ and a cover $\phi : \sigma\twoheadrightarrow\sigma_\ell$ such that $\phi^*u_\ell = u'$ and $\phi^*v_\ell = v'$.
-
-    The existence of such a small set $L$ can be deduce from the local smallness of $\X$ \gabrielnote{how? either use directly the smallness of the $(\mathds{h}_\sigma^{p,q_s})^2$, either by hand notice that if the $(u_i)_{i:I}$ is a family of $\sigma_i$-arrows out of $p$ that generate by thickening then $\{(\sigma_j^*u_i, \sigma_i^*u_j)\ | \ i,j:I\}$ (or something like that) works}.
-    
-    
-    For each $X\in\E$ and $\xi\in X_{Fp}$ we consider the subset \[L_{X,\xi}\coloneqq\{\ell\in L \ |\ F(u_\ell)_*\xi = F(v_\ell)_*\xi\}.\]
-    We notice that $L_{X,\xi}\cap L_{Y,\zeta} = L_{X\times Y,(\xi,\zeta)}$. So we can define the proper filter $\lambda$ on $L$, by saying that a subset is $\lambda$-large if and only if it contains some $L_{X,\xi}$.
-
-    We consider then the merging
-    \[u \coloneqq u_\ell\circ_\lambda\diag_p \qquad \text{and} \qquad v = v_\ell\circ_\lambda\diag_p.\]
-    These are two parallel vu-arrows out of $p$.
-    And for any $X\in\E$ and $\xi\in X_p$ we have
-    \[F(u)_*\xi = (F(u_\ell)_*\xi)_{\ell:\lambda} = (F(v_\ell)_*\xi)_{\ell:\lambda} = F(v)_*\xi\]
-    that is $F(u) = F(v)$ and by faithfulness of $F$ we deduce $u = v$.
-    %
-    Hence we have $u_*a = v_*a$.
-    This means that the set of $\ell$ such that ${u_\ell}_*a = {v_\ell}_*a$ is $\lambda$-large, and by definition of $\lambda$ we obtain some $X\in\E$ with some $\xi\in X_p$ such that 
-    \[F(u_\ell)_*\xi = F(v_\ell)_*\xi \Rightarrow {u_\ell}_*a = {v_\ell}_*a.\]
-
-    We got the implication for the pair $(u_\ell,v_\ell)$ but we want this implication for any pair $(u',v')$. By hypothesis $(u',v')$ is a thickening of some $(u_\ell,v_\ell)$ (by the same reindexing surjection), so we have $F(u_\ell)_*\xi = F(v_\ell)_*\xi$ iff $F(u)_*\xi = F(v)_*\xi$, and similarly ${u_\ell}_*a = {v_\ell}_*a$ iff ${u}_*a = {v}_*a$ and we are done.
+    $(ii)\Rightarrow(i)$ is clear. To show $(ii)$ from $(i)$, take $V$ be the subset of the $a\in \A$ such that $\pi$ is locally injective around $a$, then $V$ contains $A$ by the above proposition and is an open (if $a\vuto{\sigma}b_s$ with $a\in V$ then $\sigma$-all $b_s$ are in $V$).
 \end{proof}
 
+
+We fix $F : \X\to\pt(\E)$ a vf-faithful vf-functor with $\X$ \gabrielnote{not necessarily small, see the above lemma}. We fix $\dsD\subseteq \E$ a small dense subset. 
+
+\gabrielnote{i isolate what we proved before (assuming locally smallness of $\pt(\E)$) restricting to $\dsD$}
+\begin{lem}\label{lem:localicness}
+    For $A : \X\to\Set$ and $a \in A_p$, there is $X\in\dsD$ and $\xi\in X_{Fp} = (f^*X)_p$ such that: for all parallel pair $(u,v)$ of vf-arrows out of $p$
+    \[F(u)_*\xi = F(v)_*\xi \Rightarrow u_*a = v_*a.\]
+\end{lem}
+\begin{proof}
+    \gabrielnote{the following differ significantly from GMT to make it constructive}
+
+    By local smallness of $\X$, we take $\K$ a set of vu-arrow such that any vu-arrow is a thickening of one in $\K$.\\
+
+    We consider $L$ the set of pairs $(\iota^*{\pi_1}^* u, \iota^*{\pi_2}^* v)$ for $u$ a $\sigma$-arrow out of $p$ in $\K$, $v$ a $\tau$-arrow out of $p$ in $\K$, and $\iota : \lambda\subseteq\sigma\times\tau$ any filter specializing $\sigma\times\tau$.\\
+    
+    $L$ is a set of parallel vf-arrows with domain $p$ --- so $\ell\in L$ corresponds to $(u_\ell,v_\ell)$ a pair of parallel $\sigma_\ell$-arrows out of $p$ --- such that for any other such pair $(u',v')$ of parallel $\sigma$-arrows out of $p$ there exists some $\ell\in L$ and a cover $\phi : \sigma\twoheadrightarrow\sigma_\ell$ such that $\phi^*u_\ell = u'$ and $\phi^*v_\ell = v'$.\\
+    
+    For each $X\in\dsD$ and $\xi\in X_{Fp}$ we consider the subset \[L_{X,\xi}\coloneqq\{\ell\in L \ |\ F(u_\ell)_*\xi = F(v_\ell)_*\xi\}\]
+
+    As $L_{X,\xi}\cap L_{Y,\zeta} = L_{X\times Y,(\xi,\zeta)}$, we can define the proper filter $\lambda$ on $L$ --- a subset is $\lambda$-large if and only if it contains some $L_{X,\xi}$.\\
+
+    We consider then the two parallel vu-arrows out of $p$ given by $u \coloneqq \bigmrg_{\lambda} u_\ell$ and $v = \bigmrg_{\lambda}v_\ell$.\\
+    
+    For any $X\in\dsD$ and any $\xi\in X_p$ we have
+    \[F(u)_*\xi = (F(u_\ell)_*\xi)_{\ell:\lambda} = (F(v_\ell)_*\xi)_{\ell:\lambda} = F(v)_*\xi\]
+    
+    By density of $\dsD$ we deduce $F(u) = F(v)$ and by faithfulness of $F$ we deduce $u = v$.\\
+    
+    Hence $u_*a = v_*a$, so the set of $\ell$ such that ${u_\ell}_*a = {v_\ell}_*a$ is $\lambda$-large\\
+    
+    By definition of $\lambda$ we obtain some $X\in\dsD$ with some $\xi\in X_p$ such that for all $\ell\in L$,
+    \[F(u_\ell)_*\xi = F(v_\ell)_*\xi \Rightarrow {u_\ell}_*a = {v_\ell}_*a.\]
+
+    And by construction of $L$, any pair $(u,v)$ of parallel vu-arrows out of $p$ is a thickening of some $(u_\ell,v_\ell)$ along the same cover, so $F(u_\ell)_*\xi = F(v_\ell)_*\xi\Leftrightarrow F(u)_*\xi = F(v)_*\xi$ and ${u_\ell}_*a = {v_\ell}_*a \Leftrightarrow {u}_*a = {v}_*a$, hence $F(u)_*\xi = F(v)_*\xi \Rightarrow {u}_*a = {v}_*a$.
+\end{proof}
+
+\gabrielnote{we can now prove the thm, tell me if you think this works, then we can focus on 4.4-4.5}
+
+\begin{proof}[Proof of \Cref{thm:localicness}]
+
+    We take $\pi : \A\to\X$ étale.\\
+    
+    We denote by $\I$ the set of pairs $(a\in\A, D\in\dsD)$ such that there is some $\xi\in D_{F\pi(a)}$ satisfying $F(u)_*\xi = F(v)_*\xi \Rightarrow u_*a = v_*a$ for all parallel vf-arrows $u,v$ out of $\pi(a)$.\\
+    
+    We consider $E\in\E$ defined by $E \coloneqq \coprod_{(a, D)\in\I}D$.\\
+
+    Then $\A\times_{\X}\sem{f^*E}$ consists in $(a_1\in \A, ((a_2, D)\in\I), \xi\in D_{F\pi(a_1)}))$.\\
+
+    We consider the subset $A\subseteq \A\times_{\X}\sem{f^*E}$ of the $(a_1, ((a_2, D), \xi))$ such that $a_1 = a_2$.\\
+
+    \Cref{cor:local-injectivity} gives that $\A\times_{\X}\sem{f^*E}\to \sem{f^*E}$ is locally injective at $A$.\\
+
+    Hence we got $A\subseteq V$ with $V$ open in $\A\times_{\X}\sem{f^*E}$, such that $V\to \sem{f^*E}$ is injective.\\
+    
+    As $V$ is open in $\A\times_{\X}\sem{f^*E}$, we have that $V$ is a subsheaf of $\sem{f^*E}$.\\
+    
+    Moreover \Cref{lem:localicness} ensures that $V\to \A\times_{\X}\sem{f^*E} \to \A$ is surjective.
+\end{proof}
 
 \subsection{Sub-hyperconnectedness}
 
@@ -219,3 +250,111 @@ Thus, the homomorphism $\Sub_{\E} (E) \to \Sub_{\Sh(\X)}(f^*E)$ is a quotient ma
 
 
 \UT{i've written it a bit terse, i'll add some fluff later}
+
+------
+
+
+\gabrielnote{about locally smallness}
+
+Constructively, the function $\int_{\sigma\cdot\tau_s}A_{s,t}\to\int_{\sigma}\int_{\tau_s}A_{s,t}$ cannot be shown to be bijective. Hence, the above definition of the vf-structure on $\Set$ is not constructive. For the composition to make sense, we define the vf-structure on $\Set$ as follow: a $\sigma$-arrow from a set $A$ into sets $(B_s)_{s:S}$ with $S\in\sigma$ is given by a section in $\FF$
+\[\begin{tikzcd}
+	& {S\cdot B_s} \\
+	{A\cdot\sigma} & {S}
+	\arrow[from=1-2, to=2-2]
+	\arrow[curve={height=-12pt}, dashed, from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+\gabrielnote{note that $A\cdot\sigma$ is not the coproduct of $A$-times $\sigma$ constructively! but $S\cdot B_x = \coprod_{s\in S}B_s$}
+
+The reindexing of a such $\sigma$-arrow along $\phi:\tau\to\sigma$ (where $\phi$ is defined on $T\in\tau$) is constructed using the following pullback. 
+\[\begin{tikzcd}
+	& {S\cdot B_s} & \\
+	{A\cdot\sigma} & S & {T\cdot B_{\phi t}} \\
+	& {A\cdot\tau} & T
+	\arrow[from=1-2, to=2-2]
+	\arrow[curve={height=-6pt}, from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-3, to=1-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-135}, draw=none, from=2-3, to=2-2]
+	\arrow[from=2-3, to=3-3]
+	\arrow[from=3-2, to=2-1]
+	\arrow[curve={height=-6pt}, dashed, from=3-2, to=2-3]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=2-2]
+\end{tikzcd}\]
+
+The $\sigma$-composition of a $\sigma$-arrow from a set $A$ into sets $(B_s)_{s:S}$ with $S\in\sigma$ together with $\tau_s$-arrow from a set $B_s$ into sets $(C_{s,t})_{t:T_s}$ with $T_s\in\tau_s$ is given by pasting the diagrams \gabrielnote{actually this needs choice also... to define $S\cdot B_s\cdot\tau_s\to S\cdot T_s\cdot C_{s,t}$}
+\[\begin{tikzcd}
+	&& {S\cdot T_s\cdot C_{s,t}} \\
+	& {S\cdot B_s\cdot\tau_s} & {S\cdot T_s} \\
+	{A\cdot\sigma\cdot\tau_s} & {S\cdot\tau_s}
+	\arrow[from=1-3, to=2-3]
+	\arrow[curve={height=-12pt}, dashed, from=2-2, to=1-3]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-2, to=3-2]
+	\arrow[curve={height=-12pt}, dashed, from=3-1, to=2-2]
+	\arrow[from=3-1, to=3-2]
+	\arrow[from=3-2, to=2-3]
+\end{tikzcd}\]
+
+
+
+\begin{defn}
+    We denote by $Par(A,B)$ the set of partial function from $A$ to $B$.
+
+    We denote $\rho_{A,(B_s)_\sigma}$ the filter defines on $S\cdot Par(A,B_s)$ such that for any $a\in A$ and $S_0\in \sigma$ we have $\forall_{(s,f):\rho_{A,B}}(s\in S_0 \wedge a\in\dom(f))$. There is a canonical map $\pi : \rho_{A,(B_s)_\sigma} \coverto \sigma$.
+
+    There is a canonical vf-arrow $f_{A,(B_s)_\sigma} : A\vuto{\rho_{A,B_s}} B_{\pi r}$ given by the evaluation:
+    \[\begin{tikzcd}
+    	& {S\cdot Par(A,B_s)\cdot B_s} \\
+    	{A\cdot\rho_{A,(B_s)_\sigma}} & S\cdot Par(A,B_s)
+    	\arrow[from=1-2, to=2-2]
+    	\arrow[dashed, from=2-1, to=1-2]
+    	\arrow[from=2-1, to=2-2]
+    \end{tikzcd}\]
+
+    $\rho_{A,B} \coloneqq \rho_{A,(B)_\ptuf}$ is the filter on $Par(A,B)$ st for any $a\in A$ we have $\forall_{f:\rho_{A,B}}a\in\dom(f)$,
+    and $f_{A,B} : A\vuto{\rho_{A,B}} B$ is the evaluation $A\cdot \rho_{A,B}\to B$.
+\end{defn}
+
+\begin{lem}
+     Any vf-arrow $A\vuto{\tau}B_{\phi t}$, with $\phi : \tau\to \sigma$, is a reindexing of $f_{A,(B_s)_\sigma}$. In particular, any $A\vuto{\tau}B$ is a reindexing of $f_{A,B}$.
+\end{lem}
+\begin{proof}
+    \gabrielnote{maybe first we can write the case $S = 1$ even if its useless.}
+    
+    Let $f : A\vuto{\tau}B_{\phi t}$ with $\phi : \tau\to \sigma$ defined on $T\in\tau$ be given by
+    \[\begin{tikzcd}
+    	& {T\cdot B_{\phi t}} & {S\cdot B_s} \\
+    	{A\cdot\tau} & T & S
+    	\arrow[from=1-2, to=1-3]
+    	\arrow[from=1-2, to=2-2]
+    	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+    	\arrow[from=1-3, to=2-3]
+    	\arrow[curve={height=-12pt}, dashed, from=2-1, to=1-2]
+    	\arrow[from=2-1, to=2-2]
+    	\arrow[from=2-2, to=2-3]
+    \end{tikzcd}\]
+
+    It is enough to give a map $\Phi : \tau \to \rho_{A,(B_s)_{\sigma}}$, $\Phi : T \to S\cdot Par(A,B_s)$ above $\sigma$, such that $\Phi^*f_{A,(B_s)_\sigma} = f$, i.e., such that the following square commutes.
+    \[\begin{tikzcd}
+    	{A\cdot\tau} & {T\cdot B_{\phi t}} \\
+    	{A\cdot\rho_{A,(B_s)_\sigma}} & {S\cdot Par(A,B_s)\cdot B_s}
+    	\arrow[dashed, from=1-1, to=1-2]
+    	\arrow["{A\cdot\Phi}"', from=1-1, to=2-1]
+    	\arrow["{\Phi\cdot id}", from=1-2, to=2-2]
+    	\arrow[dashed, from=2-1, to=2-2]
+    \end{tikzcd}\]
+    
+    The map $A\cdot\tau\to T\cdot B_{\phi t}$ gives a partial function
+    \[A\times T \supseteq D \to \coprod_{s\in S} B_s\]
+    with $D$ such that $D_a\in \tau$, for any $a\in A$. \gabrielnote{recall somewhere that we denote by $D_a \coloneqq\{t\in T | (a,t)\in D\}$ and by $D_t \coloneqq\{a\in A | (a,t)\in D\}$}
+
+    Currifying, we get a function $\Phi : T \to S\cdot Par(A,B_s)$ given on $t\in T$ by
+    \[\Phi(t) = (\phi(s) , A \supseteq D_t \to B_s)\]
+
+    Now we show that $\Phi$ induces a morphism $\Phi : \tau \to \rho_{A,(B_s)_\sigma}$. So we take $S_0\in\sigma$ and $a\in A$, and we want to show that $\forall_{t:\tau}(\phi(s) \in S_0 \wedge a \in D_t)$, the first condition is true on $\phi^{-1}(S_0)\in\tau$ and the second on $D_a\in \tau$ (because $t\in D_a$ iff $(a,t)\in D$ iff $a\in D_t$).
+    
+    
+    
+\end{proof}
